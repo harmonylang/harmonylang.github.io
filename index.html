@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Harmony - Home</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+  <link href="/assets/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+  <link href="/assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light">
+          <img src="assets/img/favicon.png" style="margin-bottom: 4px;" alt="" class="img-fluid">
+          <a href="index.html">Harmony</a>
+        </h1>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#downloads">Downloads</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#documentation">Documentation</a></li>
+          <li><a href="#contact">Contact</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-end align-items-center">
+    <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Say hello to <span>Harmony</span>!</h2>
+          <p class="animate__animated fanimate__adeInUp">
+            A Python-like programming language for testing and experimenting with concurrent programs.
+            Instead of "running" code, Harmony programs are model-checked so that all corner cases are explored.
+          </p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Try it out!</a>
+        </div>
+      </div>
+
+      <!--
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Now available for Visual Studio Code!</h2>
+          <p class="animate__animated animate__fadeInUp">
+            Our extension for VS Code, HarmonyLang, is now available! It provides fully featured syntax highlighting,
+            an .
+          </p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Add to VS Code!</a>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a> -->
+
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section>
+  <!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>About</h2>
+          <p>What is Harmony?</p>
+        </div>
+
+        <div class="row content" data-aos="fade-up">
+          <div class="col-lg-6">
+            <p>
+              Concurrent programming is hard to get right. A deadlock might occur only once in a million executions,
+              caused by the most esoteric of circumstances. Harmony makes finding those bugs easy.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Checks every possible interleaving of processes</li>
+              <li><i class="ri-check-double-line"></i> Detects non-compilance with invariants</li>
+              <li><i class="ri-check-double-line"></i> Provides the shortest path to a failing execution</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <p>
+              Learning programming in Harmony should be straightforward to those familiar with Python or similar languages.
+              In addition to our online documentation, we provide a textbook in PDF form with many programming examples 
+              including Peterson's Algorithm, reader/writer locks, and split binary semaphores.
+            </p>
+            <a href="#" class="btn-learn-more">Read more</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Downloads Section ======= -->
+    <section id="downloads" class="downloads">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Downloads</h2>
+          <p>Requires Python 3.x</p>
+        </div>
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="box" data-aos="zoom-in">
+              <h3>Harmony Compiler</h3>
+              <ul>
+                <li>Command-line tool</li>
+                <li>HTML output</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="/assets/downloads/harmony-1.0.zip" class="btn-buy">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
+              <h3>HarmonyLang for VSCode</h3>
+              <ul>
+                <li>Syntax Highlighting</li>
+                <li>In-editor Output</li>
+                <li>Interactive GUI</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang" class="btn-buy">Download</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="300">
+              <span class="advanced">Coming Soon</span>
+              <h3>Harmony Online Editor</h3>
+              <ul>
+                <li>No download neccesary</li>
+                <li>Interactive visualization</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn btn-buy disabled" aria-disabled="true">Try now</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Downloads Section -->
+
+    <!-- ======= Examples Section ======= -->
+    <section id="examples" class="examples">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Examples</h2>
+          <p>Try out Harmony</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="icon-box" data-aos="zoom-in-left">
+              <div class="icon"><i class="fas fa-glass-cheers" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a href="">Dining Philosophers</a></h4>
+              <p class="description">
+                Formulated in 1965 by Edsger Dijkstra as a student exam exercise, presented in terms of computers competing for access to tape drive peripherals.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
+              <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
+              <h4 class="title"><a href="">Peterson's Algorithm</a></h4>
+              <p class="description">
+                An algorithm for mutual exclusion that allows two or more processes to share a single-use resource without conflict, using only shared memory for communication.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
+              <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
+              <h4 class="title"><a href="">Hoare Monitor</a></h4>
+              <p class="description">
+                A synchronization construct that allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become false.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="300">
+              <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
+              <h4 class="title"><a href="">Reader/Writer Problem</a></h4>
+              <p class="description">
+                One of the most common problems in concurrency, we want to prevent more than one thread modifying
+                the shared resource simultaneously and allow for two or more readers to access the shared resource
+                at the same time.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-5">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="400">
+              <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
+              <h4 class="title"><a href="">Banking</a></h4>
+              <p class="description">
+                It would make for quite a poor banking experience to allow dollars to simply go missing or be created
+                from thin air, however that's exactly what might happen with poorly designed concurrent programs.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt-5">
+            <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="500">
+              <div class="icon"><i class="las la-clock" style="color: #4680ff;"></i></div>
+              <h4 class="title"><a href="">Binary Semaphores</a></h4>
+              <p class="description">
+                A technique originally discovered, but not reccomended by, Tony Hoare. It uses a set of binary semaphores
+                where the sum of which never exceed 1.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Examples Section -->
+
+    <!-- ======= Documentation Section ======= -->
+    <section id="documentation" class="docs">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Documentation</h2>
+          <p>Read the docs</p>
+        </div>
+
+        <div class="row">
+          <a href=""><h3>What's New in Harmony 1.0?</h3></a>
+          <p>Changelog & Patch Notes</p>
+        </div>
+
+        <div class="row">
+          <a href=""><h3>Tutorial</h3></a>
+          <p><i>Coming Soon</i></p>
+        </div>
+
+        <div class="row">
+          <a href=""><h3>HarmonyLang for VSCode</h3></a>
+          <p>A Quick Start Guide</p>
+        </div>
+
+        <div class="row">
+          <a href=""><h3>Library Reference</h3></a>
+          <p>Built in modules and libraries</p>
+        </div>
+
+        <div class="row">
+          <a href=""><h3>Language Reference</h3></a>
+          <p>Language features and syntax</p>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Team</h2>
+          <p>Our Primary Contributors</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up">
+              <div class="member-img">
+                <img src="assets/img/team/team-1.png" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://www.cs.cornell.edu/home/rvr/"><i class="icofont-computer"></i></a>
+                  <a href="https://twitter.com/rvanren"><i class="icofont-twitter"></i></a>
+                  <a href="https://www.linkedin.com/in/rvanren/"><i class="icofont-linkedin"></i></a>
+                  <a href="https://github.com/rvanren"><i class="icofont-github"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Robbert van Renesse</h4>
+                <span>Creator and Advisor to the Harmony Project</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://www.facebook.com/anthonyyang4114"><i class="icofont-facebook"></i></a>
+                  <a href="https://twitter.com/ayang4114"><i class="icofont-twitter"></i></a>
+                  <a href="https://www.linkedin.com/in/ayang4114/"><i class="icofont-linkedin"></i></a>
+                  <a href="https://github.com/anthonyyangdev"><i class="icofont-github"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Anthony Yang</h4>
+                <span>Compilers & Data Output</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://kevinsun.dev/"><i class="icofont-computer"></i></a>
+                  <a href="https://twitter.com/kevinsun_dev"><i class="icofont-twitter"></i></a>
+                  <a href="https://www.linkedin.com/in/kevinsun-dev/"><i class="icofont-linkedin"></i></a>
+                  <a href="https://github.com/kevinsun-dev"><i class="icofont-github"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Kevin Sun</h4>
+                <span>Design & User Interface</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Contact</h2>
+          <p>Contact Us</p>
+        </div>
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4" data-aos="fade-right">
+            <div class="info">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>433 Gates Hall, Ithaca, NY 14853</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>rvr@cs.cornell.edu</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 (607) 255-1021</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Harmony</h3>
+      <p>Better Concurrent Programming</p>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Harmony</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/selecao-bootstrap-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
