@@ -31,8 +31,6 @@ following rules apply:
 - dictionaries are first converted into a list of ordered (key, value) pairs. Then two dictionaries
     are lexicographically ordered by this representation;
 - a set is first converted into an ordered list, then lexicographically ordered;
-
-
 - an address is a list of atoms. `None` is the empty list of atoms. Addresses are lexicographically ordered accordingly;
 - contexts (Appendix E) are ordered first by name, then by program counter, then by the remaining content.
 
@@ -43,11 +41,11 @@ Generic operators on Harmony values include:
 | ------ | ----------- |
 | `e == e` | equivalence |
 | `e != e` | inequivalence |
-| `e < e, e <=e, e > e, e >= e` | comparison |
+| `e < e, e <= e, e > e, e >= e` | comparison |
 
 <br />
 
-## A.1 Boolean
+## 1.1 Boolean
 
 The Boolean type has only two possible values: `False` and `True`. Unlike in Python, in Harmony
 booleans are distinct from integers, and in particular `False < 0`. In statements and expressions
@@ -65,7 +63,7 @@ Operations on booleans include:
 
 <br />
 
-## A.2 Integer
+## 1.2 Integer
 
 The integer type supports any whole number, as well as `−inf` and `inf`. In the Python-based model checker, integers are infinite precision. In the C-based model checker, integers are implemented
 by two’s complement 61-bit words, and `−inf` is represented by the minimal integer and `inf` is represented by the maximal integer.
@@ -91,7 +89,7 @@ Operations on integers include:
 
 <br />
 
-## A.3 Atom
+## 1.3 Atom
 
 Atoms are essentially names and consist of one or more unicode characters. If they do not contain
 special characters and do not start with a digit, then an atom can be represented by a “.” followed
@@ -100,7 +98,7 @@ can be represented by `.0xXX`, where `XX` is the hexidecimal unicode for the cha
 not be confused with strings. There are no special operations on atoms. (In the future, operators
 may be introduced that convert between strings and atoms.)
 
-## A.4 Set
+## 1.4 Set
 
 In Harmony you can create a set of any collection of Harmony values. Its syntax is { v<sub>0</sub>, v<sub>1</sub>, ... }.
 Python users: note that in Harmony the empty set is denoted as `{}`.
@@ -125,7 +123,7 @@ a set that is constructed by applying `f` to all elements in `s` (where `s` is a
 (using nested for loops) and filtering (using the `where` keyword).
 For example: { x + y for x in s for y in s such that (x * y ) == 4 } returns a set that is constructed by summing pairs of elements from `s` that, when multiplied, have the value `4`.
 
-## A.5 Dictionary
+## 1.5 Dictionary
 
 A dictionary maps a set of values (known as `keys`) to another set of values. The generic syntax
 of a dictionary is { k<sub>0</sub> : v<sub>0</sub> , k<sub>1</sub> : v<sub>1</sub>, ... }. Different from Python, the empty dictionary is either `()` or `[]` (because `{}` is the empty set in Harmony). If there are duplicate keys in the list, then only the
@@ -157,7 +155,7 @@ disjoint dictionaries, intersection and union work as expected. If there is a ke
 then dictionary intersection retains the minimum value while dictionary union retains the maximum
 value. Unlike Python, Harmony dictionary intersection and union are commutative and associative.
 
-## A.6 List or Tuple
+## 1.6 List or Tuple
 
 In Harmony, there is no distinction between a list or a tuple. Both are a special case of dictionary.
 In particular, a list of n values is represented by a dictionary that maps the integers `0, ..., n−1` to
@@ -189,7 +187,7 @@ tuples. Native operations on lists or tuples include the following:
 Lists and tuples support comprehension as well. In their most basic form: `f(v) for v in s`.
 For example, to check if any element in a list t is even, you can write: `any((x%2) == 0 for x in t)`.
 
-## A.7 String
+## 1.7 String
 
 In Harmony, a string is a list of single-character atoms. The Python string notations mostly work
 in Harmony as well. For example, `’abc’` is a three-character string consisting of the atoms `.a`,
@@ -208,7 +206,7 @@ Native operations on strings include the following:
 
 <br />
 
-## A.8 Bag or Multiset
+## 1.8 Bag or Multiset
 
 A bag is represented by a dictionary that maps each element to its multiplicity, for example: { 10:2,
 12:1 }. The [`bag` module](../library/bag.md) contains various convenient routines that operate on lists or
@@ -222,7 +220,7 @@ tuples. Native operations on bags include the following:
 
 <br />
 
-## A.9 Program Counter
+## 1.9 Program Counter
 
 A program counter is an integer that can be used to index into Harmony bytecode. When you
 define a method, a lambda function, or a label, you are creating a constant of the program counter
@@ -235,14 +233,14 @@ Operations on program counters include the following:
 
 You can create lambda functions similarly to Python. For example: `lambda(x, y): x + y`.
 
-## A.10 Address
+## 1.10 Address
 
 In Harmony, each shared variable has an address, which is essentially a list of Harmony values.
 For example, the address of variable `d`. `v[3]` consists of the list `.d`, `.v`, and `3`. The only way to construct an address in Harmony is using the `?` operator. `?d.v[3]` returns the address of variable
 `d.v[3]`. An address can be dereferenced to return the value of the variable. If `a` is an address, then
 `!a` returns the value. Like C, Harmony supports the shorthand `a->v` for the expression `(!a).v`.
 
-## A.11 Context
+## 1.11 Context
 
 A context value captures the state of a thread. A context is itself composed over various Harmony
 values. Some of these values can be extracted. In particular, if `c` is a context, then:

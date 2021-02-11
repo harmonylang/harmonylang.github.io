@@ -7,9 +7,11 @@ nav:
         - 'Running a program': 'guides/running-harmony.md'
     - 'Reference':
         - 'Language':
+            - 'Overview': 'reference/language/overview.md'
             - 'Values': 'reference/language/value-types.md'
             - 'Statements': 'reference/language/statements.md'
         - 'Library':
+            - 'Overview': 'reference/library/overview.md'
             - 'alloc': 'reference/library/alloc.md'
             - 'bag': 'reference/library/bag.md'
             - 'hoare': 'reference/library/hoare.md'

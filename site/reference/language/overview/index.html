@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>synch - HarmonyDocs</title>
+  <title>Overview - HarmonyDocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "synch";
-    var mkdocs_page_input_path = "reference/library/synch.md";
+    var mkdocs_page_name = "Overview";
+    var mkdocs_page_input_path = "reference/language/overview.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -62,33 +62,33 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Reference</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="#">Language</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/overview/">Overview</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Language</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Overview</a>
+    <ul class="current">
+    </ul>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/value-types/">Values</a>
+                <li class="toctree-l2"><a class="reference internal" href="../value-types/">Values</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/statements/">Statements</a>
+                <li class="toctree-l2"><a class="reference internal" href="../statements/">Statements</a>
                 </li>
     </ul>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Library</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../overview/">Overview</a>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Library</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/overview/">Overview</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../alloc/">alloc</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/alloc/">alloc</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../bag/">bag</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/bag/">bag</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../hoare/">hoare</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/hoare/">hoare</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../list/">list</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/list/">list</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../set/">set</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/set/">set</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">synch</a>
-    <ul class="current">
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/synch/">synch</a>
                 </li>
     </ul>
                     </li>
@@ -120,7 +120,7 @@
     
       
         
-          <li>Library &raquo;</li>
+          <li>Language &raquo;</li>
         
       
         
@@ -128,7 +128,7 @@
         
       
     
-    <li>synch</li>
+    <li>Overview</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -139,79 +139,25 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="the-synch-module">The <code>synch</code> module</h1>
-<p>The <code>synch</code> module provides the following methods:</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tas(lk)</code></td>
-<td>test-and-set on <code>!lk</code></td>
-</tr>
-<tr>
-<td><code>BinSem(v)</code></td>
-<td>return a binary semaphore initialized to <code>v</code></td>
-</tr>
-<tr>
-<td><code>Lock()</code></td>
-<td>return a binary semaphore initialized to <code>False</code></td>
-</tr>
-<tr>
-<td><code>acquire(bs)</code></td>
-<td>acquire binary semaphore <code>!bs</code></td>
-</tr>
-<tr>
-<td><code>release(bs)</code></td>
-<td>release binary semaphore <code>!bs</code></td>
-</tr>
-<tr>
-<td><code>Condition()</code></td>
-<td>return a condition variable</td>
-</tr>
-<tr>
-<td><code>wait(c, lk)</code></td>
-<td>wait on condition variable <code>!c</code> and lock <code>lk</code></td>
-</tr>
-<tr>
-<td><code>notify(c)</code></td>
-<td>notify a thread waiting on condition variable <code>!c</code></td>
-</tr>
-<tr>
-<td><code>notifyAll(c)</code></td>
-<td>notify all threads waiting on condition variable <code>!c</code></td>
-</tr>
-<tr>
-<td><code>Semaphore(cnt)</code></td>
-<td>return a counting semaphore initialized to <code>cnt</code></td>
-</tr>
-<tr>
-<td><code>P(sema)</code></td>
-<td>procure <code>!sema</code></td>
-</tr>
-<tr>
-<td><code>V(sema)</code></td>
-<td>vacate <code>!sema</code></td>
-</tr>
-<tr>
-<td><code>Queue()</code></td>
-<td>return a synchronized queue object</td>
-</tr>
-<tr>
-<td><code>get(q)</code></td>
-<td>return next element of <code>q</code>, blocking if empty</td>
-</tr>
-<tr>
-<td><code>put(q, item)</code></td>
-<td>add <code>item</code> to <code>a</code></td>
-</tr>
-</tbody>
-</table>
-<p><br /></p>
+                <h1 id="overview">Overview</h1>
+<p>This reference manual describes the syntax and “core semantics” of the language. It is terse, but attempts to be exact and complete.  For an informal introduction to the language, see the <a href="../../../guides/introduction/">tutorial</a>.</p>
+<ol>
+<li><a href="../value-types/">Value Types</a><ul>
+<li><a href="../value-types/#11-boolean">1.1. Boolean</a></li>
+<li><a href="../value-types/#12-integer">1.2. Integer</a></li>
+<li><a href="../value-types/#13-atom">1.3. Atom</a></li>
+<li><a href="../value-types/#14-set">1.4. Set</a></li>
+<li><a href="../value-types/#15-dictionary">1.5. Dictionary</a></li>
+<li><a href="../value-types/#16-list-or-tuple">1.6. List or Tuple</a></li>
+<li><a href="../value-types/#17-string">1.7. String</a></li>
+<li><a href="../value-types/#18-bag-or-multiset">1.8. Bag or Multiset</a></li>
+<li><a href="../value-types/#19-program-counter">1.9. Program Counter</a></li>
+<li><a href="../value-types/#110-address">1.10. Address</a></li>
+<li><a href="../value-types/#111-context">1.11. Context</a></li>
+</ul>
+</li>
+<li><a href="../statements/">Statements</a></li>
+</ol>
               
             </div>
           </div>
@@ -219,10 +165,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../textbook/" class="btn btn-neutral float-right" title="Textbook">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../value-types/" class="btn btn-neutral float-right" title="Values">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../set/" class="btn btn-neutral" title="set"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../guides/running-harmony/" class="btn btn-neutral" title="Running a program"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -248,10 +194,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../set/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../../guides/running-harmony/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../textbook/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../value-types/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

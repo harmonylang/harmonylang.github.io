@@ -64,29 +64,31 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="#">Language</a>
     <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../overview/">Overview</a>
+                </li>
                 <li class="toctree-l2 current"><a class="reference internal current" href="./">Values</a>
     <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#a1-boolean">A.1 Boolean</a>
+    <li class="toctree-l3"><a class="reference internal" href="#11-boolean">1.1 Boolean</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a2-integer">A.2 Integer</a>
+    <li class="toctree-l3"><a class="reference internal" href="#12-integer">1.2 Integer</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a3-atom">A.3 Atom</a>
+    <li class="toctree-l3"><a class="reference internal" href="#13-atom">1.3 Atom</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a4-set">A.4 Set</a>
+    <li class="toctree-l3"><a class="reference internal" href="#14-set">1.4 Set</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a5-dictionary">A.5 Dictionary</a>
+    <li class="toctree-l3"><a class="reference internal" href="#15-dictionary">1.5 Dictionary</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a6-list-or-tuple">A.6 List or Tuple</a>
+    <li class="toctree-l3"><a class="reference internal" href="#16-list-or-tuple">1.6 List or Tuple</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a7-string">A.7 String</a>
+    <li class="toctree-l3"><a class="reference internal" href="#17-string">1.7 String</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a8-bag-or-multiset">A.8 Bag or Multiset</a>
+    <li class="toctree-l3"><a class="reference internal" href="#18-bag-or-multiset">1.8 Bag or Multiset</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a9-program-counter">A.9 Program Counter</a>
+    <li class="toctree-l3"><a class="reference internal" href="#19-program-counter">1.9 Program Counter</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a10-address">A.10 Address</a>
+    <li class="toctree-l3"><a class="reference internal" href="#110-address">1.10 Address</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#a11-context">A.11 Context</a>
+    <li class="toctree-l3"><a class="reference internal" href="#111-context">1.11 Context</a>
     </li>
     </ul>
                 </li>
@@ -96,6 +98,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="#">Library</a>
     <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/overview/">Overview</a>
+                </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../library/alloc/">alloc</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../library/bag/">bag</a>
@@ -217,12 +221,8 @@ following rules apply:</p>
 <li>program counters are ordered by their integer values;</li>
 <li>dictionaries are first converted into a list of ordered (key, value) pairs. Then two dictionaries
     are lexicographically ordered by this representation;</li>
-<li>
-<p>a set is first converted into an ordered list, then lexicographically ordered;</p>
-</li>
-<li>
-<p>an address is a list of atoms. <code>None</code> is the empty list of atoms. Addresses are lexicographically ordered accordingly;</p>
-</li>
+<li>a set is first converted into an ordered list, then lexicographically ordered;</li>
+<li>an address is a list of atoms. <code>None</code> is the empty list of atoms. Addresses are lexicographically ordered accordingly;</li>
 <li>contexts (Appendix E) are ordered first by name, then by program counter, then by the remaining content.</li>
 </ul>
 <p>Generic operators on Harmony values include:</p>
@@ -243,13 +243,13 @@ following rules apply:</p>
 <td>inequivalence</td>
 </tr>
 <tr>
-<td><code>e &lt; e, e &lt;=e, e &gt; e, e &gt;= e</code></td>
+<td><code>e &lt; e, e &lt;= e, e &gt; e, e &gt;= e</code></td>
 <td>comparison</td>
 </tr>
 </tbody>
 </table>
 <p><br /></p>
-<h2 id="a1-boolean">A.1 Boolean</h2>
+<h2 id="11-boolean">1.1 Boolean</h2>
 <p>The Boolean type has only two possible values: <code>False</code> and <code>True</code>. Unlike in Python, in Harmony
 booleans are distinct from integers, and in particular <code>False &lt; 0</code>. In statements and expressions
 where booleans are expected, it is not possible to substibute values of other types.
@@ -289,7 +289,7 @@ Operations on booleans include:</p>
 </tbody>
 </table>
 <p><br /></p>
-<h2 id="a2-integer">A.2 Integer</h2>
+<h2 id="12-integer">1.2 Integer</h2>
 <p>The integer type supports any whole number, as well as <code>−inf</code> and <code>inf</code>. In the Python-based model checker, integers are infinite precision. In the C-based model checker, integers are implemented
 by two’s complement 61-bit words, and <code>−inf</code> is represented by the minimal integer and <code>inf</code> is represented by the maximal integer.
 Operations on integers include:</p>
@@ -364,14 +364,14 @@ Operations on integers include:</p>
 </tbody>
 </table>
 <p><br /></p>
-<h2 id="a3-atom">A.3 Atom</h2>
+<h2 id="13-atom">1.3 Atom</h2>
 <p>Atoms are essentially names and consist of one or more unicode characters. If they do not contain
 special characters and do not start with a digit, then an atom can be represented by a “.” followed
 by the characters. For example, <code>.hello</code> is a representation of the atom “hello”. A special character
 can be represented by <code>.0xXX</code>, where <code>XX</code> is the hexidecimal unicode for the character. Atoms should
 not be confused with strings. There are no special operations on atoms. (In the future, operators
 may be introduced that convert between strings and atoms.)</p>
-<h2 id="a4-set">A.4 Set</h2>
+<h2 id="14-set">1.4 Set</h2>
 <p>In Harmony you can create a set of any collection of Harmony values. Its syntax is { v<sub>0</sub>, v<sub>1</sub>, ... }.
 Python users: note that in Harmony the empty set is denoted as <code>{}</code>.
 The <code>set</code> module (Section C.5) contains various convenient routines that operate on sets. Native operations on sets include:</p>
@@ -430,7 +430,7 @@ Harmony also supports set comprehension. In its simplest form, { f(v) for v in s
 a set that is constructed by applying <code>f</code> to all elements in <code>s</code> (where <code>s</code> is a set or a list). This is known as mapping. But set comprehension is much more powerful and can include joining multiple sets
 (using nested for loops) and filtering (using the <code>where</code> keyword).
 For example: { x + y for x in s for y in s such that (x * y ) == 4 } returns a set that is constructed by summing pairs of elements from <code>s</code> that, when multiplied, have the value <code>4</code>.</p>
-<h2 id="a5-dictionary">A.5 Dictionary</h2>
+<h2 id="15-dictionary">1.5 Dictionary</h2>
 <p>A dictionary maps a set of values (known as <code>keys</code>) to another set of values. The generic syntax
 of a dictionary is { k<sub>0</sub> : v<sub>0</sub> , k<sub>1</sub> : v<sub>1</sub>, ... }. Different from Python, the empty dictionary is either <code>()</code> or <code>[]</code> (because <code>{}</code> is the empty set in Harmony). If there are duplicate keys in the list, then only the
 one with the maximum value survives. Therefore the order of the keys in the dictionary does not matter. Dictionaries support comprehension. The basic form is: { f(k) : g(k) fork in s }.
@@ -499,7 +499,7 @@ Dictionary intersection and dictionary union are defined so that they work well 
 disjoint dictionaries, intersection and union work as expected. If there is a key in the intersection,
 then dictionary intersection retains the minimum value while dictionary union retains the maximum
 value. Unlike Python, Harmony dictionary intersection and union are commutative and associative.</p>
-<h2 id="a6-list-or-tuple">A.6 List or Tuple</h2>
+<h2 id="16-list-or-tuple">1.6 List or Tuple</h2>
 <p>In Harmony, there is no distinction between a list or a tuple. Both are a special case of dictionary.
 In particular, a list of n values is represented by a dictionary that maps the integers <code>0, ..., n−1</code> to
 those values. Hence, if <code>t</code> is a list or tuple, then the notation <code>t[0]</code> returns the first element of the list.</p>
@@ -566,7 +566,7 @@ tuples. Native operations on lists or tuples include the following:</p>
 <p><br />
 Lists and tuples support comprehension as well. In their most basic form: <code>f(v) for v in s</code>.
 For example, to check if any element in a list t is even, you can write: <code>any((x%2) == 0 for x in t)</code>.</p>
-<h2 id="a7-string">A.7 String</h2>
+<h2 id="17-string">1.7 String</h2>
 <p>In Harmony, a string is a list of single-character atoms. The Python string notations mostly work
 in Harmony as well. For example, <code>’abc’</code> is a three-character string consisting of the atoms <code>.a</code>,
 <code>.b</code>, and <code>.c</code>. <code>"abc"</code> is the same three-character string. Various special characters (including quotes,
@@ -604,7 +604,7 @@ Native operations on strings include the following:</p>
 </tbody>
 </table>
 <p><br /></p>
-<h2 id="a8-bag-or-multiset">A.8 Bag or Multiset</h2>
+<h2 id="18-bag-or-multiset">1.8 Bag or Multiset</h2>
 <p>A bag is represented by a dictionary that maps each element to its multiplicity, for example: { 10:2,
 12:1 }. The <a href="../../library/bag/"><code>bag</code> module</a> contains various convenient routines that operate on lists or
 tuples. Native operations on bags include the following:</p>
@@ -631,7 +631,7 @@ tuples. Native operations on bags include the following:</p>
 </tbody>
 </table>
 <p><br /></p>
-<h2 id="a9-program-counter">A.9 Program Counter</h2>
+<h2 id="19-program-counter">1.9 Program Counter</h2>
 <p>A program counter is an integer that can be used to index into Harmony bytecode. When you
 define a method, a lambda function, or a label, you are creating a constant of the program counter
 type.
@@ -640,12 +640,12 @@ Operations on program counters include the following:</p>
 | <code>atLabel l</code> | return a bag of (method, argument) pairs of threads executing at label <code>l</code> |
 <br /></p>
 <p>You can create lambda functions similarly to Python. For example: <code>lambda(x, y): x + y</code>.</p>
-<h2 id="a10-address">A.10 Address</h2>
+<h2 id="110-address">1.10 Address</h2>
 <p>In Harmony, each shared variable has an address, which is essentially a list of Harmony values.
 For example, the address of variable <code>d</code>. <code>v[3]</code> consists of the list <code>.d</code>, <code>.v</code>, and <code>3</code>. The only way to construct an address in Harmony is using the <code>?</code> operator. <code>?d.v[3]</code> returns the address of variable
 <code>d.v[3]</code>. An address can be dereferenced to return the value of the variable. If <code>a</code> is an address, then
 <code>!a</code> returns the value. Like C, Harmony supports the shorthand <code>a-&gt;v</code> for the expression <code>(!a).v</code>.</p>
-<h2 id="a11-context">A.11 Context</h2>
+<h2 id="111-context">1.11 Context</h2>
 <p>A context value captures the state of a thread. A context is itself composed over various Harmony
 values. Some of these values can be extracted. In particular, if <code>c</code> is a context, then:</p>
 <table>
@@ -720,7 +720,7 @@ called in <code>atomic</code> mode and used for checking invariants.</p>
         <a href="../statements/" class="btn btn-neutral float-right" title="Statements">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../../guides/running-harmony/" class="btn btn-neutral" title="Running a program"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../overview/" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -746,7 +746,7 @@ called in <code>atomic</code> mode and used for checking invariants.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../../guides/running-harmony/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../statements/" style="color: #fcfcfc">Next &raquo;</a></span>
