@@ -1,0 +1,11 @@
+site_name: Docs - Harmony
+nav:
+    - Overview: 'index.md'
+    - 'Getting Started':
+        - 'Introduction': 'guides/introduction.md'
+        - 'Installation': 'guides/installation.md'
+        - 'Running a program': 'guides/running-harmony.md'
+    - 'Reference':
+        - 'Textbook': 'reference/textbook.md'
+    - Changelog: changelog.md
+theme: readthedocs
