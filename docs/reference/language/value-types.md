@@ -21,7 +21,7 @@ indexes (starting at 0) to Harmony values. Their format is either `(e,e, ...,e,)
 represented as a tuple of its characters. Characters are one-character atoms, which can be expressed
 in hexadecimal unicode using the syntax `.0xXX`. A bag or multiset is a dictionary that maps a value to how many times it occurs in the bag.
 All Harmony values are ordered with respect to one another. First they are ordered by type
-according to the table above. So, for example, `True < 0 < .xyz <{ 0 })`. Within types, the
+according to the table above. So, for example, `True < 0 < .xyz < { 0 })`. Within types, the
 following rules apply:
 
 - `False < True`;
@@ -68,7 +68,7 @@ Operations on booleans include:
 ## A.2 Integer
 
 The integer type supports any whole number, as well as `−inf` and `inf`. In the Python-based model checker, integers are infinite precision. In the C-based model checker, integers are implemented
-by two’s complement 61-bit words, and−infis represented by the minimal integer and `inf` is represented by the maximal integer.
+by two’s complement 61-bit words, and `−inf` is represented by the minimal integer and `inf` is represented by the maximal integer.
 Operations on integers include:
 
 |        |         |
@@ -129,7 +129,7 @@ For example: { x + y for x in s for y in s such that (x * y ) == 4 } returns a s
 
 A dictionary maps a set of values (known as `keys`) to another set of values. The generic syntax
 of a dictionary is { k<sub>0</sub> : v<sub>0</sub> , k<sub>1</sub> : v<sub>1</sub>, ... }. Different from Python, the empty dictionary is either `()` or `[]` (because `{}` is the empty set in Harmony). If there are duplicate keys in the list, then only the
-one with the maximum value survives. Therefore the order of the keys in the dictionary does not matter. Dictionaries support comprehension. The basic form is: { f(k) : g(k) fork in s}.
+one with the maximum value survives. Therefore the order of the keys in the dictionary does not matter. Dictionaries support comprehension. The basic form is: { f(k) : g(k) fork in s }.
 There are various special cases of dictionaries, including lists, tuples, strings, and bags (multi-sets) that are individually described below.
 Operations on dictionaries include the following:
 
@@ -168,7 +168,7 @@ You can denote a list by a sequence of values, each value terminated by a comma.
 you can use brackets or parentheses at your discretion. For Python users, the important thing to
 note is that a singleton list in Harmony must contain a comma. For example [1,] is a list containing
 the value 1, while [1] is simply the value 1.
-The list module (Section C.4) contains various convenient routines that operate on lists or
+The [`list` module](../library/list.md) contains various convenient routines that operate on lists or
 tuples. Native operations on lists or tuples include the following:
 
 |        |         |
@@ -211,7 +211,7 @@ Native operations on strings include the following:
 ## A.8 Bag or Multiset
 
 A bag is represented by a dictionary that maps each element to its multiplicity, for example: { 10:2,
-12:1 }. The `bag` module (Section C.2) contains various convenient routines that operate on lists or
+12:1 }. The [`bag` module](../library/bag.md) contains various convenient routines that operate on lists or
 tuples. Native operations on bags include the following:
 
 |        |         |

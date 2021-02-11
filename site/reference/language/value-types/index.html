@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Value Types - HarmonyDocs</title>
+  <title>Values - HarmonyDocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Value Types";
+    var mkdocs_page_name = "Values";
     var mkdocs_page_input_path = "reference/language/value-types.md";
     var mkdocs_page_url = null;
   </script>
@@ -64,7 +64,7 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="#">Language</a>
     <ul class="current">
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Value Types</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Values</a>
     <ul class="current">
     <li class="toctree-l3"><a class="reference internal" href="#a1-boolean">A.1 Boolean</a>
     </li>
@@ -89,6 +89,24 @@
     <li class="toctree-l3"><a class="reference internal" href="#a11-context">A.11 Context</a>
     </li>
     </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../statements/">Statements</a>
+                </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Library</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/alloc/">alloc</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/bag/">bag</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/hoare/">hoare</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/list/">list</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/set/">set</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/synch/">synch</a>
                 </li>
     </ul>
                     </li>
@@ -128,7 +146,7 @@
         
       
     
-    <li>Value Types</li>
+    <li>Values</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -190,7 +208,7 @@ indexes (starting at 0) to Harmony values. Their format is either <code>(e,e, ..
 represented as a tuple of its characters. Characters are one-character atoms, which can be expressed
 in hexadecimal unicode using the syntax <code>.0xXX</code>. A bag or multiset is a dictionary that maps a value to how many times it occurs in the bag.
 All Harmony values are ordered with respect to one another. First they are ordered by type
-according to the table above. So, for example, <code>True &lt; 0 &lt; .xyz &lt;{ 0 })</code>. Within types, the
+according to the table above. So, for example, <code>True &lt; 0 &lt; .xyz &lt; { 0 })</code>. Within types, the
 following rules apply:</p>
 <ul>
 <li><code>False &lt; True</code>;</li>
@@ -273,7 +291,7 @@ Operations on booleans include:</p>
 <p><br /></p>
 <h2 id="a2-integer">A.2 Integer</h2>
 <p>The integer type supports any whole number, as well as <code>−inf</code> and <code>inf</code>. In the Python-based model checker, integers are infinite precision. In the C-based model checker, integers are implemented
-by two’s complement 61-bit words, and−infis represented by the minimal integer and <code>inf</code> is represented by the maximal integer.
+by two’s complement 61-bit words, and <code>−inf</code> is represented by the minimal integer and <code>inf</code> is represented by the maximal integer.
 Operations on integers include:</p>
 <table>
 <thead>
@@ -415,7 +433,7 @@ For example: { x + y for x in s for y in s such that (x * y ) == 4 } returns a s
 <h2 id="a5-dictionary">A.5 Dictionary</h2>
 <p>A dictionary maps a set of values (known as <code>keys</code>) to another set of values. The generic syntax
 of a dictionary is { k<sub>0</sub> : v<sub>0</sub> , k<sub>1</sub> : v<sub>1</sub>, ... }. Different from Python, the empty dictionary is either <code>()</code> or <code>[]</code> (because <code>{}</code> is the empty set in Harmony). If there are duplicate keys in the list, then only the
-one with the maximum value survives. Therefore the order of the keys in the dictionary does not matter. Dictionaries support comprehension. The basic form is: { f(k) : g(k) fork in s}.
+one with the maximum value survives. Therefore the order of the keys in the dictionary does not matter. Dictionaries support comprehension. The basic form is: { f(k) : g(k) fork in s }.
 There are various special cases of dictionaries, including lists, tuples, strings, and bags (multi-sets) that are individually described below.
 Operations on dictionaries include the following:</p>
 <table>
@@ -489,7 +507,7 @@ those values. Hence, if <code>t</code> is a list or tuple, then the notation <co
 you can use brackets or parentheses at your discretion. For Python users, the important thing to
 note is that a singleton list in Harmony must contain a comma. For example [1,] is a list containing
 the value 1, while [1] is simply the value 1.
-The list module (Section C.4) contains various convenient routines that operate on lists or
+The <a href="../../library/list/"><code>list</code> module</a> contains various convenient routines that operate on lists or
 tuples. Native operations on lists or tuples include the following:</p>
 <table>
 <thead>
@@ -588,7 +606,7 @@ Native operations on strings include the following:</p>
 <p><br /></p>
 <h2 id="a8-bag-or-multiset">A.8 Bag or Multiset</h2>
 <p>A bag is represented by a dictionary that maps each element to its multiplicity, for example: { 10:2,
-12:1 }. The <code>bag</code> module (Section C.2) contains various convenient routines that operate on lists or
+12:1 }. The <a href="../../library/bag/"><code>bag</code> module</a> contains various convenient routines that operate on lists or
 tuples. Native operations on bags include the following:</p>
 <table>
 <thead>
@@ -699,7 +717,7 @@ called in <code>atomic</code> mode and used for checking invariants.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../textbook/" class="btn btn-neutral float-right" title="Textbook">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../statements/" class="btn btn-neutral float-right" title="Statements">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../../guides/running-harmony/" class="btn btn-neutral" title="Running a program"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -731,7 +749,7 @@ called in <code>atomic</code> mode and used for checking invariants.</p>
         <span><a href="../../../guides/running-harmony/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../textbook/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../statements/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

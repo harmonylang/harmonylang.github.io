@@ -7,7 +7,15 @@ nav:
         - 'Running a program': 'guides/running-harmony.md'
     - 'Reference':
         - 'Language':
-            - 'Value Types': 'reference/language/value-types.md'
+            - 'Values': 'reference/language/value-types.md'
+            - 'Statements': 'reference/language/statements.md'
+        - 'Library':
+            - 'alloc': 'reference/library/alloc.md'
+            - 'bag': 'reference/library/bag.md'
+            - 'hoare': 'reference/library/hoare.md'
+            - 'list': 'reference/library/list.md'
+            - 'set': 'reference/library/set.md'
+            - 'synch': 'reference/library/synch.md'
         - 'Textbook': 'reference/textbook.md'
     - Changelog: changelog.md
 theme: readthedocs

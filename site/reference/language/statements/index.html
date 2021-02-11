@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Statements - HarmonyDocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Statements";
+    var mkdocs_page_input_path = "reference/language/statements.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> HarmonyDocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">Overview</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../guides/introduction/">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../guides/installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../guides/running-harmony/">Running a program</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Reference</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Language</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../value-types/">Values</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Statements</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Library</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/alloc/">alloc</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/bag/">bag</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/hoare/">hoare</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/list/">list</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/set/">set</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/synch/">synch</a>
+                </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../textbook/">Textbook</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../changelog/">Changelog</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">HarmonyDocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Language &raquo;</li>
+        
+      
+        
+          <li>Reference &raquo;</li>
+        
+      
+    
+    <li>Statements</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="list-of-statements">List of Statements</h1>
+<p>Harmony currently supports the following statements:</p>
+<table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lv = [lv =]... e</code></td>
+<td><code>lv</code> is an lvalue and <code>e</code> is an expression</td>
+</tr>
+<tr>
+<td><code>lv [op] = e</code></td>
+<td>op is one of <code>+</code>,<code>-</code>,<code>*</code>,<code>/</code>,<code>//</code>,<code>%</code>,<code>\&amp;</code>,<code>|</code>,<code>\^</code>,<code>and</code>, and <code>or</code></td>
+</tr>
+<tr>
+<td><code>pass</code></td>
+<td>do nothing</td>
+</tr>
+<tr>
+<td><code>del lv</code></td>
+<td>delete</td>
+</tr>
+<tr>
+<td><code>assert b [, e]</code></td>
+<td><code>b</code> is a boolean. Optionally report value of expression <code>e</code></td>
+</tr>
+<tr>
+<td><code>const a = e</code></td>
+<td><code>a</code> is a bounded variable, <code>e</code> is a constant expression</td>
+</tr>
+<tr>
+<td><code>def m a: S</code></td>
+<td><code>m</code> is an identifier, <code>a</code> a bounded variable, <code>S</code> a list of statements</td>
+</tr>
+<tr>
+<td><code>let a = e [let ...]: S</code></td>
+<td><code>a</code> is a bounded variable, <code>e</code> is an expression, <code>S</code> a list of statements</td>
+</tr>
+<tr>
+<td><code>if b: S else: S</code></td>
+<td><code>b</code> is a boolean, <code>S</code> a list of statements</td>
+</tr>
+<tr>
+<td><code>while b: S</code></td>
+<td><code>b</code> is a boolean, <code>S</code> a list of statements</td>
+</tr>
+<tr>
+<td><code>await b</code></td>
+<td><code>b</code> is a boolean</td>
+</tr>
+<tr>
+<td><code>for a in e: S</code></td>
+<td><code>a</code> is a bounded variable, <code>e</code> is a set, <code>S</code> a list of statements</td>
+</tr>
+<tr>
+<td><code>atomic: S</code></td>
+<td><code>S</code> a list of statements</td>
+</tr>
+<tr>
+<td><code>spawn me[, t]</code></td>
+<td><code>m</code> is a method, <code>e</code> is an expression, <code>t</code> is the initial thread-local state (an expression)</td>
+</tr>
+<tr>
+<td><code>trap m e</code></td>
+<td><code>m</code> is a method and <code>e</code> is an expression</td>
+</tr>
+<tr>
+<td><code>go c e</code></td>
+<td><code>c</code>is a context, <code>e</code> is an expression</td>
+</tr>
+<tr>
+<td><code>import m, ...</code></td>
+<td><code>m</code> identifies a module</td>
+</tr>
+<tr>
+<td><code>from m import ...</code></td>
+<td><code>m</code> identifies a module</td>
+</tr>
+</tbody>
+</table>
+<p><br /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../library/alloc/" class="btn btn-neutral float-right" title="alloc">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../value-types/" class="btn btn-neutral" title="Values"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../value-types/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../library/alloc/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
