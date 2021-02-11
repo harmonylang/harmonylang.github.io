@@ -1,4 +1,4 @@
-site_name: Docs - Harmony
+site_name: HarmonyDocs
 nav:
     - Overview: 'index.md'
     - 'Getting Started':
@@ -6,6 +6,8 @@ nav:
         - 'Installation': 'guides/installation.md'
         - 'Running a program': 'guides/running-harmony.md'
     - 'Reference':
+        - 'Language':
+            - 'Value Types': 'reference/language/value-types.md'
         - 'Textbook': 'reference/textbook.md'
     - Changelog: changelog.md
 theme: readthedocs
