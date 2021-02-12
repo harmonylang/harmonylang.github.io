@@ -32,4 +32,4 @@ Harmony requires both [Python 3](https://www.python.org/downloads/) and the [GCC
 
 ## HarmonyLang - VSCode Extension
  - Download and Install [Visual Studio Code](https://code.visualstudio.com/)
- - Install the [HarmonyLang](https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang-beta) extension from the Extension Marketplace
+ - Install the [HarmonyLang](https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang) extension from the Extension Marketplace
