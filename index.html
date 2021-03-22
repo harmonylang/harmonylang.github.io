@@ -69,7 +69,7 @@
             A Python-like programming language for testing and experimenting with concurrent programs.
             Instead of "running" code, Harmony programs are model-checked so that all corner cases are explored.
           </p>
-          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Try it out!</a>
+          <a href="/ide/" class="btn-get-started animate__animated animate__fadeInUp scrollto">Try it out!</a>
         </div>
       </div>
 
@@ -162,21 +162,24 @@
 
         <div class="row justify-content-center">
 
-          <div class="col-lg-3 col-md-6">
-            <div class="box" data-aos="zoom-in">
-              <h3>Harmony Compiler</h3>
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+            <div class="box featured" data-aos="zoom-in" data-aos-delay="300">
+              <span class="advanced">Beta</span>
+              <h3>Harmony Online Editor</h3>
               <ul>
-                <li>Command-line tool</li>
-                <li>HTML output</li>
+                <li><b>No download neccesary</b></li>
+                <li>Syntax Highlighting</li>
+                <li>In-editor Output</li>
+                <li>Interactive GUI</li>
               </ul>
               <div class="btn-wrap">
-                <a href="/distributions/harmony-1.1.zip" class="btn-buy">Download</a>
+                <a href="/ide/" class="btn btn-buy" aria-disabled="true">Try now</a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box" data-aos="zoom-in" data-aos-delay="100">
               <h3>HarmonyLang for VSCode</h3>
               <ul>
                 <li>Syntax Highlighting</li>
@@ -189,20 +192,18 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="300">
-              <span class="advanced">Beta</span>
-              <h3>Harmony Online Editor</h3>
+          <div class="col-lg-3 col-md-6">
+            <div class="box" data-aos="zoom-in">
+              <h3>Harmony Compiler</h3>
               <ul>
-                <li>No download neccesary</li>
-                <li>Interactive visualization</li>
+                <li>Command-line tool</li>
+                <li>HTML output</li>
               </ul>
               <div class="btn-wrap">
-                <a href="/ide/" class="btn btn-buy" aria-disabled="true">Try now</a>
+                <a href="/distributions/harmony-1.1.zip" class="btn-buy">Download</a>
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -221,7 +222,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="icon-box" data-aos="zoom-in-left">
               <div class="icon"><i class="fas fa-glass-cheers" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a>Dining Philosophers</a></h4>
+              <h4 class="title"><a href="/ide/?template=diners">Dining Philosophers</a></h4>
               <p class="description">
                 Formulated in 1965 by Edsger Dijkstra as a student exam exercise, presented in terms of computers competing for access to tape drive peripherals.
               </p>
@@ -230,7 +231,7 @@
           <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
               <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a>Peterson's Algorithm</a></h4>
+              <h4 class="title"><a href="/ide/?template=peterson">Peterson's Algorithm</a></h4>
               <p class="description">
                 An algorithm for mutual exclusion that allows two or more processes to share a single-use resource without conflict, using only shared memory for communication.
               </p>
@@ -240,7 +241,7 @@
           <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
               <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a>Hoare Monitor</a></h4>
+              <h4 class="title"><a href="/ide/?template=hoare">Hoare Monitor</a></h4>
               <p class="description">
                 A synchronization construct that allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become false.
               </p>
@@ -249,7 +250,7 @@
           <div class="col-lg-4 col-md-6 mt-5">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="300">
               <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a>Reader/Writer Problem</a></h4>
+              <h4 class="title"><a href="/ide/?template=RW">Reader/Writer Problem</a></h4>
               <p class="description">
                 One of the most common problems in concurrency, we want to prevent more than one thread modifying
                 the shared resource simultaneously and allow for two or more readers to access the shared resource
@@ -261,7 +262,7 @@
           <div class="col-lg-4 col-md-6 mt-5">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="400">
               <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a>Banking</a></h4>
+              <h4 class="title"><a href="/ide/?template=bank">Banking</a></h4>
               <p class="description">
                 It would make for quite a poor banking experience to allow dollars to simply go missing or be created
                 from thin air, however that's exactly what might happen with poorly designed concurrent programs.
@@ -271,7 +272,7 @@
           <div class="col-lg-4 col-md-6 mt-5">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="500">
               <div class="icon"><i class="las la-clock" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a>Split Binary Semaphores</a></h4>
+              <h4 class="title"><a href="/ide/?template=BBsema">Split Binary Semaphores</a></h4>
               <p class="description">
                 A technique originally discovered, but not recommended by, Tony Hoare. 
                 It uses a set of binary semaphores the sum of which never exceeds 1
@@ -388,6 +389,23 @@
               </div>
             </div>
           </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://www.facebook.com/shichong97/"><i class="icofont-facebook"></i></a>
+                  <a href="https://twitter.com/shichong97"><i class="icofont-twitter"></i></a>
+                  <a href="https://www.linkedin.com/in/shichong97/"><i class="icofont-linkedin"></i></a>
+                  <a href="https://github.com/shichong-97"><i class="icofont-github"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Shi Chong Zhao</h4>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -402,7 +420,7 @@
           <p>Contact Us</p>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-5 mb-5">
 
           <div class="col-lg-4" data-aos="fade-right">
             <div class="info">
@@ -425,39 +443,7 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-
-          </div>
-
         </div>
-
       </div>
     </section><!-- End Contact Section -->
 
