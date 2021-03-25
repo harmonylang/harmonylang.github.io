@@ -2,7 +2,9 @@
 
 ## Requirements
 
-Harmony requires both [Python 3](https://www.python.org/downloads/) and the [GCC](https://gcc.gnu.org/) compiler. Both must be on your PATH environment variable for Harmony to function.
+The Harmony compiler requires both [Python 3](https://www.python.org/downloads/) and the [GCC](https://gcc.gnu.org/) compiler. Both must be on your PATH environment variable for Harmony to function.
+
+> The Harmony team also offers remote compilation and analysis solutions that do not require any downloads. Try out the online IDE here: [https://harmony.cs.cornell.edu/ide/](https://harmony.cs.cornell.edu/ide/)
 
 ### MacOS and Linux
 

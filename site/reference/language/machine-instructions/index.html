@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Statements - HarmonyDocs</title>
+  <title>Machine Instructions - HarmonyDocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Statements";
-    var mkdocs_page_input_path = "reference/language/statements.md";
+    var mkdocs_page_name = "Machine Instructions";
+    var mkdocs_page_input_path = "reference/language/machine-instructions.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -68,11 +68,13 @@
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../value-types/">Values</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Statements</a>
-    <ul class="current">
-    </ul>
+                <li class="toctree-l2"><a class="reference internal" href="../statements/">Statements</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../machine-instructions/">Machine Instructions</a>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Machine Instructions</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#clarifications">Clarifications</a>
+    </li>
+    </ul>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../contexts-threads/">Contexts and Threads</a>
                 </li>
@@ -134,7 +136,7 @@
         
       
     
-    <li>Statements</li>
+    <li>Machine Instructions</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -145,95 +147,181 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="list-of-statements">List of Statements</h1>
-<p>Harmony currently supports the following statements:</p>
+                <h1 id="list-of-machine-instructions">List of Machine Instructions</h1>
 <table>
 <thead>
 <tr>
-<th>Statement</th>
+<th>Instruction</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>lv = [lv =]... e</code></td>
-<td><code>lv</code> is an lvalue and <code>e</code> is an expression</td>
+<td><code>Address</code> </td>
+<td>compute address from two components </td>
 </tr>
 <tr>
-<td><code>lv [op] = e</code></td>
-<td>op is one of <code>+</code>,<code>-</code>,<code>*</code>,<code>/</code>,<code>//</code>,<code>%</code>,<code>\&amp;</code>,<code>|</code>,<code>\^</code>,<code>and</code>, and <code>or</code></td>
+<td><code>Apply</code> </td>
+<td>pop <code>m</code> and <code>i</code> and <code>apply</code> <code>i</code> to <code>m</code>, pushing a value </td>
 </tr>
 <tr>
-<td><code>assert b [, e]</code></td>
-<td><code>b</code> is a boolean. Optionally report value of expression <code>e</code></td>
+<td><code>Assert, Assert2</code> </td>
+<td>pop <code>b</code> and check that it is True. Assert2 also pops value to print </td>
 </tr>
 <tr>
-<td><code>atomic: S</code></td>
-<td><code>S</code> a list of statements</td>
+<td><code>AtomicInc/Dec</code> </td>
+<td>increment/decrement the atomic counter of this context </td>
 </tr>
 <tr>
-<td><code>await b</code></td>
-<td><code>b</code> is a boolean</td>
+<td><code>Continue</code> </td>
+<td>no-op (but causes a context switch) </td>
 </tr>
 <tr>
-<td><code>const a = e</code></td>
-<td><code>a</code> is a bounded variable, <code>e</code> is a constant expression</td>
+<td><code>Choose</code> </td>
+<td>choose an element from the set on top of the stack </td>
 </tr>
 <tr>
-<td><code>def m a: S</code></td>
-<td><code>m</code> is an identifier, <code>a</code> a bounded variable, <code>S</code> a list of statements</td>
+<td><code>Cut</code> </td>
+<td>cut a set into its smallest element and the remainder </td>
 </tr>
 <tr>
-<td><code>del lv</code></td>
-<td>delete</td>
+<td><code>Del [v]</code> </td>
+<td>delete shared variable <code>v</code> </td>
 </tr>
 <tr>
-<td><code>for a in e: S</code></td>
-<td><code>a</code> is a bounded variable, <code>e</code> is a set, <code>S</code> a list of statements</td>
+<td><code>DelVar [v]</code> </td>
+<td>delete thread variable <code>v</code> </td>
 </tr>
 <tr>
-<td><code>from m import ...</code></td>
-<td><code>m</code> identifies a module</td>
+<td><code>Dup</code> </td>
+<td>duplicate the top element of the stack </td>
 </tr>
 <tr>
-<td><code>go c e</code></td>
-<td><code>c</code>is a context, <code>e</code> is an expression</td>
+<td><code>Frame m a</code> </td>
+<td>start method m with arguments <code>a</code>, initializing variables. </td>
 </tr>
 <tr>
-<td><code>if b: S else: S</code></td>
-<td><code>b</code> is a boolean, <code>S</code> a list of statements</td>
+<td><code>Go</code> </td>
+<td>pop context and value, push value on context's stack, and add to context bag </td>
 </tr>
 <tr>
-<td><code>import m, ...</code></td>
-<td><code>m</code> identifies a module</td>
+<td><code>IncVar v</code> </td>
+<td>increment thread variable <code>v</code> </td>
 </tr>
 <tr>
-<td><code>let a = e [let ...]: S</code></td>
-<td><code>a</code> is a bounded variable, <code>e</code> is an expression, <code>S</code> a list of statements</td>
+<td><code>Jump p</code> </td>
+<td>set program counter to <code>p</code> </td>
 </tr>
 <tr>
-<td><code>pass</code></td>
-<td>do nothing</td>
+<td><code>JumpCond e p</code> </td>
+<td>pop expression and, if equal to <code>e</code>, set program counter to <code>p</code> </td>
 </tr>
 <tr>
-<td><code>sequential v, ...</code></td>
-<td><code>v</code> has sequential consistency</td>
+<td><code>Load [v]</code> </td>
+<td>push the value of a shared variable onto the stack </td>
 </tr>
 <tr>
-<td><code>spawn me[, t]</code></td>
-<td><code>m</code> is a method, <code>e</code> is an expression, <code>t</code> is the initial thread-local state (an expression)</td>
+<td><code>LoadVar [v]</code> </td>
+<td>push the value of a thread variable onto the stack </td>
 </tr>
 <tr>
-<td><code>trap m e</code></td>
-<td><code>m</code> is a method and <code>e</code> is an expression</td>
+<td><code>Move i</code> </td>
+<td>move stack element at offset <code>i</code> to top of the stack </td>
 </tr>
 <tr>
-<td><code>while b: S</code></td>
-<td><code>b</code> is a boolean, <code>S</code> a list of statements</td>
+<td><code>n-ary op</code> </td>
+<td><code>apply</code> <em>n</em>-ary operator <code>op</code> to the top <code>n</code> elements on the stack </td>
+</tr>
+<tr>
+<td><code>Pop</code> </td>
+<td>pop a value of the stack and discard it </td>
+</tr>
+<tr>
+<td><code>Push c</code> </td>
+<td>push constant <code>c</code> onto the stack </td>
+</tr>
+<tr>
+<td><code>ReadonlyInc/Dec</code> </td>
+<td>increment/decrement the read-only counter of this context </td>
+</tr>
+<tr>
+<td><code>Return</code> </td>
+<td>pop return address, push result, and restore program counter </td>
+</tr>
+<tr>
+<td><code>Sequential</code> </td>
+<td>pop an address of a variable that has sequential consistency </td>
+</tr>
+<tr>
+<td><code>SetIntLevel</code> </td>
+<td>pop <code>e</code>, set interrupt level to <code>e</code>, and push old interrupt level </td>
+</tr>
+<tr>
+<td><code>Spawn</code> </td>
+<td>pop initial thread-local state, argument, and method and spawn a new context </td>
+</tr>
+<tr>
+<td><code>Split</code> </td>
+<td>pop tuple and push its elements </td>
+</tr>
+<tr>
+<td><code>Stop [v]</code> </td>
+<td>save context into shared variable <code>v</code> and remove from context bag </td>
+</tr>
+<tr>
+<td><code>Store [v]</code> </td>
+<td>pop a value from the stack and store it in a shared variable </td>
+</tr>
+<tr>
+<td><code>StoreVar [v]</code> </td>
+<td>pop a value from the stack and store it in a thread variable </td>
+</tr>
+<tr>
+<td><code>Trap</code> </td>
+<td>pop interrupt argument and method </td>
 </tr>
 </tbody>
 </table>
 <p><br /></p>
+<h3 id="clarifications">Clarifications</h3>
+<ul>
+<li>
+<p>The <code>Address</code> instruction expects two values on the stack. The top value must be an address value, representing a dictionary The other value must be a key into the dictionary. The instruction then computes the address of the given key.</p>
+</li>
+<li>
+<p>Even though Harmony code does not allow taking addresses of thread variables, both shared and thread variables can have addresses.</p>
+</li>
+<li>
+<p>The <code>Load</code>, <code>LoadVar</code>, <code>Del</code>, <code>DelVar</code>, and <code>Stop</code> instructions have an optional variable name: if omitted the top of the stack must contain the address of the variable.</p>
+</li>
+<li>
+<p><code>Store</code> and <code>StoreVar</code> instructions have an optional variable name. In both cases the value to be assigned is on the top of the stack. If the name is omitted, the address is underneath that value on the stack.</p>
+</li>
+<li>
+<p>The effect of the <code>Apply</code> instructions depends much on <code>m</code>. If <code>m</code> is a dictionary, then <code>Apply</code> finds <code>i</code> in the dictionary and pushes the value. If <code>m</code> is a program counter, then <code>Apply</code> invokes method <code>m</code> by pushing the current program counter and setting the program counter to <code>m</code>. <code>m</code> is supposed to leave the result on the stack.</p>
+</li>
+<li>
+<p>The <code>Frame</code> instruction pushes the value of the thread register (<code>i.e.</code>, the values of the thread variables) onto the stack. It initializes the <code>result</code> variable to the empty dictionary. The Return instruction restores the thread register by popping its value of the stack.</p>
+</li>
+<li>
+<p>All method calls have exactly one argument, although it sometimes appears otherwise:</p>
+<ul>
+<li>
+<p><code>m()</code> invokes method m with the empty dictionary () as argument</p>
+</li>
+<li>
+<p><code>m(a)</code> invokes method m with argument <code>a</code></p>
+</li>
+<li>
+<p><code>m(a, b, c)</code> invokes method m with tuple (<code>a</code>, <code>b</code>, <code>c</code>) as argument</p>
+</li>
+</ul>
+<p>The <code>Frame</code> instruction unpacks the argument to the method and places them into thread variables by the given names.</p>
+</li>
+<li>
+<p>Every <code>Stop</code> instruction must immediately be followed by a <code>Continue</code> instruction.</p>
+</li>
+</ul>
               
             </div>
           </div>
@@ -241,10 +329,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../machine-instructions/" class="btn btn-neutral float-right" title="Machine Instructions">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../contexts-threads/" class="btn btn-neutral float-right" title="Contexts and Threads">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../value-types/" class="btn btn-neutral" title="Values"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../statements/" class="btn btn-neutral" title="Statements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -270,10 +358,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../value-types/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../statements/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../machine-instructions/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../contexts-threads/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

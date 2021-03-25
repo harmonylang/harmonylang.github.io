@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>alloc - HarmonyDocs</title>
+  <title>The Harmony VM - HarmonyDocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "alloc";
-    var mkdocs_page_input_path = "reference/library/alloc.md";
+    var mkdocs_page_name = "The Harmony VM";
+    var mkdocs_page_input_path = "reference/language/harmony-vm.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -62,39 +62,39 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Reference</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="#">Language</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/overview/">Overview</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/value-types/">Values</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/statements/">Statements</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/machine-instructions/">Machine Instructions</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/contexts-threads/">Contexts and Threads</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/harmony-vm/">The Harmony VM</a>
-                </li>
-    </ul>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Library</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Language</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../overview/">Overview</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">alloc</a>
+                <li class="toctree-l2"><a class="reference internal" href="../value-types/">Values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../statements/">Statements</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../machine-instructions/">Machine Instructions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../contexts-threads/">Contexts and Threads</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">The Harmony VM</a>
     <ul class="current">
     </ul>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../bag/">bag</a>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Library</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/overview/">Overview</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../hoare/">hoare</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/alloc/">alloc</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../list/">list</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/bag/">bag</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../set/">set</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/hoare/">hoare</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../synch/">synch</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/list/">list</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/set/">set</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/synch/">synch</a>
                 </li>
     </ul>
                     </li>
@@ -126,7 +126,7 @@
     
       
         
-          <li>Library &raquo;</li>
+          <li>Language &raquo;</li>
         
       
         
@@ -134,7 +134,7 @@
         
       
     
-    <li>alloc</li>
+    <li>The Harmony VM</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -145,29 +145,50 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="the-alloc-module">The <code>alloc</code> module</h1>
-<p>The <code>alloc</code> module supports thread-safe (but not interrupt-safe) dynamic allocation of shared memory locations. There are just two methods:</p>
+                <h1 id="the-harmony-virtual-machine">The Harmony Virtual Machine</h1>
+<p>The Harmony Virtual Machine (HVM) has the following state:</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>State</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>malloc(v)</code></td>
-<td>return a pointer to a memory location initialized to <code>v</code></td>
+<td><code>code</code></td>
+<td>a list of HVM machine instructions</td>
 </tr>
 <tr>
-<td><code>free(p)</code></td>
-<td>free an allocated memory location <code>p</code></td>
+<td><code>labels</code></td>
+<td>a dictionary of atoms to program counters</td>
+</tr>
+<tr>
+<td><code>variables</code></td>
+<td>a dictionary mapping atoms to values</td>
+</tr>
+<tr>
+<td><code>ctxbag</code></td>
+<td>a bag of runnable contexts</td>
+</tr>
+<tr>
+<td><code>stopbag</code></td>
+<td>a bag of stopped contexts</td>
+</tr>
+<tr>
+<td><code>choosing</code></td>
+<td>if not None, indicates a context that is choosing</td>
 </tr>
 </tbody>
 </table>
-<p><br /></p>
-<p>The usage is similar to <code>malloc</code> and <code>free</code> in <code>C.malloc()</code> is specified to return <code>None</code> when running
-out of memory, although this is an impossible outcome in the current implementation of the module.</p>
+<p><br />
+There is initially a single context with name <code>__init__/()</code> and program counter 0. It starts executing in atomic mode until it finishes executing the last <code>Return</code> instruction. Other threads, created through spawn statements, do not start executing until then.</p>
+<p>A <em>step</em> is the execution of a single HVM machine instruction by a context. Each step generates a new state. When there are multiple contexts, the HVM can interleave them. However, trying to interleave every step would be needlessly expensive, as many steps involve changes to a context that are invisible to other contexts.</p>
+<p>A <em>stride</em> can involve multiple steps. The following instructions start a new stride: <code>Load</code>, <code>Store</code>, <code>AtomicInc</code>, and <code>Continue</code>. The HVM interleaves stides, not steps. Like steps, each stride involves a single context. Unlike a step, a stride can leave the state unchanged (because its steps lead back to where the stride started).</p>
+<p>Executing a Harmony program results in a graph where the nodes are Harmony states and the edges are strides. When a state is <code>choosing</code>, the edges from that state are by a single context, one for each choice. If not, the edges from the state are one per context.</p>
+<p>Consecutive strides by the same thread are called a <em>turn</em>. Each state maintains the shortest path to it from the initial state in terms of turns. The diameter of the graph is the length of the longest path found in terms of turns.</p>
+<p>If some states have a problem, the state with the shortest path is reported. Problematic states include states that experienced exceptions. If there are no exceptions, Harmony computes the strongly connected components (SCCs) of the graph (the number of such components are printed as part of the output). The sink SCCs should each consist of a terminal state without any threads. If not, again the state with the shortest path is reported.</p>
+<p>If there are no problematic states, Harmony reports "no issues found" and outputs in the HTML file the state with the longest path.</p>
               
             </div>
           </div>
@@ -175,10 +196,10 @@ out of memory, although this is an impossible outcome in the current implementat
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bag/" class="btn btn-neutral float-right" title="bag">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../library/overview/" class="btn btn-neutral float-right" title="Overview">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../overview/" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../contexts-threads/" class="btn btn-neutral" title="Contexts and Threads"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -204,10 +225,10 @@ out of memory, although this is an impossible outcome in the current implementat
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../contexts-threads/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../bag/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../library/overview/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>alloc - HarmonyDocs</title>
+  <title>Contexts and Threads - HarmonyDocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "alloc";
-    var mkdocs_page_input_path = "reference/library/alloc.md";
+    var mkdocs_page_name = "Contexts and Threads";
+    var mkdocs_page_input_path = "reference/language/contexts-threads.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -62,39 +62,41 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Reference</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="#">Language</a>
-    <ul>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/overview/">Overview</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/value-types/">Values</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/statements/">Statements</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/machine-instructions/">Machine Instructions</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/contexts-threads/">Contexts and Threads</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../../language/harmony-vm/">The Harmony VM</a>
-                </li>
-    </ul>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Library</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Language</a>
     <ul class="current">
                 <li class="toctree-l2"><a class="reference internal" href="../overview/">Overview</a>
                 </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">alloc</a>
+                <li class="toctree-l2"><a class="reference internal" href="../value-types/">Values</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../statements/">Statements</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../machine-instructions/">Machine Instructions</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Contexts and Threads</a>
     <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#details">Details</a>
+    </li>
     </ul>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../bag/">bag</a>
+                <li class="toctree-l2"><a class="reference internal" href="../harmony-vm/">The Harmony VM</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../hoare/">hoare</a>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Library</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/overview/">Overview</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../list/">list</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/alloc/">alloc</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../set/">set</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/bag/">bag</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../synch/">synch</a>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/hoare/">hoare</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/list/">list</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/set/">set</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../library/synch/">synch</a>
                 </li>
     </ul>
                     </li>
@@ -126,7 +128,7 @@
     
       
         
-          <li>Library &raquo;</li>
+          <li>Language &raquo;</li>
         
       
         
@@ -134,7 +136,7 @@
         
       
     
-    <li>alloc</li>
+    <li>Contexts and Threads</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -145,29 +147,79 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="the-alloc-module">The <code>alloc</code> module</h1>
-<p>The <code>alloc</code> module supports thread-safe (but not interrupt-safe) dynamic allocation of shared memory locations. There are just two methods:</p>
+                <h1 id="contexts-and-threads">Contexts and Threads</h1>
+<p>A context captures the state of a thread. Each time the thread executes an instruction, it goes from one context to another. All instructions update the program counter (<code>Jump</code> instructions are not allowed to jump to their own locations), and so no instruction leaves the context the same. There may be multiple threads with the same state at the same time. A context consists of the following:</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Variable</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>malloc(v)</code></td>
-<td>return a pointer to a memory location initialized to <code>v</code></td>
+<td><code>name</code></td>
+<td>the name of the main method that the thread is executing</td>
 </tr>
 <tr>
-<td><code>free(p)</code></td>
-<td>free an allocated memory location <code>p</code></td>
+<td><code>argument</code></td>
+<td>the argument given to the main method</td>
+</tr>
+<tr>
+<td><code>program counter</code></td>
+<td>an integer value pointing into the code</td>
+</tr>
+<tr>
+<td><code>frame pointer</code></td>
+<td>an integer value pointing into the stack</td>
+</tr>
+<tr>
+<td><code>atomic</code></td>
+<td>if non-zero, the thread is in atomic mode</td>
+</tr>
+<tr>
+<td><code>readonly</code></td>
+<td>if non-zero, the thread is in read-only mode</td>
+</tr>
+<tr>
+<td><code>stack</code></td>
+<td>a list of Harmony values</td>
+</tr>
+<tr>
+<td><code>method variables</code></td>
+<td>a dictionary mapping atoms (names of method variables) to values</td>
+</tr>
+<tr>
+<td><code>thread-local variables</code></td>
+<td>a dictionary mapping atoms (names of thread-local variables) to values</td>
+</tr>
+<tr>
+<td><code>stopped</code></td>
+<td>a boolean indicating if the context is stopped</td>
+</tr>
+<tr>
+<td><code>failure</code></td>
+<td>if not None, string that describes how the thread failed</td>
 </tr>
 </tbody>
 </table>
 <p><br /></p>
-<p>The usage is similar to <code>malloc</code> and <code>free</code> in <code>C.malloc()</code> is specified to return <code>None</code> when running
-out of memory, although this is an impossible outcome in the current implementation of the module.</p>
+<h3 id="details">Details</h3>
+<ul>
+<li>
+<p>The frame pointer points to the current <em>stack frame</em>, which consists of the caller's frame pointer and variables, the argument to the method, an "invocation type atom" (<code>normal</code>, <code>interrupt</code>, or <code>thread</code>), and the return address (in case of <code>normal</code>).</p>
+</li>
+<li>
+<p>A thread terminates when it reaches the <code>Return</code> instruction of the top-level method (when the stack frame is of type <code>thread</code>) or when it hits an exception. Exceptions include divide by zero, reading a non-existent key in a dictionary, accessing a non-existent variable, as well as when an assertion fails;</p>
+</li>
+<li>
+<p>The execution of a thread in <em>atomic mode</em> does not get interleaved with that of other threads.</p>
+</li>
+<li>
+<p>The execution of a thread in <em>read-only mode</em> is not allowed to update shared variables of spawn threads.</p>
+</li>
+</ul>
+<p>The register of a thread always contains a dictionary, mapping atoms to arbitrary values. The atoms correspond to the variable names in a Harmony program.</p>
               
             </div>
           </div>
@@ -175,10 +227,10 @@ out of memory, although this is an impossible outcome in the current implementat
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bag/" class="btn btn-neutral float-right" title="bag">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../harmony-vm/" class="btn btn-neutral float-right" title="The Harmony VM">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../overview/" class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../machine-instructions/" class="btn btn-neutral" title="Machine Instructions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -204,10 +256,10 @@ out of memory, although this is an impossible outcome in the current implementat
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../machine-instructions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../bag/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../harmony-vm/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

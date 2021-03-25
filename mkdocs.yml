@@ -10,6 +10,9 @@ nav:
             - 'Overview': 'reference/language/overview.md'
             - 'Values': 'reference/language/value-types.md'
             - 'Statements': 'reference/language/statements.md'
+            - 'Machine Instructions': 'reference/language/machine-instructions.md'
+            - 'Contexts and Threads': 'reference/language/contexts-threads.md'
+            - 'The Harmony VM': 'reference/language/harmony-vm.md'
         - 'Library':
             - 'Overview': 'reference/library/overview.md'
             - 'alloc': 'reference/library/alloc.md'

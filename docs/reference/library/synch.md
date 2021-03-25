@@ -6,6 +6,7 @@ The `synch` module provides the following methods:
 | Method | Description |
 | ------ | ------- |
 | `tas(lk)` | test-and-set on `!lk` |
+| `cas(ptr, old, new)` | compare-and-swap on `!ptr` |
 | `BinSem(v)` | return a binary semaphore initialized to `v` |
 | `Lock()` | return a binary semaphore initialized to `False` |
 | `acquire(bs)` | acquire binary semaphore `!bs` |

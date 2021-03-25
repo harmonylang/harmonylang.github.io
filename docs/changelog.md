@@ -1,4 +1,7 @@
 # Changelog
+## v1.1
+ - Now detects busy waiting and data races
+ - New `sequential` keyword to tag sequentially consistent variables
 
 ## v1.0
  - Rewrote model checker in C for much faster performance
