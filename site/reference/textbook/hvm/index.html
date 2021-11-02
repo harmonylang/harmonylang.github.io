@@ -1,0 +1,1523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>The Harmony Virtual Machine - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-harmony-virtual-machine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Harmony Virtual Machine 
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/running-harmony/" class="md-nav__link">
+        Running a program
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Introduction to Harmony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonymachine/" class="md-nav__link">
+        The Harmony Virtual Machine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peterson/" class="md-nav__link">
+        Peterson's Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cds/" class="md-nav__link">
+        Concurrent Data Structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deadlock/" class="md-nav__link">
+        Deadlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abd/" class="md-nav__link">
+        Replicated Atomic Read/Write Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Language
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Language
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          The Harmony Virtual Machine 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        The Harmony Virtual Machine 
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#machine-instructions" class="md-nav__link">
+    Machine Instructions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexts-and-threads" class="md-nav__link">
+    Contexts and Threads
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Library" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/alloc/" class="md-nav__link">
+        alloc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/bag/" class="md-nav__link">
+        bag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/hoare/" class="md-nav__link">
+        hoare
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/list/" class="md-nav__link">
+        list
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/set/" class="md-nav__link">
+        set
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/synch/" class="md-nav__link">
+        synch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#machine-instructions" class="md-nav__link">
+    Machine Instructions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexts-and-threads" class="md-nav__link">
+    Contexts and Threads
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="the-harmony-virtual-machine">The Harmony Virtual Machine</h1>
+<p>The Harmony Virtual Machine (HVM, ) has the following state:</p>
+<p>code        a list of HVM machine instructions
+  labels      a dictionary of atoms to program counters
+  variables   a dictionary mapping atoms to values
+  ctxbag      a bag of runnable contexts
+  stopbag     a bag of stopped contexts
+  choosing    if not <code>None</code>, indicates a context that is choosing</p>
+<p>There is initially a single context with name <code>__init__()</code> and program
+counter 0. It starts executing in atomic mode until it finishes
+executing the last <code>Return</code> instruction. Other threads, created through
+<code>spawn</code> statements, do not start executing until then.</p>
+<p>A <em>step</em> is the execution of a single HVM machine instruction by a
+context. Each step generates a new state. When there are multiple
+contexts, the HVM can interleave them. However, trying to interleave
+every step would be needlessly expensive, as many steps involve changes
+to a context that are invisible to other contexts.</p>
+<p>A <em>stride</em> can involve multiple steps. The following instructions start
+a new stride: <code>Load</code>, <code>Store</code>, <code>AtomicInc</code>, and <code>Continue</code>. The HVM
+interleaves stides, not steps. Like steps, each stride involves a single
+context. Unlike a step, a stride can leave the state unchanged (because
+its steps lead back to where the stride started).</p>
+<p>Executing a Harmony program results in a graph where the nodes are
+Harmony states and the edges are strides. When a state is <code>choosing</code>,
+the edges from that state are by a single context, one for each choice.
+If not, the edges from the state are one per context.</p>
+<p>Consecutive strides by the same thread are called a <em>turn</em>. Each state
+maintains the shortest path to it from the initial state in terms of
+turns. The diameter of the graph is the length of the longest path found
+in terms of turns.</p>
+<p>If some states have a problem, the state with the shortest path is
+reported. Problematic states include states that experienced exceptions.
+If there are no exceptions, Harmony computes the strongly connected
+components (SCCs) of the graph (the number of such components are
+printed as part of the output). The sink SCCs should each consist of a
+terminal state without any threads. If not, again the state with the
+shortest path is reported.</p>
+<p>If there are no problematic states, Harmony reports "no issues found"
+and outputs in the HTML file the state with the longest path.</p>
+<h2 id="machine-instructions">Machine Instructions</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address</td>
+<td>compute address from two components</td>
+</tr>
+<tr>
+<td>Apply</td>
+<td>pop <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(i\)</span> and apply <span class="arithmatex">\(i\)</span> to <span class="arithmatex">\(m\)</span>, pushing a value</td>
+</tr>
+<tr>
+<td>Assert, Assert2</td>
+<td>pop <span class="arithmatex">\(b\)</span> and check that it is <strong>True</strong>. Assert2 also pops value to print</td>
+</tr>
+<tr>
+<td>AtomicInc/Dec</td>
+<td>increment/decrement the atomic counter of this context</td>
+</tr>
+<tr>
+<td>Continue</td>
+<td>no-op (but causes a context switch)</td>
+</tr>
+<tr>
+<td>Choose</td>
+<td>choose an element from the set on top of the stack</td>
+</tr>
+<tr>
+<td>Cut</td>
+<td>cut a set into its smallest element and the remainder</td>
+</tr>
+<tr>
+<td>Del [<span class="arithmatex">\(v\)</span>]</td>
+<td>delete shared variable <span class="arithmatex">\(v\)</span></td>
+</tr>
+<tr>
+<td>DelVar [<span class="arithmatex">\(v\)</span>]</td>
+<td>delete thread variable <span class="arithmatex">\(v\)</span></td>
+</tr>
+<tr>
+<td>Dup</td>
+<td>duplicate the top element of the stack</td>
+</tr>
+<tr>
+<td>Frame <code>m</code> <span class="arithmatex">\(a\)</span></td>
+<td>start method <code>m</code> with arguments <span class="arithmatex">\(a\)</span>, initializing variables.</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>pop context and value, push value on context's stack, and add to context bag</td>
+</tr>
+<tr>
+<td>IncVar <span class="arithmatex">\(v\)</span></td>
+<td>increment thread variable <span class="arithmatex">\(v\)</span></td>
+</tr>
+<tr>
+<td>Jump <span class="arithmatex">\(p\)</span></td>
+<td>set program counter to <span class="arithmatex">\(p\)</span></td>
+</tr>
+<tr>
+<td>JumpCond <span class="arithmatex">\(e\)</span> <span class="arithmatex">\(p\)</span></td>
+<td>pop expression and, if equal to <span class="arithmatex">\(e\)</span>, set program counter to <span class="arithmatex">\(p\)</span></td>
+</tr>
+<tr>
+<td>Load [<span class="arithmatex">\(v\)</span>]</td>
+<td>push the value of a shared variable onto the stack</td>
+</tr>
+<tr>
+<td>LoadVar [<span class="arithmatex">\(v\)</span>]</td>
+<td>push the value of a thread variable onto the stack</td>
+</tr>
+<tr>
+<td>Move <span class="arithmatex">\(i\)</span></td>
+<td>move stack element at offset <span class="arithmatex">\(i\)</span> to top of the stack</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(n\)</span>-ary <em>op</em></td>
+<td>apply <span class="arithmatex">\(n\)</span>-ary operator <em>op</em> to the top <span class="arithmatex">\(n\)</span> elements on the stack</td>
+</tr>
+<tr>
+<td>Pop</td>
+<td>pop a value of the stack and discard it</td>
+</tr>
+<tr>
+<td>Possibly <span class="arithmatex">\(i\)</span></td>
+<td>pop a value to check the <span class="arithmatex">\(i^{th}\)</span> predicate in a <strong>possibly</strong> statement</td>
+</tr>
+<tr>
+<td>Push <span class="arithmatex">\(c\)</span></td>
+<td>push constant <span class="arithmatex">\(c\)</span> onto the stack</td>
+</tr>
+<tr>
+<td>ReadonlyInc/Dec</td>
+<td>increment/decrement the read-only counter of this context</td>
+</tr>
+<tr>
+<td>Return</td>
+<td>pop return address, push <code>result</code>, and restore program counter</td>
+</tr>
+<tr>
+<td>Sequential</td>
+<td>pop an address of a variable that has sequential consistency</td>
+</tr>
+<tr>
+<td>SetIntLevel</td>
+<td>pop <span class="arithmatex">\(e\)</span>, set interrupt level to <span class="arithmatex">\(e\)</span>, and push old interrupt level</td>
+</tr>
+<tr>
+<td>Spawn [eternal]</td>
+<td>pop initial thread-local state, argument, and method and spawn a new context</td>
+</tr>
+<tr>
+<td>Split</td>
+<td>pop tuple and push its elements</td>
+</tr>
+<tr>
+<td>Stop [<span class="arithmatex">\(v\)</span>]</td>
+<td>save context into shared variable <span class="arithmatex">\(v\)</span> and remove from context bag</td>
+</tr>
+<tr>
+<td>Store [<span class="arithmatex">\(v\)</span>]</td>
+<td>pop a value from the stack and store it in a shared variable</td>
+</tr>
+<tr>
+<td>StoreVar [<span class="arithmatex">\(v\)</span>]</td>
+<td>pop a value from the stack and store it in a thread variable</td>
+</tr>
+<tr>
+<td>Trap</td>
+<td>pop interrupt argument and method</td>
+</tr>
+</tbody>
+</table>
+<p>Clarifications:</p>
+<ul>
+<li>
+<p>The <code>Address</code> instruction expects two values on the stack. The top
+    value must be an address value, representing a dictionary The other
+    value must be a key into the dictionary. The instruction then
+    computes the address of the given key.</p>
+</li>
+<li>
+<p>Even though Harmony code does not allow taking addresses of thread
+    variables, both shared and thread variables can have addresses.</p>
+</li>
+<li>
+<p>The <code>Load</code>, <code>LoadVar</code>, <code>Del</code>, <code>DelVar</code>, and <code>Stop</code> instructions have
+    an optional variable name: if omitted the top of the stack must
+    contain the address of the variable.</p>
+</li>
+<li>
+<p><code>Store</code> and <code>StoreVar</code> instructions have an optional variable name.
+    In both cases the value to be assigned is on the top of the stack.
+    If the name is omitted, the address is underneath that value on the
+    stack.</p>
+</li>
+<li>
+<p>The effect of the <code>Apply</code> instructions depends much on <span class="arithmatex">\(m\)</span>. If <span class="arithmatex">\(m\)</span>
+    is a dictionary, then <code>Apply</code> finds <span class="arithmatex">\(i\)</span> in the dictionary and pushes
+    the value. If <span class="arithmatex">\(m\)</span> is a program counter, then <code>Apply</code> invokes method
+    <span class="arithmatex">\(m\)</span> by pushing the current program counter and setting the program
+    counter to <span class="arithmatex">\(m\)</span>. <span class="arithmatex">\(m\)</span> is supposed to leave the result on the stack.</p>
+</li>
+<li>
+<p>The <code>Frame</code> instruction pushes the value of the thread register
+    (<em>i.e.</em>, the values of the thread variables) onto the stack. It
+    initializes the <code>result</code> variable to <code>None</code>. The <code>Return</code>
+    instruction restores the thread register by popping its value of the
+    stack.</p>
+</li>
+<li>
+<p>All method calls have exactly one argument, although it sometimes
+    appears otherwise:</p>
+<ul>
+<li>
+<p><code>m()</code> invokes method <code>m</code> with the empty dictionary <code>()</code> as
+    argument;</p>
+</li>
+<li>
+<p><code>m(a)</code> invokes method <code>m</code> with argument <span class="arithmatex">\(a\)</span>;</p>
+</li>
+<li>
+<p><code>m(a, b, c)</code> invokes method <code>m</code> with tuple <code>(a, b, c)</code> as
+    argument.</p>
+</li>
+</ul>
+<p>The <code>Frame</code> instruction unpacks the argument to the method and
+places them into thread variables by the given names.</p>
+</li>
+<li>
+<p>Every <code>Stop</code> instruction must immediately be followed by a
+    <code>Continue</code> instruction.</p>
+</li>
+</ul>
+<h2 id="contexts-and-threads">Contexts and Threads</h2>
+<p>A context captures the state of a thread. Each time the thread executes
+an instruction, it goes from one context to another. All instructions
+update the program counter (<code>Jump</code> instructions are not allowed to jump
+to their own locations), and so no instruction leaves the context the
+same. There may be multiple threads with the same state at the same
+time. A context consists of the following:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>the name of the main method that the thread is executing</td>
+</tr>
+<tr>
+<td>argument</td>
+<td>the argument given to the main method</td>
+</tr>
+<tr>
+<td>program counter</td>
+<td>an integer value pointing into the code</td>
+</tr>
+<tr>
+<td>frame pointer</td>
+<td>an integer value pointing into the stack</td>
+</tr>
+<tr>
+<td>atomic</td>
+<td>if non-zero, the thread is in atomic mode</td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>if non-zero, the thread is in read-only mode</td>
+</tr>
+<tr>
+<td>stack</td>
+<td>a list of Harmony values</td>
+</tr>
+<tr>
+<td>method variables</td>
+<td>a dictionary mapping atoms (names of method variables) to values</td>
+</tr>
+<tr>
+<td>thread-local variables</td>
+<td>a dictionary mapping atoms (names of thread-local variables) to values</td>
+</tr>
+<tr>
+<td>stopped</td>
+<td>a boolean indicating if the context is stopped</td>
+</tr>
+<tr>
+<td>failure</td>
+<td>if not None, string that describes how the thread failed</td>
+</tr>
+</tbody>
+</table>
+<p>Details:</p>
+<ul>
+<li>
+<p>The frame pointer points to the current <em>stack frame</em>, which
+    consists of the caller's frame pointer and variables, the argument
+    to the method, an "invocation type atom" (<code>normal</code>, <code>interrupt</code>, or
+    <code>thread</code>), and the return address (in case of <code>normal</code>).</p>
+</li>
+<li>
+<p>A thread terminates when it reaches the <code>Return</code> instruction of the
+    top-level method (when the stack frame is of type <code>thread</code>) or when
+    it hits an exception. Exceptions include divide by zero, reading a
+    non-existent key in a dictionary, accessing a non-existent variable,
+    as well as when an assertion fails;</p>
+</li>
+<li>
+<p>The execution of a thread in <em>atomic mode</em> does not get interleaved
+    with that of other threads.</p>
+</li>
+<li>
+<p>The execution of a thread in <em>read-only mode</em> is not allowed to
+    update shared variables of spawn threads.</p>
+</li>
+<li>
+<p>The register of a thread always contains a dictionary, mapping atoms
+    to arbitrary values. The atoms correspond to the variable names in a
+    Harmony program.</p>
+</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../values/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Harmony Language Details" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Harmony Language Details
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../howitworks/" class="md-footer__link md-footer__link--next" aria-label="Next: How Harmony Works " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              How Harmony Works 
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

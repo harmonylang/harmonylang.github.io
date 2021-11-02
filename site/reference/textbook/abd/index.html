@@ -1,0 +1,1284 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Replicated Atomic Read/Write Register - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#replicated-atomic-readwrite-register" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Replicated Atomic Read/Write Register
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/running-harmony/" class="md-nav__link">
+        Running a program
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Introduction to Harmony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonymachine/" class="md-nav__link">
+        The Harmony Virtual Machine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peterson/" class="md-nav__link">
+        Peterson's Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cds/" class="md-nav__link">
+        Concurrent Data Structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deadlock/" class="md-nav__link">
+        Deadlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Replicated Atomic Read/Write Register
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Language
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Language
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hvm/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Library" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/alloc/" class="md-nav__link">
+        alloc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/bag/" class="md-nav__link">
+        bag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/hoare/" class="md-nav__link">
+        hoare
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/list/" class="md-nav__link">
+        list
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/set/" class="md-nav__link">
+        set
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/synch/" class="md-nav__link">
+        synch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="replicated-atomic-readwrite-register">Replicated Atomic Read/Write Register</h1>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">bag</span>
+<span class="n">const</span> <span class="n">F</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">F</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">server</span><span class="p">():</span>
+    <span class="n">var</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">received</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{}</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">{</span> <span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">keys</span> <span class="n">network</span> <span class="err">–</span> <span class="n">received</span>
+                            <span class="n">where</span> <span class="n">m</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">{</span><span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">write</span><span class="p">}</span> <span class="p">}:</span>
+            <span class="n">received</span> <span class="o">|=</span> <span class="p">{</span> <span class="n">m</span> <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="o">.</span><span class="n">write</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">):</span>
+                <span class="n">t</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">send</span><span class="p">({</span> <span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="o">.</span><span class="n">response</span><span class="p">,</span> <span class="o">.</span><span class="n">dst</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">phase</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">m</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="n">m</span><span class="p">:</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span>
+                <span class="n">where</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="o">.</span><span class="n">response</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">dst</span> <span class="o">==</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">phase</span><span class="p">))</span> <span class="p">}:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">N</span> <span class="err">–</span> <span class="n">F</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">uid</span><span class="p">):</span>
+    <span class="n">send</span><span class="p">({</span> <span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">src</span><span class="p">:</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">})</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">let</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">keys</span> <span class="n">msgs</span><span class="p">):</span>
+            <span class="n">send</span><span class="p">({</span> <span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">src</span><span class="p">:</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="p">})</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">send</span><span class="p">({</span> <span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="o">.</span><span class="n">read</span><span class="p">,</span> <span class="o">.</span><span class="n">src</span><span class="p">:</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">})</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">let</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">keys</span> <span class="n">msgs</span><span class="p">)</span>
+        <span class="n">let</span> <span class="n">nt</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">uid</span><span class="p">):</span>
+            <span class="n">send</span><span class="p">({</span> <span class="o">.</span><span class="n">type</span><span class="p">:</span> <span class="o">.</span><span class="n">write</span><span class="p">,</span> <span class="o">.</span><span class="n">src</span><span class="p">:</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="p">})</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">pass</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">abd</span>
+
+<span class="k">def</span> <span class="nf">reader</span><span class="p">():</span>
+    <span class="n">let</span> <span class="n">first</span> <span class="o">=</span> <span class="n">abd</span><span class="o">.</span><span class="n">read</span><span class="p">((</span><span class="o">.</span><span class="n">reader</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">let</span> <span class="n">second</span> <span class="o">=</span> <span class="n">abd</span><span class="o">.</span><span class="n">read</span><span class="p">((</span><span class="o">.</span><span class="n">reader</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">first</span> <span class="o">==</span> <span class="o">.</span><span class="n">token</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">second</span> <span class="o">==</span> <span class="o">.</span><span class="n">token</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">writer</span><span class="p">():</span>
+    <span class="n">abd</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="o">.</span><span class="n">writer</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">.</span><span class="n">token</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">abd</span><span class="o">.</span><span class="n">N</span> <span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">eternal</span> <span class="n">abd</span><span class="o">.</span><span class="n">server</span><span class="p">()</span>
+<span class="n">spawn</span> <span class="n">reader</span><span class="p">()</span>
+<span class="n">spawn</span> <span class="n">writer</span><span class="p">()</span>
+</code></pre></div>
+<p>A <em>register</em> is an object that you can read or write. In a distributed
+system, it can be useful to have registers that are shared. A simple
+shared register implementation would have its value maintained by a
+server, and clients can read or write the shared register by exchanging
+messages with the server. We call two operations such that one does not
+finish before the other starts <em>concurrent</em>. Since messages are
+delivered one at a time to the server, concurrent operations on the
+shared register appear atomic. In particular, we have the following
+three desirable properties:</p>
+<ol>
+<li>
+<p>All write operations are ordered;</p>
+</li>
+<li>
+<p>A read operation returns either the last value written or the value
+    of a concurrent write operation.</p>
+</li>
+<li>
+<p>If read operation <span class="arithmatex">\(r_1\)</span> finishes before read operation <span class="arithmatex">\(r_2\)</span> starts,
+    then <span class="arithmatex">\(r_2\)</span> cannot return a value that is older than the value
+    returned by <span class="arithmatex">\(r_1\)</span>.</p>
+</li>
+</ol>
+<p>Unfortunately, however, the server is a <em>single point of failure</em>: if it
+fails, all its clients suffer. We would therefore like to find a
+solution that can survive the crash of a server. While we could use
+Chain Replication to replicate the register, in this chapter we will use
+a solution that does not assume that crashes can be accurately detected.</p>
+<p>We will again replicate the register object: maintain multiple copies,
+but we will not use the replicated state machine approach. One could,
+for example, imagine that clients write to all copies and read from any
+single one. While this solves the single-point-of-failure problem, we
+lose all the nice properties above. For one, it is not guaranteed that
+all servers receive and process all write operations in the same order.</p>
+<p>We present a protocol preserving these properties that is based on the
+work by Hagit Attiya, Amotz Bar-Noy, and Danny Dolev. In order
+to tolerate <code>F</code> failures, it uses <span class="arithmatex">\(\mathtt{N} = 2\mathtt{F} + 1\)</span>
+servers. In other words, the register survives as long as a strict
+majority of its copies survive. All write operation will be ordered by a
+unique <em>logical timestamp</em> (see also ). Each server maintains not only
+the value of the object, but also the timestamp of its corresponding
+write operation.</p>
+<p>Each read and write operation consists of two <em>phases</em>. In a phase, a
+client broadcasts a request to all servers and waits for responses from
+a majority (<span class="arithmatex">\(\texttt{N} - \texttt{F}\)</span> or equivalently <span class="arithmatex">\(\texttt{F} + 1\)</span>
+servers). Note that because we are assuming that no more than <code>F</code>
+servers can fail, doing so is safe, in that a client cannot indefinitely
+block as long as that assumption holds.</p>
+<p>In the first phase, a client asks each server for its current timestamp
+and value. After receiving <span class="arithmatex">\(\mathtt{N} - \mathtt{F}\)</span> responses, the
+client determines the response with the highest timestamp. In case of a
+write operation, the client then computes a new unique timestamp that is
+strictly higher than the highest it has seen. To make this work,
+timestamps are actually lexicographically ordered tuples consisting of
+an integer and the unique identifier of the client that writes the
+value. So if <span class="arithmatex">\((t, c)\)</span> is the highest timestamp observed by client <span class="arithmatex">\(c'\)</span>,
+and <span class="arithmatex">\(c'\)</span> needs to create a new timestamp, it can select <span class="arithmatex">\((t + 1, c')\)</span>.
+After all <span class="arithmatex">\((t + 1, c') &gt; (t, u)\)</span> and no other client will create the
+same timestamp.</p>
+<p>Suppose client <span class="arithmatex">\(c'\)</span> is trying to write a value <span class="arithmatex">\(v\)</span>. In phase 2, client
+<span class="arithmatex">\(c'\)</span> broadcasts a request containing timestamp <span class="arithmatex">\((t+1, c')\)</span> and <span class="arithmatex">\(v\)</span>. Each
+server that receives the request compares <span class="arithmatex">\((t+1, c')\)</span> against its
+current timestamp. If <span class="arithmatex">\((t+1, c')\)</span> is larger than its current timestamp,
+it adopts the new timestamp and its corresponding value <span class="arithmatex">\(v\)</span>. In either
+case, the server responds to the client. Upon <span class="arithmatex">\(c'\)</span> receiving a response
+from <span class="arithmatex">\(\mathtt{N} - \mathtt{F}\)</span> servers, the write operation completes.
+In case of a read operation, client <span class="arithmatex">\(c'\)</span> simply <em>writes back</em> the
+highest timestamp it saw in the first phase along with its corresponding
+value.</p>
+<p>contains the code for a server, as well as the code for read and write
+operations. For efficiency of model checking, the servers are
+anonymous---otherwise we would have to consider every permutation of
+states of those servers. Because the servers are anonymous, they may end
+up sending the same exact message, but clients are waiting for a
+particular number of messages. Because of this, we will model the
+network as a bag of messages.</p>
+<p>A server initializes its timestamp <span class="arithmatex">\(t\)</span> to <span class="arithmatex">\((0, \mathtt{None})\)</span> and its
+value to <code>None</code>. Each server also keeps track of all the requests its
+already received so it doesn't handle the same request twice. The rest
+of the code is fairly straightforward.</p>
+<p>Read and write operations are both invoked with a unique identifier
+<em>uid</em>. Both start by broadcasting a <code>.read</code> request to all servers and
+then waiting for a response from <span class="arithmatex">\(\mathtt{N} - \mathtt{F}\)</span> servers. The
+<code>receive()</code> function uses the <code>bag.combinations</code> method to find all
+combinations of subsets of responses of size <span class="arithmatex">\(\mathtt{N} - \mathtt{F}\)</span>.
+The second phase of each operation is similar.</p>
+<p>tests the third property of the properties listed above. The <code>writer()</code>
+method writes a new value <code>.token</code>. The <code>reader()</code> method reads twice
+and makes sure that if the first read operation returns <code>.token</code>, then
+so does the second. This illustrates the importance of the second phase
+of the <code>read</code> operation. You can comment out Lines 32 and 33 in and see
+what goes wrong.</p>
+<p>One may wonder how failures can occur in this model. They are not
+explicitly modeled, but Harmony tries every possible execution. This
+includes executions in which the clients terminate before <span class="arithmatex">\(\texttt{F}\)</span>
+of the servers start executing. To the clients, this is
+indistinguishable from executions in which those servers have failed.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../chain/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chain Replication" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chain Replication
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../consensus/" class="md-footer__link md-footer__link--next" aria-label="Next: Distributed Consensus" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Distributed Consensus
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

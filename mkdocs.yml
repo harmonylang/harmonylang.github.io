@@ -5,14 +5,42 @@ nav:
         - 'Introduction': 'guides/introduction.md'
         - 'Installation': 'guides/installation.md'
         - 'Running a program': 'guides/running-harmony.md'
+    - 'Textbook':
+        - "On Concurrent Programming": 'reference/textbook/index.md'
+        - "Introduction to Harmony": 'reference/textbook/harmonyintro.md'
+        - "The Problem of Concurrent Programming": 'reference/textbook/concurrent.md'
+        - "The Harmony Virtual Machine": 'reference/textbook/harmonymachine.md'
+        - "Critical Sections": 'reference/textbook/critical.md'
+        - "Peterson's Algorithm": 'reference/textbook/peterson.md'
+        - "Harmony Methods and Pointers": 'reference/textbook/method.md'
+        - "Specification": 'reference/textbook/specification.md'
+        - "Spinlock": 'reference/textbook/spinlock.md'
+        - "Lock Implementations": 'reference/textbook/synch.md'
+        - "Concurrent Data Structures": 'reference/textbook/cds.md'
+        - "Testing": 'reference/textbook/testing.md'
+        - "Debugging": 'reference/textbook/debugging.md'
+        - "Conditional Waiting": 'reference/textbook/condwait.md'
+        - "Split Binary Semaphores": 'reference/textbook/sbs.md'
+        - "Starvation": 'reference/textbook/starvation.md'
+        - "Monitors": 'reference/textbook/monitors.md'
+        - "Deadlock": 'reference/textbook/deadlock.md'
+        - "Actors and Message Passing": 'reference/textbook/actor.md'
+        - "Barrier Synchronization": 'reference/textbook/barrier.md'
+        - "Interrupts": 'reference/textbook/interrupts.md'
+        - "Non-Blocking Synchronization": 'reference/textbook/nonblocking.md'
+        - "Alternating Bit Protocol": 'reference/textbook/abp.md'
+        - "Leader Election": 'reference/textbook/leader.md'
+        - "Transactions and Two Phase Commit": 'reference/textbook/2pc.md'
+        - "Chain Replication": 'reference/textbook/chain.md'
+        - "Replicated Atomic Read/Write Register": 'reference/textbook/abd.md'
+        - "Distributed Consensus": 'reference/textbook/consensus.md'
+        - "Paxos": 'reference/textbook/paxos.md'
+        - "Needham-Schroeder Authentication Protocol": 'reference/textbook/ns.md'
     - 'Reference':
         - 'Language':
-            - 'Overview': 'reference/language/overview.md'
-            - 'Values': 'reference/language/value-types.md'
-            - 'Statements': 'reference/language/statements.md'
-            - 'Machine Instructions': 'reference/language/machine-instructions.md'
-            - 'Contexts and Threads': 'reference/language/contexts-threads.md'
-            - 'The Harmony VM': 'reference/language/harmony-vm.md'
+            - "Harmony Language Details": 'reference/textbook/values.md'
+            - "The Harmony Virtual Machine ": 'reference/textbook/hvm.md'
+            - "How Harmony Works ": 'reference/textbook/howitworks.md'
         - 'Library':
             - 'Overview': 'reference/library/overview.md'
             - 'alloc': 'reference/library/alloc.md'
@@ -23,4 +51,22 @@ nav:
             - 'synch': 'reference/library/synch.md'
         - 'Textbook': 'reference/textbook.md'
     - Changelog: changelog.md
-theme: readthedocs
+    - "Acknowledgments": 'reference/textbook/acknowledgments.md'
+
+theme: 
+    name: material
+    logo: img/favicon.ico
+    favicon: img/favicon.ico
+
+markdown_extensions:
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.highlight
+    - pymdownx.inlinehilite
+    - pymdownx.superfences
+    - pymdownx.snippets
+
+extra_javascript:
+    - javascripts/mathjax.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

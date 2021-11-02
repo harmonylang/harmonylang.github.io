@@ -1,6 +1,6 @@
 # Running your first Harmony program
 
-Harmony is a programming language that borrows much of Python's syntax. Like Python, Harmony is an imperative, dynamically typed, and garbage collected programming language. There are also some [important differences](../reference/language/overview.md): - Harmony only supports basic operator precedence or associativity. Use parentheses liberally to remove ambiguity.
+Harmony is a programming language that borrows much of Python's syntax. Like Python, Harmony is an imperative, dynamically typed, and garbage collected programming language. There are also some [important differences](../reference/textbook/values.md): - Harmony only supports basic operator precedence or associativity. Use parentheses liberally to remove ambiguity.
 
 - Harmony does not (currently) support floating point, iterators, or I/O; Harmony does support **for** loops and various "comprehensions."
 
@@ -22,7 +22,7 @@ x = choose({0..N})       # select an x between 0 and N inclusive
 assert triangle(x) == ((x * (x + 1)) / 2)
 ```
 
-*Try out the algorithm above [in the IDE!](https://harmony.cs.cornell.edu/ide/?template=triangle)*
+*Try out the algorithm above [in the sandbox!](https://harmony.cs.cornell.edu/ide/?template=triangle)*
 
 The example is sequential and has a method triangle that takes an integer number as argument. Each method has a variable called *result* that eventually contains the result of the method (there is no **return** statement in Harmony). The method also has a variable called *n* containing the value of the argument. The { *x..y* } notation generates a set containing the numbers from *x* to *y* (inclusive). (Harmony does not have iterators and in particular does not have a range operator.) The last two lines in the program are the most interesting. The first assigns to *x* some unspecified value in the range 0..N and the second verifies that triangle(*x*) equals *x*(*x* + 1)*/*2.
 

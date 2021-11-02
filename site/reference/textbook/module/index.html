@@ -1,0 +1,1418 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Modules - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/running-harmony/" class="md-nav__link">
+        Running a program
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Introduction to Harmony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonymachine/" class="md-nav__link">
+        The Harmony Virtual Machine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peterson/" class="md-nav__link">
+        Peterson's Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cds/" class="md-nav__link">
+        Concurrent Data Structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deadlock/" class="md-nav__link">
+        Deadlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abd/" class="md-nav__link">
+        Replicated Atomic Read/Write Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Language
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Language
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hvm/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Library" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/alloc/" class="md-nav__link">
+        alloc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/bag/" class="md-nav__link">
+        bag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/hoare/" class="md-nav__link">
+        hoare
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/list/" class="md-nav__link">
+        list
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/set/" class="md-nav__link">
+        set
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/synch/" class="md-nav__link">
+        synch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-alloc-module" class="md-nav__link">
+    The alloc module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bag-module" class="md-nav__link">
+    The bag module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-hoare-module" class="md-nav__link">
+    The hoare module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-list-module" class="md-nav__link">
+    The list module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-set-module" class="md-nav__link">
+    The set module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-synch-module" class="md-nav__link">
+    The synch module
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="modules">Modules</h1>
+<h2 id="the-alloc-module">The <code>alloc</code> module</h2>
+<p>The <code>alloc</code> module supports thread-safe (but not interrupt-safe) dynamic
+allocation of shared memory locations. There are just two methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>malloc(v)</code></td>
+<td>return a pointer to a memory location initialized to <span class="arithmatex">\(v\)</span></td>
+</tr>
+<tr>
+<td><code>free(p)</code></td>
+<td>free an allocated memory location <span class="arithmatex">\(p\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The usage is similar to <code>malloc</code> and <code>free</code> in C. <code>malloc</code>() is
+specified to return <code>None</code> when running out of memory, although this is
+an impossible outcome in the current implementation of the module.</p>
+<h2 id="the-bag-module">The <code>bag</code> module</h2>
+<p>The <code>bag</code> module has various useful methods that operate on bags or
+multisets:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>empty()</code></td>
+<td>returns an empty bag</td>
+</tr>
+<tr>
+<td><code>fromSet(s)</code></td>
+<td>create a bag from set <span class="arithmatex">\(s\)</span></td>
+</tr>
+<tr>
+<td><code>fromList(t)</code></td>
+<td>convert list <span class="arithmatex">\(t\)</span> into a bag</td>
+</tr>
+<tr>
+<td><code>count(b, e)</code></td>
+<td>count how many times <span class="arithmatex">\(e\)</span> occurs in bag <span class="arithmatex">\(b\)</span></td>
+</tr>
+<tr>
+<td><code>bchoose(b)</code></td>
+<td>like <code>choose(s)</code>, but applied to a bag</td>
+</tr>
+<tr>
+<td><code>add</code>(<span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(e\)</span>)</td>
+<td>add one copy of <span class="arithmatex">\(e\)</span> to bag <span class="arithmatex">\(b\)</span></td>
+</tr>
+<tr>
+<td><code>remove</code>(<span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(e\)</span>)</td>
+<td>remove one copy of <span class="arithmatex">\(e\)</span> from bag <span class="arithmatex">\(b\)</span></td>
+</tr>
+<tr>
+<td><code>combinations</code>(<span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(k\)</span>)</td>
+<td>return set of all <em>subbags</em> of size <span class="arithmatex">\(k\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-hoare-module">The <code>hoare</code> module</h2>
+<p>The <code>hoare</code> module implements support for Hoare-style monitors and
+condition variables.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Monitor()</code></td>
+<td>return a monitor mutex</td>
+</tr>
+<tr>
+<td><code>enter(m)</code></td>
+<td>enter a monitor. <span class="arithmatex">\(m\)</span> points to a monitor mutex</td>
+</tr>
+<tr>
+<td><code>exit(m)</code></td>
+<td>exit a monitor</td>
+</tr>
+<tr>
+<td><code>Condition()</code></td>
+<td>return a condition variable</td>
+</tr>
+<tr>
+<td><code>wait(c, m)</code></td>
+<td>wait on condition variable pointed to by <span class="arithmatex">\(c\)</span> in monitor pointed to by <span class="arithmatex">\(m\)</span></td>
+</tr>
+<tr>
+<td><code>signal(c, m)</code></td>
+<td>signal a condition variable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-list-module">The <code>list</code> module</h2>
+<p>The <code>list</code> module has various useful methods that operate on lists or
+tuples:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>subseq(t, b, f)</code></td>
+<td>return a <em>slice</em> of list <span class="arithmatex">\(t\)</span> starting at index <span class="arithmatex">\(b\)</span> and ending just before <span class="arithmatex">\(f\)</span></td>
+</tr>
+<tr>
+<td><code>append(t, e)</code></td>
+<td>append <span class="arithmatex">\(e\)</span> to list <span class="arithmatex">\(t\)</span></td>
+</tr>
+<tr>
+<td><code>head(t)</code></td>
+<td>return the first element of list <span class="arithmatex">\(t\)</span></td>
+</tr>
+<tr>
+<td><code>tail(t)</code></td>
+<td>return all but the first element of list <span class="arithmatex">\(t\)</span></td>
+</tr>
+<tr>
+<td><code>reversed(t)</code></td>
+<td>reverse a list</td>
+</tr>
+<tr>
+<td><code>sorted(t)</code></td>
+<td>sorted set or list</td>
+</tr>
+<tr>
+<td><code>set(t)</code></td>
+<td>convert values of a dict or list into a set</td>
+</tr>
+<tr>
+<td><code>list(t)</code></td>
+<td>convert set into a list</td>
+</tr>
+<tr>
+<td><code>values(t)</code></td>
+<td>convert values of a dict into a list sorted by key</td>
+</tr>
+<tr>
+<td><code>items(t)</code></td>
+<td>convert dict into (key, value) list sorted by key</td>
+</tr>
+<tr>
+<td><code>enumerate(t)</code></td>
+<td>like Python enumerate</td>
+</tr>
+<tr>
+<td><code>sum(t)</code></td>
+<td>return the sum of all elements in <span class="arithmatex">\(t\)</span></td>
+</tr>
+<tr>
+<td><code>qsort(t)</code></td>
+<td>sort list <span class="arithmatex">\(t\)</span> using quicksort</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-set-module">The <code>set</code> module</h2>
+<p>The <code>set</code> module implements the following methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issubset(s, t)</code></td>
+<td>returns whether <span class="arithmatex">\(s\)</span> is a subset of <span class="arithmatex">\(t\)</span></td>
+</tr>
+<tr>
+<td><code>issuperset(s, t)</code></td>
+<td>returns whether <span class="arithmatex">\(s\)</span> is a superset of <span class="arithmatex">\(t\)</span></td>
+</tr>
+<tr>
+<td><code>add</code>(<span class="arithmatex">\(s\)</span>, <span class="arithmatex">\(e\)</span>)</td>
+<td>returns <span class="arithmatex">\(s \cup \{ e \}\)</span></td>
+</tr>
+<tr>
+<td><code>remove</code>(<span class="arithmatex">\(s\)</span>, <span class="arithmatex">\(e\)</span>)</td>
+<td>returns <span class="arithmatex">\(s \backslash \{ e \}\)</span></td>
+</tr>
+<tr>
+<td><code>combinations</code>(<span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(k\)</span>)</td>
+<td>returns set of all subsets of size <span class="arithmatex">\(k\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>For Python programmers: note that <span class="arithmatex">\(s &lt;= t\)</span> does not check if <span class="arithmatex">\(s\)</span> is a
+subset of <span class="arithmatex">\(t\)</span> when <span class="arithmatex">\(s\)</span> and <span class="arithmatex">\(t\)</span> are sets, as "<span class="arithmatex">\(&lt;=\)</span>" implements a total
+order on all Harmony values including sets (and the subset relation is
+not a total order).</p>
+<h2 id="the-synch-module">The <code>synch</code> module</h2>
+<p>The <code>synch</code> module provides the following methods:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tas</code>(<em>lk</em>)</td>
+<td>test-and-set on <code>!</code><em>lk</em></td>
+</tr>
+<tr>
+<td><code>cas</code>(<em>ptr</em>, <em>old</em>, <em>new</em>)</td>
+<td>compare-and-swap on <code>!</code><em>ptr</em></td>
+</tr>
+<tr>
+<td><code>BinSem</code>(<span class="arithmatex">\(v\)</span>)</td>
+<td>return a binary semaphore initialized to <span class="arithmatex">\(v\)</span></td>
+</tr>
+<tr>
+<td><code>Lock</code>()</td>
+<td>return a binary semaphore initialized to <strong>False</strong></td>
+</tr>
+<tr>
+<td><code>acquire</code>(<em>bs</em>)</td>
+<td>acquire binary semaphore <code>!</code><em>bs</em></td>
+</tr>
+<tr>
+<td><code>release</code>(<em>bs</em>)</td>
+<td>release binary semaphore <code>!</code><em>bs</em></td>
+</tr>
+<tr>
+<td><code>Condition</code>()</td>
+<td>return a condition variable</td>
+</tr>
+<tr>
+<td><code>wait</code>(<span class="arithmatex">\(c\)</span>, <em>lk</em>)</td>
+<td>wait on condition variable <code>!</code><span class="arithmatex">\(c\)</span> and lock <em>lk</em></td>
+</tr>
+<tr>
+<td><code>notify</code>(<span class="arithmatex">\(c\)</span>)</td>
+<td>notify a thread waiting on condition variable <code>!</code><span class="arithmatex">\(c\)</span></td>
+</tr>
+<tr>
+<td><code>notifyAll</code>(<span class="arithmatex">\(c\)</span>)</td>
+<td>notify all threads waiting on condition variable <code>!</code><span class="arithmatex">\(c\)</span></td>
+</tr>
+<tr>
+<td><code>Semaphore</code>(<em>cnt</em>)</td>
+<td>return a counting semaphore initialized to <em>cnt</em></td>
+</tr>
+<tr>
+<td><code>P</code>(<em>sema</em>)</td>
+<td>procure <code>!</code><em>sema</em></td>
+</tr>
+<tr>
+<td><code>V</code>(<em>sema</em>)</td>
+<td>vacate <code>!</code><em>sema</em></td>
+</tr>
+<tr>
+<td><code>Queue</code>()</td>
+<td>return a synchronized queue object</td>
+</tr>
+<tr>
+<td><code>get</code>(<span class="arithmatex">\(q\)</span>)</td>
+<td>return next element of <span class="arithmatex">\(q\)</span>, blocking if empty</td>
+</tr>
+<tr>
+<td><code>put</code>(<span class="arithmatex">\(q\)</span>, <em>item</em>)</td>
+<td>add <em>item</em> to <span class="arithmatex">\(a\)</span></td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

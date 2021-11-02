@@ -5,6 +5,6 @@ Our online documentation is still a work in progress. For more complete document
 ## Overview
 
 * [Quick Start](guides/introduction.md) - Get started with Harmony.
-* [Language Reference](reference/language/overview.md) - Language features and syntax.
+* [Language Reference](reference/textbook/values.md) - Language features and syntax.
 * [Library Reference](reference/library/overview.md) - Built in modules and libraries.
-* [Changelog](changelog.md) - What's new in Harmony 1.0.
+* [Changelog](changelog.md) - What's new in Harmony 1.3.

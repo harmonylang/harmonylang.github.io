@@ -1,0 +1,1442 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Concurrent Data Structures - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#concurrent-data-structures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Concurrent Data Structures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/running-harmony/" class="md-nav__link">
+        Running a program
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Introduction to Harmony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonymachine/" class="md-nav__link">
+        The Harmony Virtual Machine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peterson/" class="md-nav__link">
+        Peterson's Algorithm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Concurrent Data Structures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Concurrent Data Structures
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deadlock/" class="md-nav__link">
+        Deadlock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abd/" class="md-nav__link">
+        Replicated Atomic Read/Write Register
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Language
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Language
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hvm/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Library" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/alloc/" class="md-nav__link">
+        alloc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/bag/" class="md-nav__link">
+        bag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/hoare/" class="md-nav__link">
+        hoare
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/list/" class="md-nav__link">
+        list
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/set/" class="md-nav__link">
+        set
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/synch/" class="md-nav__link">
+        synch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="concurrent-data-structures">Concurrent Data Structures</h1>
+<p>The most common use for locks is in building concurrent data structures.
+By way of example, we will first demonstrate how to build a concurrent
+queue. The <code>queue</code> module will have the following API:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(q = \mathtt{Queue}()\)</span>: allocate a new queue;</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathtt{put}(q, v)\)</span>: add <span class="arithmatex">\(v\)</span> to the tail of the queue;</p>
+</li>
+<li>
+<p><span class="arithmatex">\(r = \mathtt{get}(q)\)</span>: returns <span class="arithmatex">\(r = \mathtt{None}\)</span> if <span class="arithmatex">\(q\)</span> is empty
+    or <span class="arithmatex">\(r = v\)</span> if <span class="arithmatex">\(v\)</span> was at the head of the queue.</p>
+</li>
+</ul>
+<p>See for a simple demonstration program that uses the queue.</p>
+<p>We will first implement the queue as a linked list. The implementation
+in uses the <code>alloc</code> module for dynamic allocation of nodes in the list
+using <code>malloc</code>() and <code>free</code>(). <code>malloc</code>(<span class="arithmatex">\(v\)</span>) returns a new memory
+location initialized to <span class="arithmatex">\(v\)</span>, which should be released with <code>free</code>() when
+it is no longer in use. The queue maintains a <code>head</code> pointer to the
+first element in the list and a <code>tail</code> pointer to the last element in
+the list. The <code>head</code> pointer is <code>None</code> if and only if the queue is
+empty. (<code>None</code> is a special address value that is not the address of any
+memory location.)</p>
+<p><code>queue.Queue()</code> returns a new queue object consisting of a <code>None</code> head
+and tail pointer and a lock. <span class="arithmatex">\(\mathtt{queue.put}(q, v)\)</span> and
+<span class="arithmatex">\(\mathtt{queue.get}(q)\)</span> both take a pointer <span class="arithmatex">\(q\)</span> to the queue object
+because both may modify the queue. Before they access the value of the
+head or tail of the queue they first obtain the lock. When they are
+done, they release the lock.</p>
+<p>An important thing to note in is Lines 7 and 8. It would be incorrect to
+replace these by:</p>
+<p><strong>assert</strong> <code>queue.get</code>(<em>q</em>) in { <strong>None</strong>, 1, 2 }</p>
+<p>The reason is that <code>queue.get()</code> changes the state by acquiring a lock,
+but the expressions in <strong>assert</strong> statements (or <strong>invariant</strong>
+statements) are not allowed to change the state. In general, when
+calling methods in <strong>assert</strong> or <strong>invariant</strong> statements, one has to be
+convinced that those methods cannot change the state in any way.</p>
+<p>shows another concurrent queue implementation. It is well-known,
+but what is not often realized is that it requires sequentially
+consistent memory, which is not said explicitly in the paper. As a
+result, the algorithm is not guaranteed to work correctly with most
+modern programming languages and computer hardware. But it is still
+useful to study it. The implementation uses separate locks for the head
+and the tail, allowing a <code>put</code> and a <code>get</code> operation to proceed
+concurrently. To avoid contention between the head and the tail, the
+queue uses a dummy node at the head of the linked list. Except
+initially, the dummy node is the last node that was dequeued. Note that
+neither the <code>head</code> nor <code>tail</code> pointer are ever <code>None</code>. The problem is
+when the queue is empty and there are concurrent <code>get</code> and <code>put</code>
+operations. They obtain separate locks and then concurrently access the
+<code>next</code> field in the dummy node---a data race with undefined semantics in
+most environments.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">queue</span>
+
+<span class="k">def</span> <span class="nf">sender</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">receiver</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">{</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">}</span>
+<span class="n">demoq</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+<span class="n">spawn</span> <span class="n">sender</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">sender</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">receiver</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">receiver</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
+
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="nb">next</span>
+            <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+               <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
+
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(),</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">hdlock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">tllock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
+
+<span class="k">def</span> <span class="nf">_node</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>     <span class="c1"># allocate and initialize a new list node</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="n">n</span> <span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">var</span> <span class="n">before</span> <span class="o">=</span> <span class="n">lst</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">after</span> <span class="o">=</span> <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">before</span> <span class="o">=</span> <span class="n">after</span>
+        <span class="n">after</span> <span class="o">=</span> <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">LinkedList</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">_node</span><span class="p">(</span><span class="err">–</span><span class="n">inf</span><span class="p">,</span> <span class="n">_node</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">_node</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">after</span><span class="o">-&gt;</span><span class="nb">next</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">after</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">==</span> <span class="n">v</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">linkedlist</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">mylist</span> <span class="o">=</span> <span class="n">LinkedList</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">thread1</span><span class="p">():</span>
+    <span class="n">insert</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">contains</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">thread2</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">insert</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">remove</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">thread1</span><span class="p">()</span>
+<span class="n">spawn</span> <span class="n">thread2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">thread2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<p>A queue has the nice property that usually only the head or the tail is
+accessed. However, in many data structures it is necessary to "walk" the
+data structure, an operation that can take significant time. In such a
+case, a single lock (known as a "big lock") for the entire data
+structure might restrict concurrency to an unacceptable level. To reduce
+the granularity of locking, each node in the data structure must be
+endowed with its own lock instead.</p>
+<p>implements an ordered linked list of integers without duplicates. (
+contains test code.) Values can be added using <code>insert</code> or deleted using
+<code>remove</code>. Method <code>contains</code> checks if a particular value is in the list.</p>
+<p>The list has two dummy "book-end" nodes with values <code>-inf</code> and <code>inf</code>
+(similar to the Python <code>math.inf</code> constant). An invariant of the
+algorithm is that at any point in time the list is "valid," starting
+with a <code>-inf</code> node and ending with a <code>inf</code> node.</p>
+<p>Each node has a lock, a value, and <em>next</em>, a pointer to the next node
+(which is <code>None</code> for the final <code>inf</code> node). The <code>_find(lst, v)</code> helper
+method first finds and locks two consecutive nodes <em>before</em> and <em>after</em>
+such that
+<span class="arithmatex">\(\mathit{before}\)</span>-&gt;<span class="arithmatex">\(\mathtt{data.value} &lt; v \le \mathit{after}\)</span>-&gt;<span class="arithmatex">\(\mathtt{data.value}\)</span>.
+It does so by performing something called <em>hand-over-hand locking</em>. It
+first locks the first node, which is the <code>-inf</code> node. Then, iteratively,
+it obtains a lock on the next node and release the lock on the last one,
+and so on, similar to climbing a tree hand-over-hand. Using <code>_find</code> the
+<code>insert</code>, <code>remove</code>, and <code>contains</code> methods are fairly straightforward.</p>
+<p>Like the queue in , the implementation of the list is
+<em>linearizable</em>, a strong notion of consistency that makes it
+appear as if each of the operations executes atomically at some point
+between their invocation and return. Determining if an implementation of
+a concurrent data structure is linearizable involves finding what are
+known as the <em>linearization points</em> of the operations in an execution.
+These are the unique points in time at which an operation appears to
+execute atomically. The linearization point for the <code>insert</code> operation
+coincides exactly with the update of the <em>before</em>.<code>next</code> pointer. The
+linearization point of a <code>contains</code> method execution depends on whether
+the value is found or not. If found, it coincides with retrieving the
+pointer to the node that has the value. If not found, it coincides with
+retrieving the pointer to the <code>inf</code> node.</p>
+<h2 id="exercises">Exercises</h2>
+<p><span class="arithmatex">\(\mathtt{contains}(q, v)\)</span> to that checks to see if <span class="arithmatex">\(v\)</span> is in queue <span class="arithmatex">\(q\)</span>.</p>
+<p>Add a method <span class="arithmatex">\(\mathtt{length}(q)\)</span> to that returns the length of the
+given queue. The complexity of the method should be <span class="arithmatex">\(O(1)\)</span>, which is to
+say that you should maintain the length of the queue as a field member
+and update it in <code>put</code> and <code>get</code>.</p>
+<p><span class="arithmatex">\(\mathtt{check}(q)\)</span> that checks the integrity of the queue in . In
+particular, it should check the following integrity properties:</p>
+<ul>
+<li>
+<p>If the list is empty, <span class="arithmatex">\(q\)</span>-&gt;<span class="arithmatex">\(\mathtt{tail}\)</span> should be
+    <code>None</code>. Otherwise, the last element in the linked list starting from
+    <span class="arithmatex">\(q\)</span>-&gt;<span class="arithmatex">\(\mathtt{head}\)</span> should equal
+    <span class="arithmatex">\(q\)</span>-&gt;<span class="arithmatex">\(\mathtt{head}\)</span>. Moreover,
+    <span class="arithmatex">\(q\)</span>-&gt;<span class="arithmatex">\(\texttt{tail}\)</span>-&gt;<span class="arithmatex">\(next\)</span> should be <code>None</code>;</p>
+</li>
+<li>
+<p>The length field that you added in should equal the length of the
+    list.</p>
+</li>
+</ul>
+<p>Method <span class="arithmatex">\(\mathtt{check}(q)\)</span> should not obtain a lock; instead add the
+following line just before releasing the lock in <code>put</code> and <code>get</code>:</p>
+<p><strong>assert</strong> <code>check()</code></p>
+<p><span class="arithmatex">\(\mathtt{remove}(q, v)\)</span> to that removes all occurrences of <span class="arithmatex">\(v\)</span>, if any,
+from queue <span class="arithmatex">\(q\)</span>.</p>
+<p>The test program in is a not thorough test program. Design and implement
+a test program for . Make sure you <em>test</em> the test program by trying it
+out against some buggy queue implementations.</p>
+<p>Create a thread-safe sorted binary tree. Implement a module <code>bintree</code>
+with methods</p>
+<p>Add methods to the data structure in that report the size of the list,
+the minimum value in the list, the maximum value in the list, and the
+sum of the values in the list. Are they linearizable? If so, what are
+their linearization points?</p>
+<p>Create a thread-safe sorted binary tree. Implement a module <code>bintree</code>
+with methods <span class="arithmatex">\(\mathtt{BinTree}()\)</span> to create a new binary tree,
+<span class="arithmatex">\(\mathtt{insert}(t, v)\)</span> that inserts <span class="arithmatex">\(v\)</span> into tree <span class="arithmatex">\(t\)</span>, and
+<span class="arithmatex">\(\mathtt{contains}(t, v)\)</span> that checks if <span class="arithmatex">\(v\)</span> is in tree <span class="arithmatex">\(t\)</span>. Use a
+single lock per binary tree.</p>
+<p>Create a binary tree that uses, instead of a single lock per tree, a
+lock for each node in the tree.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../synch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lock Implementations" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lock Implementations
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Testing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Testing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

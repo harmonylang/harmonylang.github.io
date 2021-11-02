@@ -1,0 +1,165 @@
+
+# Harmony Methods and Pointers 
+
+A method `m` with argument $a$ is invoked in its most basic form as
+follows (assigning the result to `r`).
+
+$r$ = m $a$;
+
+That's right, no parentheses are required. In fact, if you invoke
+`m`($a$), the argument is ($a$), which is the same as $a$. If you invoke
+`m()`, the argument is `()`, which is the empty tuple. If you invoke
+`m`($a$, $b$), the argument is ($a$, $b$), the tuple consisting of
+values $a$ and $b$.
+
+You may note that all this looks familiar. Indeed, the syntax is the
+same as that for dictionaries (see ). Both dictionaries and methods map
+Harmony values to Harmony values, and their syntax is indistinguishable.
+If `f` is either a method or a dictionary, and $x$ is an arbitrary
+Harmony value, then `f` $x$, `f`($x$), and `f`\[$x$\] are all the same
+expression in Harmony.
+
+
+```python
+def P_enter(pm, pid):
+    pm->flags[pid] = True
+    pm->turn = 1 – pid
+    await (not pm->flags[1 – pid]) or (pm->turn == pid)
+
+def P_exit(pm, pid):
+    pm->flags[pid] = False
+
+def P_mutex():
+    result = { .turn: choose({0, 1}), .flags: [ False, False ] }
+#### The code above can go into its own Harmony module ####
+sequential mutex
+mutex = P_mutex()
+
+def thread(self):
+    while choose({ False, True }):
+        P_enter(?mutex, self)
+        @cs: assert countLabel(cs) == 1
+        P_exit(?mutex, self)
+spawn thread(0)
+spawn thread(1)
+```
+
+Harmony does not have a **return** statement. (You can assign a return
+value to a method by setting the *result* variable.) Neither does it
+support **break** or **continue** statements in loops. One reason for
+their absence is that, particularly in concurrent programming, such
+control flow directions are highly error-prone. It's too easy to forget
+to, say, release a lock when returning a value in the middle of a
+method, a major source of bugs in practice.
+
+Harmony is not an object-oriented language like Python is. In Python you
+can pass a reference to an object to a method, and that method can then
+update the object. In Harmony, it is also sometimes convenient to have a
+method update a shared variable specified as an argument. For this, as
+mentioned in , each shared variable has an *address*, itself a Harmony
+value. If $x$ is a shared variable, then the expression ?$x$ is the
+address of $x$. If a variable contains an address, we call that variable
+a *pointer*. If $p$ is a pointer to a shared variable, then the
+expression `!`$p$ is the value of the shared variable. In particular,
+`!?`$x$ == $x$. This is similar to how C pointers work (`*&`$x$ == $x$).
+
+Often, pointers point to dictionaries, and so if $p$ is such a pointer,
+then $(!p).\mathtt{field}$ would evaluate to the specified field in the
+dictionary. Note that the parentheses in this expression are needed, as
+`!`*p*`.field` would wrongly evaluate `!`(*p*`.field`).
+$(!p).\mathtt{field}$ is such a common expression that, like C, Harmony
+supports the shorthand $p-$$>$`field`, which greatly improves
+readability.
+
+again shows Peterson's algorithm, but this time with methods defined to
+enter and exit the critical section. The name *mutex* is often used to
+denote a variable or value that is used for mutual exclusion. `P_mutex`
+is a method that returns a "mutex," which, in this case, is a dictionary
+that contains Peterson's Algorithm's shared memory state: a turn
+variable and two flags. Both methods `P_enter` and `P_exit` take two
+arguments: a pointer to a mutex and the thread identifier (0 or 1).
+$\mathit{pm}$->$\mathtt{turn}$ is the value of the `.turn`
+key in the dictionary that *pm* points to.
+
+You can put the first three methods in its own Harmony source file and
+include it using the Harmony `import` statement. This would make the
+code usable by multiple applications.
+
+Finally, methods can have local variables. Different from Python,
+Harmony local variables must be explicitly bound within a scope. Method
+variables are either mutable or immutable. The arguments to a method and
+the bound variable (or variables) within a `for` statement are
+immutable; the variable *result* is mutable. Using the `var` statement,
+new mutable local variables can be declared. For example, `var` $x = 3$
+declares a new mutable local variable $x$. The `let` statement allows
+declaring new immutable local variables. For example: `let` $x = 3$: $y$
+$+$$=$ $x$ adds 3 to the global variable $y$. See for more information.
+
+
+```python
+const FIFO = False
+
+def CLOCK(n):
+    result = { .entries: [None,] * n, .recent: {}, .hand: 0, .misses: 0 }
+
+def ref(clock, x):
+    if x not in clock->entries:
+        while clock->entries[clock->hand] in clock->recent:
+            clock->recent –= {clock->entries[clock->hand]}
+            clock->hand = (clock->hand + 1) % len(clock->entries)
+        clock->entries[clock->hand] = x
+        clock->hand = (clock->hand + 1) % len(clock->entries)
+        clock->misses += 1
+    if not FIFO:
+        clock->recent |= {x}
+clock3, clock4, refs = CLOCK(3), CLOCK(4), [ ]
+const VALUES = { 1..5 }
+var last = {}
+for i in {1..100}:
+    let x = i if i < 5 else choose(VALUES – last):
+        refs = refs + [x,]
+        ref(?clock3, x); ref(?clock4, x)
+        assert(clock4.misses  < = clock3.misses)
+        last = {x}
+```
+
+If you are ready to learn about how locks are implemented in practice,
+you can now skip the rest of this chapter. But if you would like to see
+a cool example of using the concepts introduced in this chapter, hang on
+for a sequential Harmony program that finds anomalies in page
+replacement algorithms. In 1969, Béláady et al. published a
+paper that showed that making a cache larger does not
+necessarily lead to a higher hit ratio. He showed this for a scenario
+using a FIFO replacement policy when the cache is full. The program in
+will find exactly the same scenario if you define `FIFO` to be **True**.
+Moreover, if you define `FIFO` to be **False**, it will find a scenario
+for the CLOCK replacement policy, often used in modern
+operating systems.
+
+In this program, `CLOCK` maintains the state of a cache (in practice,
+typically pages in memory). The set `recent` maintains whether an access
+to the cache for a particular reference was recent or not. (It is not
+used if `FIFO` is **True**.) The integer `misses` maintains the number
+of cache misses. Method `ref`(*ck*, $x$) is invoked when $x$ is
+referenced and checked against the cache *ck*.
+
+The program declares two caches: one with 3 entries (*clock3*) and one
+with 4 entries (*clock4*). The interesting part is in the last block of
+code. It runs every sequence of references of up to 100 entries, using
+references in the range 1 through 5. Note that all the constants chosen
+in this program (3, 4, 5, 100) are the result of some
+experimentation---you can try other ones. To reduce the search space,
+the first four references are pinned to 1, 2, 3, and 4. Further reducing
+the search space, the program never repeats the same reference twice in
+a row (using the local variable `last`).
+
+The two things to note here is the use of the **choose** expression and
+the **assert** statement. Using `choose` we are able to express
+searching through all possible strings of references without a
+complicated nested iteration. Using `assert` we are able to express the
+anomaly we are looking for.
+
+In case you want to check if you get the right results. For `FIFO`, the
+program finds (in a few minutes) the same anomaly that Bélády et al.
+found: 1 2 3 4 1 2 5 1 2 3 4 5. For the `CLOCK` algorithm the program
+actually finds a shorter reference string: 1 2 3 4 2 1 2 5 1 2.
