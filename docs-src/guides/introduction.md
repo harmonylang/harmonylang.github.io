@@ -4,27 +4,24 @@ Harmony is a Python-like programming language for testing and experimenting with
 
 Here is [Peterson's Algorithm](https://en.wikipedia.org/wiki/Peterson%27s_algorithm) in Harmony, along with code to verify mutual exclusion:
 
-```
-sequential flags, turn
-
-flags = [ False, False ]
-turn = choose({0, 1})
+```python title="peterson.hny"
+sequential flags, turn
+flags = [ False, False ]
+turn = choose({0, 1})
 
 def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        flags[self] = True
-        turn = 1 – self
-        await (not flags[1 – self]) or (turn == self)
+    while choose({ False, True }):
+        # Enter critical section
+        flags[self] = True
+        turn = 1 – self
+        await (not flags[1 – self]) or (turn == self)
+        # Critical section is here
+        cs: assert countLabel(cs) == 1
+        # Leave critical section
+        flags[self] = False
 
-        # critical section is here
-        @cs: assert countLabel(cs) == 1
-
-        # Leave critical section
-        flags[self] = False
-
-spawn thread(0)
-spawn thread(1)
+spawn thread(0)
+spawn thread(1)
 ```
 
 *Try out the algorithm above [in the sandbox!](https://harmony.cs.cornell.edu/ide/?template=Peterson)*
@@ -37,6 +34,6 @@ Learning programming in Harmony should be straightforward to those familiar with
 
 The Harmony textbook, written by Prof. Robbert Van Renesse at Cornell University, remains the primary source of documentation for the Harmony language. It contains the documentation for the language and built-in libraries, along with a full course on concurrent programming.
 
-[Read it online](../../reference/textbook) or [download the latest version](https://harmony.cs.cornell.edu/book.pdf)!
+[Read it online](../../textbook) or [download the latest version](https://harmony.cs.cornell.edu/book.pdf)!
 
 The Harmony Textbook is licenced under the terms of the Creative Commons Attribution NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) at [http://creativecommons.org/licenses/by-nc-sa/4.0](http://creativecommons.org/licenses/by-nc-sa/4.0).

@@ -1,0 +1,1412 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>The Harmony Virtual Machine - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-harmony-virtual-machine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Harmony Virtual Machine 
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Hello World! 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          The Harmony Virtual Machine 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        The Harmony Virtual Machine 
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#harmony-values" class="md-nav__link">
+    Harmony Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harmony-bytecode" class="md-nav__link">
+    Harmony Bytecode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peterson/" class="md-nav__link">
+        Peterson's Algorithm 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cds/" class="md-nav__link">
+        Concurrent Data Structures 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finegrained/" class="md-nav__link">
+        Fine-Grained Locking 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deadlock/" class="md-nav__link">
+        Deadlock 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abd/" class="md-nav__link">
+        Replicated Atomic Read/Write Register 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hvm/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../module/" class="md-nav__link">
+        Harmony Modules
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#harmony-values" class="md-nav__link">
+    Harmony Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harmony-bytecode" class="md-nav__link">
+    Harmony Bytecode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="the-harmony-virtual-machine">The Harmony Virtual Machine</h1>
+<p>Harmony programs are compiled to Harmony <em>bytecode</em> (a list of machine
+instructions for a virtual machine), which in turn is executed by the
+Harmony virtual machine (HVM). The Harmony compiler places the bytecode
+for file <em>x</em>.<code>htm</code> in file <em>x</em>.<code>hvm</code>. The model checker, called <em>Charm</em>,
+executes the code in <em>x</em>.<code>htm</code> and places its output in a file called
+<em>x</em>.<code>hco</code> and a stylized version of the same output in an HTML file
+called <em>x</em>.<code>htm</code>.</p>
+<p>To understand the problem of concurrent computing, it is important to
+have a basic understanding of machine instructions, and in our case
+those of the HVM.</p>
+<h2 id="harmony-values">Harmony Values</h2>
+<p>Harmony programs, and indeed the HVM, manipulate Harmony values. Harmony
+values are recursively defined: they include booleans (<code>False</code> and
+<code>True</code>), integers (but not floating point numbers), strings (enclosed by
+single or double quotes), sets of Harmony values, and dictionaries that
+map Harmony values to other Harmony values. Strings that start with a
+letter or an underscore and only contain letters, digits, and
+underscores can be written without quotes by preceding it with a dot.
+So, .<em>example</em> is the same string as <code>"</code>example<code>"</code>.</p>
+<p>Harmony makes extensive use of dictionaries. A dictionary maps keys to
+values. Unlike Python, which requires that keys must be hashable, any
+Harmony value can be a key, including another dictionary. Dictionaries
+are written as <span class="arithmatex">\(\{ k_0: v_0, ~ k_1: v_1, ~ ... \}\)</span>. If <em>d</em> is a
+dictionary, and <em>k</em> is a key, then the following expression retrieves
+the Harmony value that <em>k</em> maps to in <em>d</em>:
+<div class="highlight"><pre><span></span><code>d k
+</code></pre></div>
+The meaning of <em>d</em> <em>a</em> <em>b</em> <span class="arithmatex">\(...\)</span> is (((<em>d</em> <em>a</em>) <em>b</em>) <span class="arithmatex">\(...\)</span>). This
+notation is unfamiliar to Python programmers, but in Harmony square
+brackets can be used in the same way as parentheses, so you can express
+the same thing in the form that is familiar to Python programmers:
+<div class="highlight"><pre><span></span><code>d[k]
+</code></pre></div>
+However, if <em>d</em> = { .<em>count</em>: 3 }, then you can write <em>d</em>.<em>count</em> (which
+has value 3) instead of having to write <em>d</em>[.<em>count</em>] or
+<em>d</em>[<code>"</code>count<code>"</code>] (although any of those will work). Thus a dictionary
+can be made to look much like a Python object.</p>
+<p>Tuples are special forms of dictionaries where the keys are the indexes
+into the tuple. For example, the tuple (5, <code>False</code>) is the same Harmony
+value as { 0:5, 1:<code>False</code> }. The empty tuple is written as (). As in
+Python, you can create singleton tuples by including a comma. For
+example, (1,) is a tuple consisting just of the number 1. Importantly,
+<span class="arithmatex">\((1) = 1 \ne (1,) = \{ 0:1 \}\)</span>.</p>
+<p>Again, square brackets and parentheses work the same in Harmony, so
+[<em>a</em>, <em>b</em>, <em>c</em>] (which looks like a Python list) is the same Harmony
+value as (<em>a</em>, <em>b</em>, <em>c</em>) (which looks like a Python tuple), which in
+turn is the same Harmony value as { 0:<em>a</em>, 1:<em>b</em>, 2:<em>c</em> }. So, if <em>x</em> =
+[<code>False</code>, <code>True</code>], then <em>x</em>[0] = <code>False</code> and <em>x</em>[1] = <code>True</code>, just
+like in Python. However, when creating a singleton list, make sure you
+include the comma, as in [<code>False</code>,]. The expression [<code>False</code>] just
+means <code>False</code>.</p>
+<p>Harmony is not an object-oriented language, so objects don't have
+built-in methods. However, Harmony does have some powerful operators to
+make up for some of that. For example, dictionaries have two handy unary
+operators. If <em>d</em> is a dictionary, then <strong>keys</strong> <em>d</em> (or equivalently
+<strong>keys</strong>(<em>d</em>)) returns the set of keys and <strong>len</strong> <em>d</em> returns the size
+of this set.</p>
+<p>provides details on all the types of values that Harmony currently
+supports.</p>
+<h2 id="harmony-bytecode">Harmony Bytecode</h2>
+<p>A Harmony program is translated into HVM bytecode. To make it amenable
+to efficient model checking, the HVM is not an ordinary virtual machine,
+but its architecture is nonetheless representative of conventional
+computers and virtual machines such as the Java Virtual Machine.</p>
+<p>Instead of bits and bytes, a HVM manipulates Harmony values. A HVM has
+the following components:</p>
+<ul>
+<li>
+<p>Code: This is an immutable and finite list of HVM instructions,
+    generated from a Harmony program. The types of instructions will be
+    described later.</p>
+</li>
+<li>
+<p>Shared memory: A HVM has just one memory location containing a
+    Harmony value.</p>
+</li>
+<li>
+<p>Threads: Any thread can spawn an unbounded number of other threads
+    and threads may terminate. Each thread has a program counter that
+    indexes into the code, a stack of Harmony values, and a private
+    <em>register</em> that contains a Harmony value.[^2]</p>
+</li>
+</ul>
+<p>The register of a thread contains the local variables of the method that
+the thread is currently executing. It is saved and restored by method
+invocations. The state of a thread is called a <em>context</em> (aka
+<em>continuation</em>): it contains the values of its program counter, stack,
+and registers. The HVM state consists of the value of its memory and the
+multiset (or <em>bag</em>) of contexts. It is a multiset of contexts because
+two threads can have the same context at the same time.</p>
+<div class="highlight"><pre><span></span><code>   0 Frame __init__ ()
+code/Up.hny:1 count = 0
+   1 Push 0
+   2 Store count
+code/Up.hny:2 done = [ False, False ]
+   3 Push [False, False]
+   4 Store done
+code/Up.hny:4 def incrementer(self):
+   5 Jump 35
+   6 Frame incrementer self
+code/Up.hny:5     count = count + 1
+   7 Load count
+   8 Push 1
+   9 2-ary +
+   10 Store count
+</code></pre></div>
+<figcaption>Figure 4.1: The first part of the HVM bytecode corresponding to Figure 3.2</figcaption>
+
+<p>It may seem strange that there is only one memory location. However,
+this is not a limitation because Harmony values are unbounded trees. The
+shared memory is a dictionary that maps strings (names of shared
+variables) to other Harmony values. We call this a <em>directory</em>. Thus, a
+directory represents the state of a collection of variables named by the
+strings. Because directories are Harmony values themselves, directories
+can be organized into a tree. Each node in a directory tree is then
+identified by a sequence of Harmony values, like a path name in the file
+system hierarchy. We call such a sequence an <em>address</em>. For example, in
+Figure 3.2 the memory is a dictionary with two entries: .<em>count</em> and
+<em>done</em>. And the value of entry <em>done</em> is a dictionary with keys 0 and 1.
+So, for example, the address of <em>done</em>[0] is the sequence [<em>done</em>,
+0]. An address is itself a Harmony value.</p>
+<p>Compiling the code in Figure 3.2 results in the HVM bytecode listed in
+Figure 4.1. You can obtain this code by invoking <code>harmony</code> with the
+<code>-a</code> flag like so:</p>
+<div class="highlight"><pre><span></span><code>harmony -a Up.hny
+</code></pre></div>
+<p>Each thread in the HVM is predominantly a <em>stack machine</em>, but it also a
+register. Like shared memory, the register contains a dictionary so it
+can represent the values of multiple named variables. All instructions
+are atomically executed. The Harmony memory model is <em>sequentially
+consistent</em>: all accesses are in program order. Most instructions pop
+values from the stack or push values onto the stack. At first there is
+one thread, named <code>__init__</code>, which initializes the state. It starts
+executing at instruction 0 and keeps executing until it reaches the last
+instruction in the program. In this case, it executes instructions 0
+through 5 first. The last instruction in that sequence is a <code>JUMP</code>
+instruction that sets the program counter to 35 (skipping over the code
+for <code>incrementer</code> method). The <code>__init__</code> thread then executes the
+remaining instructions and finishes. Once initialization completes, any
+threads that were spawned (in this case <code>incrementer</code>(0) and
+<code>incrementer(1)</code>) can run.</p>
+<div class="highlight"><pre><span></span><code>#states 44 (time 0.001+0.001)
+Safety Violation
+T0: __init__()     [0-5,35-43]   { count: 0, done: [ False, False ] }
+T2: incrementer(1) [6-9]         { count: 0, done: [ False, False ] }
+T1: incrementer(0) [6-20]        { count: 1, done: [ True,  False ] }
+T2: incrementer(1) [10-24,26-31] { count: 1, done: [ True,  True  ] }
+Harmony assertion failed
+open code/Up.htm for more information
+</code></pre></div>
+<figcaption>Figure 4.2: The text output of running Harmony on Figure 3.2</figcaption>
+
+<p>At program counter 6 is the code for the <code>incrementer</code> method. All
+methods start with a <code>Frame</code> instruction and end with a <code>Return</code>
+instruction. provides a list of all HVM machine instructions, in case
+you want to read about the details. The <code>Frame</code> instruction lists the
+name of the method and the names of its arguments. The code generated
+from <span class="arithmatex">\(\mathit{count} := \mathit{count} + 1\)</span> in line 5 of <code>Up.hny</code> is as
+follows (see Figure 4.1):</p>
+<ol>
+<li>
+<p>The <code>Load</code> instruction pushes the value of the <em>count</em> variable onto
+    the stack.</p>
+</li>
+<li>
+<p>The <code>Push</code> instruction pushes the constant 1 onto the stack of the
+    thread.</p>
+</li>
+<li>
+<p><code>2-ary</code> is a <code>+</code> operation with 2 arguments. It pops two values from
+    the stack (the value of <em>count</em> and 1), adds them, and pushes the
+    result back onto the stack.</p>
+</li>
+<li>
+<p>The <code>Store</code> instruction pops a Harmony value (the sum of the <em>count</em>
+    variable and 1) and stores it in the <em>count</em> variable.</p>
+</li>
+</ol>
+<p>You can think of Harmony as trying every possible interleaving of
+threads executing instructions. Figure 4.2 shows the output
+produced by running Harmony on the <code>Up.hny</code> program.</p>
+<p>Harmony can report the following failure types:</p>
+<ul>
+<li>
+<p><code>Safety violation</code>: This means something went wrong with at least
+    one of the executions of the program that it tried. This can include
+    a failing assertion, behavior violations, divide by zero, using an
+    uninitialized or non-existent variable, dividing a set by an
+    integer, and so on. Harmony will print a trace of the shortest bad
+    execution that it found.</p>
+</li>
+<li>
+<p><code>Non-terminating State</code>: Harmony found one or more states from which
+    there does not exist an execution such that all threads terminate.
+    Harmony will not only print the non-terminating state with the
+    shortest trace, but also the list of threads at that state, along
+    with their program counters.</p>
+</li>
+<li>
+<p><code>Behavior Violation</code>: The program can terminate in a state not
+    allowed by the behavioral specification (<a href="../testing/">Chapter 13</a>).</p>
+</li>
+<li>
+<p><code>Active Busy Waiting</code>: There are states in which some thread cannot
+    make progress without the help of another thread, but does not block
+    (<a href="../condwait/">Chapter 15</a>).</p>
+</li>
+<li>
+<p><code>Data Race</code>: There are states in which two or more threads
+    concurrently access a shared variable, at least one of which is a
+    store operation (<a href="../synch/">Chapter 10</a>).</p>
+</li>
+</ul>
+<p>Harmony checks for these types of failure conditions in the given order:
+if there are multiple failure conditions, only the first is reported.
+<em>Active busy waiting</em> (<a href="../condwait/">Chapter 15</a>) is not technically an indication
+of a synchronization problem, but instead an indication of an
+inefficient solution to a synchronization problem--- one that uses up
+CPU cycles unnecessarily. A <em>data race</em> may not be a bug
+either---whether or not it is might depend on the semantics of the
+underlying memory operations and are therefore generally undesirable.
+Harmony may also warn about behaviors, in particular if the generated
+behavior is only a subset of the provided behavior.</p>
+<p>Going back to our example, Harmony reports a safety violation. In
+particular, it reports that an assertion failed. The program got to the
+failed assertion in four "turns." The output has four columns:</p>
+<ol>
+<li>
+<p>A thread identifier;</p>
+</li>
+<li>
+<p>The main method and argument of the thread;</p>
+</li>
+<li>
+<p>The sequence of program counters of the HVM instructions that the
+    thread executed;</p>
+</li>
+<li>
+<p>The contents of the shared memory.</p>
+</li>
+</ol>
+<p><img alt="" src="../figures/Up1.png" /></p>
+<p>The four turns in the execution are as follows:</p>
+<ol>
+<li>
+<p>Thread <code>__init__</code> (with identifier T0) executes instructions 0
+    through 5 and 35 through 43, setting shared variable <em>count</em> to 0
+    and shared variable <em>done</em> to [<code>False</code>, <code>False</code>].</p>
+</li>
+<li>
+<p>Thread <code>incrementer</code>(0) (with identifier T2) executes instructions 6
+    through 9, loading the value of <em>count</em> but stopping just before
+    storing 1 into <em>count</em>;</p>
+</li>
+<li>
+<p>Thread <code>incrementer(1)</code> (with identifier T1) executes instructions 6
+    through 20, storing 1 into <em>count</em> and storing <code>True</code> into
+    <em>done</em>[1];</p>
+</li>
+<li>
+<p>Thread <code>incrementer</code>(0) (T2) continues execution, executing
+    instructions 10 through 24 storing value 1 into <em>count</em> (instruction
+    10), storing <code>True</code> into <em>done</em>[0], finding that <em>done</em>[1] is
+    <code>True</code>, and finally detecting that the assertion is violated.</p>
+</li>
+</ol>
+<p>Harmony also generates an HTML file that allows exploring more details
+of the execution interactively. Open the suggested HTML file and you
+should see something like Figure 4.3.</p>
+<p>In the top right, the HTML file contains the reported issue in red.
+Underneath it, a table shows the four turns in the execution. Instead of
+listing explicitly the program counters of the executed instructions,
+the HTML file contains a list of blocks for each executed instruction.
+We call this the <em>timeline</em>. You can click on such a block to see the
+state of the Harmony virtual machine just after executing the
+corresponding instruction. The turn that is being executed is
+highlighted in green. The table also lists the program counter of the
+thread at each turn, the values of the shared variables, and any values
+the thread may have printed (none in this case). Underneath the table it
+shows the line of Harmony code that is being executed in blue.</p>
+<p>The bottom left shows the bytecode of the program being executed. It has
+alternating grey and white sections. Each section corresponds to a line
+of Harmony code. The instruction that is about to be executed, if any,
+is highlighted in red. (In this case, the state shown is a failed state
+and no instruction will be executed next.) If you hover the mouse over a
+machine instruction, it provides a brief explanation of what the
+instruction does.</p>
+<p>The bottom right contains a table with the state of each thread. The
+thread that is executing is highlighted in green. Status information for
+a thread can include:</p>
+<ul>
+<li>
+<p><code>runnable</code>: the thread is runnable but not currently running. In
+    Harmony, threads are interleaved and so at most one thread is
+    actually running;</p>
+</li>
+<li>
+<p><code>running</code>: the thread is currently executing instructions;</p>
+</li>
+<li>
+<p><code>terminated</code>: the thread has completed all its instructions;</p>
+</li>
+<li>
+<p><code>failed</code>: the thread has encountered an error, such as violating an
+    assertion or divide by zero;</p>
+</li>
+<li>
+<p><code>blocked</code>: the thread cannot make progress until another thread has
+    updated the shared state. For example, this occurs when one of the
+    implementers is waiting for the other to set its <em>done</em> flag;</p>
+</li>
+<li>
+<p><code>atomic</code>: the thread is in <em>atomic</em> mode, not allowing other threads
+    to be scheduled. This is, for example, the case when an assertion is
+    being checked;</p>
+</li>
+<li>
+<p><code>read-only</code>: the thread is in <em>read-only</em> mode, not able to modify
+    shared state. Assertions can execute arbitrary code including
+    methods, but they are not allowed to modify the shared state.</p>
+</li>
+</ul>
+<p>The stack of each thread is subdivided into two parts: the <em>stack trace</em>
+and the <em>stack top</em>. A stack trace is a list of methods that are being
+invoked. In this case, the <code>incrementer</code> method does not invoke any
+other methods, and so the list is of length 1. For each entry in the
+stack trace, it shows the method name and arguments, as well as the
+variables of the method. The stack top shows the values on the stack
+beyond the stack trace.</p>
+<p>When you load the HTML file, it shows the state after executing the last
+instruction. As mentioned above, you can go to any point in the
+execution by clicking on one of the blocks in the timeline. There are
+also various handy keyboard shortcuts:</p>
+<div class="highlight"><pre><span></span><code>       *Right arrow*: go to the next instruction;
+        *Left arrow*: go to the previous instruction;
+        *Down arrow*: go to the next turn;
+          *Up arrow*: go to the previous turn;
+*Enter (aka Return)*: go to the next line of Harmony code;
+                 *0*: go to the initial state.
+</code></pre></div>
+<p>If you want to see an animation of the entire execution, one instruction
+at a time, you can first hit 0 and then hold down the right arrow. If
+you want to see it one line of Harmony code at a time, hold down the
+enter (aka return) key instead. If you hold down the down arrow key, the
+movie will go by very quickly.</p>
+<h2 id="exercises">Exercises</h2>
+<p>Figure 4.4 shows an attempt at trying to fix the code of
+Figure 3.2. Run it through Harmony and see what happens. Based on the
+error output, describe in English what is wrong with the code by
+describing, in broad steps, how running the program can get into a bad
+state.</p>
+<p>What if we moved line 5 of Figure 4.4 to after the <strong>if</strong>
+statement (between lines 7 and 8)? Do you think that would work? Run it
+through Harmony and describe either why it works or why it does not
+work.</p>
+<div class="highlight"><span class="filename">UpEnter.hny</span><pre><span></span><code><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">entered</span> <span class="o">=</span> <span class="n">done</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">incrementer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">entered</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">entered</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">]:</span> <span class="c1"># if the other thread has already started</span>
+        <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">]</span> <span class="c1"># wait until it is done</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="n">spawn</span> <span class="n">incrementer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">incrementer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 4.4 (<a href=https://harmony.cs.cornell.edu/code/UpEnter.hny>code/UpEnter.hny</a>): Broken attempt at fixing the code of Figure 3.2</figcaption>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../concurrent/" class="md-footer__link md-footer__link--prev" aria-label="Previous: The Problem of Concurrent Programming " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              The Problem of Concurrent Programming 
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../critical/" class="md-footer__link md-footer__link--next" aria-label="Next: Critical Sections " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Critical Sections 
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

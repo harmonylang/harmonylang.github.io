@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3
+ - Added print statements
+ - Added DFA output graphs
+ - Bug fixes
+
 ## v1.2
  - Added `let-when` statements
   - Renamed `once` to `when`

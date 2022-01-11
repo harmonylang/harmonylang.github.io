@@ -1,0 +1,1364 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Peterson's Algorithm - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#petersons-algorithm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Peterson's Algorithm 
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Hello World! 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonymachine/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Peterson's Algorithm 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Peterson's Algorithm 
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cds/" class="md-nav__link">
+        Concurrent Data Structures 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finegrained/" class="md-nav__link">
+        Fine-Grained Locking 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deadlock/" class="md-nav__link">
+        Deadlock 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abd/" class="md-nav__link">
+        Replicated Atomic Read/Write Register 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hvm/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../module/" class="md-nav__link">
+        Harmony Modules
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="petersons-algorithm">Peterson's Algorithm</h1>
+<div class="highlight"><span class="filename">Peterson.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span><span class="p">,</span> <span class="n">turn</span>
+<span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
+<span class="n">turn</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span>
+        <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Critical section is here</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="c1"># Leave critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 6.1 (<a href=https://harmony.cs.cornell.edu/code/Peterson.hny>code/Peterson.hny</a>): 
+Peterson's Algorithm </figcaption>
+
+<p>In 1981, Gary L. Peterson came up with a beautiful solution to the
+mutual exclusion problem, now known as "Peterson's
+Algorithm". The algorithm is an amalgam of the (incorrect)
+algorithms in Figure 5.4 and Figure 5.5, and is presented
+in Figure 6.1. (The first line specifies that the <em>flags</em> and
+<em>turn</em> variables are assumed to satisfy <em>sequential consistency</em>---it
+prevents Harmony from complaining about data races involving these
+variables, explained in <a href="../spinlock/">Chapter 9</a>.)</p>
+<p>A thread first indicates its interest in entering the critical section
+by setting its flag. It then politely gives way to the other thread
+should it also want to enter the critical section---if both do so at the
+same time one will win because writes to memory in Harmony are atomic.
+The thread continues to be polite, waiting until either the other thread
+is nowhere near the critical section (<em>flag</em>[1 -- <em>self</em>] = <code>False</code>)
+or has given way (<em>turn</em> = <em>self</em>). Running the algorithm with Harmony
+shows that it satisfies both mutual exclusion and progress.</p>
+<p><img alt="" src="../figures/states-crop.png" /> </p>
+<figcaption>Figure 6.2 (Venn diagram classifying all states and a trace </figcaption>
+
+<p>Why does it work? We will focus here on how one might go about proving
+mutual exclusion for an algorithm such as Peterson's. It turns out that
+doing so is not easy. If you are interested in learning more about
+concurrent programming but not necessarily in how to prove concurrent
+programs correct, you may choose to skip the rest of this chapter. If
+you are still here, you have to understand a little bit more about how
+the Harmony virtual machine (HVM) works. In <a href="../harmonymachine/">Chapter 4</a> we
+talked about the concept of <em>state</em>: at any point in time the HVM is in
+a specific state. A state is comprised of the values of the shared
+variables as well as the values of the thread variables of each thread,
+including its program counter and the contents of its stack. Each time a
+thread executes a HVM machine instruction, the state changes (if only
+because the program counter of the thread changes). We call that a
+<em>step</em>. Steps in Harmony are atomic.</p>
+<p>The HVM starts in an initial state in which there is only one thread
+(<code>__init__</code>()) and its program counter is 0. A <em>trace</em> is a sequence of
+steps starting from the initial state, resulting in a sequence of
+states. When making a step, there are two sources of non-determinism in
+Harmony. One is when there is more than one thread that can make a step.
+The other is when a thread executes a <strong>choose</strong> operation and there is
+more than one choice. Because there is non-determinism, there are
+multiple possible traces. We call a state <em>reachable</em> if it is either
+the initial state or it can be reached from the initial state through a
+finite trace. A state is final when there are no threads left to make
+state changes.</p>
+<p>It is often useful to classify states. <em>Initial</em>, <em>final</em>, and
+<em>reachable</em>, and <em>unreachable</em> are all examples of classes of states.
+Figure 6.2 depicts a Venn diagram of various classes of states and a
+trace. One way to classify states is to define a predicate over states.
+All states in which <em>x</em> = 1, or all states where there are two or more
+threads executing, are examples of such predicates. For our purposes, it
+is useful to define a predicate that says that at most one thread is in
+the critical section. We shall call such states <em>exclusive</em>.</p>
+<p>An <em>invariant</em> of a program is a predicate that holds over all states
+that are reachable by that program. We want to show that exclusivity is
+an invariant because mutual exclusion means that all reachable states
+are exclusive. In other words, we want to show that the set of reachable
+states of executing the program is a subset of the set of states where
+there is at most one thread in the critical section.</p>
+<p>One way to prove that a predicate is an invariant is through induction
+on the number of steps. First you prove that the predicate holds over
+the initial state. Then you prove that for every reachable state, and
+for every step from that reachable state, the predicate also holds over
+the resulting state. For this to work you would need a predicate that
+describes exactly which states are reachable. But we do not have such a
+predicate: we know how to define the set of reachable states
+inductively, but---given an arbitrary state---it is not easy to see
+whether it is reachable or not.</p>
+<p>To solve this problem, we will use what is called an <em>inductive
+invariant</em>. An inductive invariant <span class="arithmatex">\(\mathcal{I}\)</span> is a predicate over
+states that satisfies the following:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathcal{I}\)</span> holds in the initial state.</p>
+</li>
+<li>
+<p>For any state in which <span class="arithmatex">\(\mathcal{I}\)</span> holds (including unreachable
+    ones) and for any thread in the state, if the thread takes a step,
+    then <span class="arithmatex">\(\mathcal{I}\)</span> also holds in the resulting state.</p>
+</li>
+</ul>
+<p>One candidate for such a predicate is exclusivity itself. After all, it
+certainly holds over the initial state. And as Harmony has already
+determined, exclusivity is an invariant: it holds over every reachable
+state. Unfortunately, exclusivity is not an <em>inductive</em> invariant. To
+see why, consider the following state <em>s</em>: let thread 0 be at label <code>cs</code>
+and thread 1 be at the start of the <strong>await</strong> statement. Also, in state
+<em>s</em>, <span class="arithmatex">\(\mathit{turn} = 1\)</span>. Now let thread 1 make a step. Because
+<span class="arithmatex">\(\mathit{turn} = 1\)</span>, thread 1 will stop waiting and also enter the
+critical section, entering a state that is not exclusive. So,
+exclusivity is an invariant (holds over every reachable state, as
+demonstrated by Harmony), but not an inductive invariant. It will turn
+out that <em>s</em> is not reachable.</p>
+<p>We are looking for an inductive invariant that <em>implies</em> exclusivity. In
+other words, the set of states where the inductive invariant holds must
+be a subset of the set of states where there is at most one thread in
+the critical section.</p>
+<p>Let us begin with considering the following important property:
+<span class="arithmatex">\(\mathcal{F}(i) = \mathtt{thread}(i)@[10 \cdots 17] \Rightarrow \mathit{flags}[i]\)</span>,
+that is, if thread <em>i</em> is executing in lines 10 through 17, then
+<span class="arithmatex">\(\mathit{flags}[i]\)</span> is set. Although it does not, by itself, imply
+exclusivity, we can show that <span class="arithmatex">\(\mathcal{F}(i)\)</span> is an inductive invariant
+(for both threads 0 and 1). To wit, it holds in the initial state,
+because in the initial state thread <em>i</em> does not even exist yet. Now we
+have to show that if <span class="arithmatex">\(\mathcal{F}(i)\)</span> holds in some state, then
+<span class="arithmatex">\(\mathcal{F}(i)\)</span> also holds in a next state. Since only thread <em>i</em> ever
+changes <span class="arithmatex">\(\mathit{flags}[i]\)</span>, we only need to consider steps by
+thread <em>i</em>. Since <span class="arithmatex">\(\mathcal{F}(i)\)</span> holds, there are two cases to
+consider:</p>
+<ol>
+<li>
+<p>states in which <span class="arithmatex">\(\mathit{flags}[i] = \texttt{true}\)</span></p>
+</li>
+<li>
+<p>states in which <span class="arithmatex">\(\lnot \mathtt{thread}(i)@[10 \cdots 17]\)</span> (because
+    false implies anything)</p>
+</li>
+</ol>
+<p>In each case, we need to show that if thread <em>i</em> takes a step, then
+<span class="arithmatex">\(\mathcal{F}(i)\)</span> still holds. In the first case, there is only one step
+that thread <em>i</em> can take that would set <span class="arithmatex">\(\mathit{flags}[i]\)</span> to false:
+the step from line 17 to line 18. But executing the line would also take
+the thread out of lines <span class="arithmatex">\(10 \cdots 17\)</span>, so <span class="arithmatex">\(\mathcal{F}(i)\)</span> continues to
+hold. In the second case (thread <em>i</em> is not executing in lines
+<span class="arithmatex">\(10 \cdots 17\)</span>), the only step that would cause thread <em>i</em> to execute in
+lines <span class="arithmatex">\(10 \cdots 17\)</span> would be the step in line 9. But in that case
+<span class="arithmatex">\(\mathit{flags}[i]\)</span> would end up being true, so <span class="arithmatex">\(\mathcal{F}(i)\)</span>
+continues to hold as well. So, <span class="arithmatex">\(\mathcal{F}(i)\)</span> is an inductive
+invariant (for both threads 0 and 1).</p>
+<p>While <span class="arithmatex">\(\mathcal{F}(i)\)</span> does not imply mutual exclusion, it does imply
+the following useful invariant:
+<span class="arithmatex">\(\mathtt{thread}(i)@cs \Rightarrow \mathit{flags}[i]\)</span>: when thread <em>i</em>
+is at the critical section, <span class="arithmatex">\(\mathit{flags}[i]\)</span> is set. This seems
+obvious from the code, but now you know how to prove it. We will use a
+similar technique to prove the exclusivity is invariant.</p>
+<p>We need a stronger inductive invariant than <span class="arithmatex">\(\mathcal{F}(i)\)</span> to prove
+mutual exclusion. What else do we know when thread <em>i</em> is in the
+critical section? Let
+<span class="arithmatex">\(\mathcal{C}(i) = \lnot\mathit{flags}[1 - i] \lor \mathit{turn} = i\)</span>,
+that is, the condition on the <strong>await</strong> statement for thread <em>i</em>. In a
+sequential program, <span class="arithmatex">\(\mathcal{C}(i)\)</span> would clearly hold if thread <em>i</em> is
+in the critical section:
+<span class="arithmatex">\(\mathtt{thread}(i)@cs \Rightarrow \mathcal{C}(i)\)</span>. However, because
+thread <span class="arithmatex">\(1-i\)</span> is executing concurrently, this property does not hold. You
+can use Harmony to verify this. Just place the following command in the
+critical section of the program:</p>
+<p><strong>assert</strong> (<strong>not</strong> <em>flags</em>[1 -- <em>self</em>]) <strong>or</strong> (<em>turn</em> == <em>self</em>)</p>
+<div class="highlight"><span class="filename">PetersonInductive.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span><span class="p">,</span> <span class="n">turn</span>
+<span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
+<span class="n">turn</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">gate</span><span class="p">:</span> <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span>
+        <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Critical section</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span> <span class="ow">or</span>
+<span class="p">(</span><span class="n">countLabel</span><span class="p">(</span><span class="n">gate</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Leave critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 6.3 (
+<a href=https://harmony.cs.cornell.edu/code/PetersonInductive.hny>code/PetersonInductive.hny</a>): 
+Peterson's Algorithm with Inductive Invariant
+</figcaption>
+
+<p>When running Harmony, this assertion will fail. You can check the HTML
+output to see what happened. Suppose thread 0 is at the critical
+section, <span class="arithmatex">\(\mathit{flags}[0]\)</span> = true, <span class="arithmatex">\(\mathit{turn} = 1\)</span>, and thread 1
+just finished the step in line 7, setting <span class="arithmatex">\(\mathit{flags}[1]\)</span> to true.
+Then <span class="arithmatex">\(C(0)\)</span> is violated. But it suggests a new property:
+<span class="arithmatex">\(\mathcal{G}(i) =
+\mathtt{thread}(i)@\mathtt{cs} \Rightarrow \mathcal{C}(i) \lor \mathtt{thread}(1-i)@10\)</span>.
+That is, if thread <em>i</em> is at the critical section, then either
+<span class="arithmatex">\(\mathcal{C}(i)\)</span> holds or thread <span class="arithmatex">\(1-i\)</span> is about to execute line 10.
+Figure 6.3 formalizes <span class="arithmatex">\(\mathcal{G}(i)\)</span> in Harmony. The label
+<code>gate</code> refers to line 10, that is, the step that sets <em>turn</em> to <span class="arithmatex">\(1-i\)</span>.
+You can run Figure 6.3 to determine that <span class="arithmatex">\(\mathcal{G}(i)\)</span> is
+an invariant for <span class="arithmatex">\(i = 0, 1\)</span>. Moreover, if <span class="arithmatex">\(\mathcal{F}(i)\)</span> and
+<span class="arithmatex">\(\mathcal{G}(i)\)</span> both hold for <span class="arithmatex">\(i = 0, 1\)</span>, then mutual exclusion holds.
+We can show this using proof by contradiction. Suppose mutual exclusion
+is violated and thus both threads are in the critical section. By
+<span class="arithmatex">\(\mathcal{F}\)</span> it must be the case that both <em>flags</em> are true. By
+<span class="arithmatex">\(\mathcal{G}\)</span> and the fact that neither thread is at label <code>gate</code>, we
+know that both <span class="arithmatex">\(C(0)\)</span> and <span class="arithmatex">\(C(1)\)</span> must hold. This then implies that
+<span class="arithmatex">\(\mathit{turn} = 0 \land \mathit{turn} = 1\)</span>, providing the desired
+contradiction.</p>
+<p>We claim that <span class="arithmatex">\(\mathcal{G}(i)\)</span> is an inductive invariant. First, since
+neither thread in in the critical section in the initial state, it is
+clear that <span class="arithmatex">\(\mathcal{G}(i)\)</span> holds in the initial state. Without loss of
+generality, suppose <span class="arithmatex">\(i=0\)</span> (a benefit from the fact that the algorithm is
+symmetric for both threads). We still have to show that if we are in a
+state in which <span class="arithmatex">\(\mathcal{G}(0)\)</span> holds, then any step will result in a
+state in which <span class="arithmatex">\(\mathcal{G}(0)\)</span> still holds.</p>
+<p>First consider the case that thread 0 is at label <code>cs</code>. If thread 0 were
+to take a step, then in the next state thread 0 would be no longer at
+that label and <span class="arithmatex">\(\mathcal{G}(0)\)</span> would hold trivially over the next
+state. Therefore we only need to consider a step by thread 1. From
+<span class="arithmatex">\(\mathcal{G}\)</span> we know that one of the following three cases must hold
+before thread 1 takes a step:</p>
+<ol>
+<li>
+<p><em>flags</em>[1] = <code>False</code>;</p>
+</li>
+<li>
+<p><em>turn</em> = 0;</p>
+</li>
+<li>
+<p>thread 1 is at label <code>gate</code>.</p>
+</li>
+</ol>
+<p>Let us consider each of these cases. We have to show that if thread 1
+takes a step, then one of those cases must hold after the step. In the
+first case, if thread 1 takes a step, there are two possibilities:
+either <span class="arithmatex">\(flags[1]\)</span> will still be <code>False</code> (in which case the first case
+continues to hold), or <span class="arithmatex">\(flags[1]\)</span> will be <code>True</code> and thread 1 will be at
+label <code>gate</code> (in which case the third case will hold). We know that
+thread 1 never sets <em>turn</em> to 1, so if the second case holds before the
+step, it will also hold after the step. Finally, if thread 1 is at label
+<code>gate</code> before the step, then after the step <em>turn</em> will equal 0, and
+therefore the second case will hold after the step.</p>
+<p>Now consider the case where thread 0 is not in the critical section, and
+therefore <span class="arithmatex">\(\mathcal{G}(0)\)</span> holds trivially because false implies
+anything. There are three cases to consider:</p>
+<ol>
+<li>
+<p>Thread 1 takes a step. But then thread 0 is still not in the
+    critical section and <span class="arithmatex">\(\mathcal{G}(0)\)</span> continues to hold;</p>
+</li>
+<li>
+<p>Thread 0 takes a step but still is not in the critical section. Then
+    again <span class="arithmatex">\(\mathcal{G}(0)\)</span> continues to hold.</p>
+</li>
+<li>
+<p>Thread 0 takes a step and ends up in the critical section. Because
+    thread 0 entered the critical section, we know that
+    <span class="arithmatex">\(\mathit{flags}[1] = \texttt{False}\)</span> or <span class="arithmatex">\(\mathit{turn} = 0\)</span> because
+    of the <code>await</code> condition. And hence <span class="arithmatex">\(\mathcal{G}(0)\)</span> continues to
+    hold in that case as well.</p>
+</li>
+</ol>
+<p>We have now demonstrated mutual exclusion in Peterson's Algorithm in two
+different ways: one by letting Harmony explore all possible executions,
+the other using inductive invariants and proof by induction. The former
+is certainly easier, but it does not provide intuition for why the
+algorithm works. The second provides much more insight.</p>
+<p>Even though they are not strictly necessary, we encourage you to include
+invariants in your Harmony code. They can provide important insights
+into why the code works.</p>
+<p>A cool anecdote is the following. When the author of Harmony had to
+teach Peterson's Algorithm, he refreshed his memory by looking at the
+Wikipedia page. The page claimed that the following predicate is
+invariant: if thread <em>i</em> is in the critical section, then
+<span class="arithmatex">\(\mathcal{C}(i)\)</span> (i.e., <span class="arithmatex">\(\mathcal{G}\)</span> without the disjunct that thread
+<span class="arithmatex">\(1-i\)</span> is at label <code>gate</code>). We already saw that this is not an invariant.
+(The author fixed the Wikipedia page with the help of Fred
+B. Schneider.)</p>
+<p>This anecdote suggests the following. If you need to do a proof by
+induction of an algorithm, you have to come up with an inductive
+invariant. Before trying to prove the algorithm, you can check that the
+predicate is at least invariant by testing it using Harmony. Doing so
+could potentially avoid wasting your time on a proof that will not work
+because the predicate is not invariant, and therefore not an inductive
+invariant either. Moreover, analyzing the counterexample provided by
+Harmony may well suggest how to fix the predicate.</p>
+<h2 id="exercises">Exercises</h2>
+<div class="highlight"><span class="filename">csonebit.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span>
+<span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="err">–</span> <span class="bp">self</span><span class="p">]:</span>
+            <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># Critical section</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="c1"># Leave critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 6.4 (<a href=https://harmony.cs.cornell.edu/code/csonebit.hny>code/csonebit.hny</a>): 
+Mutual exclusion using a flag per thread </figcaption>
+
+<p>Figure 6.4 presents another solution to the mutual exclusion
+problem. It is similar to the one in Figure 5.4, but has a
+thread <em>back out and try again</em> if it finds that the other thread is
+either trying to enter the critical section or already has. Compare this
+algorithm with Peterson's. Why does Harmony complain about <em>active busy
+waiting</em>?</p>
+<p>Can you find one or more inductive invariants for the algorithm in
+Figure 6.4 to prove it correct? Here's a pseudo-code version of
+the algorithm to help you. Each line is an atomic action:</p>
+<div class="highlight"><pre><span></span><code>    initially: flagX = flagY = False
+
+    thread X:                          thread Y:
+        X0: flagX = True                   Y0: flagY = True
+        X1: if not flagY goto X4           Y1: if not flagX goto Y4
+        X2: flagX = False                  Y2: flagY = False
+        X3: goto X0                        Y3: goto Y0
+        X4: ...critical section...         Y4: ...critical section...
+        X5: flagX = False                  Y5: flagY = False
+</code></pre></div>
+<p>A colleague of the author asked if the first two assignments in Peterson's algorithm
+(setting <em>flags</em>[<em>self</em>] to <code>True</code> and <em>turn</em> to 1 -- <em>self</em> can be
+reversed. After all, they are different variables assigned independent
+values---in a sequential program one could surely swap the two
+assignments. See if you can figure out for yourself if the two
+assignments can be reversed. Then run the program in Figure 6.1
+after reversing the two assignments and describe in English what
+happens.</p>
+<p>Bonus question: Can you generalize Peterson's algorithm to more than two
+threads?</p>
+<p>Bonus question: Implement <a href="https://en.wikipedia.org/wiki/Dekker%27s_algorithm">Dekker's
+Algorithm</a>,
+<a href="https://en.wikipedia.org/wiki/Eisenberg_%26_McGuire_algorithm">Eisenstein and McGuire's
+Algorithm</a>,
+<a href="https://en.wikipedia.org/wiki/Szymanski%27s_algorithm">Szymański's
+Algorithm</a>, or
+the <a href="https://en.wikipedia.org/wiki/Lamport%27s_bakery_algorithm">Lamport's Bakery
+Algorithm</a>.
+Note that the last one uses unbounded state, so you should modify the
+threads so they only try to enter the critical section a bounded number
+of times.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../critical/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Critical Sections " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Critical Sections 
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../method/" class="md-footer__link md-footer__link--next" aria-label="Next: Harmony Methods and Pointers " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Harmony Methods and Pointers 
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
