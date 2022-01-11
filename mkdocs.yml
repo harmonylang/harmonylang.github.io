@@ -7,35 +7,37 @@ nav:
         - 'Running a program': 'guides/running-harmony.md'
     - 'Textbook':
         - "On Concurrent Programming": 'reference/textbook/index.md'
-        - "Introduction to Harmony": 'reference/textbook/harmonyintro.md'
-        - "The Problem of Concurrent Programming": 'reference/textbook/concurrent.md'
-        - "The Harmony Virtual Machine": 'reference/textbook/harmonymachine.md'
-        - "Critical Sections": 'reference/textbook/critical.md'
-        - "Peterson's Algorithm": 'reference/textbook/peterson.md'
-        - "Harmony Methods and Pointers": 'reference/textbook/method.md'
-        - "Specification": 'reference/textbook/specification.md'
-        - "Spinlock": 'reference/textbook/spinlock.md'
-        - "Lock Implementations": 'reference/textbook/synch.md'
-        - "Concurrent Data Structures": 'reference/textbook/cds.md'
-        - "Testing": 'reference/textbook/testing.md'
-        - "Debugging": 'reference/textbook/debugging.md'
-        - "Conditional Waiting": 'reference/textbook/condwait.md'
-        - "Split Binary Semaphores": 'reference/textbook/sbs.md'
-        - "Starvation": 'reference/textbook/starvation.md'
-        - "Monitors": 'reference/textbook/monitors.md'
-        - "Deadlock": 'reference/textbook/deadlock.md'
-        - "Actors and Message Passing": 'reference/textbook/actor.md'
-        - "Barrier Synchronization": 'reference/textbook/barrier.md'
-        - "Interrupts": 'reference/textbook/interrupts.md'
-        - "Non-Blocking Synchronization": 'reference/textbook/nonblocking.md'
-        - "Alternating Bit Protocol": 'reference/textbook/abp.md'
-        - "Leader Election": 'reference/textbook/leader.md'
-        - "Transactions and Two Phase Commit": 'reference/textbook/2pc.md'
-        - "Chain Replication": 'reference/textbook/chain.md'
-        - "Replicated Atomic Read/Write Register": 'reference/textbook/abd.md'
-        - "Distributed Consensus": 'reference/textbook/consensus.md'
-        - "Paxos": 'reference/textbook/paxos.md'
-        - "Needham-Schroeder Authentication Protocol": 'reference/textbook/ns.md'
+        - "Hello World! ": 'reference/textbook/harmonyintro.md'
+        - "The Problem of Concurrent Programming ": 'reference/textbook/concurrent.md'
+        - "The Harmony Virtual Machine ": 'reference/textbook/harmonymachine.md'
+        - "Critical Sections ": 'reference/textbook/critical.md'
+        - "Peterson's Algorithm ": 'reference/textbook/peterson.md'
+        - "Harmony Methods and Pointers ": 'reference/textbook/method.md'
+        - "Specification ": 'reference/textbook/specification.md'
+        - "Spinlock ": 'reference/textbook/spinlock.md'
+        - "Lock Implementations ": 'reference/textbook/synch.md'
+        - "Concurrent Data Structures ": 'reference/textbook/cds.md'
+        - "Fine-Grained Locking ": 'reference/textbook/finegrained.md'
+        - "Testing ": 'reference/textbook/testing.md'
+        - "Debugging ": 'reference/textbook/debugging.md'
+        - "Conditional Waiting ": 'reference/textbook/condwait.md'
+        - "Split Binary Semaphores ": 'reference/textbook/sbs.md'
+        - "Starvation ": 'reference/textbook/starvation.md'
+        - "Monitors ": 'reference/textbook/monitors.md'
+        - "Deadlock ": 'reference/textbook/deadlock.md'
+        - "Actors and Message Passing ": 'reference/textbook/actor.md'
+        - "Barrier Synchronization ": 'reference/textbook/barrier.md'
+        - "Interrupts ": 'reference/textbook/interrupts.md'
+        - "Non-Blocking Synchronization ": 'reference/textbook/nonblocking.md'
+        - "Alternating Bit Protocol ": 'reference/textbook/abp.md'
+        - "Leader Election ": 'reference/textbook/leader.md'
+        - "Transactions and Two Phase Commit ": 'reference/textbook/2pc.md'
+        - "Chain Replication ": 'reference/textbook/chain.md'
+        - "Replicated Atomic Read/Write Register ": 'reference/textbook/abd.md'
+        - "Distributed Consensus ": 'reference/textbook/consensus.md'
+        - "Paxos ": 'reference/textbook/paxos.md'
+        - "Needham-Schroeder Authentication Protocol ": 'reference/textbook/ns.md'
+        - "Acknowledgments ": 'reference/textbook/acknowledgments.md'
     - 'Reference':
         - 'Language':
             - "Harmony Language Details": 'reference/textbook/values.md'
@@ -53,10 +55,18 @@ nav:
     - Changelog: changelog.md
     - "Acknowledgments": 'reference/textbook/acknowledgments.md'
 
+docs_dir: docs-src
+site_dir: docs
+
 theme: 
     name: material
     logo: img/favicon.ico
     favicon: img/favicon.ico
+    palette:
+        primary: black
+
+extra:
+  generator: false
 
 markdown_extensions:
     - pymdownx.arithmatex:

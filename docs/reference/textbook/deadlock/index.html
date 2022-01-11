@@ -1,0 +1,1466 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Deadlock - HarmonyDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deadlock" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            HarmonyDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deadlock 
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+      
+  <img src="../../../img/favicon.ico" alt="logo">
+
+    </a>
+    HarmonyDocs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../guides/running-harmony/" class="md-nav__link">
+        Running a program
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Textbook
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        On Concurrent Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonyintro/" class="md-nav__link">
+        Hello World! 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrent/" class="md-nav__link">
+        The Problem of Concurrent Programming 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harmonymachine/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical/" class="md-nav__link">
+        Critical Sections 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../peterson/" class="md-nav__link">
+        Peterson's Algorithm 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../method/" class="md-nav__link">
+        Harmony Methods and Pointers 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specification/" class="md-nav__link">
+        Specification 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spinlock/" class="md-nav__link">
+        Spinlock 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synch/" class="md-nav__link">
+        Lock Implementations 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cds/" class="md-nav__link">
+        Concurrent Data Structures 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finegrained/" class="md-nav__link">
+        Fine-Grained Locking 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debugging/" class="md-nav__link">
+        Debugging 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condwait/" class="md-nav__link">
+        Conditional Waiting 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sbs/" class="md-nav__link">
+        Split Binary Semaphores 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../starvation/" class="md-nav__link">
+        Starvation 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitors/" class="md-nav__link">
+        Monitors 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Deadlock 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Deadlock 
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../actor/" class="md-nav__link">
+        Actors and Message Passing 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../barrier/" class="md-nav__link">
+        Barrier Synchronization 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interrupts/" class="md-nav__link">
+        Interrupts 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nonblocking/" class="md-nav__link">
+        Non-Blocking Synchronization 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abp/" class="md-nav__link">
+        Alternating Bit Protocol 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../leader/" class="md-nav__link">
+        Leader Election 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2pc/" class="md-nav__link">
+        Transactions and Two Phase Commit 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chain/" class="md-nav__link">
+        Chain Replication 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abd/" class="md-nav__link">
+        Replicated Atomic Read/Write Register 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../consensus/" class="md-nav__link">
+        Distributed Consensus 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paxos/" class="md-nav__link">
+        Paxos 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ns/" class="md-nav__link">
+        Needham-Schroeder Authentication Protocol 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Language
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Language
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        Harmony Language Details
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hvm/" class="md-nav__link">
+        The Harmony Virtual Machine 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../howitworks/" class="md-nav__link">
+        How Harmony Works 
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Library" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/alloc/" class="md-nav__link">
+        alloc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/bag/" class="md-nav__link">
+        bag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/hoare/" class="md-nav__link">
+        hoare
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/list/" class="md-nav__link">
+        list
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/set/" class="md-nav__link">
+        set
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../library/synch/" class="md-nav__link">
+        synch
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgments/" class="md-nav__link">
+        Acknowledgments
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="deadlock">Deadlock</h1>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="n">Lock</span><span class="p">(),]</span> <span class="o">*</span> <span class="n">N</span>
+
+<span class="k">def</span> <span class="nf">diner</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="c1"># dine</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="c1"># think</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="err">–</span><span class="mi">1</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 20.1 (
+<a href=https://harmony.cs.cornell.edu/code/Diners.hny>code/Diners.hny</a>): 
+Dining Philosophers </figcaption>
+
+<p>When multiple threads are synchronizing access to shared resources, they
+may end up in a <em>deadlock</em> situation where one or more of the threads
+end up being blocked indefinitely because each is waiting for another to
+give up a resource. The famous Dutch computer scientist Edsger
+W. Dijkstra illustrated this using a scenario he called "Dining
+Philosophers."</p>
+<p>Imagine five philosopers sitting around a table, each with a plate of
+food in front of them and a fork between every two plates. Each
+philosopher requires two forks to eat. To start eating, a philosopher
+first picks up the fork on the left, then the fork on the right. Each
+philosopher likes to take breaks from eating to think for a while. To do
+so, the philosopher puts down both forks. Each philosopher repeats this
+procedure. Dijkstra had them repeating this for ever, but for the
+purposes of this book, philosophers can---if they wish---leave the table
+when they are not using any forks.</p>
+<p>Figure 20.1 implements the dining philosophers in Harmony, using a
+thread for each philosopher and a lock for each fork. If you run it,
+Harmony complains that the execution may not be able to terminate, with
+all five threads being blocked trying to acquire the lock.</p>
+<blockquote>
+<ul>
+<li>
+<p>Do you see what the problem is?</p>
+</li>
+<li>
+<p>Does it depend on <code>N</code>, the number of philosophers?</p>
+</li>
+<li>
+<p>Does it matter in what order the philosophers lay down their
+    forks?</p>
+</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">synch</span>
+<span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">mutex</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+<span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,]</span> <span class="o">*</span> <span class="n">N</span>
+<span class="n">conds</span> <span class="o">=</span> <span class="p">[</span><span class="n">synch</span><span class="o">.</span><span class="n">Condition</span><span class="p">(),]</span> <span class="o">*</span> <span class="n">N</span>
+
+<span class="k">def</span> <span class="nf">diner</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">or</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+                    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+                    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">or</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="c1"># dine</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="c1"># think</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="err">–</span><span class="mi">1</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 21.1 (
+<a href=https://harmony.cs.cornell.edu/code/DinersCV.hny>code/DinersCV.hny</a>): 
+Dining Philosophers that grab both forks at the same time
+</figcaption>
+
+<p>There are four conditions that must hold for deadlock to occur:</p>
+<ol>
+<li>
+<p><em>Mutual Exclusion</em>: each resource can only be used by one thread at
+    a time:</p>
+</li>
+<li>
+<p><em>Hold and Wait</em>: each thread holds resources it already allocated
+    while it waits for other resources that it needs;</p>
+</li>
+<li>
+<p><em>No Preemption</em>: resources cannot be forcibly taken away from
+    threads that allocated them;</p>
+</li>
+<li>
+<p><em>Circular Wait</em>: there exists a directed circular chain of threads,
+    each waiting to allocate a resource held by the next.</p>
+</li>
+</ol>
+<p>Preventing deadlock thus means preventing that one of these conditions
+occurs. However, mutual exclusion is not easily prevented in general
+(although, for some resources it is possible, as demonstrated in
+<a href="../nonblocking/">Chapter 25</a>). Havender proposed the following techniques that
+avoid the remaining three conditions:</p>
+<ul>
+<li>
+<p><em>No Hold and Wait</em>: a thread must request all resources it is going
+    to need at the same time;</p>
+</li>
+<li>
+<p><em>Preemption</em>: if a thread is denied a request for a resource, it
+    must release all resources that it has already acquired and start
+    over;</p>
+</li>
+<li>
+<p><em>No Circular Wait</em>: define an ordering on all resources and allocate
+    resources in a particular order.</p>
+</li>
+</ul>
+<p>To implement a <em>No Hold and Wait</em> solution, a philosopher would need a
+way to lock both the left and right forks at the same time. Locks do not
+have such an ability, and neither do semaphores. so we re-implement the
+Dining Philosophers using condition variables that allow one to wait for
+arbitrary application-specific conditions. Figure 21.1 demonstrates
+how this might be done. We use a single mutex for the diners, and, for
+each fork, a boolean and a condition variable. The boolean indicates if
+the fork has been taken. Each diner waits if either the left or right
+fork is already taken. But which condition variable to wait on? The code
+demonstrates an important technique to use when waiting for multiple
+conditions. The condition in the <strong>while</strong> statement is the negation of
+the condition that the diner is waiting for and consists of two
+disjuncts. Within the <strong>while</strong> statement, there is an <strong>if</strong> statement
+for each disjunct. The code waits for either or both forks if necessary.
+After that, it goes back to the top of the <strong>while</strong> loop.</p>
+<p>A common mistake is to write the following code instead:</p>
+<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<ul>
+<li>
+<p>Can you see why this does not work? What can go wrong?</p>
+</li>
+<li>
+<p>Run it through Harmony in case you are not sure!</p>
+</li>
+</ul>
+</blockquote>
+<p>The <em>Preemption</em> approach suggested by Havender is to allow threads to
+back out. While this could be done, this invariably leads to a busy
+waiting solution where a thread keeps obtaining locks and releasing them
+again until it finally is able to get all of them.</p>
+<p>The <em>No Circular Waiting</em> approach is to prevent a cycle from forming,
+with each thread waiting for the next thread on the cycle. We can do
+this by establishing an ordering among the resources (in this case the
+forks) and, when needing more than one resource, always acquiring them
+in order. In the case of the philosopers, they could prevent deadlock by
+always picking up the lower numbered fork before the higher numbered
+fork, like so:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+</code></pre></div>
+<p>or like so:</p>
+<div class="highlight"><pre><span></span><code><span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)])</span>
+<span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)])</span>
+</code></pre></div>
+<p>This completes all the Havender methods. There is, however, another
+approach, which is sometimes called deadlock <em>avoidance</em> instead of
+deadlock <em>prevention</em>. In the case of the Dining Philosophers, we want
+to avoid the situation where each diner picks up a fork. If we can
+prevent more than four diners from starting to eat at the same time,
+then we can avoid the conditions for deadlock from ever happening.
+Figure 21.2 demonstrates this concept. It uses a <em>counting
+semaphore</em> to restrict the number of diners at any time to four. A
+counting semaphore is like a binary semaphore, but can be acquired a
+given number of times. It is supported by the <code>synch</code> module. The <code>P</code> or
+"procure" operation acquires a counting semaphore. That is, it tries to
+decrement the semaphore, blocking while the semaphore has a value of 0.
+The <code>V</code> or "vacate" operation increments the semaphore.</p>
+<p>This avoidance technique can be generalized using something called the
+Banker's Algorithm, but it is outside the scope of this book.
+The problem with these kinds of schemes is that one needs to know ahead
+of time the set of threads and what the maximum number of resources is
+that each thread wants to allocate, making them generally quite
+impractical.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="n">Lock</span><span class="p">(),]</span> <span class="o">*</span> <span class="n">N</span>
+<span class="n">sema</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="n">N</span> <span class="err">–</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># can be procured up to N−1 times</span>
+
+<span class="k">def</span> <span class="nf">diner</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+            <span class="n">P</span><span class="p">(</span><span class="err">?</span><span class="n">sema</span><span class="p">)</span> <span class="c1"># procure counting semaphore</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="c1"># dine</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">V</span><span class="p">(</span><span class="err">?</span><span class="n">sema</span><span class="p">)</span> <span class="c1"># vacate counting semaphore</span>
+            <span class="c1"># think</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="err">–</span><span class="mi">1</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="exercises">Exercises</h2>
+<p>The solution in Figure 21.1 can be simplified by, instead of having
+a condition variable per fork, having a condition variable per diner. It
+uses the same number of condition variables, but you will not need to
+have <strong>if</strong> statements nested inside the <strong>while</strong> loop waiting for the
+forks. See if you can figure it out.</p>
+<p>implementation of a bank with various accounts and transfers between
+those accounts. Unfortunately, running the test reveals that it
+sometimes leaves unterminated threads. Can you fix the problem?</p>
+<p>Add a method <code>total</code>() to the solution of the previous question that
+computes the total over all balances. It needs to obtain a lock on all
+accounts. Make sure that it cannot cause deadlock.</p>
+<p>Add an invariant that checks that the total of the balances never
+changes. Note that the invariant only holds if none of the locks are
+held.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<span class="n">const</span> <span class="n">MAX_BALANCE</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">const</span> <span class="n">N_ACCOUNTS</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">const</span> <span class="n">N_THREADS</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">balance</span><span class="p">:</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">})}</span>
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="p">}</span> <span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">amount</span>  <span class="o">&lt;</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span><span class="p">:</span>
+        <span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="err">–</span><span class="o">=</span> <span class="n">amount</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">thread</span><span class="p">():</span>
+    <span class="n">let</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="err">–</span><span class="mi">1</span><span class="p">})</span>
+    <span class="n">let</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="err">–</span><span class="mi">1</span><span class="p">}</span> <span class="err">–</span> <span class="p">{</span> <span class="n">a1</span> <span class="p">}):</span>
+        <span class="n">transfer</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">choose</span><span class="p">({</span><span class="mf">1.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">}))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_THREADS</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
+</code></pre></div>
+<figcaption>Figure 21.3 (
+<a href=https://harmony.cs.cornell.edu/code/bank.hny>code/bank.hny</a>): 
+Bank accounts </figcaption>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../monitors/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Monitors " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Monitors 
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../actor/" class="md-footer__link md-footer__link--next" aria-label="Next: Actors and Message Passing " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Actors and Message Passing 
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
