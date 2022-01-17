@@ -934,7 +934,7 @@
 <p>Some programming languages favor a different way of implementing
 synchronization using so-called <em>actors</em>. Actors are
 threads that have only private memory and communicate through <em>message
-passing</em>. See Figure 22.1 for an illustration. Given that there is
+passing</em>. See Figure 20.1 for an illustration. Given that there is
 no shared memory in the actor model (other than the message queues,
 which have built-in synchronization), there is no need for critical
 sections. Instead, some sequential thread owns a particular piece of
@@ -943,7 +943,7 @@ thread and optionally waiting for response messages. Each thread handles
 one message at a time, serializing all access to the data it owns. As
 message queues are FIFO (First-In-First-Out), starvation is prevented.</p>
 <p><img alt="" src="../figures/actor-crop.png" /></p>
-<figcaption>Figure 22.1: Depiction of three actors.
+<figcaption>Figure 20.1: Depiction of three actors.
 The producer does not receive messages. </figcaption>
 
 <p>The actor synchronization model is popular in a variety of programming
@@ -999,10 +999,10 @@ generalization of counting semaphores.</p>
 <span class="n">charlie_queue</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">client</span><span class="p">(</span><span class="err">?</span><span class="n">charlie_queue</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 22.2 (<a href=https://harmony.cs.cornell.edu/code/counter.hny>code/counter.hny</a>): 
+<figcaption>Figure 20.2 (<a href=https://harmony.cs.cornell.edu/code/counter.hny>code/counter.hny</a>): 
 An illustration of the actor approach </figcaption>
 
-<p>Figure 22.2 illustrates the actor approach. There are three client
+<p>Figure 20.2 illustrates the actor approach. There are three client
 threads that each want to be assigned a unique identifier from the set
 <span class="arithmatex">\(\{ 0, 1, 2 \}\)</span>. Normally one would use a shared 0-initialized counter
 and a lock. Each client would acquire the lock, get the value of the
@@ -1022,7 +1022,7 @@ distributed systems, where each actor runs on a separate machine and the
 queues are message channels. For example, the server can be a web
 server, and its clients are web browsers.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Actors and message queues are good for building pipelines. Develop a
+<p><strong>20.1</strong> Actors and message queues are good for building pipelines. Develop a
 pipeline that computes Mersenne primes (primes that are one less than a
 power of two). Write four actors:</p>
 <ol>

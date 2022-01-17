@@ -45,11 +45,11 @@ for i in {1..choose({0..MAX_ITEMS})}:
     spawn consume()
 ```
 
-<figcaption>Figure 25.1 (<a href=https://harmony.cs.cornell.edu/code/hw.hny>code/hw.hny</a>): 
+<figcaption>Figure 23.1 (<a href=https://harmony.cs.cornell.edu/code/hw.hny>code/hw.hny</a>): 
 Non-blocking queue </figcaption>
 
 As an example, we will revisit the producer/consumer problem. The code
-in Figure 25.1 is based on code developed by Herlihy and Wing.
+in Figure 23.1 is based on code developed by Herlihy and Wing.
 The code is a "proof of existence" for non-blocking synchronization; it
 is not necessarily practical. There are two variables. *items* is an
 unbounded array with each entry initialized to `None`. *back* is an
@@ -87,13 +87,13 @@ non-blocking (aka *wait-free*) synchronization algorithms.
 
 ## Exercises 
 
-A *seqlock* consists of a lock and a version number. An update operation
+**23.1** A *seqlock* consists of a lock and a version number. An update operation
 acquires the lock, increments the version number, makes the changes to
 the data structure, and then releases the lock. A read-only operation
 does not use the lock. Instead, it retrieves the version number, reads
 the data structure, and then checks if the version number has changed.
 If so, the read-only operation is retried. Use a seqlock to implement a
-bank much like Figure 21.3, with one seqlock for the entire bank (i.e., no locks on
+bank much like Exercise 19.2, with one seqlock for the entire bank (i.e., no locks on
 individual accounts). Method `transfer` is an update operation; method
 `total` is a read-only operation. Explain how a seqlock can lead to
 starvation.

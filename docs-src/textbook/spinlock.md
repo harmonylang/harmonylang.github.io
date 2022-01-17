@@ -1,40 +1,6 @@
 
 # Spinlock 
 
-
-```python title="spinlock.hny"
-const N = 3
-shared = False
-private = [ True, ] * N
-invariant len(x for x in [shared,] + private where not x)  < = 1
-
-def test_and_set(s, p):
-    atomically:
-        !p = !s
-        !s = True
-
-def clear(s):
-    assert !s
-    atomically !s = False
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        while private[self]:
-            test_and_set(?shared, ?private[self])
-        # Critical section
-        cs: assert (not private[self]) and (countLabel(cs) == 1)
-        # Leave critical section
-        private[self] = True
-        clear(?shared)
-for i in {0..N–1}:
-    spawn thread(i)
-```
-
-<figcaption>Figure 9.1 (<a href=https://harmony.cs.cornell.edu/code/spinlock.hny>code/spinlock.hny</a>): 
-Mutual Exclusion using a "spinlock" based on test-and-set
-</figcaption>
-
 Peterson's algorithm implements locks, but it is not efficient,
 especially if generalized to multiple threads. Worse, Peterson relies on
 load and store operations to be executed atomically, but this may not be
@@ -108,6 +74,39 @@ private boolean variable, belonging to some thread. The operation copies
 the value of the shared variable to the private variable (the "test")
 and then sets the shared variable to `True` ("set").
 
+```python title="spinlock.hny"
+const N = 3
+shared = False
+private = [ True, ] * N
+invariant len(x for x in [shared,] + private where not x)  < = 1
+
+def test_and_set(s, p):
+    atomically:
+        !p = !s
+        !s = True
+
+def clear(s):
+    assert !s
+    atomically !s = False
+
+def thread(self):
+    while choose({ False, True }):
+        # Enter critical section
+        while private[self]:
+            test_and_set(?shared, ?private[self])
+        # Critical section
+        cs: assert (not private[self]) and (countLabel(cs) == 1)
+        # Leave critical section
+        private[self] = True
+        clear(?shared)
+for i in {0..N–1}:
+    spawn thread(i)
+```
+
+<figcaption>Figure 9.1 (<a href=https://harmony.cs.cornell.edu/code/spinlock.hny>code/spinlock.hny</a>): 
+Mutual Exclusion using a "spinlock" based on test-and-set
+</figcaption>
+
 Figure 9.1 goes on to implement mutual exclusion for a set of `N`
 threads. The approach is called *spinlock*, because each thread is
 "spinning" (executing a tight loop) until it can acquire the lock. The
@@ -154,10 +153,10 @@ the expression in every reachable state.
 ## Exercises 
 
 
-Implement an atomic swap operation. It should take two pointer arguments and swap the values.
+**9.1** Implement an atomic swap operation. It should take two pointer arguments and swap the values.
 
-Implement a spinlock using the atomic swap operation.
+**9.2** Implement a spinlock using the atomic swap operation.
 
-For the solution to Example 9.1, write out the invariants that need to
+**9.3** For the solution to Example 9.1, write out the invariants that need to
 hold and check them using Harmony.
 

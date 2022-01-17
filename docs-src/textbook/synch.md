@@ -214,7 +214,7 @@ other modules.
 ## Exercises 
 
 
-Run Figure 8.3 using (i) `synch` and (ii) `synchS`. Report how
+**10.1** Run Figure 8.3 using (i) `synch` and (ii) `synchS`. Report how
 many states were explored by Harmony for each module.
 
 ```python title="xy.hny"
@@ -239,12 +239,12 @@ spawn setX(50)
 Incomplete code with desired invariant $x + y = 100$
 </figcaption>
 
-Figure 10.4 shows a Harmony program with two variables *x* (initially 0) and *y* (initially 100) that can be
+**10.2** Figure 10.4 shows a Harmony program with two variables *x* (initially 0) and *y* (initially 100) that can be
 accessed through methods `setX` and `getXY`. An application invariant is
 that `getXY` should return a pair that sums to 100. Add the necessary
 synchronization code.
 
-Implement `tryAcquire`(*b*) as an additional interface for both the `synch` and
+**10.3** Implement `tryAcquire`(*b*) as an additional interface for both the `synch` and
 `synchS` modules. This interface is like `acquire`(*b*) but never
 blocks. It returns `True` if the lock was available (and now acquired)
 or `False` if the lock was already acquired. Hint: you do not have to
@@ -285,7 +285,7 @@ for i in {1..N_ATMS}:
 <figcaption>Figure 10.5 (<a href=https://harmony.cs.cornell.edu/code/atm.hny>code/atm.hny</a>): 
 Withdrawing money from an ATM</figcaption>
 
-People who use an ATM often first check their balance and then withdraw
+**10.4** People who use an ATM often first check their balance and then withdraw
 a certain amount of money not exceeding their balance. A negative
 balance is not allowed. Figure 10.5 shows two operations on bank
 accounts: one to check the balance and one to withdraw money. Note that

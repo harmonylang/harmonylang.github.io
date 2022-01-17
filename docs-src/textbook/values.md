@@ -867,21 +867,21 @@ Pattern matching can also be used in **const**, **let**, and **when**
 ## Dynamic Allocation
 
 Harmony supports various options for dynamic allocation. By way of
-example, consider a stack. Figure 33.2 presents a test program for
+example, consider a stack. Figure A.1 presents a test program for
 a stack. We present four different stack implementations to illustrate
 options for dynamic allocation:
 
-1.  Figure 33.3 uses a single list to represent the stack. It is
+1.  Figure A.2 uses a single list to represent the stack. It is
     updated to perform `push` and `pop` operations;
 
-2.  Figure 33.4 also uses a list but, instead of updating the list,
+2.  Figure A.3 also uses a list but, instead of updating the list,
     it replaces the list with a new one for each operation;
 
-3.  Figure 33.5 represents a stack as a recursively nested tuple
+3.  Figure A.4 represents a stack as a recursively nested tuple
     $(v, f)$, where *v* is the element on top of the stack and *r* is a
     stack that is the remainder;
 
-4.  Figure 33.6 implements a stack as a linked list with nodes
+4.  Figure A.5 implements a stack as a linked list with nodes
     allocated using the `alloc` module.
 
 While the last option is the most versatile (it allows cyclic data
@@ -903,7 +903,7 @@ v = pop(?teststack)
 assert v == 1
 ```
 
-<figcaption>Figure 33.2 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
+<figcaption>Figure A.1 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
 Testing a stack implementation. </figcaption>
 
 
@@ -920,7 +920,7 @@ def pop(st):
         del (!st)[n]
 ```
 
-<figcaption>Figure 33.3 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
+<figcaption>Figure A.2 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
 Stack implemented using a dynamically updated list.
 </figcaption>
 
@@ -940,7 +940,7 @@ def pop(st):
         !st = list.subseq(!st, 0, n)
 ```
 
-<figcaption>Figure 33.4 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
+<figcaption>Figure A.3 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
 Stack implemented using static lists. </figcaption>
 
 
@@ -957,7 +957,7 @@ def pop(st):
         !st = rest
 ```
 
-<figcaption>Figure 33.5 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
+<figcaption>Figure A.4 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
 Stack implemented using a recursive tuple data structure.
 </figcaption>
 
@@ -978,7 +978,7 @@ def pop(st):
         free(node)
 ```
 
-<figcaption>Figure 33.6 (<a href=https://harmony.cs.cornell.edu/code/stack4.hny>code/stack4.hny</a>): 
+<figcaption>Figure A.5 (<a href=https://harmony.cs.cornell.edu/code/stack4.hny>code/stack4.hny</a>): 
 Stack implemented using a linked list. </figcaption>
 
 ## Comments

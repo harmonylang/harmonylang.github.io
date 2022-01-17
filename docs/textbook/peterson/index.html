@@ -1241,13 +1241,13 @@ Harmony may well suggest how to fix the predicate.</p>
 <figcaption>Figure 6.4 (<a href=https://harmony.cs.cornell.edu/code/csonebit.hny>code/csonebit.hny</a>): 
 Mutual exclusion using a flag per thread </figcaption>
 
-<p>Figure 6.4 presents another solution to the mutual exclusion
+<p><strong>6.1</strong> Figure 6.4 presents another solution to the mutual exclusion
 problem. It is similar to the one in Figure 5.4, but has a
 thread <em>back out and try again</em> if it finds that the other thread is
 either trying to enter the critical section or already has. Compare this
 algorithm with Peterson's. Why does Harmony complain about <em>active busy
 waiting</em>?</p>
-<p>Can you find one or more inductive invariants for the algorithm in
+<p><strong>6.2</strong> Can you find one or more inductive invariants for the algorithm in
 Figure 6.4 to prove it correct? Here's a pseudo-code version of
 the algorithm to help you. Each line is an atomic action:</p>
 <div class="highlight"><pre><span></span><code>    initially: flagX = flagY = False
@@ -1260,7 +1260,7 @@ the algorithm to help you. Each line is an atomic action:</p>
         X4: ...critical section...         Y4: ...critical section...
         X5: flagX = False                  Y5: flagY = False
 </code></pre></div>
-<p>A colleague of the author asked if the first two assignments in Peterson's algorithm
+<p><strong>6.3</strong> A colleague of the author asked if the first two assignments in Peterson's algorithm
 (setting <em>flags</em>[<em>self</em>] to <code>True</code> and <em>turn</em> to 1 -- <em>self</em> can be
 reversed. After all, they are different variables assigned independent
 values---in a sequential program one could surely swap the two
@@ -1268,9 +1268,9 @@ assignments. See if you can figure out for yourself if the two
 assignments can be reversed. Then run the program in Figure 6.1
 after reversing the two assignments and describe in English what
 happens.</p>
-<p>Bonus question: Can you generalize Peterson's algorithm to more than two
+<p><strong>6.4</strong> Bonus question: Can you generalize Peterson's algorithm to more than two
 threads?</p>
-<p>Bonus question: Implement <a href="https://en.wikipedia.org/wiki/Dekker%27s_algorithm">Dekker's
+<p><strong>6.5</strong> Bonus question: Implement <a href="https://en.wikipedia.org/wiki/Dekker%27s_algorithm">Dekker's
 Algorithm</a>,
 <a href="https://en.wikipedia.org/wiki/Eisenberg_%26_McGuire_algorithm">Eisenstein and McGuire's
 Algorithm</a>,

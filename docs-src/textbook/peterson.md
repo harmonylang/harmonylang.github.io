@@ -325,14 +325,14 @@ spawn thread(1)
 <figcaption>Figure 6.4 (<a href=https://harmony.cs.cornell.edu/code/csonebit.hny>code/csonebit.hny</a>): 
 Mutual exclusion using a flag per thread </figcaption>
 
-Figure 6.4 presents another solution to the mutual exclusion
+**6.1** Figure 6.4 presents another solution to the mutual exclusion
 problem. It is similar to the one in Figure 5.4, but has a
 thread *back out and try again* if it finds that the other thread is
 either trying to enter the critical section or already has. Compare this
 algorithm with Peterson's. Why does Harmony complain about *active busy
 waiting*?
 
-Can you find one or more inductive invariants for the algorithm in
+**6.2** Can you find one or more inductive invariants for the algorithm in
 Figure 6.4 to prove it correct? Here's a pseudo-code version of
 the algorithm to help you. Each line is an atomic action:
 
@@ -346,7 +346,7 @@ the algorithm to help you. Each line is an atomic action:
             X4: ...critical section...         Y4: ...critical section...
             X5: flagX = False                  Y5: flagY = False
 
-A colleague of the author asked if the first two assignments in Peterson's algorithm
+**6.3** A colleague of the author asked if the first two assignments in Peterson's algorithm
 (setting *flags*\[*self*\] to `True` and *turn* to 1 -- *self* can be
 reversed. After all, they are different variables assigned independent
 values---in a sequential program one could surely swap the two
@@ -355,10 +355,10 @@ assignments can be reversed. Then run the program in Figure 6.1
 after reversing the two assignments and describe in English what
 happens.
 
-Bonus question: Can you generalize Peterson's algorithm to more than two
+**6.4** Bonus question: Can you generalize Peterson's algorithm to more than two
 threads?
 
-Bonus question: Implement [Dekker's
+**6.5** Bonus question: Implement [Dekker's
 Algorithm](https://en.wikipedia.org/wiki/Dekker%27s_algorithm),
 [Eisenstein and McGuire's
 Algorithm](https://en.wikipedia.org/wiki/Eisenberg_%26_McGuire_algorithm),

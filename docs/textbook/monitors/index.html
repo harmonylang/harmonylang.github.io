@@ -1016,7 +1016,7 @@ Bounded Buffer implemented using a Hoare monitor </figcaption>
 
 <p>Figure 18.2 presents a bounded buffer implemented using Hoare
 monitors. It is written in much the same way you would if using the SBS
-technique (see Example 16.1). However, there is no <code>release_one</code> method.
+technique (see Exercise 16.3). However, there is no <code>release_one</code> method.
 Instead, one can conclude that <code>put</code> guarantees that the queue will be
 non-empty, and <code>signal</code> will check if there are any threads waiting for
 this event. If so, <code>signal</code> will pass control to one such thread and,
@@ -1112,7 +1112,7 @@ libraries.</p>
 <span class="k">def</span> <span class="nf">notifyAll</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
     <span class="err">!</span><span class="n">c</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 19.1 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
+<figcaption>Figure 18.3 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
 Implementation of condition variables in the `synch` module
 </figcaption>
 
@@ -1153,12 +1153,12 @@ Implementation of condition variables in the `synch` module
     <span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_cond</span><span class="p">)</span>
     <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 19.2 (<a href=https://harmony.cs.cornell.edu/code/RWcv.hny>code/RWcv.hny</a>): 
+<figcaption>Figure 18.4 (<a href=https://harmony.cs.cornell.edu/code/RWcv.hny>code/RWcv.hny</a>): 
 Reader/Writer Lock using Mesa-style condition variables
 </figcaption>
 
 <p>Harmony provides support for Mesa monitors through the Harmony <code>synch</code>
-module. Figure 19.1 shows the implementation of condition variables in
+module. Figure 18.3 shows the implementation of condition variables in
 the <code>synch</code> module. <code>Condition</code>() creates a new condition variable. It
 is represented by a dictionary containing a bag of contexts of threads
 waiting on the condition variable. (The <code>synchS</code> library instead uses a
@@ -1176,7 +1176,7 @@ allowing one of the threads with that context to resume and re-acquire
 the lock associated with the monitor. <code>notifyAll</code> empties out the entire
 bag, allowing all threads in the bag to resume.</p>
 <p>To illustrate how Mesa condition variables are used in practice, we
-demonstrate using an implementation of reader/writer locks. Figure 19.2
+demonstrate using an implementation of reader/writer locks. Figure 18.4
 shows the code. <em>mutex</em> is the shared lock that protects the critical
 region. There are two condition variables: readers wait on <em>r_cond</em> and
 writers wait on <em>w_cond</em>. The implementation also keeps track of the
@@ -1227,8 +1227,8 @@ terminates.</p>
 introduction to working with Mesa-style condition
 variables.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Implement a solution to the bounded buffer problem using Mesa condition variables.</p>
-<p>Implement a "try lock" module using Mesa condition variables (see also
+<p><strong>18.1</strong> Implement a solution to the bounded buffer problem using Mesa condition variables.</p>
+<p><strong>18.2</strong> Implement a "try lock" module using Mesa condition variables (see also
 ). It should have the following API:</p>
 <ol>
 <li>
@@ -1247,7 +1247,7 @@ variables.</p>
 <p><code>tryAcquire</code> should not wait. Instead it should return <code>True</code> if the
 lock was successfully acquired and <code>False</code> if the lock was not
 available.</p>
-<p>Write a new version of the GPU allocator in using Mesa condition
+<p><strong>18.3</strong> Write a new version of the GPU allocator in Exercise 16.7 using Mesa condition
 variables. In this version, a thread is allowed to allocate a set of
 GPUs and release a set of GPUs that it has allocated. Method
 <code>gpuAllocSet(n)</code> should block until <span class="arithmatex">\(n\)</span> GPUs are available, but it
@@ -1256,11 +1256,11 @@ GPU identifiers. Method <code>gpuReleaseSet(s)</code> takes a set of GPU
 identifiers as argument. A thread does not have to return all the GPUs
 it allocated at once. (You may want to try implementing this with Split
 Binary Semaphores. It is not as easy.)</p>
-<p>The specification in the previous question makes the solution unfair.
+<p><strong>18.4</strong> The specification in the previous question makes the solution unfair.
 Explain why this is so. Then change the specification and the solution
 so that it is fair.</p>
-<p>Bonus problem: Figure 18.5 shows an iterative implementation of the Qsort algorithm, and
-Figure 19.4 an accompanying test program. The array to be sorted
+<p><strong>18.5</strong> Bonus problem: Figure 18.5 shows an iterative implementation of the Qsort algorithm, and
+Figure 18.6 an accompanying test program. The array to be sorted
 is stored in shared variable <em>testqs</em>.<em>arr</em>. Another shared variable,
 <em>testqs</em>.<em>todo</em>, contains the ranges of the array that need to be sorted
 (initially the entire array). Re-using as much of this code as you can,
@@ -1297,7 +1297,7 @@ until <em>todo</em> is empty and sorts the ranges that it finds until then. The
             <span class="n">sortrange</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="nb">range</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">qs</span><span class="o">-&gt;</span><span class="n">arr</span>
 </code></pre></div>
-<figcaption>Figure 19.3 (<a href=https://harmony.cs.cornell.edu/code/qsort.hny>code/qsort.hny</a>): 
+<figcaption>Figure 18.5 (<a href=https://harmony.cs.cornell.edu/code/qsort.hny>code/qsort.hny</a>): 
 Iterative qsort() implementation </figcaption>
 
 <div class="highlight"><span class="filename">qsorttest.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">qsort</span><span class="o">,</span> <span class="nn">bag</span>
@@ -1308,8 +1308,8 @@ Iterative qsort() implementation </figcaption>
 <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">sa</span><span class="p">[</span><span class="n">i</span> <span class="err">–</span> <span class="mi">1</span><span class="p">]</span>  <span class="o">&lt;</span> <span class="o">=</span> <span class="n">sa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span><span class="err">–</span><span class="mi">1</span><span class="p">})</span> <span class="c1"># sorted?</span>
 <span class="k">assert</span> <span class="n">bag</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">bag</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">sa</span><span class="p">);</span> <span class="c1"># is it a permutation?</span>
 </code></pre></div>
-<figcaption>Figure 19.4 (<a href=https://harmony.cs.cornell.edu/code/qsorttest.hny>code/qsorttest.hny</a>): 
-Test program for Figure 19.3 </figcaption>
+<figcaption>Figure 18.6 (<a href=https://harmony.cs.cornell.edu/code/qsorttest.hny>code/qsorttest.hny</a>): 
+Test program for Figure 18.5 </figcaption>
                 
               
               

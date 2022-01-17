@@ -972,11 +972,11 @@ threads (or interrupt handlers) to complete their ongoing operations.</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_ITEMS</span><span class="p">})}:</span>
     <span class="n">spawn</span> <span class="n">consume</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 25.1 (<a href=https://harmony.cs.cornell.edu/code/hw.hny>code/hw.hny</a>): 
+<figcaption>Figure 23.1 (<a href=https://harmony.cs.cornell.edu/code/hw.hny>code/hw.hny</a>): 
 Non-blocking queue </figcaption>
 
 <p>As an example, we will revisit the producer/consumer problem. The code
-in Figure 25.1 is based on code developed by Herlihy and Wing.
+in Figure 23.1 is based on code developed by Herlihy and Wing.
 The code is a "proof of existence" for non-blocking synchronization; it
 is not necessarily practical. There are two variables. <em>items</em> is an
 unbounded array with each entry initialized to <code>None</code>. <em>back</em> is an
@@ -1018,13 +1018,13 @@ solution is not practical for the following reasons:</p>
 <p>However, in the literature you can find examples of practical
 non-blocking (aka <em>wait-free</em>) synchronization algorithms.</p>
 <h2 id="exercises">Exercises</h2>
-<p>A <em>seqlock</em> consists of a lock and a version number. An update operation
+<p><strong>23.1</strong> A <em>seqlock</em> consists of a lock and a version number. An update operation
 acquires the lock, increments the version number, makes the changes to
 the data structure, and then releases the lock. A read-only operation
 does not use the lock. Instead, it retrieves the version number, reads
 the data structure, and then checks if the version number has changed.
 If so, the read-only operation is retried. Use a seqlock to implement a
-bank much like Figure 21.3, with one seqlock for the entire bank (i.e., no locks on
+bank much like Exercise 19.2, with one seqlock for the entire bank (i.e., no locks on
 individual accounts). Method <code>transfer</code> is an update operation; method
 <code>total</code> is a read-only operation. Explain how a seqlock can lead to
 starvation.</p>

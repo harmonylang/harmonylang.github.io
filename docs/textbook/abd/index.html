@@ -895,7 +895,7 @@
 <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="n">atomically</span> <span class="n">register</span> <span class="o">=</span> <span class="n">v</span>
 </code></pre></div>
-<figcaption>Figure 30.1 (<a href=https://harmony.cs.cornell.edu/code/register.hny>code/register.hny</a>): 
+<figcaption>Figure 28.1 (<a href=https://harmony.cs.cornell.edu/code/register.hny>code/register.hny</a>): 
 An atomic read/write register </figcaption>
 
 <p>A <em>register</em> is an object that you can read or write. In a distributed
@@ -944,12 +944,12 @@ three desirable properties:</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">NWRITERS</span> <span class="p">}:</span>
     <span class="n">spawn</span> <span class="n">writer</span><span class="p">(</span><span class="err">–</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 30.2 (<a href=https://harmony.cs.cornell.edu/code/abdtest.hny>code/abdtest.hny</a>): 
+<figcaption>Figure 28.2 (<a href=https://harmony.cs.cornell.edu/code/abdtest.hny>code/abdtest.hny</a>): 
 Behavioral test for atomic read/write registers and the output for the
 case that `NREADERS` = `NWRITERS` = 1 </figcaption>
 
 <p>It is instructive to look at the test program and its output in
-Figure 30.2. This is for the case when there is only a single reader
+Figure 28.2. This is for the case when there is only a single reader
 thread (identified as "1") and a single writer thread (identified as
 "<span class="arithmatex">\(-1\)</span>"), but already there are many cases to consider. Each thread
 prints information just before and just after doing their single
@@ -1047,11 +1047,11 @@ it saw in the first phase along with its corresponding value.</p>
     <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
         <span class="k">pass</span>
 </code></pre></div>
-<figcaption>Figure 30.3 (<a href=https://harmony.cs.cornell.edu/code/abd.hny>code/abd.hny</a>): 
+<figcaption>Figure 28.3 (<a href=https://harmony.cs.cornell.edu/code/abd.hny>code/abd.hny</a>): 
 An implementation of a replicated atomic read/write register
 </figcaption>
 
-<p>Figure 30.3 contains the code for a server, as well as the code for read
+<p>Figure 28.3 contains the code for a server, as well as the code for read
 and write operations. For efficiency of model checking, the servers are
 anonymous---otherwise we would have to consider every permutation of
 states of those servers. Because the servers are anonymous, they may end
@@ -1068,12 +1068,12 @@ then waiting for a response from <code>N</code> -- <code>F</code> servers. The <
 function uses the <code>bag</code>.<em>combinations</em> method to find all combinations
 of subsets of responses of size <code>N</code> -- <code>F</code>. The second phase of each
 operation is similar.</p>
-<p>Figure 30.2 can be used to test this protocol, although you will
+<p>Figure 28.2 can be used to test this protocol, although you will
 notice that the model checker cannot deal with cases involving more than
 three client threads. Three is just enough to check the third property
 listed above (using one writer and two readers). Doing so illustrates
 the importance of the second phase of the <code>read</code> operation. You can
-comment out Lines 34, 36, and 37 in Figure 30.3 and to elide the second
+comment out Lines 34, 36, and 37 in Figure 28.3 and to elide the second
 phase and see what goes wrong.</p>
 <p>One may wonder how failures can occur in this model. They are not
 explicitly modeled, but Harmony tries every possible execution. This

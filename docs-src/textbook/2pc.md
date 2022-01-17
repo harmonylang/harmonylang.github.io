@@ -28,7 +28,7 @@ should have the following two properties:
 We will use as an example a distributed database that maintains bank
 accounts. For simplicity, we will model this as a collection of banks,
 each maintaining a single account. There are two kinds of transactions:
-*transfer* (similar to ) and *check*. In this example, a transfer is a
+*transfer* (similar to Exercise 19.2) and *check*. In this example, a transfer is a
 transaction that moves some funds between two accounts. A check is a
 transaction over all accounts and checks that the sum of the balances
 across the accounts remains the same.
@@ -81,7 +81,7 @@ self:
                 balance, status = status, ()
 ```
 
-<figcaption>Figure 28.1 (<a href=https://harmony.cs.cornell.edu/code/2pc.hny>code/2pc.hny</a>): 
+<figcaption>Figure 26.1 (<a href=https://harmony.cs.cornell.edu/code/2pc.hny>code/2pc.hny</a>): 
 Two Phase Commit protocol: code for banks </figcaption>
 
 The Two-Phase Commit protocol is a protocol that can be used
@@ -99,7 +99,7 @@ responded with `YES` (if any) must be notified to inform them of the
 coordinator's decision.
 
 Different transactions can have different coordinators. In our
-implementation, each bank and each coordinator is a thread. Figure 28.1
+implementation, each bank and each coordinator is a thread. Figure 26.1
 shows the code for a bank. The state of a bank consists of the following
 local variables:
 
@@ -175,11 +175,11 @@ b1 }):
             spawn check((.coord, i), list.sum(balances))
 ```
 
-<figcaption>Figure 28.2 (<a href=https://harmony.cs.cornell.edu/code/2pc.hny>code/2pc.hny</a>): 
+<figcaption>Figure 26.2 (<a href=https://harmony.cs.cornell.edu/code/2pc.hny>code/2pc.hny</a>): 
 Two Phase Commit protocol: code for transaction coordinators
 </figcaption>
 
-Figure 28.2 contains the code for transfers and inquiries, as well as
+Figure 26.2 contains the code for transfers and inquiries, as well as
 tests. The `receive`() method is used by coordinators in an
 **atomically** **when** **exists** statement to wait for a response from
 each bank involved in a transaction. Argument `self` is the identifier
@@ -219,21 +219,21 @@ become infeasible.
 
 ## Exercises 
 
-In Figure 21.3 the code ran into a deadlock. Can the code in this chapter run into a
+**26.1** In Exercise 19.2 the code ran into a deadlock. Can the code in this chapter run into a
 deadlock? Explain.
 
-Transactions can fail for two reasons: a transfer transaction can fail
+**26.2** Transactions can fail for two reasons: a transfer transaction can fail
 because of insufficient funds, but in general transaction can fail if
 there is a conflict with another transaction. The latter can be fixed by
 retrying the transaction until it commits. Implement this.
 
-One way to reduce the number of conflicts between transactions is to
+**26.3** One way to reduce the number of conflicts between transactions is to
 distinguish read and write operations. Two read operations (in our case,
 operations that withdraw \$0) do not conflict, so a bank could have
 multiple ongoing read operations for different transactions. Implement
 this.
 
-Two-phase commit can tolerate servers failing. If a server does not
+**26.4** Two-phase commit can tolerate servers failing. If a server does not
 respond within some reasonable amount of time, the coordinator can abort
 the transaction. Implement this.
 

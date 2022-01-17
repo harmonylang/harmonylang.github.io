@@ -1115,19 +1115,19 @@ writer calls <code>write_release</code>:</p>
 </li>
 </ol>
 <h2 id="exercises">Exercises</h2>
-<p>Several of the calls to <code>release_one</code>() in Figure 16.1 can be
+<p><strong>16.1</strong> Several of the calls to <code>release_one</code>() in Figure 16.1 can be
 replaced by simply releasing <em>mutex</em>. Which ones?</p>
-<p>Optimize your solutions to to use reader/writer locks.</p>
-<p>Implement a solution to the producer/consumer problem using split binary semaphores.</p>
-<p>Using busy waiting, implement a "bound lock" that allows up to <code>M</code> threads to
+<p><strong>16.2</strong> Optimize your solutions to Exercise 11.1 to use reader/writer locks.</p>
+<p><strong>16.3</strong> Implement a solution to the producer/consumer problem using split binary semaphores.</p>
+<p><strong>16.4</strong> Using busy waiting, implement a "bound lock" that allows up to <code>M</code> threads to
 acquire it at the same time.[^3] A bound lock with <code>M = 1</code> is an
 ordinary lock. You should define a constant <code>M</code> and two methods:
 <code>acquire_bound_lock</code>() and <code>release_bound_lock</code>(). (Bound locks are
 useful for situations where too many threads working at the same time
 might exhaust some resource such as a cache.)</p>
-<p>Write a test program for your bound lock that checks that no more than
+<p><strong>16.5</strong> Write a test program for your bound lock that checks that no more than
 <code>M</code> threads can acquire the bound lock.</p>
-<p>Write a test program for bound locks that checks that up to <code>M</code> threads
+<p><strong>16.6</strong> Write a test program for bound locks that checks that up to <code>M</code> threads
 can acquire the bound lock at the same time.</p>
 <div class="highlight"><span class="filename">gpu.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">availGPUs</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N</span><span class="p">}</span>
@@ -1142,17 +1142,17 @@ can acquire the bound lock at the same time.</p>
 <figcaption>Figure 16.2 (<a href=https://harmony.cs.cornell.edu/code/gpu.hny>code/gpu.hny</a>): 
 A thread-unsafe GPU allocator </figcaption>
 
-<p>Implement a thread-safe <em>GPU allocator</em> by modifying Figure 16.2. There are <code>N</code> GPUs identified by
+<p><strong>16.7</strong> Implement a thread-safe <em>GPU allocator</em> by modifying Figure 16.2. There are <code>N</code> GPUs identified by
 the numbers 1 through <code>N</code>. Method <code>gpuAlloc</code>() returns the identifier of
 an available GPU, blocking if there is currently no GPU available.
 Method <code>gpuRelease</code>(<em>gpu</em>) releases the given GPU. It never needs to
 block.</p>
-<p>With reader/writer locks, concurrency can be improved if a thread
+<p><strong>16.8</strong> With reader/writer locks, concurrency can be improved if a thread
 <em>downgrades</em> its write lock to a read lock when its done writing but not
 done reading. Add a <em>downgrade</em> method to the code in
 Figure 16.1. (Similarly, you may want to try to implement an
 <em>upgrade</em> of a read lock to a write lock. Why is this problematic?)</p>
-<p>Cornell’s campus features some one-lane bridges. On a one-lane bridge, cars can only go
+<p><strong>16.9</strong> Cornell’s campus features some one-lane bridges. On a one-lane bridge, cars can only go
 in one direction at a time. Consider northbound and southbound cars
 wanting to cross a one-lane bridge. The bridge allows arbitrary many
 cars, as long as they're going in the same direction. Implement a lock
@@ -1161,7 +1161,7 @@ create a new "one lane bridge" lock, <code>nb_enter</code>() that a car must inv
 before going northbound on the bridge and <code>nb_leave</code>() that the car must
 invoke after leaving the bridge. Similarly write <code>sb_enter</code>() and
 <code>sb_leave</code>() for southbound cars.</p>
-<p>Extend the solution to Example 16.1 by implementing the requirement
+<p><strong>16.10</strong> Extend the solution to Exercise 16.9 by implementing the requirement
 that at most <span class="arithmatex">\(n\)</span> cars are allowed on the bridge. Add <span class="arithmatex">\(n\)</span> as an argument
 to <code>OLBlock</code>.</p>
                 

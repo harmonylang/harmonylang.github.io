@@ -1151,7 +1151,7 @@ politely, ends up waiting indefinitely for its turn. Too bad, because it
 would have been a great solution if both threads try to enter the
 critical section ad infinitum.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Run Figure 5.2 using Harmony. As there is no protection of the critical
+<p><strong>5.1</strong> Run Figure 5.2 using Harmony. As there is no protection of the critical
 section, mutual exclusion is violated, the assertion should fail, and a
 trace should be reported. Now insert
 <div class="highlight"><pre><span></span><code>await False
@@ -1161,7 +1161,7 @@ again. Mutual exclusion is guaranteed but progress is violated. Harmony
 should print a trace to a state from which a terminating state cannot be
 reached. Describe in English the difference in the failure reports
 before and after inserting the code.</p>
-<p>See if you can come up with some different approaches that satisfy both
+<p><strong>5.2</strong> See if you can come up with some different approaches that satisfy both
 mutual exclusion and progress. Try them with Harmony and see if they
 work or not. If they don't, try to understand why. If you get <em>active
 busy waiting</em> or <em>data race</em> reports, you probably found a correct

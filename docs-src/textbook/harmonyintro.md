@@ -238,19 +238,19 @@ you want to test the code for `N` = 100, run:
 
 ## Exercises 
 
-Write a Harmony program that uses **choose** instead of **spawn** to
+**2.1** Write a Harmony program that uses **choose** instead of **spawn** to
 create the same output DFA as Figure 2.4(b).
 
-Add the line **print**(*x*, `triangle`(*x*)) to the end of the program
+**2.2** Add the line **print**(*x*, `triangle`(*x*)) to the end of the program
 and create an output png file. Before you look at it, what do you think
 it should look like?
 
-See what happens if, instead of initializing *result* to 0, you
+**2.3** See what happens if, instead of initializing *result* to 0, you
 initialize it to 1. (You do not need to understand the error report at
 this time. They will be explained in more detail in
 [Chapter 4](harmonymachine.md).)
 
-Write a Harmony program that computes squares by repeated adding. So,
+**2.4** Write a Harmony program that computes squares by repeated adding. So,
 the program should compute the square of *x* by adding *x* to an initial
 value of 0 *x* times.
 

@@ -55,11 +55,11 @@ for i in { 0 .. nprocs – 1 }:
     spawn processor(procs[i], procs[(i + 1) % nprocs])
 ```
 
-<figcaption>Figure 27.1 (
+<figcaption>Figure 25.1 (
 <a href=https://harmony.cs.cornell.edu/code/leader.hny>code/leader.hny</a>): 
 A leader election protocol on a ring </figcaption>
 
-Figure 27.1 describes the protocol and its test cases in Harmony. In
+Figure 25.1 describes the protocol and its test cases in Harmony. In
 Harmony, processors can be modeled by threads and there are a variety of
 ways in which one can model a network using shared variables. Here, we
 model the network as a set of messages. The `send` method atomically
@@ -118,8 +118,8 @@ not share memory, it is not necessary to check those interleavings.
 
 ## Exercises 
 
-Check if the code finds a unique leader if identifiers are not unique.
+**25.1** Check if the code finds a unique leader if identifiers are not unique.
 
-Messages are added atomically to the network. Is this necessary? What
+**25.2** Messages are added atomically to the network. Is this necessary? What
 happens if you remove the **atomically** keyword? Explain what happens.
 

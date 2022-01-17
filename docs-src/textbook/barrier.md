@@ -37,10 +37,10 @@ for i in {0..NTHREADS–1}:
     spawn thread(i)
 ```
 
-<figcaption>Figure 23.1 (<a href=https://harmony.cs.cornell.edu/code/barriertest.hny>code/barriertest.hny</a>): 
-Test program for Figure 23.2 </figcaption>
+<figcaption>Figure 21.1 (<a href=https://harmony.cs.cornell.edu/code/barriertest.hny>code/barriertest.hny</a>): 
+Test program for Figure 21.2 </figcaption>
 
-Figure 23.1 is a test program for barriers. It uses an integer
+Figure 21.1 is a test program for barriers. It uses an integer
 array *round* with one entry per thread. Each thread, in a loop, waits
 for all threads to get to the barrier before incrementing its round
 number. If the barrier works as advertised, two threads should never be
@@ -76,10 +76,10 @@ def bwait(b):
     release(?b->mutex)
 ```
 
-<figcaption>Figure 23.2 (<a href=https://harmony.cs.cornell.edu/code/barrier.hny>code/barrier.hny</a>): 
+<figcaption>Figure 21.2 (<a href=https://harmony.cs.cornell.edu/code/barrier.hny>code/barrier.hny</a>): 
 Barrier implementation </figcaption>
 
-Figure 23.2 shows how one might implement a reusable barrier.
+Figure 21.2 shows how one might implement a reusable barrier.
 Besides a counter .*left* that counts how many threads still have to
 reach the barrier, it uses a counter .*cycle* that is incremented after
 each use of the barrier---to deal with the complication above. The last
@@ -110,11 +110,11 @@ for i in {0..NTHREADS–1}:
     spawn thread(i)
 ```
 
-<figcaption>Figure 23.3 (<a href=https://harmony.cs.cornell.edu/code/barriertest2.hny>code/barriertest2.hny</a>): 
+<figcaption>Figure 21.3 (<a href=https://harmony.cs.cornell.edu/code/barriertest2.hny>code/barriertest2.hny</a>): 
 Demonstrating the double-barrier pattern </figcaption>
 
 A common design pattern with barriers in parallel programs, demonstrated
-in Figure 23.3, is to use the barrier twice in each round.
+in Figure 21.3, is to use the barrier twice in each round.
 Before a round starts, one of the threads---let's call it the
 coordinator---sets up the work that needs to be done while the other
 threads wait. Then all threads do the work and go on until they reach a
@@ -125,13 +125,13 @@ round.
 ## Exercises 
 
 
-Implement barrier synchronization for `N` threads with just three binary
+**21.1** Implement barrier synchronization for `N` threads with just three binary
 semaphores. Busy waiting is not allowed. Can you implement barrier
 synchronization with two binary semaphores? (As always, the Little Book
 of Semaphores is a good resource for solving synchronization
 problems with semaphores. Look for the *double turnstile* solution.)
 
-Imagine a pool hall with `N` tables. A table is *full* from the time
+**21.2** Imagine a pool hall with `N` tables. A table is *full* from the time
 there are two players until both players have left. When someone
 arrives, they can join a table that is not full, preferably one that has
 a player ready to start playing. Implement a simulation of such a pool

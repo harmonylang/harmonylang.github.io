@@ -222,7 +222,7 @@ reference string: 1 2 3 4 2 1 2 5 1 2.
 ## Exercises 
 
 
-(This is just for fun or exercise as it is not a concurrent or
+**7.1** (This is just for fun or exercise as it is not a concurrent or
 distributed problem.) Implement a Harmony program that finds solutions
 to the "cabbage, goat, and wolf" problem. In this problem, a person
 accompanied by these three items has to cross a stream in a small boat,

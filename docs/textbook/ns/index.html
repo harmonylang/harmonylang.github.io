@@ -1036,11 +1036,11 @@ those messages to one another.</p>
 <span class="n">spawn</span> <span class="n">alice</span><span class="p">();</span> <span class="n">spawn</span> <span class="n">bob</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">eternal</span> <span class="n">corey</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 33.1 (
+<figcaption>Figure 31.1 (
 <a href=https://harmony.cs.cornell.edu/code/needhamschroeder.hny>code/needhamschroeder.hny</a>): 
 Needham-Schroeder protocol and an attack </figcaption>
 
-<p>Figure 33.1 shows the protocol implemented in Harmony. A message
+<p>Figure 31.1 shows the protocol implemented in Harmony. A message
 <span class="arithmatex">\(\langle m \rangle_p\)</span> is encoded in Harmony as a dictionary
 <span class="arithmatex">\(\{ \mathtt{.dst}: p, \mathtt{.contents}: m \}\)</span>. The code for Alice and
 Bob simply follows the steps listed above.</p>
@@ -1052,7 +1052,7 @@ call Corey. We want to make sure that Corey cannot impersonate Alice or
 Bob. However, it is possible that Alice tries to set up an authenticated
 connection to Corey using the Needham-Schroeder protocol. That in itself
 should not be a problem if the protocol were correct.</p>
-<p>The code in Figure 33.1 has Alice either not do anything, or has Alice
+<p>The code in Figure 31.1 has Alice either not do anything, or has Alice
 try to set up a connection to either Bob or Corey. Bob only accepts
 connections with Alice. Corey, when receiving a message that it can
 decrypt, will try to find an attack by sending every possible message to
@@ -1061,7 +1061,7 @@ that it has seen and will try to construct messages with them to send to
 Alice and Bob. If Bob finishes the protocol, it checks to see if Alice
 actually tried to connect to Bob. If not, the assertion fails and an
 attack is found.</p>
-<p>Running the code in Figure 33.1 quickly finds a viable attack. The attack
+<p>Running the code in Figure 31.1 quickly finds a viable attack. The attack
 goes like this:</p>
 <ol>
 <li>
@@ -1099,8 +1099,8 @@ and Alice are both honest, Corey has a copy of <span class="arithmatex">\(A_N\)<
 able to impersonate Alice to Bob (but not vice versa because Alice did
 not try to authenticate Bob).</p>
 <h2 id="exercises">Exercises</h2>
-<p>Figure out how to fix the protocol.</p>
-<p>There were two versions of the Needham-Schroeder protocol: the Symmetric
+<p><strong>31.1</strong> Figure out how to fix the protocol.</p>
+<p><strong>31.2</strong> There were two versions of the Needham-Schroeder protocol: the Symmetric
 Key protocol and the Public Key protocol. In this chapter we only
 discussed the latter, but the former also had a problem. See if you can
 find it using Harmony.</p>

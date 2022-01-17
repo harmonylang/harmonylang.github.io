@@ -983,7 +983,7 @@ Alice sends application message <em>m</em>, then eventually Bob should deliver
                     <span class="n">result</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">payload</span>
                     <span class="n">blocked</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
-<figcaption>Figure 26.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
+<figcaption>Figure 24.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
 Alternating Bit Protocol </figcaption>
 
 <p>The <em>Alternating Bit Protocol</em> is suitable for our purposes. We assume
@@ -1026,12 +1026,12 @@ places either <em>m</em> (to model a successful send) or () (to model loss) in
 <span class="n">spawn</span> <span class="n">sender</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">receiver</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 26.2 (<a href=https://harmony.cs.cornell.edu/code/abptest.hny>code/abptest.hny</a>): 
+<figcaption>Figure 24.2 (<a href=https://harmony.cs.cornell.edu/code/abptest.hny>code/abptest.hny</a>): 
 Test code for alternating bit protocol </figcaption>
 
 <p>Method <code>app_send</code>(<em>m</em>) retransmits <em>m</em> until an acknowledgment is
 received. Method <code>app_recv</code>(<em>reliable</em>) returns the next successfully
-received message. Figure 26.2 shows how the methods may be used to
+received message. Figure 24.2 shows how the methods may be used to
 send and receive a stream of <code>NMSGS</code> messages reliably. It has to be
 bounded, because model checking requires a finite model.</p>
 <p>Only the last invocation of <code>app_recv</code>(<em>reliable</em>) is invoked with
@@ -1041,12 +1041,12 @@ reliably. It allows the receiver (Bob) to stop, as well as the sender
 something like this, either the sender may be left hanging waiting for
 the last acknowledgment, or the receiver waiting for the last message.</p>
 <h2 id="exercises">Exercises</h2>
-<p><a href="../actor/">Chapter 22</a> explored the <em>client/server model</em>. It is popular in
+<p><strong>24.1</strong> <a href="../actor/">Chapter 22</a> explored the <em>client/server model</em>. It is popular in
 distributed systems as well. Develop a protocol for a single client and
 server using the same network model as for the ABP protocol. Hint: the
 response to a request can contain the same sequence number as the
 request.</p>
-<p>Generalize the solution in the previous exercise to multiple clients.
+<p><strong>24.2</strong> Generalize the solution in the previous exercise to multiple clients.
 Each client is uniquely identified. You may either use separate channel
 pairs for each client, or solve the problem using a single pair of
 channels.</p>

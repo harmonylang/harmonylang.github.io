@@ -1125,7 +1125,7 @@ makes sense to model check larger programs in a modular fashion: model
 check one module implementation at a time, using specifications for the
 other modules.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Run Figure 8.3 using (i) <code>synch</code> and (ii) <code>synchS</code>. Report how
+<p><strong>10.1</strong> Run Figure 8.3 using (i) <code>synch</code> and (ii) <code>synchS</code>. Report how
 many states were explored by Harmony for each module.</p>
 <div class="highlight"><span class="filename">xy.hny</span><pre><span></span><code><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span>
 
@@ -1147,11 +1147,11 @@ many states were explored by Harmony for each module.</p>
 Incomplete code with desired invariant $x + y = 100$
 </figcaption>
 
-<p>Figure 10.4 shows a Harmony program with two variables <em>x</em> (initially 0) and <em>y</em> (initially 100) that can be
+<p><strong>10.2</strong> Figure 10.4 shows a Harmony program with two variables <em>x</em> (initially 0) and <em>y</em> (initially 100) that can be
 accessed through methods <code>setX</code> and <code>getXY</code>. An application invariant is
 that <code>getXY</code> should return a pair that sums to 100. Add the necessary
 synchronization code.</p>
-<p>Implement <code>tryAcquire</code>(<em>b</em>) as an additional interface for both the <code>synch</code> and
+<p><strong>10.3</strong> Implement <code>tryAcquire</code>(<em>b</em>) as an additional interface for both the <code>synch</code> and
 <code>synchS</code> modules. This interface is like <code>acquire</code>(<em>b</em>) but never
 blocks. It returns <code>True</code> if the lock was available (and now acquired)
 or <code>False</code> if the lock was already acquired. Hint: you do not have to
@@ -1189,7 +1189,7 @@ change the existing code.</p>
 <figcaption>Figure 10.5 (<a href=https://harmony.cs.cornell.edu/code/atm.hny>code/atm.hny</a>): 
 Withdrawing money from an ATM</figcaption>
 
-<p>People who use an ATM often first check their balance and then withdraw
+<p><strong>10.4</strong> People who use an ATM often first check their balance and then withdraw
 a certain amount of money not exceeding their balance. A negative
 balance is not allowed. Figure 10.5 shows two operations on bank
 accounts: one to check the balance and one to withdraw money. Note that

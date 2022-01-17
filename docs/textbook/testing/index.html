@@ -1137,15 +1137,15 @@ run of the test program is also a behavior of the first run. You can try
 the same using the <code>code/queueseq.hny</code> implementation and find that this
 implementation has behaviors that are not allowed by the specification.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Figure 8.1 shows a specification of a lock. Write a program that
+<p><strong>13.1</strong> Figure 8.1 shows a specification of a lock. Write a program that
 checks the behaviors of lock implementations such as Figure 10.1 and
 Figure 10.2. That is, it should not rely on assertions such as in
 Figure 5.2.</p>
-<p>Write a Harmony program that checks if Figure 12.3 satisfies the
+<p><strong>13.2</strong> Write a Harmony program that checks if Figure 12.3 satisfies the
 specification of Figure 12.1 <em>sequentially</em>.</p>
-<p>Write a Harmony program that checks if Figure 12.3 satisfies the
+<p><strong>13.3</strong> Write a Harmony program that checks if Figure 12.3 satisfies the
 specification of Figure 12.1 <em>concurrently</em>.</p>
-<p>Rewrite Figure 13.1 so it only imports <code>queue</code> and runs <code>NOPS</code>
+<p><strong>13.4</strong> Rewrite Figure 13.1 so it only imports <code>queue</code> and runs <code>NOPS</code>
 nondeterministically chosen operations against it (similar in style to
 Figure 13.2 but without threads). Then use behaviors to check that
 Figure 11.3 and Figure 13.3 are correct sequential

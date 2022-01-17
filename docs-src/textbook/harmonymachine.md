@@ -344,13 +344,13 @@ movie will go by very quickly.
 ## Exercises 
 
 
-Figure 4.4 shows an attempt at trying to fix the code of
+**4.1** Figure 4.4 shows an attempt at trying to fix the code of
 Figure 3.2. Run it through Harmony and see what happens. Based on the
 error output, describe in English what is wrong with the code by
 describing, in broad steps, how running the program can get into a bad
 state.
 
-What if we moved line 5 of Figure 4.4 to after the **if**
+**4.2** What if we moved line 5 of Figure 4.4 to after the **if**
 statement (between lines 7 and 8)? Do you think that would work? Run it
 through Harmony and describe either why it works or why it does not
 work.

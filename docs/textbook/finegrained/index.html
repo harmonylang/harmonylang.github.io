@@ -1046,16 +1046,16 @@ and release the lock on the last one, and so on, similar to climbing a
 rope hand-over-hand. Using <code>_find</code>, the <code>insert</code>, <code>remove</code>, and
 <code>contains</code> methods are fairly straightforward to implement.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Add methods to the data structure in Figure 12.3 that report the
+<p><strong>12.1</strong> Add methods to the data structure in Figure 12.3 that report the
 size of the list, the minimum value in the list, the maximum value in
 the list, and the sum of the values in the list. (All these should
 ignore the two end nodes.)</p>
-<p>Create a thread-safe sorted binary tree. Implement a module <code>bintree</code>
+<p><strong>12.2</strong> Create a thread-safe sorted binary tree. Implement a module <code>bintree</code>
 with methods <span class="arithmatex">\(\mathtt{BinTree}()\)</span> to create a new binary tree,
 <span class="arithmatex">\(\mathtt{insert}(t, v)\)</span> that inserts <em>v</em> into tree <em>t</em>, and
 <span class="arithmatex">\(\mathtt{contains}(t, v)\)</span> that checks if <em>v</em> is in tree <em>t</em>. Use a
 single lock per binary tree.</p>
-<p>Create a binary tree that uses, instead of a single lock per tree, a
+<p><strong>12.3</strong> Create a binary tree that uses, instead of a single lock per tree, a
 lock for each node in the tree.</p>
                 
               

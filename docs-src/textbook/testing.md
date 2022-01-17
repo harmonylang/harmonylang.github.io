@@ -232,18 +232,18 @@ implementation has behaviors that are not allowed by the specification.
 ## Exercises 
 
 
-Figure 8.1 shows a specification of a lock. Write a program that
+**13.1** Figure 8.1 shows a specification of a lock. Write a program that
 checks the behaviors of lock implementations such as Figure 10.1 and
 Figure 10.2. That is, it should not rely on assertions such as in
 Figure 5.2.
 
-Write a Harmony program that checks if Figure 12.3 satisfies the
+**13.2** Write a Harmony program that checks if Figure 12.3 satisfies the
 specification of Figure 12.1 *sequentially*.
 
-Write a Harmony program that checks if Figure 12.3 satisfies the
+**13.3** Write a Harmony program that checks if Figure 12.3 satisfies the
 specification of Figure 12.1 *concurrently*.
 
-Rewrite Figure 13.1 so it only imports `queue` and runs `NOPS`
+**13.4** Rewrite Figure 13.1 so it only imports `queue` and runs `NOPS`
 nondeterministically chosen operations against it (similar in style to
 Figure 13.2 but without threads). Then use behaviors to check that
 Figure 11.3 and Figure 13.3 are correct sequential

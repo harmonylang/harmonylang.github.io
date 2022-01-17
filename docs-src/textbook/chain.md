@@ -45,10 +45,10 @@ for i in {1..NOPS}:
     spawn client(i)
 ```
 
-<figcaption>Figure 29.1 (<a href=https://harmony.cs.cornell.edu/code/rsmspec.hny>code/rsmspec.hny</a>): 
+<figcaption>Figure 27.1 (<a href=https://harmony.cs.cornell.edu/code/rsmspec.hny>code/rsmspec.hny</a>): 
 Replicated State Machine </figcaption>
 
-Figure 29.1 presents a Harmony specification of state machine
+Figure 27.1 presents a Harmony specification of state machine
 replication. We model the state machine as a *history*: a sequence of
 operations. Each replica has a local copy of the history. The network is
 modeled as an ordered queue of messages. `NOPS` clients each place an
@@ -140,10 +140,10 @@ for i in {1..NOPS}:
     spawn client(i)
 ```
 
-<figcaption>Figure 29.2 (<a href=https://harmony.cs.cornell.edu/code/chain.hny>code/chain.hny</a>): 
+<figcaption>Figure 27.2 (<a href=https://harmony.cs.cornell.edu/code/chain.hny>code/chain.hny</a>): 
 Chain Replication </figcaption>
 
-Figure 29.2 shows an implemenation of chain replication. Each replica
+Figure 27.2 shows an implemenation of chain replication. Each replica
 maintains its history and a set of its predecessors. What it does within
 the loop depends on whether it is the head (has no alive predecessors)
 or not. Because failure detection is accurate, at most one replica can
@@ -175,8 +175,8 @@ history if it is an extension of its own history. When the replica
 successfully received all `NOPS` updates without crashing, it prints its
 history.
 
-The question is whether Figure 29.2 has the same behavior as the
-replicated state machine specification of Figure 29.1. This can be
+The question is whether Figure 27.2 has the same behavior as the
+replicated state machine specification of Figure 27.1. This can be
 checked using the following two Harmony commands:
 
     $ harmony -o rsm.hfa code/rsmspec.hny
@@ -186,7 +186,7 @@ The first command outputs the behavior DFA of `code/rsmspec.hny` in the
 file `rsm.hfa`. The second command checks that the behavior of
 `code/chain.hny` satisfies the DFA in `rsm.hfa`. The DFA can also be
 visualized using the command `harmony -o rsm.png code/rsmspec.hny`
-(Figure 29.3). It shows all permutations of the operations are
+(Figure 27.3). It shows all permutations of the operations are
 possible outputs. Moreover, each is output at least once, and at most
 `NREPLICAS` times.
 

@@ -164,7 +164,7 @@ than with a conventional programming language.
 ## Exercises 
 
 
-Harmony programs can usually be easily translated into Python by hand.
+**3.1** Harmony programs can usually be easily translated into Python by hand.
 For example, Figure 3.3 is a Python version of Figure 3.2.
 
 1.  Run Figure 3.3 using Python. Does the assertion fail?
@@ -185,14 +185,14 @@ For example, Figure 3.3 is a Python version of Figure 3.2.
 
     How many times does the assertion fail (if any)?
 
-Figure 3.4 is a version of Figure 3.3 that has each incrementer
+**3.2** Figure 3.4 is a version of Figure 3.3 that has each incrementer
 thread increment *count* `N` times. Run Figure 3.4 10 times (using
 Python). Report how many times the assertion fails and what the value of
 *count* was for each of the failed runs. Also experiment with lower
 values of `N`. How large does `N` need to be for assertions to fail?
 (Try powers of 10 for `N`.)
 
-Can you think of a fix to Figure 3.2? Try one or two different fixes
+**3.3** Can you think of a fix to Figure 3.2? Try one or two different fixes
 and run them through Harmony. Do not worry about having to come up with
 a correct fix at this time---the important thing is to develop an
 understanding of concurrency. (Also, you do not get to use the

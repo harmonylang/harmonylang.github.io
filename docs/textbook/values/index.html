@@ -2561,25 +2561,25 @@ matched with (<em>a</em>,).</p>
 <strong>exists</strong> statements.</p>
 <h2 id="dynamic-allocation">Dynamic Allocation</h2>
 <p>Harmony supports various options for dynamic allocation. By way of
-example, consider a stack. Figure 33.2 presents a test program for
+example, consider a stack. Figure A.1 presents a test program for
 a stack. We present four different stack implementations to illustrate
 options for dynamic allocation:</p>
 <ol>
 <li>
-<p>Figure 33.3 uses a single list to represent the stack. It is
+<p>Figure A.2 uses a single list to represent the stack. It is
     updated to perform <code>push</code> and <code>pop</code> operations;</p>
 </li>
 <li>
-<p>Figure 33.4 also uses a list but, instead of updating the list,
+<p>Figure A.3 also uses a list but, instead of updating the list,
     it replaces the list with a new one for each operation;</p>
 </li>
 <li>
-<p>Figure 33.5 represents a stack as a recursively nested tuple
+<p>Figure A.4 represents a stack as a recursively nested tuple
     <span class="arithmatex">\((v, f)\)</span>, where <em>v</em> is the element on top of the stack and <em>r</em> is a
     stack that is the remainder;</p>
 </li>
 <li>
-<p>Figure 33.6 implements a stack as a linked list with nodes
+<p>Figure A.5 implements a stack as a linked list with nodes
     allocated using the <code>alloc</code> module.</p>
 </li>
 </ol>
@@ -2599,7 +2599,7 @@ be explicitly released using <code>free</code>.</p>
 <span class="n">v</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">1</span>
 </code></pre></div>
-<figcaption>Figure 33.2 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
+<figcaption>Figure A.1 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
 Testing a stack implementation. </figcaption>
 
 <div class="highlight"><span class="filename">stack1.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
@@ -2613,7 +2613,7 @@ Testing a stack implementation. </figcaption>
         <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
         <span class="k">del</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div>
-<figcaption>Figure 33.3 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
+<figcaption>Figure A.2 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
 Stack implemented using a dynamically updated list.
 </figcaption>
 
@@ -2630,7 +2630,7 @@ Stack implemented using a dynamically updated list.
         <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
         <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">subseq</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 33.4 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
+<figcaption>Figure A.3 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
 Stack implemented using static lists. </figcaption>
 
 <div class="highlight"><span class="filename">stack3.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
@@ -2644,7 +2644,7 @@ Stack implemented using static lists. </figcaption>
         <span class="n">result</span> <span class="o">=</span> <span class="n">top</span>
         <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">rest</span>
 </code></pre></div>
-<figcaption>Figure 33.5 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
+<figcaption>Figure A.4 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
 Stack implemented using a recursive tuple data structure.
 </figcaption>
 
@@ -2662,7 +2662,7 @@ Stack implemented using a recursive tuple data structure.
         <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rest</span>
         <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 33.6 (<a href=https://harmony.cs.cornell.edu/code/stack4.hny>code/stack4.hny</a>): 
+<figcaption>Figure A.5 (<a href=https://harmony.cs.cornell.edu/code/stack4.hny>code/stack4.hny</a>): 
 Stack implemented using a linked list. </figcaption>
 
 <h2 id="comments">Comments</h2>

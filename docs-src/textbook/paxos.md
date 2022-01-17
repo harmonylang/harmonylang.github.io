@@ -75,10 +75,10 @@ network
             send(b, p, "B", last_accepted)
 ```
 
-<figcaption>Figure 32.1 (<a href=https://harmony.cs.cornell.edu/code/paxos.hny>code/paxos.hny</a>): 
+<figcaption>Figure 30.1 (<a href=https://harmony.cs.cornell.edu/code/paxos.hny>code/paxos.hny</a>): 
 A version of the Paxos protocol</figcaption>
 
-Figure 32.1 contain the code for this Paxos
+Figure 30.1 contain the code for this Paxos
 protocol. Paxos is perhaps best understood starting with the second
 phase. At the end of the first phase, the leader broadcasts a `2.A`
 message (Phase 2, Type A) to the acceptors containing the ballot number
@@ -113,7 +113,7 @@ proposal with the one corresponding to the highest ballot number. The
 leader then moves on to the second round.
 
 To run and check the Paxos code, do the following (leveraging the
-consensus specification of Figure 31.1):
+consensus specification of Figure 29.1):
 
     $ harmony -o consensus.hfa -cN=2 code/consensus.hny
     $ harmony -B consensus.hfa code/paxos.hny
@@ -127,14 +127,15 @@ Paxos may never decide unless you make some liveness assumptions.
 ## Exercises 
 
 
-Perhaps the trickiest detail of the algorithm is that, in Line 29 of
-Figure 32.1, the leader selects the proposal with the highest ballot
+**30.1** Perhaps the trickiest detail of the algorithm is that, in Line 29 of
+Figure 30.1, the leader selects the proposal with the highest ballot
 number it receives. Replace the `max` operator in that statement with
 **choose** and see if it finds a problem. First try with
 $\texttt{NBALLOTS} = 2$ and then with $\texttt{NBALLOTS} = 3$. (Warning,
 the latter may take a long time.) If it finds a problem, analyze the
 output and see what went wrong.
- discusses a buggy version of Paxos. In this version, the
+
+**30.2** [Missing Link: paxosbroken.hny](https://harmony.cs.cornell.edu/code/paxosbroken.hny) discusses a buggy version of Paxos. In this version, the
 responses to the second phase are matched not by ballot number but by
 the value of the proposal. Implement this version and, using Harmony,
 find the problem this causes.

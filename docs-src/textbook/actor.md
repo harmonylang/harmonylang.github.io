@@ -4,7 +4,7 @@
 Some programming languages favor a different way of implementing
 synchronization using so-called *actors*. Actors are
 threads that have only private memory and communicate through *message
-passing*. See Figure 22.1 for an illustration. Given that there is
+passing*. See Figure 20.1 for an illustration. Given that there is
 no shared memory in the actor model (other than the message queues,
 which have built-in synchronization), there is no need for critical
 sections. Instead, some sequential thread owns a particular piece of
@@ -14,7 +14,7 @@ one message at a time, serializing all access to the data it owns. As
 message queues are FIFO (First-In-First-Out), starvation is prevented.
 
 ![](figures/actor-crop.png)
-<figcaption>Figure 22.1: Depiction of three actors.
+<figcaption>Figure 20.1: Depiction of three actors.
 The producer does not receive messages. </figcaption>
 
 The actor synchronization model is popular in a variety of programming
@@ -70,10 +70,10 @@ charlie_queue = synch.Queue()
 spawn client(?charlie_queue)
 ```
 
-<figcaption>Figure 22.2 (<a href=https://harmony.cs.cornell.edu/code/counter.hny>code/counter.hny</a>): 
+<figcaption>Figure 20.2 (<a href=https://harmony.cs.cornell.edu/code/counter.hny>code/counter.hny</a>): 
 An illustration of the actor approach </figcaption>
 
-Figure 22.2 illustrates the actor approach. There are three client
+Figure 20.2 illustrates the actor approach. There are three client
 threads that each want to be assigned a unique identifier from the set
 $\{ 0, 1, 2 \}$. Normally one would use a shared 0-initialized counter
 and a lock. Each client would acquire the lock, get the value of the
@@ -97,7 +97,7 @@ server, and its clients are web browsers.
 ## Exercises 
 
 
-Actors and message queues are good for building pipelines. Develop a
+**20.1** Actors and message queues are good for building pipelines. Develop a
 pipeline that computes Mersenne primes (primes that are one less than a
 power of two). Write four actors:
 

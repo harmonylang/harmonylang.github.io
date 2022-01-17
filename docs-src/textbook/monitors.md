@@ -92,7 +92,7 @@ Bounded Buffer implemented using a Hoare monitor </figcaption>
 
 Figure 18.2 presents a bounded buffer implemented using Hoare
 monitors. It is written in much the same way you would if using the SBS
-technique (see Example 16.1). However, there is no `release_one` method.
+technique (see Exercise 16.3). However, there is no `release_one` method.
 Instead, one can conclude that `put` guarantees that the queue will be
 non-empty, and `signal` will check if there are any threads waiting for
 this event. If so, `signal` will pass control to one such thread and,
@@ -198,7 +198,7 @@ def notifyAll(c):
     !c = bag.empty()
 ```
 
-<figcaption>Figure 19.1 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
+<figcaption>Figure 18.3 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
 Implementation of condition variables in the `synch` module
 </figcaption>
 
@@ -242,12 +242,12 @@ def write_release(rw):
     release(?rw->mutex)
 ```
 
-<figcaption>Figure 19.2 (<a href=https://harmony.cs.cornell.edu/code/RWcv.hny>code/RWcv.hny</a>): 
+<figcaption>Figure 18.4 (<a href=https://harmony.cs.cornell.edu/code/RWcv.hny>code/RWcv.hny</a>): 
 Reader/Writer Lock using Mesa-style condition variables
 </figcaption>
 
 Harmony provides support for Mesa monitors through the Harmony `synch`
-module. Figure 19.1 shows the implementation of condition variables in
+module. Figure 18.3 shows the implementation of condition variables in
 the `synch` module. `Condition`() creates a new condition variable. It
 is represented by a dictionary containing a bag of contexts of threads
 waiting on the condition variable. (The `synchS` library instead uses a
@@ -268,7 +268,7 @@ the lock associated with the monitor. `notifyAll` empties out the entire
 bag, allowing all threads in the bag to resume.
 
 To illustrate how Mesa condition variables are used in practice, we
-demonstrate using an implementation of reader/writer locks. Figure 19.2
+demonstrate using an implementation of reader/writer locks. Figure 18.4
 shows the code. *mutex* is the shared lock that protects the critical
 region. There are two condition variables: readers wait on *r_cond* and
 writers wait on *w_cond*. The implementation also keeps track of the
@@ -326,9 +326,9 @@ variables.
 
 ## Exercises 
 
-Implement a solution to the bounded buffer problem using Mesa condition variables.
+**18.1** Implement a solution to the bounded buffer problem using Mesa condition variables.
 
-Implement a "try lock" module using Mesa condition variables (see also
+**18.2** Implement a "try lock" module using Mesa condition variables (see also
 ). It should have the following API:
 
 1.  *tl* = `TryLock`() \# *create a try lock*
@@ -343,7 +343,7 @@ Implement a "try lock" module using Mesa condition variables (see also
 lock was successfully acquired and `False` if the lock was not
 available.
 
-Write a new version of the GPU allocator in using Mesa condition
+**18.3** Write a new version of the GPU allocator in Exercise 16.7 using Mesa condition
 variables. In this version, a thread is allowed to allocate a set of
 GPUs and release a set of GPUs that it has allocated. Method
 `gpuAllocSet(n)` should block until $n$ GPUs are available, but it
@@ -353,12 +353,12 @@ identifiers as argument. A thread does not have to return all the GPUs
 it allocated at once. (You may want to try implementing this with Split
 Binary Semaphores. It is not as easy.)
 
-The specification in the previous question makes the solution unfair.
+**18.4** The specification in the previous question makes the solution unfair.
 Explain why this is so. Then change the specification and the solution
 so that it is fair.
 
-Bonus problem: Figure 18.5 shows an iterative implementation of the Qsort algorithm, and
-Figure 19.4 an accompanying test program. The array to be sorted
+**18.5** Bonus problem: Figure 18.5 shows an iterative implementation of the Qsort algorithm, and
+Figure 18.6 an accompanying test program. The array to be sorted
 is stored in shared variable *testqs*.*arr*. Another shared variable,
 *testqs*.*todo*, contains the ranges of the array that need to be sorted
 (initially the entire array). Re-using as much of this code as you can,
@@ -398,7 +398,7 @@ def sort(qs):
     result = qs->arr
 ```
 
-<figcaption>Figure 19.3 (<a href=https://harmony.cs.cornell.edu/code/qsort.hny>code/qsort.hny</a>): 
+<figcaption>Figure 18.5 (<a href=https://harmony.cs.cornell.edu/code/qsort.hny>code/qsort.hny</a>): 
 Iterative qsort() implementation </figcaption>
 
 
@@ -412,5 +412,5 @@ assert all(sa[i – 1]  < = sa[i] for i in {1..len(sa)–1}) # sorted?
 assert bag.fromList(a) == bag.fromList(sa); # is it a permutation?
 ```
 
-<figcaption>Figure 19.4 (<a href=https://harmony.cs.cornell.edu/code/qsorttest.hny>code/qsorttest.hny</a>): 
-Test program for Figure 19.3 </figcaption>
+<figcaption>Figure 18.6 (<a href=https://harmony.cs.cornell.edu/code/qsorttest.hny>code/qsorttest.hny</a>): 
+Test program for Figure 18.5 </figcaption>

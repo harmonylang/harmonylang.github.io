@@ -123,5 +123,5 @@ semaphores themselves.
 ## Exercises 
 
 
-Write a fair solution to the one-lane bridge problem of Example 16.9.
+**17.1** Write a fair solution to the one-lane bridge problem of Exercise 16.9.
 

@@ -953,7 +953,7 @@ exception is an error.</p>
     <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 24.1 (<a href=https://harmony.cs.cornell.edu/code/trap.hny>code/trap.hny</a>): 
+<figcaption>Figure 22.1 (<a href=https://harmony.cs.cornell.edu/code/trap.hny>code/trap.hny</a>): 
 How to use **trap** </figcaption>
 
 <p>Harmony allows modeling interrupts using the <code>trap</code> statement:
@@ -962,7 +962,7 @@ How to use **trap** </figcaption>
 invokes <code>handler</code> <em>argument</em> at some later, unspecified time. Thus you
 can think of <strong>trap</strong> as setting a timer. Only one of these asynchronous
 events can be outstanding at a time; a new call to <strong>trap</strong> overwrites
-any outstanding one. Figure 24.1 gives an example of how <strong>trap</strong> might
+any outstanding one. Figure 22.1 gives an example of how <strong>trap</strong> might
 be used. Here, the <code>main</code>() thread loops until the interrupt has
 occurred and the <em>done</em> flag has been set.</p>
 <div class="highlight"><span class="filename">trap2.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">done</span>
@@ -980,10 +980,10 @@ occurred and the <em>done</em> flag has been set.</p>
     <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
 <span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 24.2 (<a href=https://harmony.cs.cornell.edu/code/trap2.hny>code/trap2.hny</a>): 
+<figcaption>Figure 22.2 (<a href=https://harmony.cs.cornell.edu/code/trap2.hny>code/trap2.hny</a>): 
 A race condition with interrupts </figcaption>
 
-<p>But now consider Figure 24.2. The difference with Figure 24.1 is that
+<p>But now consider Figure 22.2. The difference with Figure 22.1 is that
 both the <code>main</code>() and <code>handler</code>() methods increment <em>count</em>. This is not
 unlike the example we gave in Figure 3.2, except that only a single
 thread is involved now. And, indeed, it suffers from a similar race
@@ -991,7 +991,7 @@ condition; run it through Harmony to see for yourself. If the interrupt
 occurs after <code>main</code>() reads <em>count</em> (and thus still has value 0) but
 before <code>main</code>() writes the updated value 1, then the interrupt handler
 will also read value 0 and write value 1. We say that the code in
-Figure 24.2 is not <em>interrupt-safe</em> (as opposed to not being
+Figure 22.2 is not <em>interrupt-safe</em> (as opposed to not being
 <em>thread-safe</em>).</p>
 <div class="highlight"><span class="filename">trap3.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
 <span class="n">sequential</span> <span class="n">done</span>
@@ -1014,11 +1014,11 @@ Figure 24.2 is not <em>interrupt-safe</em> (as opposed to not being
     <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
 <span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 24.3 (<a href=https://harmony.cs.cornell.edu/code/trap3.hny>code/trap3.hny</a>): 
+<figcaption>Figure 22.3 (<a href=https://harmony.cs.cornell.edu/code/trap3.hny>code/trap3.hny</a>): 
 Locks do not work with interrupts </figcaption>
 
 <p>You would be excused if you wanted to solve the problem using locks,
-similar to Figure 8.3. Figure 24.3 shows how one might go about
+similar to Figure 8.3. Figure 22.3 shows how one might go about
 this. But locks are intended to solve synchronization issues between
 multiple threads. But an interrupt handler is not run by another
 thread---it is run by the same thread that experienced the interrupt. If
@@ -1045,13 +1045,13 @@ that already holds the lock.</p>
     <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
 <span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 24.4 (<a href=https://harmony.cs.cornell.edu/code/trap4.hny>code/trap4.hny</a>): 
+<figcaption>Figure 22.4 (<a href=https://harmony.cs.cornell.edu/code/trap4.hny>code/trap4.hny</a>): 
 Disabling and enabling interrupts </figcaption>
 
 <p>Instead, the way one fixes interrupt-safety issues is through disabling
 interrupts temporarily. In Harmony, this can be done by setting the
 <em>interrupt level</em> of a thread to <code>True</code> using the <strong>setintlevel</strong>
-interface. Figure 24.4 illustrates how this is done. Note that it is
+interface. Figure 22.4 illustrates how this is done. Note that it is
 not necessary to change the interrupt level during servicing an
 interrupt, because it is automatically set to <code>True</code> upon entry to the
 interrupt handler and restored to <code>False</code> upon exit. It is important
@@ -1077,13 +1077,13 @@ What would happen if <code>main</code>() left interrupts disabled?</p>
     <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
 <span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
-<figcaption>Figure 24.5 (<a href=https://harmony.cs.cornell.edu/code/trap5.hny>code/trap5.hny</a>): 
+<figcaption>Figure 22.5 (<a href=https://harmony.cs.cornell.edu/code/trap5.hny>code/trap5.hny</a>): 
 Example of an interrupt-safe method </figcaption>
 
 <p><strong>setintlevel</strong>(<em>il</em>) sets the interrupt level to <em>il</em> and returns the
 prior interrupt level. Returning the old level is handy when writing
 interrupt-safe methods that can be called from ordinary code as well as
-from an interrupt handler. Figure 24.5 shows how one might write a
+from an interrupt handler. Figure 22.5 shows how one might write a
 interrupt-safe method to increment the counter.</p>
 <div class="highlight"><span class="filename">trap6.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
 <span class="n">sequential</span> <span class="n">done</span>
@@ -1110,13 +1110,13 @@ interrupt-safe method to increment the counter.</p>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 24.6 (<a href=https://harmony.cs.cornell.edu/code/trap6.hny>code/trap6.hny</a>): 
+<figcaption>Figure 22.6 (<a href=https://harmony.cs.cornell.edu/code/trap6.hny>code/trap6.hny</a>): 
 Code that is both interrupt-safe and thread-safe </figcaption>
 
 <p>It will often be necessary to write code that is both interrupt-safe
 <em>and</em> thread-safe. As you might expect, this involves both managing
 locks and interrupt levels. To increment <em>count</em>, the interrupt level
-must be <code>True</code> and <em>countlock</em> must be held. Figure 24.6 gives an
+must be <code>True</code> and <em>countlock</em> must be held. Figure 22.6 gives an
 example of how this might be done. One important rule to remember is
 that a thread should disable interrupts <em>before</em> attempting to acquire a
 lock.</p>
@@ -1133,7 +1133,7 @@ interrupts the issue is fast response to asynchronous events. Because
 interrupts may be disabled only briefly, interrupt handlers must run
 quickly and cannot wait for other events.</p>
 <h2 id="exercises">Exercises</h2>
-<p>The <code>put</code> method you implemented in Example 19.2 cannot be used in
+<p><strong>22.1</strong> The <code>put</code> method you implemented in Example 18.1 cannot be used in
 interrupt handlers for two reasons: (1) it is not interrupt-safe, and
 (2) it may block for a long time if the buffer is full. Yet, it would be
 useful if, say, a keyboard interrupt handler could place an event on a

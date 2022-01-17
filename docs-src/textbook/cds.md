@@ -206,15 +206,15 @@ race with undefined semantics in most environments.
 ## Exercises 
 
 
-Add a method `contains`(*q*, *v*) to Figure 11.1(b) that checks to see if *v* is
+**11.1** Add a method `contains`(*q*, *v*) to Figure 11.1(b) that checks to see if *v* is
 in queue *q*.
 
-Add a method `length`(*q*) to Figure 11.3 that returns the length
+**11.2** Add a method `length`(*q*) to Figure 11.3 that returns the length
 of the given queue. The complexity of the method should be $O(1)$, which
 is to say that you should maintain the length of the queue as a field
 member and update it in `put` and `get`.
 
-Write a method `check`(*q*) that checks the integrity of the queue in
+**11.3** Write a method `check`(*q*) that checks the integrity of the queue in
 Figure 11.3. In particular, it should check the following
 integrity properties:
 
@@ -224,10 +224,10 @@ integrity properties:
     Moreover, *q*->`tail`->*next* should be
     `None`;
 
--   The length field that you added in should equal the length of the
+-   The length field that you added in Exercise 11.3 should equal the length of the
     list.
 
-Method `check`(*q*) should not obtain a lock; instead add the following
+**11.4** Method `check`(*q*) should not obtain a lock; instead add the following
 line just before releasing the lock in `put` and `get`:
 ```
 assert check()
@@ -235,7 +235,7 @@ assert check()
 $\mathtt{remove}(q, v)$ to Figure 11.3 that removes all
 occurrences of *v*, if any, from queue *q*.
 
-The test program in Figure 11.2 is not a thorough test program.
+**11.5** The test program in Figure 11.2 is not a thorough test program.
 Design and implement a test program for Figure 11.2. Make sure you
 *test* the test program by trying it out against some buggy queue
 implementations. (You will learn more about testing concurrent programs

@@ -931,37 +931,6 @@
                 
                 
                 <h1 id="spinlock">Spinlock</h1>
-<div class="highlight"><span class="filename">spinlock.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">shared</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">private</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">True</span><span class="p">,</span> <span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
-<span class="n">invariant</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">shared</span><span class="p">,]</span> <span class="o">+</span> <span class="n">private</span> <span class="n">where</span> <span class="ow">not</span> <span class="n">x</span><span class="p">)</span>  <span class="o">&lt;</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="k">def</span> <span class="nf">test_and_set</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="err">!</span><span class="n">s</span>
-        <span class="err">!</span><span class="n">s</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="err">!</span><span class="n">s</span>
-    <span class="n">atomically</span> <span class="err">!</span><span class="n">s</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="k">while</span> <span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">]:</span>
-            <span class="n">test_and_set</span><span class="p">(</span><span class="err">?</span><span class="n">shared</span><span class="p">,</span> <span class="err">?</span><span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">])</span>
-        <span class="c1"># Critical section</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">])</span> <span class="ow">and</span> <span class="p">(</span><span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Leave critical section</span>
-        <span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">clear</span><span class="p">(</span><span class="err">?</span><span class="n">shared</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="err">–</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
-<figcaption>Figure 9.1 (<a href=https://harmony.cs.cornell.edu/code/spinlock.hny>code/spinlock.hny</a>): 
-Mutual Exclusion using a "spinlock" based on test-and-set
-</figcaption>
-
 <p>Peterson's algorithm implements locks, but it is not efficient,
 especially if generalized to multiple threads. Worse, Peterson relies on
 load and store operations to be executed atomically, but this may not be
@@ -1033,6 +1002,37 @@ specification. Here <em>s</em> points to a shared boolean variable and <em>p</em
 private boolean variable, belonging to some thread. The operation copies
 the value of the shared variable to the private variable (the "test")
 and then sets the shared variable to <code>True</code> ("set").</p>
+<div class="highlight"><span class="filename">spinlock.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">shared</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">private</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">True</span><span class="p">,</span> <span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+<span class="n">invariant</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">shared</span><span class="p">,]</span> <span class="o">+</span> <span class="n">private</span> <span class="n">where</span> <span class="ow">not</span> <span class="n">x</span><span class="p">)</span>  <span class="o">&lt;</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">test_and_set</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="err">!</span><span class="n">s</span>
+        <span class="err">!</span><span class="n">s</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="err">!</span><span class="n">s</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">s</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="k">while</span> <span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">]:</span>
+            <span class="n">test_and_set</span><span class="p">(</span><span class="err">?</span><span class="n">shared</span><span class="p">,</span> <span class="err">?</span><span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">])</span>
+        <span class="c1"># Critical section</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">])</span> <span class="ow">and</span> <span class="p">(</span><span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Leave critical section</span>
+        <span class="n">private</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">clear</span><span class="p">(</span><span class="err">?</span><span class="n">shared</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="err">–</span><span class="mi">1</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 9.1 (<a href=https://harmony.cs.cornell.edu/code/spinlock.hny>code/spinlock.hny</a>): 
+Mutual Exclusion using a "spinlock" based on test-and-set
+</figcaption>
+
 <p>Figure 9.1 goes on to implement mutual exclusion for a set of <code>N</code>
 threads. The approach is called <em>spinlock</em>, because each thread is
 "spinning" (executing a tight loop) until it can acquire the lock. The
@@ -1076,9 +1076,9 @@ initialized). Harmony supports checking such invariants using the
 and checks that the result is less than or equal to 1. Harmony checks
 the expression in every reachable state.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Implement an atomic swap operation. It should take two pointer arguments and swap the values.</p>
-<p>Implement a spinlock using the atomic swap operation.</p>
-<p>For the solution to Example 9.1, write out the invariants that need to
+<p><strong>9.1</strong> Implement an atomic swap operation. It should take two pointer arguments and swap the values.</p>
+<p><strong>9.2</strong> Implement a spinlock using the atomic swap operation.</p>
+<p><strong>9.3</strong> For the solution to Example 9.1, write out the invariants that need to
 hold and check them using Harmony.</p>
                 
               

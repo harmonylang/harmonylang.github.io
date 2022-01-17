@@ -36,10 +36,10 @@ for i in {0..N–1}:
     spawn diner(i)
 ```
 
-<figcaption>Figure 20.1 (<a href=https://harmony.cs.cornell.edu/code/Diners.hny>code/Diners.hny</a>): 
+<figcaption>Figure 19.1 (<a href=https://harmony.cs.cornell.edu/code/Diners.hny>code/Diners.hny</a>): 
 Dining Philosophers </figcaption>
 
-Figure 20.1 implements the dining philosophers in Harmony, using a
+Figure 19.1 implements the dining philosophers in Harmony, using a
 thread for each philosopher and a lock for each fork. If you run it,
 Harmony complains that the execution may not be able to terminate, with
 all five threads being blocked trying to acquire the lock.
@@ -111,7 +111,7 @@ for i in {0..N–1}:
     spawn diner(i)
 ```
 
-<figcaption>Figure 21.1 (<a href=https://harmony.cs.cornell.edu/code/DinersCV.hny>code/DinersCV.hny</a>): 
+<figcaption>Figure 19.2 (<a href=https://harmony.cs.cornell.edu/code/DinersCV.hny>code/DinersCV.hny</a>): 
 Dining Philosophers that grab both forks at the same time
 </figcaption>
 
@@ -119,7 +119,7 @@ To implement a *No Hold and Wait* solution, a philosopher would need a
 way to lock both the left and right forks at the same time. Locks do not
 have such an ability, and neither do semaphores. so we re-implement the
 Dining Philosophers using condition variables that allow one to wait for
-arbitrary application-specific conditions. Figure 21.1 demonstrates
+arbitrary application-specific conditions. Figure 19.2 demonstrates
 how this might be done. We use a single mutex for the diners, and, for
 each fork, a boolean and a condition variable. The boolean indicates if
 the fork has been taken. Each diner waits if either the left or right
@@ -182,7 +182,7 @@ deadlock *prevention*. In the case of the Dining Philosophers, we want
 to avoid the situation where each diner picks up a fork. If we can
 prevent more than four diners from starting to eat at the same time,
 then we can avoid the conditions for deadlock from ever happening.
-Figure 21.2 demonstrates this concept. It uses a *counting
+Figure 19.3 demonstrates this concept. It uses a *counting
 semaphore* to restrict the number of diners at any time to four. A
 counting semaphore is like a binary semaphore, but can be acquired a
 given number of times. It is supported by the `synch` module. The `P` or
@@ -211,7 +211,7 @@ for i in {0..N–1}:
     spawn diner(i)
 ```
 
-<figcaption>Figure 21.2 (<a href=https://harmony.cs.cornell.edu/code/DinersAvoid.hny>code/DinersAvoid.hny</a>): Dining Philosophers that carefully avoid getting into a dead-lock scenario </figcaption>
+<figcaption>Figure 19.3 (<a href=https://harmony.cs.cornell.edu/code/DinersAvoid.hny>code/DinersAvoid.hny</a>): Dining Philosophers that carefully avoid getting into a dead-lock scenario </figcaption>
 
 This avoidance technique can be generalized using something called the
 Banker's Algorithm, but it is outside the scope of this book.
@@ -224,21 +224,21 @@ impractical.
 ## Exercises 
 
 
-The solution in Figure 21.1 can be simplified by, instead of having
+**19.1** The solution in Figure 19.2 can be simplified by, instead of having
 a condition variable per fork, having a condition variable per diner. It
 uses the same number of condition variables, but you will not need to
 have **if** statements nested inside the **while** loop waiting for the
 forks. See if you can figure it out.
 
-Figure 21.3 shows an implementation of a bank with various accounts and transfers between
+**19.2** Figure 19.4 shows an implementation of a bank with various accounts and transfers between
 those accounts. Unfortunately, running the test reveals that it
 sometimes leaves unterminated threads. Can you fix the problem?
 
-Add a method `total`() to the solution of the previous question that
+**19.3** Add a method `total`() to the solution of the previous question that
 computes the total over all balances. It needs to obtain a lock on all
 accounts. Make sure that it cannot cause deadlock.
 
-Add an invariant that checks that the total of the balances never
+**19.4** Add an invariant that checks that the total of the balances never
 changes. Note that the invariant only holds if none of the locks are
 held.
 
@@ -271,5 +271,5 @@ for i in {1..N_THREADS}:
     spawn thread()
 ```
 
-<figcaption>Figure 21.3 (<a href=https://harmony.cs.cornell.edu/code/bank.hny>code/bank.hny</a>): 
+<figcaption>Figure 19.4 (<a href=https://harmony.cs.cornell.edu/code/bank.hny>code/bank.hny</a>): 
 Bank accounts </figcaption>

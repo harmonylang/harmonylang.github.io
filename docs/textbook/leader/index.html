@@ -981,11 +981,11 @@ ring notifying the other processors of the leader's identifier.</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">nprocs</span> <span class="err">–</span> <span class="mi">1</span> <span class="p">}:</span>
     <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">procs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">procs</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">nprocs</span><span class="p">])</span>
 </code></pre></div>
-<figcaption>Figure 27.1 (
+<figcaption>Figure 25.1 (
 <a href=https://harmony.cs.cornell.edu/code/leader.hny>code/leader.hny</a>): 
 A leader election protocol on a ring </figcaption>
 
-<p>Figure 27.1 describes the protocol and its test cases in Harmony. In
+<p>Figure 25.1 describes the protocol and its test cases in Harmony. In
 Harmony, processors can be modeled by threads and there are a variety of
 ways in which one can model a network using shared variables. Here, we
 model the network as a set of messages. The <code>send</code> method atomically
@@ -1041,8 +1041,8 @@ atomically, otherwise the body of the statement could lead to additional
 thread interleavings. Because in practice the different processors do
 not share memory, it is not necessary to check those interleavings.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Check if the code finds a unique leader if identifiers are not unique.</p>
-<p>Messages are added atomically to the network. Is this necessary? What
+<p><strong>25.1</strong> Check if the code finds a unique leader if identifiers are not unique.</p>
+<p><strong>25.2</strong> Messages are added atomically to the network. Is this necessary? What
 happens if you remove the <strong>atomically</strong> keyword? Explain what happens.</p>
                 
               

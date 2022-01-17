@@ -41,10 +41,10 @@ for i in {0..N–1}:
     spawn processor(proposals[i])
 ```
 
-<figcaption>Figure 31.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
+<figcaption>Figure 29.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
 Distributed consensus code and DFA </figcaption>
 
-Figure 31.1 presents a specification for binary consensus---the
+Figure 29.1 presents a specification for binary consensus---the
 proposals are from the set {0, 2} In this case there are four
 processors. The proposal of processor *i* is in *proposals*\[*i*\]. The
 *decision* is chosen from the set of proposals. Each processor may or
@@ -107,14 +107,14 @@ for i in {0..N–1}:
     spawn processor(proposals[i])
 ```
 
-<figcaption>Figure 31.2 (<a href=https://harmony.cs.cornell.edu/code/bosco.hny>code/bosco.hny</a>): 
+<figcaption>Figure 29.2 (<a href=https://harmony.cs.cornell.edu/code/bosco.hny>code/bosco.hny</a>): 
 A crash-tolerant consensus protocol </figcaption>
 
 ![](figures/bosco.png)
-<figcaption>Figure 31.3: The DFA for Figure 31.2
+<figcaption>Figure 29.3: The DFA for Figure 29.2
 </figcaption>
 
-Figure 31.2 presents our algorithm. Besides the *network* variable, it
+Figure 29.2 presents our algorithm. Besides the *network* variable, it
 uses a shared list of proposals and a shared set of decisions. In this
 particular algorithm, all messages are broadcast to all processors, so
 they do not require a destination address. The `N` processors go through
@@ -177,8 +177,8 @@ To check for correct behavior, run the following two commands:
 Note that the second command prints a warning:
 "`behavior warning: strict subset of specified behavior`." Thus, the set
 of behaviors that our algorithm generates is a subset of the behavior
-that the specification allows. Figure 31.3 shows the behavior, and
-indeed it is not the same as the behavior of Figure 31.1. This is
+that the specification allows. Figure 29.3 shows the behavior, and
+indeed it is not the same as the behavior of Figure 29.1. This is
 because in our algorithm the outcome is decided a priori if more than
 twothirds of the processors have the same proposal, whereas in the
 consensus specification the outcome is only decided a priori if the
@@ -223,7 +223,7 @@ for i in {0..N–1}:
     spawn processor(proposals[i])
 ```
 
-<figcaption>Figure 31.4 (<a href=https://harmony.cs.cornell.edu/code/bosco2.hny>code/bosco2.hny</a>): 
+<figcaption>Figure 29.4 (<a href=https://harmony.cs.cornell.edu/code/bosco2.hny>code/bosco2.hny</a>): 
 Reducing the state space </figcaption>
 
 While one can run this code within little time for `F` = 1, for `F` = 2
@@ -247,7 +247,7 @@ operates. So, with 5 processors (`F` = 2), say, we only need to explore
 the cases where no processors propose 1, where exactly one processors
 proposes 1, and where 2 processors proposes 1.
 
-Figure 31.4 shows the code for this optimized model. Running this
+Figure 29.4 shows the code for this optimized model. Running this
 with `F` = 2 does not take very long and this approach is a good
 blueprint for testing other round-based protocols (of which there are
 many).
@@ -255,14 +255,14 @@ many).
 ## Exercises 
 
 
-The algorithm as given works in the face of crash failures. A more
+**29.1** The algorithm as given works in the face of crash failures. A more
 challenging class to tolerate are *arbitrary failures* in which up to
 `F` processors may send arbitrary messages, including conflicting
 messages to different peers (equivocation). The algorithm can tolerate
 those failures if you use $\texttt{N} = 5\texttt{F} - 1$ processors
 instead of $\texttt{N} = 3\texttt{F} - 1$. Check that.
 
-In 1983, Michael Ben-Or presented a randomized algorithm that can
+**29.2** In 1983, Michael Ben-Or presented a randomized algorithm that can
 tolerate crash failures with just $\texttt{N} = 2\texttt{F} - 1$
 processors. Implement this algorithm.
 

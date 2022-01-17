@@ -257,7 +257,7 @@ critical section ad infinitum.
 ## Exercises 
 
 
-Run Figure 5.2 using Harmony. As there is no protection of the critical
+**5.1** Run Figure 5.2 using Harmony. As there is no protection of the critical
 section, mutual exclusion is violated, the assertion should fail, and a
 trace should be reported. Now insert
 ```
@@ -269,7 +269,7 @@ should print a trace to a state from which a terminating state cannot be
 reached. Describe in English the difference in the failure reports
 before and after inserting the code.
 
-See if you can come up with some different approaches that satisfy both
+**5.2** See if you can come up with some different approaches that satisfy both
 mutual exclusion and progress. Try them with Harmony and see if they
 work or not. If they don't, try to understand why. If you get *active
 busy waiting* or *data race* reports, you probably found a correct

@@ -1086,7 +1086,7 @@ it will. Usually that is not a good thing, but in Harmony it is. It
 allows you to find bugs in your concurrent programs much more easily
 than with a conventional programming language.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Harmony programs can usually be easily translated into Python by hand.
+<p><strong>3.1</strong> Harmony programs can usually be easily translated into Python by hand.
 For example, Figure 3.3 is a Python version of Figure 3.2.</p>
 <ol>
 <li>
@@ -1108,13 +1108,13 @@ PAUSE
 <p>How many times does the assertion fail (if any)?</p>
 </li>
 </ol>
-<p>Figure 3.4 is a version of Figure 3.3 that has each incrementer
+<p><strong>3.2</strong> Figure 3.4 is a version of Figure 3.3 that has each incrementer
 thread increment <em>count</em> <code>N</code> times. Run Figure 3.4 10 times (using
 Python). Report how many times the assertion fails and what the value of
 <em>count</em> was for each of the failed runs. Also experiment with lower
 values of <code>N</code>. How large does <code>N</code> need to be for assertions to fail?
 (Try powers of 10 for <code>N</code>.)</p>
-<p>Can you think of a fix to Figure 3.2? Try one or two different fixes
+<p><strong>3.3</strong> Can you think of a fix to Figure 3.2? Try one or two different fixes
 and run them through Harmony. Do not worry about having to come up with
 a correct fix at this time---the important thing is to develop an
 understanding of concurrency. (Also, you do not get to use the

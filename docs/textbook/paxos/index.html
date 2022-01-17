@@ -1001,10 +1001,10 @@ leaders are in charge of different ballot numbers. Leaders broadcast
                     <span class="n">last_accepted</span> <span class="o">=</span> <span class="p">(</span><span class="n">ballot</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
             <span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">last_accepted</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 32.1 (<a href=https://harmony.cs.cornell.edu/code/paxos.hny>code/paxos.hny</a>): 
+<figcaption>Figure 30.1 (<a href=https://harmony.cs.cornell.edu/code/paxos.hny>code/paxos.hny</a>): 
 A version of the Paxos protocol</figcaption>
 
-<p>Figure 32.1 contain the code for this Paxos
+<p>Figure 30.1 contain the code for this Paxos
 protocol. Paxos is perhaps best understood starting with the second
 phase. At the end of the first phase, the leader broadcasts a <code>2.A</code>
 message (Phase 2, Type A) to the acceptors containing the ballot number
@@ -1036,7 +1036,7 @@ free to choose its own proposal. Otherwise the leader updates its
 proposal with the one corresponding to the highest ballot number. The
 leader then moves on to the second round.</p>
 <p>To run and check the Paxos code, do the following (leveraging the
-consensus specification of Figure 31.1):</p>
+consensus specification of Figure 29.1):</p>
 <div class="highlight"><pre><span></span><code>$ harmony -o consensus.hfa -cN=2 code/consensus.hny
 $ harmony -B consensus.hfa code/paxos.hny
 </code></pre></div>
@@ -1046,14 +1046,14 @@ protocol for a finite number of ballots, and therefore at least one of
 the ballots will be successful. With an unlimited number of ballots,
 Paxos may never decide unless you make some liveness assumptions.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Perhaps the trickiest detail of the algorithm is that, in Line 29 of
-Figure 32.1, the leader selects the proposal with the highest ballot
+<p><strong>30.1</strong> Perhaps the trickiest detail of the algorithm is that, in Line 29 of
+Figure 30.1, the leader selects the proposal with the highest ballot
 number it receives. Replace the <code>max</code> operator in that statement with
 <strong>choose</strong> and see if it finds a problem. First try with
 <span class="arithmatex">\(\texttt{NBALLOTS} = 2\)</span> and then with <span class="arithmatex">\(\texttt{NBALLOTS} = 3\)</span>. (Warning,
 the latter may take a long time.) If it finds a problem, analyze the
-output and see what went wrong.
- discusses a buggy version of Paxos. In this version, the
+output and see what went wrong.</p>
+<p><strong>30.2</strong> <a href="https://harmony.cs.cornell.edu/code/paxosbroken.hny">Missing Link: paxosbroken.hny</a> discusses a buggy version of Paxos. In this version, the
 responses to the second phase are matched not by ballot number but by
 the value of the proposal. Implement this version and, using Harmony,
 find the problem this causes.</p>

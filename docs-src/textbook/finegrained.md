@@ -130,17 +130,17 @@ rope hand-over-hand. Using `_find`, the `insert`, `remove`, and
 ## Exercises 
 
 
-Add methods to the data structure in Figure 12.3 that report the
+**12.1** Add methods to the data structure in Figure 12.3 that report the
 size of the list, the minimum value in the list, the maximum value in
 the list, and the sum of the values in the list. (All these should
 ignore the two end nodes.)
 
-Create a thread-safe sorted binary tree. Implement a module `bintree`
+**12.2** Create a thread-safe sorted binary tree. Implement a module `bintree`
 with methods $\mathtt{BinTree}()$ to create a new binary tree,
 $\mathtt{insert}(t, v)$ that inserts *v* into tree *t*, and
 $\mathtt{contains}(t, v)$ that checks if *v* is in tree *t*. Use a
 single lock per binary tree.
 
-Create a binary tree that uses, instead of a single lock per tree, a
+**12.3** Create a binary tree that uses, instead of a single lock per tree, a
 lock for each node in the tree.
 

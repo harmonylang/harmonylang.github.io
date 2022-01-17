@@ -178,24 +178,24 @@ writer calls `write_release`:
 ## Exercises 
 
 
-Several of the calls to `release_one`() in Figure 16.1 can be
+**16.1** Several of the calls to `release_one`() in Figure 16.1 can be
 replaced by simply releasing *mutex*. Which ones?
 
-Optimize your solutions to to use reader/writer locks.
+**16.2** Optimize your solutions to Exercise 11.1 to use reader/writer locks.
 
-Implement a solution to the producer/consumer problem using split binary semaphores.
+**16.3** Implement a solution to the producer/consumer problem using split binary semaphores.
 
-Using busy waiting, implement a "bound lock" that allows up to `M` threads to
+**16.4** Using busy waiting, implement a "bound lock" that allows up to `M` threads to
 acquire it at the same time.[^3] A bound lock with `M = 1` is an
 ordinary lock. You should define a constant `M` and two methods:
 `acquire_bound_lock`() and `release_bound_lock`(). (Bound locks are
 useful for situations where too many threads working at the same time
 might exhaust some resource such as a cache.)
 
-Write a test program for your bound lock that checks that no more than
+**16.5** Write a test program for your bound lock that checks that no more than
 `M` threads can acquire the bound lock.
 
-Write a test program for bound locks that checks that up to `M` threads
+**16.6** Write a test program for bound locks that checks that up to `M` threads
 can acquire the bound lock at the same time.
 
 ```python title="gpu.hny"
@@ -213,19 +213,19 @@ def gpuRelease(gpu):
 <figcaption>Figure 16.2 (<a href=https://harmony.cs.cornell.edu/code/gpu.hny>code/gpu.hny</a>): 
 A thread-unsafe GPU allocator </figcaption>
 
-Implement a thread-safe *GPU allocator* by modifying Figure 16.2. There are `N` GPUs identified by
+**16.7** Implement a thread-safe *GPU allocator* by modifying Figure 16.2. There are `N` GPUs identified by
 the numbers 1 through `N`. Method `gpuAlloc`() returns the identifier of
 an available GPU, blocking if there is currently no GPU available.
 Method `gpuRelease`(*gpu*) releases the given GPU. It never needs to
 block.
 
-With reader/writer locks, concurrency can be improved if a thread
+**16.8** With reader/writer locks, concurrency can be improved if a thread
 *downgrades* its write lock to a read lock when its done writing but not
 done reading. Add a *downgrade* method to the code in
 Figure 16.1. (Similarly, you may want to try to implement an
 *upgrade* of a read lock to a write lock. Why is this problematic?)
 
-Cornell’s campus features some one-lane bridges. On a one-lane bridge, cars can only go
+**16.9** Cornell’s campus features some one-lane bridges. On a one-lane bridge, cars can only go
 in one direction at a time. Consider northbound and southbound cars
 wanting to cross a one-lane bridge. The bridge allows arbitrary many
 cars, as long as they're going in the same direction. Implement a lock
@@ -235,7 +235,7 @@ before going northbound on the bridge and `nb_leave`() that the car must
 invoke after leaving the bridge. Similarly write `sb_enter`() and
 `sb_leave`() for southbound cars.
 
-Extend the solution to Example 16.1 by implementing the requirement
+**16.10** Extend the solution to Exercise 16.9 by implementing the requirement
 that at most $n$ cars are allowed on the bridge. Add $n$ as an argument
 to `OLBlock`.
 

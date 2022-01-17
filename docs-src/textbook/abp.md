@@ -57,7 +57,7 @@ def app_recv(reliable):
                     blocked = False
 ```
 
-<figcaption>Figure 26.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
+<figcaption>Figure 24.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
 Alternating Bit Protocol </figcaption>
 
 The *Alternating Bit Protocol* is suitable for our purposes. We assume
@@ -105,12 +105,12 @@ spawn sender()
 spawn receiver()
 ```
 
-<figcaption>Figure 26.2 (<a href=https://harmony.cs.cornell.edu/code/abptest.hny>code/abptest.hny</a>): 
+<figcaption>Figure 24.2 (<a href=https://harmony.cs.cornell.edu/code/abptest.hny>code/abptest.hny</a>): 
 Test code for alternating bit protocol </figcaption>
 
 Method `app_send`(*m*) retransmits *m* until an acknowledgment is
 received. Method `app_recv`(*reliable*) returns the next successfully
-received message. Figure 26.2 shows how the methods may be used to
+received message. Figure 24.2 shows how the methods may be used to
 send and receive a stream of `NMSGS` messages reliably. It has to be
 bounded, because model checking requires a finite model.
 
@@ -124,13 +124,13 @@ the last acknowledgment, or the receiver waiting for the last message.
 ## Exercises 
 
 
-[Chapter 22](actor.md) explored the *client/server model*. It is popular in
+**24.1** [Chapter 22](actor.md) explored the *client/server model*. It is popular in
 distributed systems as well. Develop a protocol for a single client and
 server using the same network model as for the ABP protocol. Hint: the
 response to a request can contain the same sequence number as the
 request.
 
-Generalize the solution in the previous exercise to multiple clients.
+**24.2** Generalize the solution in the previous exercise to multiple clients.
 Each client is uniquely identified. You may either use separate channel
 pairs for each client, or solve the problem using a single pair of
 channels.

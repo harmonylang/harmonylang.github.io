@@ -1123,13 +1123,13 @@ concurrent <code>get</code> and <code>put</code> operations. They obtain separat
 then concurrently access the <em>next</em> field in the dummy node---a data
 race with undefined semantics in most environments.</p>
 <h2 id="exercises">Exercises</h2>
-<p>Add a method <code>contains</code>(<em>q</em>, <em>v</em>) to Figure 11.1(b) that checks to see if <em>v</em> is
+<p><strong>11.1</strong> Add a method <code>contains</code>(<em>q</em>, <em>v</em>) to Figure 11.1(b) that checks to see if <em>v</em> is
 in queue <em>q</em>.</p>
-<p>Add a method <code>length</code>(<em>q</em>) to Figure 11.3 that returns the length
+<p><strong>11.2</strong> Add a method <code>length</code>(<em>q</em>) to Figure 11.3 that returns the length
 of the given queue. The complexity of the method should be <span class="arithmatex">\(O(1)\)</span>, which
 is to say that you should maintain the length of the queue as a field
 member and update it in <code>put</code> and <code>get</code>.</p>
-<p>Write a method <code>check</code>(<em>q</em>) that checks the integrity of the queue in
+<p><strong>11.3</strong> Write a method <code>check</code>(<em>q</em>) that checks the integrity of the queue in
 Figure 11.3. In particular, it should check the following
 integrity properties:</p>
 <ul>
@@ -1141,17 +1141,17 @@ integrity properties:</p>
     <code>None</code>;</p>
 </li>
 <li>
-<p>The length field that you added in should equal the length of the
+<p>The length field that you added in Exercise 11.3 should equal the length of the
     list.</p>
 </li>
 </ul>
-<p>Method <code>check</code>(<em>q</em>) should not obtain a lock; instead add the following
+<p><strong>11.4</strong> Method <code>check</code>(<em>q</em>) should not obtain a lock; instead add the following
 line just before releasing the lock in <code>put</code> and <code>get</code>:
 <div class="highlight"><pre><span></span><code>assert check()
 </code></pre></div>
 <span class="arithmatex">\(\mathtt{remove}(q, v)\)</span> to Figure 11.3 that removes all
 occurrences of <em>v</em>, if any, from queue <em>q</em>.</p>
-<p>The test program in Figure 11.2 is not a thorough test program.
+<p><strong>11.5</strong> The test program in Figure 11.2 is not a thorough test program.
 Design and implement a test program for Figure 11.2. Make sure you
 <em>test</em> the test program by trying it out against some buggy queue
 implementations. (You will learn more about testing concurrent programs

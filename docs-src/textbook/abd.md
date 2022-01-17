@@ -14,7 +14,7 @@ def write(uid, v):
     atomically register = v
 ```
 
-<figcaption>Figure 30.1 (<a href=https://harmony.cs.cornell.edu/code/register.hny>code/register.hny</a>): 
+<figcaption>Figure 28.1 (<a href=https://harmony.cs.cornell.edu/code/register.hny>code/register.hny</a>): 
 An atomic read/write register </figcaption>
 
 A *register* is an object that you can read or write. In a distributed
@@ -63,12 +63,12 @@ for i in { 1 .. NWRITERS }:
     spawn writer(–i)
 ```
 
-<figcaption>Figure 30.2 (<a href=https://harmony.cs.cornell.edu/code/abdtest.hny>code/abdtest.hny</a>): 
+<figcaption>Figure 28.2 (<a href=https://harmony.cs.cornell.edu/code/abdtest.hny>code/abdtest.hny</a>): 
 Behavioral test for atomic read/write registers and the output for the
 case that `NREADERS` = `NWRITERS` = 1 </figcaption>
 
 It is instructive to look at the test program and its output in
-Figure 30.2. This is for the case when there is only a single reader
+Figure 28.2. This is for the case when there is only a single reader
 thread (identified as "1") and a single writer thread (identified as
 "$-1$"), but already there are many cases to consider. Each thread
 prints information just before and just after doing their single
@@ -176,11 +176,11 @@ def write(uid, v):
         pass
 ```
 
-<figcaption>Figure 30.3 (<a href=https://harmony.cs.cornell.edu/code/abd.hny>code/abd.hny</a>): 
+<figcaption>Figure 28.3 (<a href=https://harmony.cs.cornell.edu/code/abd.hny>code/abd.hny</a>): 
 An implementation of a replicated atomic read/write register
 </figcaption>
 
-Figure 30.3 contains the code for a server, as well as the code for read
+Figure 28.3 contains the code for a server, as well as the code for read
 and write operations. For efficiency of model checking, the servers are
 anonymous---otherwise we would have to consider every permutation of
 states of those servers. Because the servers are anonymous, they may end
@@ -200,12 +200,12 @@ function uses the `bag`.*combinations* method to find all combinations
 of subsets of responses of size `N` -- `F`. The second phase of each
 operation is similar.
 
-Figure 30.2 can be used to test this protocol, although you will
+Figure 28.2 can be used to test this protocol, although you will
 notice that the model checker cannot deal with cases involving more than
 three client threads. Three is just enough to check the third property
 listed above (using one writer and two readers). Doing so illustrates
 the importance of the second phase of the `read` operation. You can
-comment out Lines 34, 36, and 37 in Figure 30.3 and to elide the second
+comment out Lines 34, 36, and 37 in Figure 28.3 and to elide the second
 phase and see what goes wrong.
 
 One may wonder how failures can occur in this model. They are not
