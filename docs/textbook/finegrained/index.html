@@ -955,7 +955,7 @@ endowed with its own lock instead.</p>
 <figcaption>Figure 12.1 (<a href=https://harmony.cs.cornell.edu/code/code/setobj.hny>code/setobj.hny</a>): 
 Specification of a concurrent set object </figcaption>
 
-<div class="highlight"><span class="filename">intsettest.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">setobj</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><span class="filename">setobjtest.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">setobj</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">myset</span> <span class="o">=</span> <span class="n">SetObject</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">thread1</span><span class="p">():</span>
@@ -970,8 +970,8 @@ Specification of a concurrent set object </figcaption>
 <span class="n">spawn</span> <span class="n">thread2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 12.2 (<a href=https://harmony.cs.cornell.edu/code/intsettest.hny>code/intsettest.hny</a>): 
-Test code for set objects </figcaption>
+<figcaption>Figure 12.2 (<a href=https://harmony.cs.cornell.edu/code/setobjtest.hny>code/intsettest.hny</a>): 
+Test code for set objects</figcaption>
 
 <p>Figure 12.1 gives the specification of a concurrent set object.
 <code>SetObject()</code> returns a pointer to a variable that contains an empty
@@ -984,64 +984,64 @@ very thorough) test program to demonstrate the use of set objects.</p>
 <div class="highlight"><span class="filename">linkedlist.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
 <span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
-<span class="k">def</span> <span class="nf">_node</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="c1"># allocate and initialize a new list node</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="n">n</span> <span class="p">})</span>
+<span class="k">def</span> <span class="nf">_node</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>     <span class="c1"># allocate and initialize a new list node</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="n">n</span> <span class="p">})</span>
 
 <span class="k">def</span> <span class="nf">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">var</span> <span class="n">before</span> <span class="o">=</span> <span class="n">lst</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-    <span class="n">var</span> <span class="n">after</span> <span class="o">=</span> <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">before</span> <span class="o">=</span> <span class="n">after</span>
-        <span class="n">after</span> <span class="o">=</span> <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span>
-        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">before</span> <span class="o">=</span> <span class="n">lst</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">after</span> <span class="o">=</span> <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">before</span> <span class="o">=</span> <span class="n">after</span>
+        <span class="n">after</span> <span class="o">=</span> <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">SetObject</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">_node</span><span class="p">(</span><span class="err">–</span><span class="n">inf</span><span class="p">,</span> <span class="n">_node</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">_node</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">_node</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">!=</span> <span class="n">v</span><span class="p">:</span>
-            <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">_node</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">_node</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
-            <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">after</span><span class="o">-&gt;</span><span class="nb">next</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-            <span class="n">free</span><span class="p">(</span><span class="n">after</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="n">before</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">after</span><span class="o">-&gt;</span><span class="nb">next</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">after</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">==</span> <span class="n">v</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">before</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">_find</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">after</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">after</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">before</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 12.3 (<a href=https://harmony.cs.cornell.edu/code/linkedlist.hny>code/linkedlist.hny</a>): 
-Implementation of a set of integers using a linked list with
+Implementation of a set of values using a linked list with
 fine-grained locking </figcaption>
 
-<p>Figure 12.3 implements a concurrent set object using an ordered
-linked list of integers without duplicates. The list has two dummy
-"book-end" nodes with values --<code>inf</code> and <code>inf</code> (similar to the Python
-<code>math.inf</code> constant). An invariant of the algorithm is that at any point
-in time the list is "valid," starting with a --<code>inf</code> node and ending
-with an <code>inf</code> node.</p>
+<p>Figure 12.3 implements a concurrent set object using an ordered linked list without duplicates.
+The list has two dummy ``book-end'' nodes with values <span class="arithmatex">\((-1, None)\)</span> and
+<span class="arithmatex">\((1, None)\)</span>.  A value <span class="arithmatex">\(v\)</span> is stored as <span class="arithmatex">\((0, v)\)</span> &mdash; note that for
+any value <span class="arithmatex">\(v\)</span>, <span class="arithmatex">\((-1, None) &lt; (0, v) &lt; (1, None)\)</span>. An invariant of the algorithm is that at any point
+in time list is "valid", starting with a <span class="arithmatex">\((-1, None)\)</span> node and ending
+with an <span class="arithmatex">\((1, None)\)</span> node.</p>
 <p>Each node has a lock, a value, and <em>next</em>, a pointer to the next node
-(which is <code>None</code> for the <code>inf</code> node). The <code>_find</code>(<em>lst</em>, <em>v</em>) helper
+(which is <code>None</code> for the <span class="arithmatex">\((1, None)\)</span> node to mark the end of the list). The <code>_find</code>(<em>lst</em>, <em>v</em>) helper
 method first finds and locks two consecutive nodes <em>before</em> and <em>after</em>
-such that <em>before</em>-&gt;<em>data</em>.<em>value</em> <span class="arithmatex">\(&lt;\)</span> <em>v</em> <span class="arithmatex">\(&lt;=\)</span>
+such that <em>before</em>-&gt;<em>data</em>.<em>value</em> <span class="arithmatex">\(&lt;\)</span> <em>(0, v</em>) <span class="arithmatex">\(&lt;=\)</span>
 <em>after</em>-&gt;<em>data</em>.<em>value</em>. It does so by performing something
 called <em>hand-over-hand locking</em>. It first locks the first node, which is
-the --<code>inf</code> node. Then, iteratively, it obtains a lock on the next node
+the <span class="arithmatex">\((-1, None)\)</span> node. Then, iteratively, it obtains a lock on the next node
 and release the lock on the last one, and so on, similar to climbing a
 rope hand-over-hand. Using <code>_find</code>, the <code>insert</code>, <code>remove</code>, and
 <code>contains</code> methods are fairly straightforward to implement.</p>

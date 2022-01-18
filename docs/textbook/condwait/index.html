@@ -1082,6 +1082,14 @@ the same for writing.</p>
 <figcaption>Figure 15.3 (<a href=https://harmony.cs.cornell.edu/code/RWcheat.hny>code/RWcheat.hny</a>): 
 \"Cheating\" reader/writer lock </figcaption>
 
+<p>A problem with this test is that it does not find a problem with an
+implementation like the one in Figure 15.3. This implementation
+implements a reader/writer lock as an ordinary lock, and thus lets only
+one thread in the critical section at a time. In some sense, the
+implementation is correct because it satisfies the requirements, but it
+is clearly not a desirable implementation. For a case like this one, it
+is better to compare behaviors between the specification and the
+implementation.</p>
 <div class="highlight"><span class="filename">RWbtest.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">RW</span>
 <span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">rw</span> <span class="o">=</span> <span class="n">RW</span><span class="o">.</span><span class="n">RWlock</span><span class="p">()</span>
@@ -1112,14 +1120,6 @@ the same for writing.</p>
 <figcaption>Figure 15.4 (<a href=https://harmony.cs.cornell.edu/code/RWbtest.hny>code/RWbtest.hny</a>): 
 A behavioral test of reader/writer locks </figcaption>
 
-<p>A problem with this test is that it does not find a problem with an
-implementation like the one in Figure 15.3. This implementation
-implements a reader/writer lock as an ordinary lock, and thus lets only
-one thread in the critical section at a time. In some sense, the
-implementation is correct because it satisfies the requirements, but it
-is clearly not a desirable implementation. For a case like this one, it
-is better to compare behaviors between the specification and the
-implementation.</p>
 <p>Figure 15.4 is the same test as Figure 15.2 but prints
 identifying information before and every lock operation. Now we can
 compare behaviors as follows:</p>
@@ -1133,6 +1133,43 @@ now possible to compare the outputs in <code>rwspec.png</code> and <code>rwimpl.
 see what behaviors are allowed by the specification that are not allowed
 by the implementation. (Harmony does not yet have a mechanism to do this
 automatically.)</p>
+<div class="highlight"><span class="filename">RWbusy.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+
+<span class="k">def</span> <span class="nf">RWlock</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">nreaders</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">nwriters</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">read_acquire</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_release</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">write_acquire</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">write_release</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 15.5 (<a href=https://harmony.cs.cornell.edu/code/RWbusy.hny>code/RWbusy.hny</a>): 
+Busy waiting reader/writer lock</figcaption>
+
+<p>Figure 15.5 illustrates an implementation of a reader/writer lock
+that uses active busy waiting.  This is an undesirable solution, as it wastes
+CPU cycles.  Harmony complains about this solution.</p>
 <h2 id="bounded-buffer">Bounded Buffer</h2>
 <div class="highlight"><span class="filename">boundedbuffer.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
@@ -1148,13 +1185,13 @@ automatically.)</p>
         <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">bb</span><span class="o">-&gt;</span><span class="n">buffer</span><span class="p">)</span>
         <span class="n">bb</span><span class="o">-&gt;</span><span class="n">buffer</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">bb</span><span class="o">-&gt;</span><span class="n">buffer</span><span class="p">)</span>
 </code></pre></div>
-<figcaption>Figure 15.5 (<a href=https://harmony.cs.cornell.edu/code/boundedbuffer.hny>code/boundedbuffer.hny</a>): 
+<figcaption>Figure 15.6 (<a href=https://harmony.cs.cornell.edu/code/boundedbuffer.hny>code/boundedbuffer.hny</a>): 
 Bounded buffer specification </figcaption>
 
 <p>A <em>bounded buffer</em> is a queue with the usual <code>put/get</code> interface, but
 implemented using a buffer of a certain maximum length. If the buffer is
 full, an enqueuer must wait; if the buffer is empty, a dequeuer must
-wait. Figure 15.5 specifies a bounded buffer. It is similar to
+wait. Figure 15.6 specifies a bounded buffer. It is similar to
 the implementation in Figure 11.1(b) but adds checking for bounds.
 Coming up with a good implementation is known as the "Producer/Consumer
 Problem" and was proposed by Dijkstra. Multiple producers and

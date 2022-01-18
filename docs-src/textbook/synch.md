@@ -154,7 +154,7 @@ def release(lk):
 ```
 
 <figcaption>Figure 10.3 (<a href=https://harmony.cs.cornell.edu/modules/synchS.hny>modules/synchS.hny</a>): 
-The lock implementation in the `synchS` module uses suspension
+Lock implementation using suspension
 </figcaption>
 
 In most operating systems, threads are virtual (as opposed to "raw CPU
@@ -236,7 +236,7 @@ spawn setX(50)
 ```
 
 <figcaption>Figure 10.4 (<a href=https://harmony.cs.cornell.edu/code/xy.hny>code/xy.hny</a>): 
-Incomplete code with desired invariant $x + y = 100$
+Incomplete code for Exercise 10.2 with desired invariant $x + y = 100$
 </figcaption>
 
 **10.2** Figure 10.4 shows a Harmony program with two variables *x* (initially 0) and *y* (initially 100) that can be

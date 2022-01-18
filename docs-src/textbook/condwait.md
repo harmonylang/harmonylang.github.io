@@ -145,6 +145,14 @@ def write_release(rw):
 <figcaption>Figure 15.3 (<a href=https://harmony.cs.cornell.edu/code/RWcheat.hny>code/RWcheat.hny</a>): 
 \"Cheating\" reader/writer lock </figcaption>
 
+A problem with this test is that it does not find a problem with an
+implementation like the one in Figure 15.3. This implementation
+implements a reader/writer lock as an ordinary lock, and thus lets only
+one thread in the critical section at a time. In some sense, the
+implementation is correct because it satisfies the requirements, but it
+is clearly not a desirable implementation. For a case like this one, it
+is better to compare behaviors between the specification and the
+implementation.
 
 ```python title="RWbtest.hny"
 import RW
@@ -178,15 +186,6 @@ for i in {1..NOPS}:
 <figcaption>Figure 15.4 (<a href=https://harmony.cs.cornell.edu/code/RWbtest.hny>code/RWbtest.hny</a>): 
 A behavioral test of reader/writer locks </figcaption>
 
-A problem with this test is that it does not find a problem with an
-implementation like the one in Figure 15.3. This implementation
-implements a reader/writer lock as an ordinary lock, and thus lets only
-one thread in the critical section at a time. In some sense, the
-implementation is correct because it satisfies the requirements, but it
-is clearly not a desirable implementation. For a case like this one, it
-is better to compare behaviors between the specification and the
-implementation.
-
 Figure 15.4 is the same test as Figure 15.2 but prints
 identifying information before and every lock operation. Now we can
 compare behaviors as follows:
@@ -201,6 +200,46 @@ now possible to compare the outputs in `rwspec.png` and `rwimpl.png` and
 see what behaviors are allowed by the specification that are not allowed
 by the implementation. (Harmony does not yet have a mechanism to do this
 automatically.)
+
+```python title="RWbusy.hny"
+from synch import Lock, acquire, release
+
+def RWlock():
+    result = { .lock: Lock(), .nreaders: 0, .nwriters: 0 }
+
+def read_acquire(rw):
+    acquire(?rw->lock)
+    while rw->nwriters > 0:
+        release(?rw->lock)
+        acquire(?rw->lock)
+    rw->nreaders += 1
+    release(?rw->lock)
+
+def read_release(rw):
+    acquire(?rw->lock)
+    rw->nreaders -= 1
+    release(?rw->lock)
+
+def write_acquire(rw):
+    acquire(?rw->lock)
+    while (rw->nreaders + rw->nwriters) > 0:
+        release(?rw->lock)
+        acquire(?rw->lock)
+    rw->nwriters = 1
+    release(?rw->lock)
+
+def write_release(rw):
+    acquire(?rw->lock)
+    rw->nwriters = 0
+    release(?rw->lock)
+```
+
+<figcaption>Figure 15.5 (<a href=https://harmony.cs.cornell.edu/code/RWbusy.hny>code/RWbusy.hny</a>): 
+Busy waiting reader/writer lock</figcaption>
+
+Figure 15.5 illustrates an implementation of a reader/writer lock
+that uses active busy waiting.  This is an undesirable solution, as it wastes
+CPU cycles.  Harmony complains about this solution.
 
 ## Bounded Buffer
 
@@ -220,13 +259,13 @@ def get(bb):
         bb->buffer = list.tail(bb->buffer)
 ```
 
-<figcaption>Figure 15.5 (<a href=https://harmony.cs.cornell.edu/code/boundedbuffer.hny>code/boundedbuffer.hny</a>): 
+<figcaption>Figure 15.6 (<a href=https://harmony.cs.cornell.edu/code/boundedbuffer.hny>code/boundedbuffer.hny</a>): 
 Bounded buffer specification </figcaption>
 
 A *bounded buffer* is a queue with the usual `put/get` interface, but
 implemented using a buffer of a certain maximum length. If the buffer is
 full, an enqueuer must wait; if the buffer is empty, a dequeuer must
-wait. Figure 15.5 specifies a bounded buffer. It is similar to
+wait. Figure 15.6 specifies a bounded buffer. It is similar to
 the implementation in Figure 11.1(b) but adds checking for bounds.
 Coming up with a good implementation is known as the "Producer/Consumer
 Problem" and was proposed by Dijkstra. Multiple producers and

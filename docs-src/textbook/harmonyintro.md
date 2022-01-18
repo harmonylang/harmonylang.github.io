@@ -18,7 +18,9 @@ it as follows:
 
 For this to work, make sure `harmony` is in your command shell's search
 path. The code for examples in this book can be found in the `code`
-folder under the name listed in the caption of the example. In this
+folder under the name listed in the caption of the example.
+If you need to, you can download the sources separately from
+https://harmony.cs.cornell.edu/sources.zip. In this
 case, the file `code/hello1.hny` contains the code in
 Figure 2.1. The `-o hello1.png` arguments tell harmony to write
 the output in the file `hello1.png`. The output is a *Deterministic
@@ -47,7 +49,7 @@ print choose { "hello", "world" }
 
 <figcaption>Figure 2.2 (
 <a href=https://harmony.cs.cornell.edu/code/hello3.hny>code/hello3.hny</a>): 
-Two possible outputs </figcaption>
+Harmony program with two possible outputs</figcaption>
 
 ![](figures/hello4.png)
 
@@ -59,7 +61,7 @@ while choose { False, True }:
 
 <figcaption>Figure 2.3 (
 <a href=https://harmony.cs.cornell.edu/code/hello4.hny>code/hello4.hny</a>): 
-An infinite number of outputs </figcaption>
+Harmony program with an infinite number of outputs </figcaption>
 
 But programs can usually have more than one execution and produce
 multiple different outputs as a result. This is usually as a result of
@@ -110,7 +112,7 @@ spawn p("world")
 </td>
 </tr>
 </table>
-<figcaption>Figure 2.4 (Methods and threads)</figcaption>
+<figcaption>Figure 2.4 (Demonstrating Harmony methods and threads)</figcaption>
 </figure>
 
 Figure 2.4 demonstrates *methods* and *threads* in Harmony. In
@@ -136,7 +138,7 @@ spawn hello("Robbert")
 
 <figcaption>Figure 2.5 
 (<a href=https://harmony.cs.cornell.edu/code/hello7.hny>code/hello7.hny</a>): 
-Interleaving threads</figcaption>
+Various interleavings of threads</figcaption>
 
 ![](figures/hello8.png)
 
@@ -152,7 +154,7 @@ spawn hello("Robbert")
 
 <figcaption>Figure 2.6
 (<a href=https://harmony.cs.cornell.edu/code/hello8.hny>code/hello8.hny</a>): 
-Less interleaving </figcaption>
+Making groups of operations atomic reduces interleaving </figcaption>
 
 Figure 2.5 shows two threads, one printing the strings "hello" and
 "Robbert", while the other prints "hello" and "Lesley". Now there are

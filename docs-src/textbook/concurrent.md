@@ -90,7 +90,7 @@ spawn incrementer(1)
 ```
 
 <figcaption>Figure 3.2 (<a href=https://harmony.cs.cornell.edu/code/Up.hny>code/Up.hny</a>): 
-Incrementing twice in parallel </figcaption>
+Incrementing the same variable twice in parallel</figcaption>
 
  - Before you run the program, what do you think will happen? Is the program correct in that *count* will always end up being 2? (You may assume that `load` and `store` instructions of the underlying virtual machine architecture are atomic (indivisible)---in fact they are.)
 
@@ -241,4 +241,4 @@ threading.Thread(target=incrementer, args=(1,)).start()
 ```
 
 <figcaption>Figure 3.4 (<a href=https://harmony.cs.cornell.edu/python/UpMany.py>python/UpMany.py</a>): 
-Incrementing <i>N</i> times </figcaption>
+Using Python to increment <i>N</i> times </figcaption>

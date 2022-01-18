@@ -133,21 +133,25 @@ behaviors obtained from the specification.
 
 ```python title="qtestpar.hny"
 import queue
+
 const NOPS = 4
 q = queue.Queue()
 
-def thread(self):
-    let op = choose({ "get", "put" }):
-        if op == "put":
-            print("call put", self)
-            queue.put(?q, self)
-            print("done put", self)
-        else:
-            print("call get", self)
-            let v = queue.get(?q):
-                print("done get", self, v)
-for i in {1..NOPS}:
-    spawn thread(i)
+def put_test(self):
+    print("call put", self)
+    queue.put(?q, self)
+    print("done put", self)
+
+def get_test(self):
+    print("call get", self)
+    let v = queue.get(?q):
+        print("done get", self, v)
+
+nputs = choose {1..NOPS-1}
+for i in {1..nputs}:
+    spawn put_test(i)
+for i in {1..NOPS-nputs}:
+    spawn get_test(i)
 ```
 
 <figcaption>Figure 13.2 (<a href=https://harmony.cs.cornell.edu/code/qtestpar.hny>code/qtestpar.hny</a>): 
@@ -178,8 +182,11 @@ Sequential but not a concurrent queue implementation </figcaption>
 
 We will start with a test program that tries concurrent combinations of
 various queue operations. Figure 13.2 shows the test program. It
-starts `NOPS` threads, and each choose to do either a `put` or a `get`
-operation. In case of a `put` operation, the thread enqueues its own
+starts `NOPS` threads doing either a `put`
+or a `get` operation.  It selects the fraction of `put`
+over `get` operations nondetermistically, although avoiding the
+uninteresting case in which there are none of one of them.
+In case of a `put` operation, the thread enqueues its own
 name (which is provided as an argument to the thread). In order to
 capture the behaviors, each thread prints what operation it is about to
 perform, and afterwards it prints that the operation has completed

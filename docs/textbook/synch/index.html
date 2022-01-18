@@ -1068,7 +1068,7 @@ that is in an infinite loop is also considered blocked.</p>
             <span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 10.3 (<a href=https://harmony.cs.cornell.edu/modules/synchS.hny>modules/synchS.hny</a>): 
-The lock implementation in the `synchS` module uses suspension
+Lock implementation using suspension
 </figcaption>
 
 <p>In most operating systems, threads are virtual (as opposed to "raw CPU
@@ -1144,7 +1144,7 @@ many states were explored by Harmony for each module.</p>
 <span class="n">spawn</span> <span class="n">setX</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 10.4 (<a href=https://harmony.cs.cornell.edu/code/xy.hny>code/xy.hny</a>): 
-Incomplete code with desired invariant $x + y = 100$
+Incomplete code for Exercise 10.2 with desired invariant $x + y = 100$
 </figcaption>
 
 <p><strong>10.2</strong> Figure 10.4 shows a Harmony program with two variables <em>x</em> (initially 0) and <em>y</em> (initially 100) that can be

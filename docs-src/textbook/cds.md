@@ -85,10 +85,13 @@ queue. The `queue` module can be used as follows:
     if *v* was at the head of *x*.
 
 Figure 11.1(a) shows a sequential specification for such a queue in
-Harmony (exploiting some methods from the `list` module described in ),
+Harmony (exploiting some methods from the `list` module described in ).
+It is a credible queue implementation,
 but it cannot be used with threads concurrently accessing this queue.
-Figure 11.1(b) shows the corresponding concurrent specification. See
-Figure 11.2 for a simple demonstration program that uses a
+Figure 11.1(b) shows the corresponding concurrent specification. 
+It cannot be used as an implementation for a queue, as processors generally
+do not have atomic operations on lists, but it will work well as a
+specification. See Figure 11.2 for a simple demonstration program that uses a
 concurrent queue.
 
 ```python title="queueconc.hny"

@@ -1015,10 +1015,13 @@ queue. The <code>queue</code> module can be used as follows:</p>
 </li>
 </ul>
 <p>Figure 11.1(a) shows a sequential specification for such a queue in
-Harmony (exploiting some methods from the <code>list</code> module described in ),
+Harmony (exploiting some methods from the <code>list</code> module described in ).
+It is a credible queue implementation,
 but it cannot be used with threads concurrently accessing this queue.
-Figure 11.1(b) shows the corresponding concurrent specification. See
-Figure 11.2 for a simple demonstration program that uses a
+Figure 11.1(b) shows the corresponding concurrent specification. 
+It cannot be used as an implementation for a queue, as processors generally
+do not have atomic operations on lists, but it will work well as a
+specification. See Figure 11.2 for a simple demonstration program that uses a
 concurrent queue.</p>
 <div class="highlight"><span class="filename">queueconc.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
 <span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>

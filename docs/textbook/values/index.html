@@ -1546,7 +1546,7 @@ is a complete list of Harmony value types with examples:</p>
 </tr>
 <tr>
 <td>Integer</td>
-<td>--<code>inf</code>, ..., --2, --1, 0, 1, 2, ..., <code>inf</code></td>
+<td>..., --2, --1, 0, 1, 2, ...</td>
 </tr>
 <tr>
 <td>String</td>
@@ -1680,12 +1680,10 @@ types.</p>
 </tbody>
 </table>
 <h3 id="integer">Integer</h3>
-<p>The integer type supports any whole number, as well as <span class="arithmatex">\(-\mathtt{inf}\)</span>
-and <span class="arithmatex">\(\mathtt{inf}\)</span>. In the Python-based model checker, integers are
-infinite precision. In the C-based model checker, integers are
-implemented by two's complement 61-bit words, and <span class="arithmatex">\(-\mathtt{inf}\)</span> is
-represented by the minimal integer and <span class="arithmatex">\(\mathtt{inf}\)</span> is represented by
-the maximal integer.</p>
+<p>The integer type supports any whole number.
+In the C-based model checker, integers are currently implemented
+by two's complement 61-bit words.  The model checker checks for
+overflow on various operations.</p>
 <p>Operations on integers include:</p>
 <h3 id="string">String</h3>
 <p>A string is a sequence of zero or more unicode characters. If it

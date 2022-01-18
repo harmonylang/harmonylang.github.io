@@ -188,9 +188,8 @@ Details:
 ## Formal Specification 
 
 A formal specification of the Harmony Virtual Machine is well underway
-but not yet completed. At this time, there is no support yet for bitwise
-integer operations. Also, strings are limited to the printable
-characters minus double quotes, back quotes, or backslashes. Given a
+but not yet completed. In particular, `trap` is not yet specified. Also, strings are limited to the printable
+characters minus double quotes, back quotes, or backslashes. However, everything else is specified. Given a
 Harmony program, you can output the TLA+ specification for the program
 using the following command:
 

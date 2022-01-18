@@ -9,7 +9,7 @@ is a complete list of Harmony value types with examples:
 |       |       |
 | ------ | ------- |
 | Boolean |         `False`, `True` |
-| Integer |         --`inf`, \..., --2, --1, 0, 1, 2, \..., `inf` |
+| Integer |          ..., --2, --1, 0, 1, 2, \... |
 | String |          `"`example`"`, .*example* |
 | Program Counter | (method names are program counter constants) |
 | Dictionary |      { .*account*: 12345, .*valid*: `False` } |
@@ -85,12 +85,10 @@ Operations on booleans include:
 
 ### Integer 
 
-The integer type supports any whole number, as well as $-\mathtt{inf}$
-and $\mathtt{inf}$. In the Python-based model checker, integers are
-infinite precision. In the C-based model checker, integers are
-implemented by two's complement 61-bit words, and $-\mathtt{inf}$ is
-represented by the minimal integer and $\mathtt{inf}$ is represented by
-the maximal integer.
+The integer type supports any whole number.
+In the C-based model checker, integers are currently implemented
+by two's complement 61-bit words.  The model checker checks for
+overflow on various operations.
 
 Operations on integers include:
 

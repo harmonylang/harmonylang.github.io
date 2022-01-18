@@ -946,7 +946,9 @@ it as follows:</p>
 </code></pre></div>
 <p>For this to work, make sure <code>harmony</code> is in your command shell's search
 path. The code for examples in this book can be found in the <code>code</code>
-folder under the name listed in the caption of the example. In this
+folder under the name listed in the caption of the example.
+If you need to, you can download the sources separately from
+https://harmony.cs.cornell.edu/sources.zip. In this
 case, the file <code>code/hello1.hny</code> contains the code in
 Figure 2.1. The <code>-o hello1.png</code> arguments tell harmony to write
 the output in the file <code>hello1.png</code>. The output is a <em>Deterministic
@@ -967,7 +969,7 @@ Hello World! </figcaption>
 </code></pre></div>
 <figcaption>Figure 2.2 (
 <a href=https://harmony.cs.cornell.edu/code/hello3.hny>code/hello3.hny</a>): 
-Two possible outputs </figcaption>
+Harmony program with two possible outputs</figcaption>
 
 <p><img alt="" src="../figures/hello4.png" /></p>
 <div class="highlight"><span class="filename">hello4.hny</span><pre><span></span><code><span class="k">while</span> <span class="n">choose</span> <span class="p">{</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}:</span>
@@ -975,7 +977,7 @@ Two possible outputs </figcaption>
 </code></pre></div>
 <figcaption>Figure 2.3 (
 <a href=https://harmony.cs.cornell.edu/code/hello4.hny>code/hello4.hny</a>): 
-An infinite number of outputs </figcaption>
+Harmony program with an infinite number of outputs </figcaption>
 
 <p>But programs can usually have more than one execution and produce
 multiple different outputs as a result. This is usually as a result of
@@ -1022,7 +1024,7 @@ captures an infinite number of possible outputs.</p>
 </td>
 </tr>
 </table>
-<figcaption>Figure 2.4 (Methods and threads)</figcaption>
+<figcaption>Figure 2.4 (Demonstrating Harmony methods and threads)</figcaption>
 </figure>
 
 <p>Figure 2.4 demonstrates <em>methods</em> and <em>threads</em> in Harmony. In
@@ -1043,7 +1045,7 @@ output.</p>
 </code></pre></div>
 <figcaption>Figure 2.5 
 (<a href=https://harmony.cs.cornell.edu/code/hello7.hny>code/hello7.hny</a>): 
-Interleaving threads</figcaption>
+Various interleavings of threads</figcaption>
 
 <p><img alt="" src="../figures/hello8.png" /></p>
 <div class="highlight"><span class="filename">hello8.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
@@ -1055,7 +1057,7 @@ Interleaving threads</figcaption>
 </code></pre></div>
 <figcaption>Figure 2.6
 (<a href=https://harmony.cs.cornell.edu/code/hello8.hny>code/hello8.hny</a>): 
-Less interleaving </figcaption>
+Making groups of operations atomic reduces interleaving </figcaption>
 
 <p>Figure 2.5 shows two threads, one printing the strings "hello" and
 "Robbert", while the other prints "hello" and "Lesley". Now there are

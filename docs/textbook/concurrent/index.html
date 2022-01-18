@@ -1009,7 +1009,7 @@ end of that execution?</p>
 <span class="n">spawn</span> <span class="n">incrementer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 3.2 (<a href=https://harmony.cs.cornell.edu/code/Up.hny>code/Up.hny</a>): 
-Incrementing twice in parallel </figcaption>
+Incrementing the same variable twice in parallel</figcaption>
 
 <ul>
 <li>Before you run the program, what do you think will happen? Is the program correct in that <em>count</em> will always end up being 2? (You may assume that <code>load</code> and <code>store</code> instructions of the underlying virtual machine architecture are atomic (indivisible)---in fact they are.)</li>
@@ -1157,7 +1157,7 @@ Python implementation of Figure 3.2 </figcaption>
 <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">incrementer</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,))</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </code></pre></div>
 <figcaption>Figure 3.4 (<a href=https://harmony.cs.cornell.edu/python/UpMany.py>python/UpMany.py</a>): 
-Incrementing <i>N</i> times </figcaption>
+Using Python to increment <i>N</i> times </figcaption>
                 
               
               

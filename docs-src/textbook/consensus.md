@@ -42,7 +42,7 @@ for i in {0..N–1}:
 ```
 
 <figcaption>Figure 29.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
-Distributed consensus code and DFA </figcaption>
+Distributed consensus code and behavior DFA </figcaption>
 
 Figure 29.1 presents a specification for binary consensus---the
 proposals are from the set {0, 2} In this case there are four
@@ -111,7 +111,7 @@ for i in {0..N–1}:
 A crash-tolerant consensus protocol </figcaption>
 
 ![](figures/bosco.png)
-<figcaption>Figure 29.3: The DFA for Figure 29.2
+<figcaption>Figure 29.3: The behavior DFA for Figure 29.2
 </figcaption>
 
 Figure 29.2 presents our algorithm. Besides the *network* variable, it

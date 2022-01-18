@@ -373,4 +373,4 @@ spawn incrementer(0)
 spawn incrementer(1)
 ```
 
-<figcaption>Figure 4.4 (<a href=https://harmony.cs.cornell.edu/code/UpEnter.hny>code/UpEnter.hny</a>): Broken attempt at fixing the code of Figure 3.2</figcaption>
+<figcaption>Figure 4.4 (<a href=https://harmony.cs.cornell.edu/code/UpEnter.hny>code/UpEnter.hny</a>): Incorrect attempt at fixing the code of Figure 3.2</figcaption>

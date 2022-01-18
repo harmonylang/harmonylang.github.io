@@ -64,7 +64,7 @@ spawn thread(1)
 ```
 
 <figcaption>Figure 8.3 (<a href=https://harmony.cs.cornell.edu/code/UpLock.hny>code/UpLock.hny</a>): 
-Program of Figure 3.2 fixed with a lock </figcaption>
+Figure 3.2 fixed with a lock </figcaption>
 
 The code in Figure 8.1 is similar to the code in Harmony's `synch`
 module. (The module generalizes locks to *binary semaphores*

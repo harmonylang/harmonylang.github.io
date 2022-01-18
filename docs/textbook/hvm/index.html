@@ -1258,9 +1258,8 @@ time. A context consists of the following:</p>
 </ul>
 <h2 id="formal-specification">Formal Specification</h2>
 <p>A formal specification of the Harmony Virtual Machine is well underway
-but not yet completed. At this time, there is no support yet for bitwise
-integer operations. Also, strings are limited to the printable
-characters minus double quotes, back quotes, or backslashes. Given a
+but not yet completed. In particular, <code>trap</code> is not yet specified. Also, strings are limited to the printable
+characters minus double quotes, back quotes, or backslashes. However, everything else is specified. Given a
 Harmony program, you can output the TLA+ specification for the program
 using the following command:</p>
 <div class="highlight"><pre><span></span><code>$ harmony -o program.tla program.hny

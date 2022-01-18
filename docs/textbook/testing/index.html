@@ -1051,21 +1051,25 @@ if the behaviors obtained from running the implementation are also
 behaviors obtained from the specification.</p>
 <p><img alt="" src="../figures/qtestpar.png" /></p>
 <div class="highlight"><span class="filename">qtestpar.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">queue</span>
+
 <span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">op</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span> <span class="p">}):</span>
-        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;put&quot;</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;call put&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done put&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;call get&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-            <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="p">):</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done get&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">put_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;call put&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done put&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;call get&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done get&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="n">nputs</span> <span class="o">=</span> <span class="n">choose</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">nputs</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">put_test</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="o">-</span><span class="n">nputs</span><span class="p">}:</span>
+    <span class="n">spawn</span> <span class="n">get_test</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 13.2 (<a href=https://harmony.cs.cornell.edu/code/qtestpar.hny>code/qtestpar.hny</a>): 
 Concurrent queue test. The behavior DFA is for NOPS = 2. </figcaption>
@@ -1091,8 +1095,11 @@ Sequential but not a concurrent queue implementation </figcaption>
 
 <p>We will start with a test program that tries concurrent combinations of
 various queue operations. Figure 13.2 shows the test program. It
-starts <code>NOPS</code> threads, and each choose to do either a <code>put</code> or a <code>get</code>
-operation. In case of a <code>put</code> operation, the thread enqueues its own
+starts <code>NOPS</code> threads doing either a <code>put</code>
+or a <code>get</code> operation.  It selects the fraction of <code>put</code>
+over <code>get</code> operations nondetermistically, although avoiding the
+uninteresting case in which there are none of one of them.
+In case of a <code>put</code> operation, the thread enqueues its own
 name (which is provided as an argument to the thread). In order to
 capture the behaviors, each thread prints what operation it is about to
 perform, and afterwards it prints that the operation has completed

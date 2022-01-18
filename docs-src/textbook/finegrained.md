@@ -29,7 +29,7 @@ def contains(s, v):
 <figcaption>Figure 12.1 (<a href=https://harmony.cs.cornell.edu/code/code/setobj.hny>code/setobj.hny</a>): 
 Specification of a concurrent set object </figcaption>
 
-```python title="intsettest.hny"
+```python title="setobjtest.hny"
 from setobj import *
 myset = SetObject()
 
@@ -46,8 +46,8 @@ spawn thread2(0)
 spawn thread2(2)
 ```
 
-<figcaption>Figure 12.2 (<a href=https://harmony.cs.cornell.edu/code/intsettest.hny>code/intsettest.hny</a>): 
-Test code for set objects </figcaption>
+<figcaption>Figure 12.2 (<a href=https://harmony.cs.cornell.edu/code/setobjtest.hny>code/intsettest.hny</a>): 
+Test code for set objects</figcaption>
 
 Figure 12.1 gives the specification of a concurrent set object.
 `SetObject()` returns a pointer to a variable that contains an empty
@@ -63,66 +63,66 @@ very thorough) test program to demonstrate the use of set objects.
 from synch import Lock, acquire, release
 from alloc import malloc, free
 
-def _node(v, n): # allocate and initialize a new list node
-    result = malloc({ .lock: Lock(), .value: v, .next: n })
+def _node(v, n):     # allocate and initialize a new list node
+    result = malloc({ .lock: Lock(), .value: (0, v), .next: n })
 
 def _find(lst, v):
-    var before = lst
-    acquire(?before->lock)
-    var after = before->next
-    acquire(?after->lock)
-    while after->value < v:
-        release(?before->lock)
-        before = after
-        after = before->next
-        acquire(?after->lock)
-    result = (before, after)
+    var before = lst
+    acquire(?before->lock)
+    var after = before->next
+    acquire(?after->lock)
+    while after->value < (0, v):
+        release(?before->lock)
+        before = after
+        after = before->next
+        acquire(?after->lock)
+    result = (before, after)
 
 def SetObject():
-    result = _node(–inf, _node(inf, None))
+    result = _node((-1, None), _node((1, None), None))
 
 def insert(lst, v):
-    let before, after = _find(lst, v):
-        if after->value != v:
-            before->next = _node(v, after)
-        release(?after->lock)
-        release(?before->lock)
+    let before, after = _find(lst, v):
+        if after->value != (0, v):
+            before->next = _node(v, after)
+        release(?after->lock)
+        release(?before->lock)
 
 def remove(lst, v):
-    let before, after = _find(lst, v):
-        if after->value == v:
-            before->next = after->next
-            release(?after->lock)
-            free(after)
-        else:
-            release(?after->lock)
-        release(?before->lock)
+    let before, after = _find(lst, v):
+        if after->value == (0, v):
+            before->next = after->next
+            release(?after->lock)
+            free(after)
+        else:
+            release(?after->lock)
+        release(?before->lock)
 
 def contains(lst, v):
-    let before, after = _find(lst, v):
-        result = after->value == v
-        release(?after->lock)
-        release(?before->lock)
+    let before, after = _find(lst, v):
+        result = after->value == (0, v)
+        release(?after->lock)
+        release(?before->lock)
 ```
 
 <figcaption>Figure 12.3 (<a href=https://harmony.cs.cornell.edu/code/linkedlist.hny>code/linkedlist.hny</a>): 
-Implementation of a set of integers using a linked list with
+Implementation of a set of values using a linked list with
 fine-grained locking </figcaption>
 
-Figure 12.3 implements a concurrent set object using an ordered
-linked list of integers without duplicates. The list has two dummy
-"book-end" nodes with values --`inf` and `inf` (similar to the Python
-`math.inf` constant). An invariant of the algorithm is that at any point
-in time the list is "valid," starting with a --`inf` node and ending
-with an `inf` node.
+Figure 12.3 implements a concurrent set object using an ordered linked list without duplicates.
+The list has two dummy ``book-end'' nodes with values $(-1, None)$ and
+$(1, None)$.  A value $v$ is stored as $(0, v)$ &mdash; note that for
+any value $v$, $(-1, None) < (0, v) < (1, None)$. An invariant of the algorithm is that at any point
+in time list is "valid", starting with a $(-1, None)$ node and ending
+with an $(1, None)$ node.
 
 Each node has a lock, a value, and *next*, a pointer to the next node
-(which is `None` for the `inf` node). The `_find`(*lst*, *v*) helper
+(which is `None` for the $(1, None)$ node to mark the end of the list). The `_find`(*lst*, *v*) helper
 method first finds and locks two consecutive nodes *before* and *after*
-such that *before*->*data*.*value* $<$ *v* $<=$
+such that *before*->*data*.*value* $<$ *(0, v*) $<=$
 *after*->*data*.*value*. It does so by performing something
 called *hand-over-hand locking*. It first locks the first node, which is
-the --`inf` node. Then, iteratively, it obtains a lock on the next node
+the $(-1, None)$ node. Then, iteratively, it obtains a lock on the next node
 and release the lock on the last one, and so on, similar to climbing a
 rope hand-over-hand. Using `_find`, the `insert`, `remove`, and
 `contains` methods are fairly straightforward to implement.
