@@ -1,98 +1,109 @@
+# Installing and Running Harmony
 
-# Installing and Running Harmony 
+Harmony requires the following to be installed:
 
-There are currently two supported options for using Harmony:
+1. Python (version 3.6 or higher)
+2. C compiler (potentially optional)
 
-1.  You can download and install *HarmonyLang*, a VSCode plug-in for
-    Harmony;
+Note that in the following instructions, Windows users using WSL should follows instructions for Linux.
 
-2.  You can download and install a command-line version of Harmony on
-    your computer;
+## Installing Python3
 
-Below you can find more information on each of these options.
+If you do not have Python3 already installed, download and install Python depending on
+your OS (Windows, Mac, Linux, etc) on the official [Python site](https://www.python.org/downloads/).
+Be sure to install Python version `3.6` or higher.
 
-## Requirements
+On the command line, you can check if Python has been successfully installed by running the following:
 
-The Harmony compiler requires both [Python 3](https://www.python.org/downloads/) and the [GCC](https://gcc.gnu.org/) compiler. Both must be on your PATH environment variable for Harmony to function.
+```sh
+python --version
+```
 
-## HarmonyLang for VSCode
+## Install Harmony via Pip
 
-The VSCode plug-in, developed by Kevin Sun and Anthony Yang, is
-available from the VSCode market place:
-<https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang>.
-This page comes with installation documentation. VSCode also sports a
-wonderful animator for Harmony output.
+After installing `python`, you should also be able to use the command `pip`. Run the following command to get the latest version of Harmony:
 
-HarmonyLang is regularly updated to include the latest Harmony
-distribution.
+```sh
+pip install harmony-model-checker
+```
 
-## Command-Line
+## For Windows Users
 
-You can get the latest released developer version of Harmony by
-downloading from [harmony.cs.cornell.edu](https://harmony.cs.cornell.edu). It
-includes the latest bug fixes and features at any time. Harmony is
-developed and maintained by the author on both MacOSX and Linux, and so
-these are the preferred platforms at this time. A Windows version is
-also available, but may not be the latest version and is currently not
-as well supported.
+For **Windows** users: you may encounter the error message along the lines of the following when installing `harmony-model-checker`:
 
-When you download the `.zip` file, you will get the following files:
+```sh
+error: Microsoft Visual C++ 14.0 or greater is required. Get it with
+"Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+```
 
--   `README.txt`: installation documentation;
+This is to be expected if you had not installed the "Microsoft C++ Build Tools" before. Navigate to the [outputted link](https://visualstudio.microsoft.com/visual-cpp-build-tools/) and press `Download Build Tools` to download the installer. When you run the installer, you will encounter a selection screen such as the following:
 
--   `archive.xml`: portable compressed archive of the code base;
+![Workload installation selection screen](figures/find-c++-build-tools.png "Worload installation selection screen")
 
--   `install.py`: Python3 program to install and update the code base.
+Select `Desktop development with C++` in the `Desktop & Mobile` section and then install.
 
-First place this directory (folder) where you would like it---the
-`Downloads` folder is at best a good temporary place. You can put the
-directory in your home directory, for example.
+![Select the workload and install](figures/press-install-c++-build-tools.png "Select the workload and install")
 
-Installation requires Python3 and a 64-bit C compiler. The developer
-uses recent versions of `gcc` and `clang` for development. Run
-`python3 install.py` to install the code base. It extracts files from
-archive.xml and installs them in the current directory. It will try to
-compile the model checker using `gcc`. If that fails under Windows, it
-will install an executable that is pre-compiled on a Windows 10 machine.
-If these options do not work, you can compile the file `charm.c` by hand
-using a 64-bit C compile and place the output in `charm.exe`.
+Note that this will likely take a while. When it finishes installing, run `pip install harmony-model-checker` again.
 
-After installation, there is a `harmony` file for use under MacOSX and
-Linux, and a `harmony.bat` file for use under Windows. You should be
-able to run `harmony –help` in any of these environments.
+## Adding Scripts to PATH
 
-If you would like to run `harmony` from any directory, you have to add
-the current directory to your search path. Under MacOSX and Linux, you
-will have to set the `PATH` environment variable. See
-<http://www.linux-migration.org/ch02s06.html> for more information.
-Under Windows, search \"Edit environment variables\" in the search bar.
-You can add the directory either to the `Path` associated with your
-account or to the system `Path`. If you do not install `harmony` in your
-search path, you may have to run `./harmony` in the installation
-directory instead of just `harmony`.
+When installing Harmony, you may encounter a warning on the command line of something like the following:
 
-The installation directory will have the following subdirectories:
+```sh
+WARNING: The script harmony is installed in '</path/with/harmony/>' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+```
 
--   `code`: contains all the code examples from this book;
+If you do not see this warning, then you can continue.
 
--   `modules`: contains the Harmony modules;
+Otherwise, add that path displayed in the message to your `PATH` variable. See [here](#modifying-your-path-variable) for extra information on editing the `PATH` variable.
 
--   `python`: contains the Python examples from the book.
+## Command-Line Harmony
 
-For example, you can try `harmony code/Diners.hny` to run the Dining
-Philosophers code. Harmony currently produces three output files:
+Once you have installed `harmony-model-checker`, you should be able to use the `harmony` command on your command line.
 
--   `code/Diners.hvm`: the bytecode in JSON format;
+## Harmony on VSCode
 
--   `code/Diners.hco`: the output of the model checker in JSON format;
+Harmony is available as an extension on VSCode, which includes syntax highlighting and basic parser checks.
 
--   `code/Diners.htm`: the model checker output converted to HTML
-    format.
+Please see [here](https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang) for a guide on the basic usage of the VSCode extension.
 
-You are probably only interested to see the last one, which you should
-be able to view in any web browser of your choice, including Safari,
-Chrome, Edge, or Firefox.
+## Updating Harmony
 
-You can see if you are running the latest version of Harmony at any time
-by running `Python3 install.py –check`. If you would like to update your
-installation, run `Python3 install.puy –update`.
+Harmony can be updated by running the following `pip` command on the command line:
+
+```sh
+pip install --upgrade harmony-model-checker
+```
+
+## Modifying your PATH variable
+
+**Windows**:
+
+Search for **Edit environment variables** in the search bar. You can add it either to the `Path` associated with your account or the system `Path`.
+
+![A pane with sections](figures/first-pane.png "First pane")
+
+Select the variable `Path` in the user variables section and then click "Edit", which opens a new pane.
+
+![Hover over the new button](figures/hover-new.png "Hovering over the new button")
+
+Click "New" to add a new path, for example, the path to `gcc`.
+
+![Add new path](figures/adding-new-path.png "Adding new path")
+
+
+**MacOS / Linux**:
+
+Open the Terminal application. Check which shell is running on the Terminal. You check which one you have by running `echo "$SHELL"`.
+
+The following instructions are for `bash` and `zsh`, where `/path/to/add` is to be substituted:
+
+```sh
+# for bash
+echo "export PATH=$PATH:/path/to/add" >> ~/.bash_profile
+
+# for zsh
+echo "export PATH=$PATH:/path/to/add" >> ~/.zsh_profile
+```

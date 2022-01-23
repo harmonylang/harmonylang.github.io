@@ -274,22 +274,57 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#installing-python3" class="md-nav__link">
+    Installing Python3
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#harmonylang-for-vscode" class="md-nav__link">
-    HarmonyLang for VSCode
+  <a href="#install-harmony-via-pip" class="md-nav__link">
+    Install Harmony via Pip
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#command-line" class="md-nav__link">
-    Command-Line
+  <a href="#for-windows-users" class="md-nav__link">
+    For Windows Users
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-scripts-to-path" class="md-nav__link">
+    Adding Scripts to PATH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-harmony" class="md-nav__link">
+    Command-Line Harmony
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harmony-on-vscode" class="md-nav__link">
+    Harmony on VSCode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-harmony" class="md-nav__link">
+    Updating Harmony
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-your-path-variable" class="md-nav__link">
+    Modifying your PATH variable
   </a>
   
 </li>
@@ -925,22 +960,57 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#installing-python3" class="md-nav__link">
+    Installing Python3
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#harmonylang-for-vscode" class="md-nav__link">
-    HarmonyLang for VSCode
+  <a href="#install-harmony-via-pip" class="md-nav__link">
+    Install Harmony via Pip
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#command-line" class="md-nav__link">
-    Command-Line
+  <a href="#for-windows-users" class="md-nav__link">
+    For Windows Users
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-scripts-to-path" class="md-nav__link">
+    Adding Scripts to PATH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-harmony" class="md-nav__link">
+    Command-Line Harmony
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harmony-on-vscode" class="md-nav__link">
+    Harmony on VSCode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-harmony" class="md-nav__link">
+    Updating Harmony
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-your-path-variable" class="md-nav__link">
+    Modifying your PATH variable
   </a>
   
 </li>
@@ -959,103 +1029,66 @@
                 
                 
                 <h1 id="installing-and-running-harmony">Installing and Running Harmony</h1>
-<p>There are currently two supported options for using Harmony:</p>
+<p>Harmony requires the following to be installed:</p>
 <ol>
-<li>
-<p>You can download and install <em>HarmonyLang</em>, a VSCode plug-in for
-    Harmony;</p>
-</li>
-<li>
-<p>You can download and install a command-line version of Harmony on
-    your computer;</p>
-</li>
+<li>Python (version 3.6 or higher)</li>
+<li>C compiler (potentially optional)</li>
 </ol>
-<p>Below you can find more information on each of these options.</p>
-<h2 id="requirements">Requirements</h2>
-<p>The Harmony compiler requires both <a href="https://www.python.org/downloads/">Python 3</a> and the <a href="https://gcc.gnu.org/">GCC</a> compiler. Both must be on your PATH environment variable for Harmony to function.</p>
-<h2 id="harmonylang-for-vscode">HarmonyLang for VSCode</h2>
-<p>The VSCode plug-in, developed by Kevin Sun and Anthony Yang, is
-available from the VSCode market place:
-<a href="https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang">https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang</a>.
-This page comes with installation documentation. VSCode also sports a
-wonderful animator for Harmony output.</p>
-<p>HarmonyLang is regularly updated to include the latest Harmony
-distribution.</p>
-<h2 id="command-line">Command-Line</h2>
-<p>You can get the latest released developer version of Harmony by
-downloading from <a href="https://harmony.cs.cornell.edu">harmony.cs.cornell.edu</a>. It
-includes the latest bug fixes and features at any time. Harmony is
-developed and maintained by the author on both MacOSX and Linux, and so
-these are the preferred platforms at this time. A Windows version is
-also available, but may not be the latest version and is currently not
-as well supported.</p>
-<p>When you download the <code>.zip</code> file, you will get the following files:</p>
-<ul>
-<li>
-<p><code>README.txt</code>: installation documentation;</p>
-</li>
-<li>
-<p><code>archive.xml</code>: portable compressed archive of the code base;</p>
-</li>
-<li>
-<p><code>install.py</code>: Python3 program to install and update the code base.</p>
-</li>
-</ul>
-<p>First place this directory (folder) where you would like it---the
-<code>Downloads</code> folder is at best a good temporary place. You can put the
-directory in your home directory, for example.</p>
-<p>Installation requires Python3 and a 64-bit C compiler. The developer
-uses recent versions of <code>gcc</code> and <code>clang</code> for development. Run
-<code>python3 install.py</code> to install the code base. It extracts files from
-archive.xml and installs them in the current directory. It will try to
-compile the model checker using <code>gcc</code>. If that fails under Windows, it
-will install an executable that is pre-compiled on a Windows 10 machine.
-If these options do not work, you can compile the file <code>charm.c</code> by hand
-using a 64-bit C compile and place the output in <code>charm.exe</code>.</p>
-<p>After installation, there is a <code>harmony</code> file for use under MacOSX and
-Linux, and a <code>harmony.bat</code> file for use under Windows. You should be
-able to run <code>harmony –help</code> in any of these environments.</p>
-<p>If you would like to run <code>harmony</code> from any directory, you have to add
-the current directory to your search path. Under MacOSX and Linux, you
-will have to set the <code>PATH</code> environment variable. See
-<a href="http://www.linux-migration.org/ch02s06.html">http://www.linux-migration.org/ch02s06.html</a> for more information.
-Under Windows, search \"Edit environment variables\" in the search bar.
-You can add the directory either to the <code>Path</code> associated with your
-account or to the system <code>Path</code>. If you do not install <code>harmony</code> in your
-search path, you may have to run <code>./harmony</code> in the installation
-directory instead of just <code>harmony</code>.</p>
-<p>The installation directory will have the following subdirectories:</p>
-<ul>
-<li>
-<p><code>code</code>: contains all the code examples from this book;</p>
-</li>
-<li>
-<p><code>modules</code>: contains the Harmony modules;</p>
-</li>
-<li>
-<p><code>python</code>: contains the Python examples from the book.</p>
-</li>
-</ul>
-<p>For example, you can try <code>harmony code/Diners.hny</code> to run the Dining
-Philosophers code. Harmony currently produces three output files:</p>
-<ul>
-<li>
-<p><code>code/Diners.hvm</code>: the bytecode in JSON format;</p>
-</li>
-<li>
-<p><code>code/Diners.hco</code>: the output of the model checker in JSON format;</p>
-</li>
-<li>
-<p><code>code/Diners.htm</code>: the model checker output converted to HTML
-    format.</p>
-</li>
-</ul>
-<p>You are probably only interested to see the last one, which you should
-be able to view in any web browser of your choice, including Safari,
-Chrome, Edge, or Firefox.</p>
-<p>You can see if you are running the latest version of Harmony at any time
-by running <code>Python3 install.py –check</code>. If you would like to update your
-installation, run <code>Python3 install.puy –update</code>.</p>
+<p>Note that in the following instructions, Windows users using WSL should follows instructions for Linux.</p>
+<h2 id="installing-python3">Installing Python3</h2>
+<p>If you do not have Python3 already installed, download and install Python depending on
+your OS (Windows, Mac, Linux, etc) on the official <a href="https://www.python.org/downloads/">Python site</a>.
+Be sure to install Python version <code>3.6</code> or higher.</p>
+<p>On the command line, you can check if Python has been successfully installed by running the following:</p>
+<div class="highlight"><pre><span></span><code>python --version
+</code></pre></div>
+<h2 id="install-harmony-via-pip">Install Harmony via Pip</h2>
+<p>After installing <code>python</code>, you should also be able to use the command <code>pip</code>. Run the following command to get the latest version of Harmony:</p>
+<div class="highlight"><pre><span></span><code>pip install harmony-model-checker
+</code></pre></div>
+<h2 id="for-windows-users">For Windows Users</h2>
+<p>For <strong>Windows</strong> users: you may encounter the error message along the lines of the following when installing <code>harmony-model-checker</code>:</p>
+<div class="highlight"><pre><span></span><code>error: Microsoft Visual C++ <span class="m">14</span>.0 or greater is required. Get it with
+<span class="s2">&quot;Microsoft C++ Build Tools&quot;</span>: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+</code></pre></div>
+<p>This is to be expected if you had not installed the "Microsoft C++ Build Tools" before. Navigate to the <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">outputted link</a> and press <code>Download Build Tools</code> to download the installer. When you run the installer, you will encounter a selection screen such as the following:</p>
+<p><img alt="Workload installation selection screen" src="../figures/find-c%2B%2B-build-tools.png" title="Worload installation selection screen" /></p>
+<p>Select <code>Desktop development with C++</code> in the <code>Desktop &amp; Mobile</code> section and then install.</p>
+<p><img alt="Select the workload and install" src="../figures/press-install-c%2B%2B-build-tools.png" title="Select the workload and install" /></p>
+<p>Note that this will likely take a while. When it finishes installing, run <code>pip install harmony-model-checker</code> again.</p>
+<h2 id="adding-scripts-to-path">Adding Scripts to PATH</h2>
+<p>When installing Harmony, you may encounter a warning on the command line of something like the following:</p>
+<div class="highlight"><pre><span></span><code>WARNING: The script harmony is installed <span class="k">in</span> <span class="s1">&#39;&lt;/path/with/harmony/&gt;&#39;</span> which is not on PATH.
+  Consider adding this directory to PATH or, <span class="k">if</span> you prefer to suppress this warning, use --no-warn-script-location.
+</code></pre></div>
+<p>If you do not see this warning, then you can continue.</p>
+<p>Otherwise, add that path displayed in the message to your <code>PATH</code> variable. See <a href="#modifying-your-path-variable">here</a> for extra information on editing the <code>PATH</code> variable.</p>
+<h2 id="command-line-harmony">Command-Line Harmony</h2>
+<p>Once you have installed <code>harmony-model-checker</code>, you should be able to use the <code>harmony</code> command on your command line.</p>
+<h2 id="harmony-on-vscode">Harmony on VSCode</h2>
+<p>Harmony is available as an extension on VSCode, which includes syntax highlighting and basic parser checks.</p>
+<p>Please see <a href="https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang">here</a> for a guide on the basic usage of the VSCode extension.</p>
+<h2 id="updating-harmony">Updating Harmony</h2>
+<p>Harmony can be updated by running the following <code>pip</code> command on the command line:</p>
+<div class="highlight"><pre><span></span><code>pip install --upgrade harmony-model-checker
+</code></pre></div>
+<h2 id="modifying-your-path-variable">Modifying your PATH variable</h2>
+<p><strong>Windows</strong>:</p>
+<p>Search for <strong>Edit environment variables</strong> in the search bar. You can add it either to the <code>Path</code> associated with your account or the system <code>Path</code>.</p>
+<p><img alt="A pane with sections" src="../figures/first-pane.png" title="First pane" /></p>
+<p>Select the variable <code>Path</code> in the user variables section and then click "Edit", which opens a new pane.</p>
+<p><img alt="Hover over the new button" src="../figures/hover-new.png" title="Hovering over the new button" /></p>
+<p>Click "New" to add a new path, for example, the path to <code>gcc</code>.</p>
+<p><img alt="Add new path" src="../figures/adding-new-path.png" title="Adding new path" /></p>
+<p><strong>MacOS / Linux</strong>:</p>
+<p>Open the Terminal application. Check which shell is running on the Terminal. You check which one you have by running <code>echo "$SHELL"</code>.</p>
+<p>The following instructions are for <code>bash</code> and <code>zsh</code>, where <code>/path/to/add</code> is to be substituted:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># for bash</span>
+<span class="nb">echo</span> <span class="s2">&quot;export PATH=</span><span class="nv">$PATH</span><span class="s2">:/path/to/add&quot;</span> &gt;&gt; ~/.bash_profile
+
+<span class="c1"># for zsh</span>
+<span class="nb">echo</span> <span class="s2">&quot;export PATH=</span><span class="nv">$PATH</span><span class="s2">:/path/to/add&quot;</span> &gt;&gt; ~/.zsh_profile
+</code></pre></div>
                 
               
               

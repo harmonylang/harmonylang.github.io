@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Harmony - Home</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Harmony Programming Language</title>
+  <meta content="A Python-like programming language for testing and experimenting with concurrent programs." name="description">
+  <meta content="Harmony, HarmonyLang, Programming Language, Concurrent Programming, Cornell" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -46,10 +46,10 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#documentation">Documentation</a></li>
           <li><a href="#downloads">Downloads</a></li>
           <li><a href="#examples">Examples</a></li>
-          <li><a href="#documentation">Documentation</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
 
         </ul>
@@ -70,7 +70,7 @@
             A Python-like programming language for testing and experimenting with concurrent programs.
             Instead of "running" code, Harmony programs are model-checked so that all corner cases are explored.
           </p>
-          <a href="#downloads" class="btn-get-started animate__animated animate__fadeInUp scrollto">Download</a>
+          <a href="#documentation" class="btn-get-started animate__animated animate__fadeInUp scrollto">Learn more</a>
         </div>
       </div>
 
@@ -116,41 +116,44 @@
   </section>
   <!-- End Hero -->
 
-  <main id="main">
+  <!-- ======= Documentation Section ======= -->
+  <section id="documentation" class="docs">
+    <div class="container">
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="section-title" data-aos="zoom-out">
-          <h2>About</h2>
-          <p>What is Harmony?</p>
-        </div>
-
-        <div class="row content" data-aos="fade-up">
-          <div class="col-lg-6">
-            <p>
-              Concurrent programming is hard to get right. A deadlock might occur only once in a million executions,
-              caused by the most esoteric of circumstances. Harmony makes finding those bugs easy.
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Checks every possible interleaving of processes</li>
-              <li><i class="ri-check-double-line"></i> Detects non-compilance with invariants</li>
-              <li><i class="ri-check-double-line"></i> Provides the shortest path to a failing execution</li>
-            </ul>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0">
-            <p>
-              Learning programming in Harmony should be straightforward to those familiar with Python or similar languages.
-              In addition to our online documentation, we provide a textbook in PDF form with many programming examples 
-              including Peterson's Algorithm, reader/writer locks, and split binary semaphores.
-            </p>
-            <a href="/docs/guides/introduction/" class="btn-learn-more">Read more</a>
-          </div>
-        </div>
-
+      <div class="section-title" data-aos="zoom-out">
+        <h2>Documentation</h2>
+        <p>Start Here</p>
       </div>
-    </section><!-- End About Section -->
+      
+      <div class="row">
+        <a href="docs/textbook/"><h3>The Harmony Online Textbook</h3></a>
+        <p>A Comprehensive Introduction to Concurrent Programming</p>
+      </div>
+
+      <div class="row">
+        <a href="docs/textbook/install/"><h3>Installing Harmony</h3></a>
+        <p>A Quick Start Guide</p>
+      </div>
+
+      <div class="row">
+        <a href="docs/textbook/values/"><h3>Language Reference</h3></a>
+        <p>Language features and syntax</p>
+      </div>
+
+      <div class="row">
+        <a href="docs/textbook/module/"><h3>Library Reference</h3></a>
+        <p>Built in modules and libraries</p>
+      </div>
+
+      <div class="row">
+        <a href="docs/changelog/"><h3>What's New in Harmony 1.3?</h3></a>
+        <p>Changelog & Patch Notes</p>
+      </div>
+
+    </div>
+  </section>
+
+  <main id="main">
 
     <!-- ======= Downloads Section ======= -->
     <section id="downloads" class="downloads">
@@ -158,7 +161,7 @@
 
         <div class="section-title" data-aos="zoom-out">
           <h2>Downloads</h2>
-          <p>Requires Python 3.x</p>
+          <p>Requires Python 3.6+</p>
         </div>
 
         <div class="row justify-content-center">
@@ -178,30 +181,17 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="100">
-              <h3>HarmonyLang Lite for VSCode</h3>
-              <ul>
-                <li>Syntax Highlighting</li>
-                <li>In-editor Visualizer</li>
-                <li>Remote Compiler</li>
-                <li>Installable through github.dev</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="https://marketplace.visualstudio.com/items?itemName=kevinsun-dev-cornell.harmonylang" class="btn-buy">Download</a>
-              </div>
-            </div>
-          </div>
-
           <div class="col-lg-3 col-md-6">
             <div class="box" data-aos="zoom-in">
               <h3>Harmony Compiler</h3>
               <ul>
-                <li>Command-line tool</li>
+                <li>Advanced standalone model checking</li>
+                <li>State machine output</li>
                 <li>HTML output</li>
+                <li>Available on pip</li>
               </ul>
               <div class="btn-wrap">
-                <a href="/distributions/harmony-1.2.zip" class="btn-buy">Download</a>
+                <a href="docs/textbook/install/" class="btn-buy">Install</a>
               </div>
             </div>
           </div>
@@ -285,47 +275,38 @@
       </div>
     </section><!-- End Examples Section -->
 
-    <!-- ======= Documentation Section ======= -->
-    <section id="documentation" class="docs">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
       <div class="container">
 
         <div class="section-title" data-aos="zoom-out">
-          <h2>Documentation</h2>
-          <p>Read the docs</p>
+          <h2>About</h2>
+          <p>What is Harmony?</p>
         </div>
 
-        <div class="row">
-          <a href="docs/changelog/"><h3>What's New in Harmony 1.3?</h3></a>
-          <p>Changelog & Patch Notes</p>
+        <div class="row content" data-aos="fade-up">
+          <div class="col-lg-6">
+            <p>
+              Concurrent programming is hard to get right. A deadlock might occur only once in a million executions,
+              caused by the most esoteric of circumstances. Harmony makes finding those bugs easy.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Checks every possible interleaving of processes</li>
+              <li><i class="ri-check-double-line"></i> Detects non-compilance with invariants</li>
+              <li><i class="ri-check-double-line"></i> Provides the shortest path to a failing execution</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0">
+            <p>
+              Learning programming in Harmony should be straightforward to those familiar with Python or similar languages.
+              In addition to our online documentation, we provide a textbook in PDF form with many programming examples 
+              including Peterson's Algorithm, reader/writer locks, and split binary semaphores.
+            </p>
+            <a href="/docs/guides/introduction/" class="btn-learn-more">Read more</a>
+          </div>
         </div>
-
-        <div class="row">
-          <a href="docs/textbook/"><h3>Harmony Text Book</h3></a>
-          <p>RVR's Free e-Textbook on Concurrent Programming</p>
-        </div>
-
-        <div class="row">
-          <a href="docs/guides/introduction/"><h3>Tutorial</h3></a>
-          <p><i>Learn to use Harmony</i></p>
-        </div>
-
-        <div class="row">
-          <a href="docs/textbook/install/"><h3>HarmonyLang for VSCode</h3></a>
-          <p>A Quick Start Guide</p>
-        </div>
-
-        <div class="row">
-          <a href="docs/textbook/values/"><h3>Language Reference</h3></a>
-          <p>Language features and syntax</p>
-        </div>
-
-        <div class="row">
-          <a href="docs/textbook/module/"><h3>Library Reference</h3></a>
-          <p>Built in modules and libraries</p>
-        </div>
-
       </div>
-    </section><!-- End Testimonials Section -->
+    </section><!-- End About Section -->
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
@@ -340,7 +321,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up">
               <div class="member-img">
-                <img src="assets/img/team/team-1.png" class="img-fluid" alt="">
+                <img src="assets/img/team/team-1.webp" class="img-fluid" alt="">
                 <div class="social">
                   <a href="https://www.cs.cornell.edu/home/rvr/"><i class="icofont-computer"></i></a>
                   <a href="https://twitter.com/rvanren"><i class="icofont-twitter"></i></a>
@@ -358,7 +339,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                <img src="assets/img/team/team-2.webp" class="img-fluid" alt="">
                 <div class="social">
                   <a href="https://www.facebook.com/anthonyyang4114"><i class="icofont-facebook"></i></a>
                   <a href="https://twitter.com/ayang4114"><i class="icofont-twitter"></i></a>
@@ -376,7 +357,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
-                <img src="assets/img/team/team-5.jpg" class="img-fluid" alt="">
+                <img src="assets/img/team/team-5.webp" class="img-fluid" alt="">
                 <div class="social">
                   <a href="https://www.instagram.com/whoiswillma"><i class="icofont-instagram"></i></a>
                   <a href="https://twitter.com/whoiswillma"><i class="icofont-twitter"></i></a>
@@ -394,7 +375,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                <img src="assets/img/team/team-3.webp" class="img-fluid" alt="">
                 <div class="social">
                   <a href="https://kevinsun.dev/"><i class="icofont-computer"></i></a>
                   <a href="https://twitter.com/kevinsun_dev"><i class="icofont-twitter"></i></a>
@@ -419,7 +400,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
-                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+                <img src="assets/img/team/team-4.webp" class="img-fluid" alt="">
                 <div class="social">
                   <a href="https://www.facebook.com/shichong97/"><i class="icofont-facebook"></i></a>
                   <a href="https://twitter.com/shichong97"><i class="icofont-twitter"></i></a>

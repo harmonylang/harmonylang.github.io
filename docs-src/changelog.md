@@ -3,12 +3,12 @@
 ## v1.3
  - Added print statements
  - Added DFA output graphs
+ - Removed the `@` tag from labeled statements
  - Bug fixes
 
 ## v1.2
  - Added `let-when` statements
   - Renamed `once` to `when`
- - Added `try-except` statements
  - Added `possibly` statement
  - Added `atomically`
  - Added "-i" flag
