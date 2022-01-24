@@ -281,6 +281,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installing-graphviz" class="md-nav__link">
+    Installing Graphviz
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-harmony-via-pip" class="md-nav__link">
     Install Harmony via Pip
   </a>
@@ -967,6 +974,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installing-graphviz" class="md-nav__link">
+    Installing Graphviz
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-harmony-via-pip" class="md-nav__link">
     Install Harmony via Pip
   </a>
@@ -1032,16 +1046,33 @@
 <p>Harmony requires the following to be installed:</p>
 <ol>
 <li>Python (version 3.6 or higher)</li>
-<li>C compiler (potentially optional)</li>
+<li>Graphviz</li>
+<li>C Compiler (potentially potential)</li>
 </ol>
-<p>Note that in the following instructions, Windows users using WSL should follows instructions for Linux.</p>
+<p>In the following instructions, Windows users using WSL should follows instructions for Linux.</p>
 <h2 id="installing-python3">Installing Python3</h2>
-<p>If you do not have Python3 already installed, download and install Python depending on
-your OS (Windows, Mac, Linux, etc) on the official <a href="https://www.python.org/downloads/">Python site</a>.
-Be sure to install Python version <code>3.6</code> or higher.</p>
+<p>Harmony requires Python (version 3.6 or higher) to be installed. If you do not have Python3 already installed, download and install Python depending on your OS (Windows, Mac, Linux, etc) on the official <a href="https://www.python.org/downloads/">Python site</a>. Be sure to download the installer for Python version <code>3.6</code> or higher.</p>
+<p>In the installer, the default installation settings will also add <code>pip</code>. If you choose to run the installer with custom settings, be sure that <code>pip</code> gets installed.</p>
 <p>On the command line, you can check if Python has been successfully installed by running the following:</p>
 <div class="highlight"><pre><span></span><code>python --version
 </code></pre></div>
+<h2 id="installing-graphviz">Installing Graphviz</h2>
+<p>Harmony uses <a href="https://graphviz.org/">Graphviz</a> to visualize the state changes in a program. For example, the following Harmony program can produce the subsequent graph.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Filename: example.hny</span>
+<span class="k">def</span> <span class="nf">a</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s2">&quot;A&quot;</span>
+
+<span class="k">def</span> <span class="nf">b</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s2">&quot;B&quot;</span>
+
+<span class="n">spawn</span> <span class="n">a</span><span class="p">()</span>
+<span class="n">spwan</span> <span class="n">b</span><span class="p">()</span>
+
+<span class="c1"># Run with [harmony -o example.png example.hny]</span>
+</code></pre></div>
+<p><img alt="Dot output using example.hny" src="../figures/simple-graph-example.png" title="Dot output" /></p>
+<p>Instructions for installing the latest version of Graphviz can be found <a href="https://graphviz.org/download/">here</a>.</p>
+<p>For <strong>Windows</strong> users, when running the installer, make sure to select the option <strong>Add Graphviz to the system PATH for current user</strong> so that the command <code>dot</code> is available to produce the graphs.</p>
 <h2 id="install-harmony-via-pip">Install Harmony via Pip</h2>
 <p>After installing <code>python</code>, you should also be able to use the command <code>pip</code>. Run the following command to get the latest version of Harmony:</p>
 <div class="highlight"><pre><span></span><code>pip install harmony-model-checker
