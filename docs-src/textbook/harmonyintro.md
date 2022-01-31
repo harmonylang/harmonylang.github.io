@@ -92,8 +92,8 @@ captures an infinite number of possible outputs.
 def p(s):
     print s
 
-spawn p("hello)
-spawn p("world")
+p("hello")
+p("world")
 ```
 <img src="../figures/hello5.png" />
 
