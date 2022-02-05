@@ -1159,18 +1159,21 @@ Reader/Writer Lock using Mesa-style condition variables
 
 <p>Harmony provides support for Mesa monitors through the Harmony <code>synch</code>
 module. Figure 18.3 shows the implementation of condition variables in
-the <code>synch</code> module. <code>Condition</code>() creates a new condition variable. It
+the <code>synch</code> module. <code>Condition()</code> creates a new condition variable. It
 is represented by a dictionary containing a bag of contexts of threads
 waiting on the condition variable. (The <code>synchS</code> library instead uses a
 list of contexts.)</p>
 <p>In Harmony, a bag is usually represented by a dictionary that maps the
 elements of the bag to their multiplicities. For example, the value {
 .<em>a</em>: 2, .<em>b</em>: 3 } represents a bag with two copies of .<em>a</em> and three
-copies of .<em>b</em>. The <code>bag</code> module () contains a variety of handy
+copies of .<em>b</em>. The <code>bag</code> module contains a variety of handy
 functions on bags.</p>
-<p>Method <code>wait</code> adds the context of the thread to the bag. This increments
-the number of threads in the bag with the same context. <code>wait</code> then
-loops until that count is restored to the value that it had upon entry
+<p>Method &lt;{wait}&gt; adds the context of the thread---used as a unique
+identifier for the thread---to the bag,
+incrementing the number of threads in the bag with the same context.
+The Harmony <code>save</code> expression returns a tuple containing a value 
+(in this case <code>()</code>) and the context of the thread. <code>wait</code> then loops
+until that count is restored to the value that it had upon entry
 to <code>wait</code>. Method <code>notify</code> removes an arbitrary context from the bag,
 allowing one of the threads with that context to resume and re-acquire
 the lock associated with the monitor. <code>notifyAll</code> empties out the entire

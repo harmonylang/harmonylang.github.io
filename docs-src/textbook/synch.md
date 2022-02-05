@@ -173,7 +173,7 @@ This causes the context of the thread to be saved in *s* and the thread
 to be no longer running. Another thread can revive the thread using the
 **go** statement:
 ```
-go c r
+go s r
 ```
 Here *c* is a context and *r* is a Harmony value. It causes a thread
 with context *c* to be added to the state that has just executed the

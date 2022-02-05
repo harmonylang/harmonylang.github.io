@@ -11,8 +11,9 @@ string "hello, world". Since then, most programming tutorials for pretty
 much any programming language start with that example.
 
 Harmony, too, has a Hello World program. Figure 2.1 shows the
-program and the corresponding output. From the command line, you can run
-it as follows:
+program and the corresponding output. After installation 
+(see https://harmony.cs.cornell.edu), you can run it as 
+follows from the command line:
 
     $ harmony -o hello1.png code/hello1.hny
 

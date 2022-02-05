@@ -219,5 +219,4 @@ just interested in a "speed course" on Harmony, I would recommend
 reading [Chapter 2](harmonyintro.md), [Chapter 4](harmonymachine.md), [Chapter 7](method.md),
 [Chapter 8](specification.md), and [Chapter 11](cds.md). The appendices contain various
 details about Harmony itself, including an appendix on convenient
-[Harmony modules](module.md), an appendix that explains [how Harmony works](howitworks.md), and
-an appendix on [installing and running Harmony](install.md).
+[Harmony modules](module.md), and an appendix that explains [how Harmony works](howitworks.md).

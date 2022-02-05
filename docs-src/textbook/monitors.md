@@ -248,7 +248,7 @@ Reader/Writer Lock using Mesa-style condition variables
 
 Harmony provides support for Mesa monitors through the Harmony `synch`
 module. Figure 18.3 shows the implementation of condition variables in
-the `synch` module. `Condition`() creates a new condition variable. It
+the `synch` module. `Condition()` creates a new condition variable. It
 is represented by a dictionary containing a bag of contexts of threads
 waiting on the condition variable. (The `synchS` library instead uses a
 list of contexts.)
@@ -256,12 +256,15 @@ list of contexts.)
 In Harmony, a bag is usually represented by a dictionary that maps the
 elements of the bag to their multiplicities. For example, the value {
 .*a*: 2, .*b*: 3 } represents a bag with two copies of .*a* and three
-copies of .*b*. The `bag` module () contains a variety of handy
+copies of .*b*. The `bag` module contains a variety of handy
 functions on bags.
 
-Method `wait` adds the context of the thread to the bag. This increments
-the number of threads in the bag with the same context. `wait` then
-loops until that count is restored to the value that it had upon entry
+Method <{wait}> adds the context of the thread---used as a unique
+identifier for the thread---to the bag,
+incrementing the number of threads in the bag with the same context.
+The Harmony `save` expression returns a tuple containing a value 
+(in this case `()`) and the context of the thread. `wait` then loops
+until that count is restored to the value that it had upon entry
 to `wait`. Method `notify` removes an arbitrary context from the bag,
 allowing one of the threads with that context to resume and re-acquire
 the lock associated with the monitor. `notifyAll` empties out the entire

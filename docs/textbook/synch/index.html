@@ -1085,7 +1085,7 @@ itself is as follows:
 This causes the context of the thread to be saved in <em>s</em> and the thread
 to be no longer running. Another thread can revive the thread using the
 <strong>go</strong> statement:
-<div class="highlight"><pre><span></span><code>go c r
+<div class="highlight"><pre><span></span><code>go s r
 </code></pre></div>
 Here <em>c</em> is a context and <em>r</em> is a Harmony value. It causes a thread
 with context <em>c</em> to be added to the state that has just executed the
