@@ -10,8 +10,8 @@ def thread(self):
     while choose({ False, True }):
         # Enter critical section
         flags[self] = True
-        turn = 1 – self
-        await (not flags[1 – self]) or (turn == self)
+        turn = 1 - self
+        await (not flags[1 - self]) or (turn == self)
         # Critical section is here
         cs: assert countLabel(cs) == 1
         # Leave critical section
@@ -186,10 +186,10 @@ def thread(self):
     while choose({ False, True }):
         # Enter critical section
         flags[self] = True
-        gate: turn = 1 – self
-        await (not flags[1 – self]) or (turn == self)
+        gate: turn = 1 - self
+        await (not flags[1 - self]) or (turn == self)
         # Critical section
-        cs: assert (not flags[1 – self]) or (turn == self) or
+        cs: assert (not flags[1 - self]) or (turn == self) or
 (countLabel(gate) == 1)
         # Leave critical section
         flags[self] = False
@@ -310,7 +310,7 @@ def thread(self):
     while choose({ False, True }):
         # Enter critical section
         flags[self] = True
-        while flags[1 – self]:
+        while flags[1 - self]:
             flags[self] = False
             flags[self] = True
         

@@ -78,23 +78,23 @@ def read_acquire(rw):
     acquire(?rw->mutex)
     if rw->nwriters > 0:
         rw->r_gate.count += 1; release_one(rw)
-        acquire(?rw->r_gate.sema); rw->r_gate.count –= 1
+        acquire(?rw->r_gate.sema); rw->r_gate.count -= 1
     rw->nreaders += 1
     release_one(rw)
 
 def read_release(rw):
-    acquire(?rw->mutex); rw->nreaders –= 1; release_one(rw)
+    acquire(?rw->mutex); rw->nreaders -= 1; release_one(rw)
 
 def write_acquire(rw):
     acquire(?rw->mutex)
     if (rw->nreaders + rw->nwriters) > 0:
         rw->w_gate.count += 1; release_one(rw)
-        acquire(?rw->w_gate.sema); rw->w_gate.count –= 1
+        acquire(?rw->w_gate.sema); rw->w_gate.count -= 1
     rw->nwriters += 1
     release_one(rw)
 
 def write_release(rw):
-    acquire(?rw->mutex); rw->nwriters –= 1; release_one(rw)
+    acquire(?rw->mutex); rw->nwriters -= 1; release_one(rw)
 ```
 
 <figcaption>Figure 16.1 (<a href=https://harmony.cs.cornell.edu/code/RWsbs.hny>code/RWsbs.hny</a>): 
@@ -204,7 +204,7 @@ availGPUs = {1..N}
 
 def gpuAlloc():
     result = choose(availGPUs)
-    availGPUs –= { result }
+    availGPUs -= { result }
 
 def gpuRelease(gpu):
     availGPUs |= { gpu }

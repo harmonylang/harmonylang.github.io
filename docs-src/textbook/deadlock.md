@@ -32,7 +32,7 @@ def diner(which):
             release(?forks[left])
             release(?forks[right])
             # think
-for i in {0..N–1}:
+for i in {0..N-1}:
     spawn diner(i)
 ```
 
@@ -107,7 +107,7 @@ def diner(which):
             synch.notify(?conds[right])
             synch.release(?mutex)
             # think
-for i in {0..N–1}:
+for i in {0..N-1}:
     spawn diner(i)
 ```
 
@@ -194,7 +194,7 @@ The `V` or "vacate" operation increments the semaphore.
 from synch import *
 const N = 5
 forks = [Lock(),] * N
-sema = Semaphore(N – 1) # can be procured up to N−1 times
+sema = Semaphore(N - 1) # can be procured up to N−1 times
 
 def diner(which):
     let left, right = (which, (which + 1) % N):
@@ -207,7 +207,7 @@ def diner(which):
             release(?forks[right])
             V(?sema) # vacate counting semaphore
             # think
-for i in {0..N–1}:
+for i in {0..N-1}:
     spawn diner(i)
 ```
 
@@ -253,8 +253,8 @@ accounts = [ { .lock: Lock(), .balance: choose({0..MAX_BALANCE})}
 
 def transfer(a1, a2, amount):
     acquire(?accounts[a1].lock)
-    if amount  < = accounts[a1].balance:
-        accounts[a1].balance –= amount
+    if amount <= accounts[a1].balance:
+        accounts[a1].balance -= amount
         acquire(?accounts[a2].lock)
         accounts[a2].balance += amount
         release(?accounts[a2].lock)
@@ -264,8 +264,8 @@ def transfer(a1, a2, amount):
     release(?accounts[a1].lock)
 
 def thread():
-    let a1 = choose({0..N_ACCOUNTS–1})
-    let a2 = choose({0..N_ACCOUNTS–1} – { a1 }):
+    let a1 = choose({0..N_ACCOUNTS-1})
+    let a2 = choose({0..N_ACCOUNTS-1} - { a1 }):
         transfer(a1, a2, choose({1..MAX_BALANCE}))
 for i in {1..N_THREADS}:
     spawn thread()

@@ -20,7 +20,7 @@ def insert(s, v):
     atomically !s |= {v}
 
 def remove(s, v):
-    atomically !s –= {v}
+    atomically !s -= {v}
 
 def contains(s, v):
     atomically result = v in !s

@@ -133,7 +133,7 @@ that is in an infinite loop is also considered blocked.
 import list
 
 def Lock():
-    result = { .acquired: False, .suspended: [ ] }
+    result = { .acquired: False, .suspended: [ ] }
 
 def acquire(lk):
     atomically:
@@ -146,7 +146,7 @@ def acquire(lk):
 def release(lk):
     atomically:
         assert lk->acquired
-        if lk->suspended == [ ]:
+        if lk->suspended == [ ]:
             lk->acquired = False
         else:
             go (list.head(lk->suspended)) ()
@@ -222,7 +222,7 @@ x, y = 0, 100
 
 def setX(a):
     x = a
-    y = 100 – a
+    y = 100 - a
 
 def getXY():
     result = [x, y]
@@ -258,7 +258,7 @@ const N_ATMS = 2
 const MAX_BALANCE = 1
 accounts = [ { .lock: Lock(), .balance: choose({0..MAX_BALANCE})}
                             for i in {1..N_ACCOUNTS} ]
-invariant min(accounts[acct].balance for acct in {0..N_ACCOUNTS–1})  > =
+invariant min(accounts[acct].balance for acct in {0..N_ACCOUNTS-1}) >=
 0
 
 def atm_check_balance(acct): # return the balance on acct
@@ -268,17 +268,17 @@ def atm_check_balance(acct): # return the balance on acct
 
 def atm_withdraw(acct, amount): # withdraw amount from acct
     acquire(?accounts[acct].lock)
-    accounts[acct].balance –= amount
+    accounts[acct].balance -= amount
     result = True # return success
     release(?accounts[acct].lock)
 
 def customer(atm, acct, amount):
     let bal = atm_check_balance(acct):
-        if amount  < = bal:
+        if amount <= bal:
             atm_withdraw(acct, amount)
         
 for i in {1..N_ATMS}:
-    spawn customer(i, choose({0..N_ACCOUNTS–1}),
+    spawn customer(i, choose({0..N_ACCOUNTS-1}),
                       choose({0..MAX_BALANCE}))
 ```
 

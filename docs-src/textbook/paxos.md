@@ -28,7 +28,7 @@ const NACCEPTORS = (2 * F) + 1
 const NLEADERS = F + 1
 const NBALLOTS = 2
 network = bag.empty()
-proposals = [ choose({0, 1}) for i in {0..NLEADERS–1} ]
+proposals = [ choose({0, 1}) for i in {0..NLEADERS-1} ]
 
 def send(m):
     atomically network = bag.add(network, m)
@@ -36,9 +36,9 @@ def send(m):
 def receive(ballot, phase):
     let msgs = { e:c for (b,p,t,e):c in network
                         where (b,p,t) == (ballot, phase, "B") }:
-        result = bag.combinations(msgs, NACCEPTORS – F)
+        result = bag.combinations(msgs, NACCEPTORS - F)
 print proposals
-for i in {0..NLEADERS – 1}:
+for i in {0..NLEADERS - 1}:
     spawn leader(i + 1, proposals[i])
 for i in {1..NACCEPTORS}:
     spawn eternal acceptor()
@@ -46,7 +46,7 @@ for i in {1..NACCEPTORS}:
 def leader(self, proposal):
     var ballot, estimate = self, proposal
     send(ballot, 1, "A", None)
-    while ballot  < = NBALLOTS:
+    while ballot <= NBALLOTS:
         atomically when exists quorum in receive(ballot, 1):
             let accepted = { e for e:_ in quorum where e != None }:
                 if accepted != {}:
@@ -54,11 +54,11 @@ def leader(self, proposal):
             send(ballot, 2, "A", estimate)
         atomically when exists quorum in receive(ballot, 2):
             if bag.multiplicity(quorum, (ballot, estimate)) ==
-(NACCEPTORS – F):
+(NACCEPTORS - F):
                 assert estimate in proposals # validity
                 print estimate
             ballot += NLEADERS
-            if ballot  < = NBALLOTS:
+            if ballot <= NBALLOTS:
                 send(ballot, 1, "A", None)
 
 def acceptor():
@@ -68,7 +68,7 @@ def acceptor():
 network
                     where ((b,p) not in received) and (t == "A") }:
             received |= { (b, p) }
-            if b  > = ballot:
+            if b >= ballot:
                 ballot = b
                 if p == 2:
                     last_accepted = (ballot, e)

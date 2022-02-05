@@ -158,7 +158,7 @@ that, when multiplied, have the value 4.
 A dictionary maps a set of values (known as *keys*) to another set of
 values. The generic syntax of a dictionary is
 $\{ k_0:v_0, k_1:v_1, ... \}$. Different from Python, the empty
-dictionary is either () or \[ \] (because {} is the empty set in
+dictionary is either () or \[ \] (because {} is the empty set in
 Harmony). If there are duplicate keys in the list, then only the one
 with the maximum value survives. Therefore the order of the keys in the
 dictionary does not matter.
@@ -398,8 +398,8 @@ in *x*. In this case, it is equivalent to $x = x + 3$. However, in
 general this is not so. For example, *x*\[`f`()\] += 3 only evaluates
 `f`() once. Unlike Python, however, *x* += \[3,\] is equivalent to *x* =
 *x* + \[3,\] in Harmony. (In Python, the following two compound
-statements lead to different results for *y*: *x* = *y* = \[ \]; *x* +=
-\[3\] and *x* = *y* = \[ \]; *x* = *x* + \[3\].)
+statements lead to different results for *y*: *x* = *y* = \[ \]; *x* +=
+\[3\] and *x* = *y* = \[ \]; *x* = *x* + \[3\].)
 
 ### **assert** 
 
@@ -963,13 +963,13 @@ Testing a stack implementation. </figcaption>
 
 ```python title="stack1.hny"
 def Stack():
-    result = [ ]
+    result = [ ]
 
 def push(st, v):
     (!st)[len(!st)] = v
 
 def pop(st):
-    let n = len(!st) – 1:
+    let n = len(!st) - 1:
         result = (!st)[n]
         del (!st)[n]
 ```
@@ -983,13 +983,13 @@ Stack implemented using a dynamically updated list.
 import list
 
 def Stack():
-    result = [ ]
+    result = [ ]
 
 def push(st, v):
     !st += [v,]
 
 def pop(st):
-    let n = len(!st) – 1:
+    let n = len(!st) - 1:
         result = (!st)[n]
         !st = list.subseq(!st, 0, n)
 ```

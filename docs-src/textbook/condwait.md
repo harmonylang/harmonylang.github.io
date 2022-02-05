@@ -51,7 +51,7 @@ def read_acquire(rw):
         rw->nreaders += 1
 
 def read_release(rw):
-    atomically rw->nreaders –= 1
+    atomically rw->nreaders -= 1
 
 def write_acquire(rw):
     atomically when (rw->nreaders + rw->nwriters) == 0:
@@ -74,7 +74,7 @@ def thread():
     while choose({ False, True }):
         if choose({ "read", "write" }) == "read":
             RW.read_acquire(?rw)
-            rcs: assert (countLabel(rcs)  > = 1) and (countLabel(wcs) ==
+            rcs: assert (countLabel(rcs) >= 1) and (countLabel(wcs) ==
 0)
             RW.read_release(?rw)
         else: # write
@@ -165,8 +165,7 @@ def thread(self):
             print(self, "enter ra")
             RW.read_acquire(?rw)
             print(self, "exit ra")
-            rcs: assert (countLabel(rcs)  > = 1) and (countLabel(wcs) ==
-0)
+            rcs: assert (countLabel(rcs) >= 1) and (countLabel(wcs) == 0)
             print(self, "enter rr")
             RW.read_release(?rw)
             print(self, "exit rr")
@@ -174,8 +173,7 @@ def thread(self):
             print(self, "enter wa")
             RW.write_acquire(?rw)
             print(self, "exit wa")
-            wcs: assert (countLabel(rcs) == 0) and (countLabel(wcs) ==
-1)
+            wcs: assert (countLabel(rcs) == 0) and (countLabel(wcs) == 1)
             print(self, "enter wr")
             RW.write_release(?rw)
             print(self, "enter wr")
@@ -247,14 +245,14 @@ CPU cycles.  Harmony complains about this solution.
 import list
 
 def BoundedBuffer(size):
-    result = { .buffer: [ ], .size: size }
+    result = { .buffer: [ ], .size: size }
 
 def put(bb, v):
     atomically when len(bb->buffer) < bb->size:
         bb->buffer = list.append(bb->buffer, v)
 
 def get(bb):
-    atomically when bb->buffer != [ ]:
+    atomically when bb->buffer != [ ]:
         result = list.head(bb->buffer)
         bb->buffer = list.tail(bb->buffer)
 ```

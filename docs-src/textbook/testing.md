@@ -160,7 +160,7 @@ Concurrent queue test. The behavior DFA is for NOPS = 2. </figcaption>
 
 ```python title="queueseq.hny"
 def Queue():
-    result = { .data: [ ], .head: 0, .tail: 0 }
+    result = { .data: [ ], .head: 0, .tail: 0 }
 
 def put(q, v):
     let i = q->tail:

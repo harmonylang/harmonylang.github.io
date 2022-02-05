@@ -78,7 +78,7 @@ and then sets the shared variable to `True` ("set").
 const N = 3
 shared = False
 private = [ True, ] * N
-invariant len(x for x in [shared,] + private where not x)  < = 1
+invariant len(x for x in [shared,] + private where not x) <= 1
 
 def test_and_set(s, p):
     atomically:
@@ -99,7 +99,7 @@ def thread(self):
         # Leave critical section
         private[self] = True
         clear(?shared)
-for i in {0..N–1}:
+for i in {0..N-1}:
     spawn thread(i)
 ```
 

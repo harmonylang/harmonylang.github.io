@@ -84,7 +84,7 @@ def bob():
 def corey():
     var received, nonces, msgs = {}, { "nonceC" }, {}
     while True:
-        atomically when exists m in network – received when m.dst ==
+        atomically when exists m in network - received when m.dst ==
 "Corey":
             received |= { m }
             nonces |= { m.contents.nonce }
@@ -99,7 +99,7 @@ def corey():
                                     for n2 in nonces }
                 msgs |= {{ .dst: dst, .contents: { .type: 3, .nonce: n
 }}}
-            send(choose(msgs – network))
+            send(choose(msgs - network))
 spawn alice(); spawn bob()
 spawn eternal corey()
 ```

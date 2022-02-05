@@ -60,7 +60,7 @@ register.init()
 for i in { 1 .. NREADERS }:
     spawn reader(i)
 for i in { 1 .. NWRITERS }:
-    spawn writer(–i)
+    spawn writer(-i)
 ```
 
 <figcaption>Figure 28.2 (<a href=https://harmony.cs.cornell.edu/code/abdtest.hny>code/abdtest.hny</a>): 
@@ -141,7 +141,7 @@ def send(m): atomically network = bag.add(network, m)
 def server():
     var t, v, received = (0, None), None, {}
     while True:
-        atomically when exists m in { m for m in keys network – received
+        atomically when exists m in { m for m in keys network - received
                             where m.type in {"read", "write"} }:
             received |= { m }
             if (m.type == "write") and (m.value[0] > t):
@@ -155,7 +155,7 @@ def receive(uid, phase):
     let msgs = { m:c for m:c in network
                 where (m.type == .response) and (m.dst == (uid, phase))
 }:
-        result = bag.combinations(msgs, N – F)
+        result = bag.combinations(msgs, N - F)
 
 def read(uid):
     send({ .type: "read", .src: (uid, 1) })

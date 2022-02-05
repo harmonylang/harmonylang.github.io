@@ -60,7 +60,7 @@ def read_acquire(rw):
     acquire(?rw->mutex)
     if (rw->nwriters > 0) or (rw->w_gate.count > 0):
         rw->r_gate.count += 1; release(?rw->mutex)
-        acquire(?rw->r_gate.sema); rw->r_gate.count –= 1
+        acquire(?rw->r_gate.sema); rw->r_gate.count -= 1
     rw->nreaders += 1
     if rw->r_gate.count > 0:
         release(?rw->r_gate.sema)
@@ -69,7 +69,7 @@ def read_acquire(rw):
 
 def read_release(rw):
     acquire(?rw->mutex)
-    rw->nreaders –= 1
+    rw->nreaders -= 1
     if (rw->w_gate.count > 0) and (rw->nreaders == 0):
         release(?rw->w_gate.sema)
     else:
@@ -80,13 +80,13 @@ def write_acquire(rw):
     acquire(?rw->mutex)
     if (rw->nreaders + rw->nwriters) > 0:
         rw->w_gate.count += 1; release(?rw->mutex)
-        acquire(?rw->w_gate.sema); rw->w_gate.count –= 1
+        acquire(?rw->w_gate.sema); rw->w_gate.count -= 1
     rw->nwriters += 1
     release(?rw->mutex)
 
 def write_release(rw):
     acquire(?rw->mutex)
-    rw->nwriters –= 1
+    rw->nwriters -= 1
     if rw->r_gate.count > 0:
         release(?rw->r_gate.sema)
     elif rw->w_gate.count > 0:

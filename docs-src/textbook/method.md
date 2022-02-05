@@ -23,8 +23,8 @@ and *x* is an arbitrary Harmony value, then `f` *x*, `f`(*x*), and
 ```python title="PetersonMethod.hny"
 def P_enter(pm, pid):
     pm->flags[pid] = True
-    pm->turn = 1 – pid
-    await (not pm->flags[1 – pid]) or (pm->turn == pid)
+    pm->turn = 1 - pid
+    await (not pm->flags[1 - pid]) or (pm->turn == pid)
 
 def P_exit(pm, pid):
     pm->flags[pid] = False
@@ -103,11 +103,11 @@ example: **let** $x = 3$: *y* $+$$=$ *x* adds 3 to the global variable
 
 ```python title="hanoi.hny"
 import list
-current = [ [1, 2, 3], [ ], [ ] ]
+current = [ [1, 2, 3], [ ], [ ] ]
 while current[2] != [1, 2, 3]:
     let moves = { (s, d) for s in {0..2} for d in {0..2}
-        where current[s] != [ ]
-        where (current[d] == [ ]) or (current[s][0] < current[d][0]) }
+        where current[s] != [ ]
+        where (current[d] == [ ]) or (current[s][0] < current[d][0]) }
     let (src,dst) = choose moves:
         print str(src) + " −> " + str(dst)
         current[dst] = [list.head(current[src]),] + current[dst]
@@ -156,21 +156,21 @@ def CLOCK(n):
 def ref(clock, x):
     if x not in clock->entries:
         while clock->entries[clock->hand] in clock->recent:
-            clock->recent –= {clock->entries[clock->hand]}
+            clock->recent -= {clock->entries[clock->hand]}
             clock->hand = (clock->hand + 1) % len(clock->entries)
         clock->entries[clock->hand] = x
         clock->hand = (clock->hand + 1) % len(clock->entries)
         clock->misses += 1
     if not FIFO:
         clock->recent |= {x}
-clock3, clock4, refs = CLOCK(3), CLOCK(4), [ ]
+clock3, clock4, refs = CLOCK(3), CLOCK(4), [ ]
 const VALUES = { 1..5 }
 var last = {}
 for i in {1..100}:
-    let x = i if i < 5 else choose(VALUES – last):
+    let x = i if i < 5 else choose(VALUES - last):
         refs = refs + [x,]
         ref(?clock3, x); ref(?clock4, x)
-        assert(clock4.misses  < = clock3.misses)
+        assert(clock4.misses <= clock3.misses)
         last = {x}
 ```
 

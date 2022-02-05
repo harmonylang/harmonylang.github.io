@@ -21,13 +21,13 @@ guarantees that they produce the same outputs in the same order.
 ```python title="rsmspec.hny"
 const NREPLICAS = 3 # number of replicas
 const NOPS = 3 # number of operations
-network = [ ] # the network is a queue of messages
+network = [ ] # the network is a queue of messages
 
 def send(m):
     atomically network += [m,]
 
 def replica(immortal):
-    var hist = [ ]
+    var hist = [ ]
     while choose({ immortal, True }) and (len(hist) < NOPS):
         atomically when len(network) > len(hist):
             hist += [network[len(hist)],]
@@ -38,8 +38,8 @@ def replica(immortal):
 
 def client(self):
     send(self)
-let survivor = choose({ 0 .. NREPLICAS – 1 }):
-    for i in { 0 .. NREPLICAS – 1 }:
+let survivor = choose({ 0 .. NREPLICAS - 1 }):
+    for i in { 0 .. NREPLICAS - 1 }:
         spawn replica(i == survivor)
 for i in {1..NOPS}:
     spawn client(i)
@@ -105,11 +105,10 @@ def send(m):
     atomically network |= { m }
 
 def receive(predecessor):
-    result = { payload for (id, payload) in network where (id ==
-predecessor) }
+    result = { payload for (id, payload) in network where (id == predecessor) }
 
 def replica(self, immortal):
-    var hist, predecessors = [ ], { 0 .. self – 1 }
+    var hist, predecessors = [ ], { 0 .. self - 1 }
     while choose({ immortal, True }) and (len(hist) < NOPS):
         if predecessors == {}: # I’m the head
             atomically when exists update in receive("client")
@@ -117,13 +116,11 @@ def replica(self, immortal):
                 hist += [update,]
                 send(self, hist)
         else: # I’m not the head (yet)
-            atomically when exists payload in
-receive(max(predecessors)):
+            atomically when exists payload in receive(max(predecessors)):
                 if payload == "crash":
-                    predecessors –= { max(predecessors) }
+                    predecessors -= { max(predecessors) }
                 elif (len(payload) > len(hist)) and
-                        all(hist[i] == payload[i] for i in
-{0..len(hist)–1}):
+                        all(hist[i] == payload[i] for i in {0..len(hist)-1}):
                     hist = payload
                     send(self, hist)
     if len(hist) == NOPS: # successful completion
@@ -133,8 +130,8 @@ receive(max(predecessors)):
 
 def client(self):
     send("client", self)
-let survivor = choose({ 0 .. NREPLICAS – 1 }):
-    for i in { 0 .. NREPLICAS – 1 }:
+let survivor = choose({ 0 .. NREPLICAS - 1 }):
+    for i in { 0 .. NREPLICAS - 1 }:
         spawn replica(i, i == survivor)
 for i in {1..NOPS}:
     spawn client(i)

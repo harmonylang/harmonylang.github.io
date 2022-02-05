@@ -30,7 +30,7 @@ def wait(cond, mon):
     cond->count += 1
     exit(mon)
     synch.acquire(?cond->sema)
-    cond->count –= 1
+    cond->count -= 1
 
 def signal(cond, mon):
     if cond->count > 0:
@@ -82,7 +82,7 @@ def get(bb):
         hoare.wait(?bb->cons, ?bb->mon)
     result = bb->buf[bb->head]
     bb->head = (bb->head % bb->size) + 1
-    bb->count –= 1
+    bb->count -= 1
     hoare.signal(?bb->prod, ?bb->mon)
     hoare.exit(?bb->mon)
 ```
@@ -180,12 +180,12 @@ def Condition():
 
 def wait(c, lk):
     var cnt 0
-    let ctx = get_context():
+    let _, ctx = save():
         atomically:
             cnt = bag.multiplicity(!c, ctx)
             !c = bag.add(!c, ctx)
             !lk = False
-        atomically when (not !lk) and (bag.multiplicity(!c, ctx)  < =
+        atomically when (not !lk) and (bag.multiplicity(!c, ctx) <=
 cnt):
             !lk = True
 
@@ -222,7 +222,7 @@ def read_acquire(rw):
 
 def read_release(rw):
     acquire(?rw->mutex)
-    rw->nreaders –= 1
+    rw->nreaders -= 1
     if rw->nreaders == 0:
         notify(?rw->w_cond)
     release(?rw->mutex)
@@ -373,30 +373,30 @@ until *todo* is empty and sorts the ranges that it finds until then. The
 
 ```python title="qsort.hny"
 def Qsort(arr):
-    result = { .arr: arr, .todo: { (0, len(arr) – 1) } }
+    result = { .arr: arr, .todo: { (0, len(arr) - 1) } }
 
 def swap(p, q): # swap !p and !q
     !p, !q = !q, !p;
 
 def partition(qs, lo, hi):
     result = lo
-    for i in {lo..hi – 1}:
-        if qs->arr[i]  < = qs->arr[hi]:
+    for i in {lo..hi - 1}:
+        if qs->arr[i] <= qs->arr[hi]:
             swap(?qs->arr[result], ?qs->arr[i])
             result += 1
     swap(?qs->arr[result], ?qs->arr[hi]);
 
 def sortrange(qs, range):
     let lo, hi = range let pivot = partition(qs, lo, hi):
-        if (pivot – 1) > lo:
-            qs->todo |= { (lo, pivot – 1) }
+        if (pivot - 1) > lo:
+            qs->todo |= { (lo, pivot - 1) }
         if (pivot + 1) < hi:
             qs->todo |= { (pivot + 1, hi) }
 
 def sort(qs):
     while qs->todo != {}:
         let range = choose(qs->todo):
-            qs->todo –= { range }
+            qs->todo -= { range }
             sortrange(qs, range)
     result = qs->arr
 ```
@@ -411,7 +411,7 @@ const NITEMS = 4
 a = [ choose({1..NITEMS}) for i in {1..choose({1..NITEMS})} ]
 testqs = qsort.Qsort(a)
 sa = qsort.sort(?testqs)
-assert all(sa[i – 1]  < = sa[i] for i in {1..len(sa)–1}) # sorted?
+assert all(sa[i - 1] <= sa[i] for i in {1..len(sa)-1}) # sorted?
 assert bag.fromList(a) == bag.fromList(sa); # is it a permutation?
 ```
 

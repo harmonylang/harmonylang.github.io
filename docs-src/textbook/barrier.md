@@ -26,14 +26,14 @@ import barrier
 const NTHREADS = 3
 const NROUNDS = 4
 round = [0,] * NTHREADS
-invariant (max(round) – min(round))  < = 1
+invariant (max(round) - min(round)) <= 1
 barr = barrier.Barrier(NTHREADS)
 
 def thread(self):
-    for r in {0..NROUNDS–1}:
+    for r in {0..NROUNDS-1}:
         barrier.bwait(?barr)
         round[self] += 1
-for i in {0..NTHREADS–1}:
+for i in {0..NTHREADS-1}:
     spawn thread(i)
 ```
 
@@ -64,7 +64,7 @@ def Barrier(required):
 
 def bwait(b):
     acquire(?b->mutex)
-    b->left –= 1
+    b->left -= 1
     if b->left == 0:
         b->cycle = (b->cycle + 1) % 2
         b->left = b->required
@@ -94,19 +94,19 @@ import barrier
 const NTHREADS = 3
 const NROUNDS = 4
 round = [0,] * NTHREADS
-invariant (max(round) – min(round))  < = 1
+invariant (max(round) - min(round)) <= 1
 phase = 0
 barr = barrier.Barrier(NTHREADS)
 
 def thread(self):
-    for r in {0..NROUNDS–1}:
+    for r in {0..NROUNDS-1}:
         if self == 0: # coordinator prepares
             phase += 1
         barrier.bwait(?barr) # enter parallel work
         round[self] += 1
         assert round[self] == phase
         barrier.bwait(?barr) # exit parallel work
-for i in {0..NTHREADS–1}:
+for i in {0..NTHREADS-1}:
     spawn thread(i)
 ```
 

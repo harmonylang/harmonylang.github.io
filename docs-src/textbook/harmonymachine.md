@@ -363,11 +363,11 @@ entered = done = [ False, False ]
 
 def incrementer(self):
     entered[self] = True
-    if entered[1 – self]: # if the other thread has already started
-        await done[1 – self] # wait until it is done
+    if entered[1 - self]: # if the other thread has already started
+        await done[1 - self] # wait until it is done
     count = count + 1
     done[self] = True
-    await done[1 – self]
+    await done[1 - self]
     assert count == 2
 spawn incrementer(0)
 spawn incrementer(1)

@@ -36,7 +36,7 @@ def net_recv(pchan):
     result = !pchan
 
 def app_send(payload):
-    s_seq = 1 – s_seq
+    s_seq = 1 - s_seq
     let m = { .seq: s_seq, .payload: payload }:
         var blocked = True
         while blocked:
@@ -46,7 +46,7 @@ def app_send(payload):
             
 
 def app_recv(reliable):
-    r_seq = 1 – r_seq
+    r_seq = 1 - r_seq
     var blocked = True
     while blocked:
         let m = net_recv(?s_chan):

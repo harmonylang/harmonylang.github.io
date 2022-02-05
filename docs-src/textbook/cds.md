@@ -137,8 +137,7 @@ from alloc import malloc, free
 
 def Queue():
     let dummy = malloc({ .value: (), .next: None }):
-        result = { .head: dummy, .tail: dummy, .hdlock: Lock(), .tllock:
-Lock() }
+        result = { .head: dummy, .tail: dummy, .hdlock: Lock(), .tllock: Lock() }
 
 def put(q, v):
     let node = malloc({ .value: v, .next: None }):

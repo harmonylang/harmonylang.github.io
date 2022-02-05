@@ -44,14 +44,14 @@ def processor(self, succ):
                 send(succ, id, found)
             if found:
                 working = False
-var ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [ ]
-for i in { 0 .. nprocs – 1 }:
+var ids, nprocs, procs = { 1 .. NIDS }, choose({ 1 .. NIDS }), [ ]
+for i in { 0 .. nprocs - 1 }:
     let next = choose(ids):
-        ids –= { next }
+        ids -= { next }
         procs += [ next, ]
         if next > leader:
             leader = next
-for i in { 0 .. nprocs – 1 }:
+for i in { 0 .. nprocs - 1 }:
     spawn processor(procs[i], procs[(i + 1) % nprocs])
 ```
 

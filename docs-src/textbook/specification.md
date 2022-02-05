@@ -57,7 +57,7 @@ def thread(self):
     count = count + 1
     release(?countlock)
     done[self] = True
-    await done[1 – self]
+    await done[1 - self]
     assert count == 2
 spawn thread(0)
 spawn thread(1)
