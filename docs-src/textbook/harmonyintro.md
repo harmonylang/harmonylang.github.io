@@ -104,7 +104,7 @@ p("world")
 def p(s):
     print s
 
-spawn p("hello)
+spawn p("hello")
 spawn p("world")
 ```
 <img src="../figures/hello6.png" />

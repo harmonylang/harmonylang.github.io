@@ -904,7 +904,6 @@
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<p><em>Try out the algorithm above <a href="https://harmony.cs.cornell.edu/ide/?template=Peterson">in the sandbox!</a></em></p>
 <p>Harmony allows two sources of non-determinism: interleaving of concurrent process executions and choose(S) expressions that select some element from set S. Running Harmony finds that no interleaving and no possible choices lead to the assertion being violated. Moreover, Harmony also finds that processes do not get stuck, indefinitely waiting to enter the critical section.</p>
 <h1 id="get-started">Get Started</h1>
 <p>Learning programming in Harmony should be straightforward to those familiar with Python or similar languages.</p>

@@ -24,8 +24,6 @@ spawn thread(0)
 spawn thread(1)
 ```
 
-*Try out the algorithm above [in the sandbox!](https://harmony.cs.cornell.edu/ide/?template=Peterson)*
-
 Harmony allows two sources of non-determinism: interleaving of concurrent process executions and choose(S) expressions that select some element from set S. Running Harmony finds that no interleaving and no possible choices lead to the assertion being violated. Moreover, Harmony also finds that processes do not get stuck, indefinitely waiting to enter the critical section.
 
 # Get Started
