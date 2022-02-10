@@ -124,7 +124,7 @@ the last acknowledgment, or the receiver waiting for the last message.
 ## Exercises 
 
 
-**24.1** [Chapter 22](actor.md) explored the *client/server model*. It is popular in
+**24.1** [Chapter 20](actor.md) explored the *client/server model*. It is popular in
 distributed systems as well. Develop a protocol for a single client and
 server using the same network model as for the ABP protocol. Hint: the
 response to a request can contain the same sequence number as the

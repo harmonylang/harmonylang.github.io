@@ -47,12 +47,15 @@ nav:
 docs_dir: docs-src
 site_dir: docs
 
+
 theme: 
     name: material
     logo: img/favicon.ico
     favicon: img/favicon.ico
     palette:
         primary: black
+
+copyright: Copyright &copy; 2020 - 2022 Robbert van Renesse
 
 extra:
   generator: false

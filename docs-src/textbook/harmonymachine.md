@@ -68,7 +68,7 @@ operators. If *d* is a dictionary, then **keys** *d* (or equivalently
 **keys**(*d*)) returns the set of keys and **len** *d* returns the size
 of this set.
 
-provides details on all the types of values that Harmony currently
+[Value Types and Operators](values.md#value-types-and-operators) provides details on all the types of values that Harmony currently
 supports.
 
 ## Harmony Bytecode 

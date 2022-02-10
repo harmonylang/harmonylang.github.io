@@ -217,7 +217,7 @@ will only report one faulty run, this incorrect code can lead to the
 assertion failing as well as threads getting blocked indefinitely.
 
 (Another option is to use synchronization techniques that do not use
-locks. See [Chapter 25](nonblocking.md) for more information.)
+locks. See [Chapter 23](nonblocking.md) for more information.)
 
 There is another important rule to keep in mind. Just like locks should
 never be held for long, interrupts should never be disabled for long.

@@ -68,7 +68,7 @@ There are four conditions that must hold for deadlock to occur:
 Preventing deadlock thus means preventing that one of these conditions
 occurs. However, mutual exclusion is not easily prevented in general
 (although, for some resources it is possible, as demonstrated in
-[Chapter 25](nonblocking.md)). Havender proposed the following techniques that
+[Chapter 23](nonblocking.md)). Havender proposed the following techniques that
 avoid the remaining three conditions:
 
 -   *No Hold and Wait*: a thread must request all resources it is going

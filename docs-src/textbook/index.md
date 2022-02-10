@@ -1,5 +1,7 @@
 
-# On Concurrent Programming
+# On Concurrent Programming in Harmony <br /> <small>by Robbert van Renesse</small>
+
+> _On Concurrent Programming in Harmony_ is licenced under the terms of the Creative Commons Attribution NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) at [http://creativecommons.org/licenses/by-nc-sa/4.0](http://creativecommons.org/licenses/by-nc-sa/4.0).
 
 Programming with concurrency is hard. On the one hand concurrency can
 make programs faster than sequential ones, but having multiple threads
@@ -171,47 +173,47 @@ The book proceeds as follows:
 -   [Chapter 18](monitors.md) presents *monitors* and *condition variables*,
     another approach to thread synchronication.
 
--   [Chapter 20](deadlock.md) describes *deadlock* where a set of threads are
+-   [Chapter 19](deadlock.md) describes *deadlock* where a set of threads are
     indefinitely waiting for one another to release a resource.
 
--   [Chapter 22](actor.md) presents the *actor model* and *message passing* as an
+-   [Chapter 20](actor.md) presents the *actor model* and *message passing* as an
     approach to synchronization.
 
--   [Chapter 23](barrier.md) describes *barrier synchronization*, useful in
+-   [Chapter 21](barrier.md) describes *barrier synchronization*, useful in
     high-performance computing applications such as parallel
     simulations.
 
--   [Chapter 24](interrupts.md) discusses how to handle interrupts, a problem
+-   [Chapter 22](interrupts.md) discusses how to handle interrupts, a problem
     closely related to---but not the same as---synchronizing threads.
 
--   [Chapter 25](nonblocking.md) introduces *non-blocking* or *wait-free*
+-   [Chapter 23](nonblocking.md) introduces *non-blocking* or *wait-free*
     synchronization algorithms, which prevent threads waiting for one
     another more than a bounded number of steps.
 
--   [Chapter 26](abp.md) presents a problem and a solution to the distributed
+-   [Chapter 24](abp.md) presents a problem and a solution to the distributed
     systems problem of having two threads communicate reliably over an
     unreliable network.
 
--   [Chapter 27](leader.md) presents a protocol for electing a leader on a ring of
+-   [Chapter 25](leader.md) presents a protocol for electing a leader on a ring of
     processors, where each processor is uniquely identified and only
     knows its successor on the ring.
 
--   [Chapter 28](2pc.md) describes atomic database transactions and the two-phase
+-   [Chapter 26](2pc.md) describes atomic database transactions and the two-phase
     commit protocol used to implement them.
 
--   [Chapter 29](chain.md) describes *state machine replication* and the *chain
+-   [Chapter 27](chain.md) describes *state machine replication* and the *chain
     replication* protocol to support replication.
 
--   [Chapter 30](abd.md) presents a protocol for a fault-tolerant replicated
+-   [Chapter 28](abd.md) presents a protocol for a fault-tolerant replicated
     object that supports only read and write operations.
 
--   [Chapter 31](consensus.md) demonstrates a fault-tolerant distributed consensus
+-   [Chapter 29](consensus.md) demonstrates a fault-tolerant distributed consensus
     algorithm (aka protocol) expressed in Harmony.
 
--   [Chapter 32](paxos.md) shows how one can specify and check the well-known
+-   [Chapter 30](paxos.md) shows how one can specify and check the well-known
     Paxos consensus protocol.
 
--   [Chapter 33](ns.md) demonstrates using Harmony to find a (known) bug in the
+-   [Chapter 31](ns.md) demonstrates using Harmony to find a (known) bug in the
     original Needham-Schroeder authentication protocol.
 
 If you already know about concurrent and distributed programming and are

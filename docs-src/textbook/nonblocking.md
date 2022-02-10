@@ -8,7 +8,7 @@ synchronization. However, it can lead to starvation. Even in the absence
 of starvation, if some thread is slow for some reason while being in the
 critical section, the other threads have to wait for it to finish
 executing the critical section. Also, using synchronization primitives
-in interrupt handlers is tricky to get right ([Chapter 24](interrupts.md)) and
+in interrupt handlers is tricky to get right ([Chapter 22](interrupts.md)) and
 might be too slow. In this chapter, we will have a look at how one can
 develop concurrent code in which threads do not have to wait for other
 threads (or interrupt handlers) to complete their ongoing operations.

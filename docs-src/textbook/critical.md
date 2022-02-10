@@ -236,7 +236,7 @@ However, if you run the program through Harmony, it turns out the
 solution does have a problem: if both try to enter the critical section
 at the same time, they may end up waiting for one another indefinitely.
 (This is a form of *deadlock*, which will be discussed in
-[Chapter 20](deadlock.md).) Thus the solution violates *progress*.
+[Chapter 19](deadlock.md).) Thus the solution violates *progress*.
 
 The final naı̈ve solution that we propose is based on a variable called
 *turn*. Each thread politely lets the other thread have a turn first.
