@@ -43,31 +43,7 @@ that it also returns data. Thus, synchronized queues can be considered a
 generalization of counting semaphores.
 
 ```python title="counter.hny"
-import synch
-const NCLIENTS = 3
-server_queue = synch.Queue()
-
-def server():
-    var counter = 0
-    while True:
-        let q = synch.get(?server_queue): # await request
-            synch.put(q, counter) # send response
-            counter += 1
-spawn eternal server()
-sequential done
-done = [False,] * NCLIENTS
-
-def client(client_queue):
-    synch.put(?server_queue, client_queue) # send request
-    let response = synch.get(client_queue): # await response
-        done[response] = True
-    await all(done)
-alice_queue = synch.Queue()
-spawn client(?alice_queue)
-bob_queue = synch.Queue()
-spawn client(?bob_queue)
-charlie_queue = synch.Queue()
-spawn client(?charlie_queue)
+--8<-- "counter.hny"
 ```
 
 <figcaption>Figure 20.2 (<a href=https://harmony.cs.cornell.edu/code/counter.hny>code/counter.hny</a>): 

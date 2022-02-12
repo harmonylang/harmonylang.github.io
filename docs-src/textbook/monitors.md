@@ -12,30 +12,7 @@ condition. There are two operations on condition variables: `wait` and
 `signal`.
 
 ```python title="hoare.hny"
-import synch
-
-def Monitor():
-    result = synch.Lock()
-
-def enter(mon):
-    synch.acquire(mon)
-
-def exit(mon):
-    synch.release(mon)
-
-def Condition():
-    result = { .sema: synch.BinSema(True), .count: 0 }
-
-def wait(cond, mon):
-    cond->count += 1
-    exit(mon)
-    synch.acquire(?cond->sema)
-    cond->count -= 1
-
-def signal(cond, mon):
-    if cond->count > 0:
-        synch.release(?cond->sema)
-        enter(mon)
+--8<-- "hoare.hny"
 ```
 
 <figcaption>Figure 18.1 (<a href=https://harmony.cs.cornell.edu/modules/hoare.hny>modules/hoare.hny</a>): 
@@ -54,37 +31,7 @@ if the condition's count is non-zero, if so releases the condition's
 semaphore, and then blocks by trying to acquire the mutex again.
 
 ```python title="BBhoare.hny"
-import hoare
-
-def BoundedBuffer(size):
-    result = {
-            .mon: hoare.Monitor(),
-            .prod: hoare.Condition(), .cons: hoare.Condition(),
-            .buf: { x:() for x in {1..size} },
-            .head: 1, .tail: 1,
-            .count: 0, .size: size
-        }
-    
-
-def put(bb, item):
-    hoare.enter(?bb->mon)
-    if bb->count == bb->size:
-        hoare.wait(?bb->prod, ?bb->mon)
-    bb->buf[bb->tail] = item
-    bb->tail = (bb->tail % bb->size) + 1
-    bb->count += 1
-    hoare.signal(?bb->cons, ?bb->mon)
-    hoare.exit(?bb->mon)
-
-def get(bb):
-    hoare.enter(?bb->mon)
-    if bb->count == 0:
-        hoare.wait(?bb->cons, ?bb->mon)
-    result = bb->buf[bb->head]
-    bb->head = (bb->head % bb->size) + 1
-    bb->count -= 1
-    hoare.signal(?bb->prod, ?bb->mon)
-    hoare.exit(?bb->mon)
+--8<-- "BBhoare.hny"
 ```
 
 <figcaption>Figure 18.2 (<a href=https://harmony.cs.cornell.edu/modules/BBhoare.hny>modules/BBhoare.hny</a>): 
@@ -175,27 +122,7 @@ libraries.
 
 
 ```python title="synch.hny"
-def Condition():
-    result = bag.empty()
-
-def wait(c, lk):
-    var cnt 0
-    let _, ctx = save():
-        atomically:
-            cnt = bag.multiplicity(!c, ctx)
-            !c = bag.add(!c, ctx)
-            !lk = False
-        atomically when (not !lk) and (bag.multiplicity(!c, ctx) <=
-cnt):
-            !lk = True
-
-def notify(c):
-    atomically if !c != bag.empty():
-        !c = bag.remove(!c, bag.bchoose(!c))
-        
-
-def notifyAll(c):
-    !c = bag.empty()
+--8<-- "../modules/synch.hny"
 ```
 
 <figcaption>Figure 18.3 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
@@ -204,42 +131,7 @@ Implementation of condition variables in the `synch` module
 
 
 ```python title="RWcv.hny"
-from synch import *
-
-def RWlock():
-    result = {
-            .nreaders: 0, .nwriters: 0, .mutex: Lock(),
-            .r_cond: Condition(), .w_cond: Condition()
-        }
-    
-
-def read_acquire(rw):
-    acquire(?rw->mutex)
-    while rw->nwriters > 0:
-        wait(?rw->r_cond, ?rw->mutex)
-    rw->nreaders += 1
-    release(?rw->mutex)
-
-def read_release(rw):
-    acquire(?rw->mutex)
-    rw->nreaders -= 1
-    if rw->nreaders == 0:
-        notify(?rw->w_cond)
-    release(?rw->mutex)
-
-def write_acquire(rw):
-    acquire(?rw->mutex)
-    while (rw->nreaders + rw->nwriters) > 0:
-        wait(?rw->w_cond, ?rw->mutex)
-    rw->nwriters = 1
-    release(?rw->mutex)
-
-def write_release(rw):
-    acquire(?rw->mutex)
-    rw->nwriters = 0
-    notifyAll(?rw->r_cond)
-    notify(?rw->w_cond)
-    release(?rw->mutex)
+--8<-- "RWcv.hny"
 ```
 
 <figcaption>Figure 18.4 (<a href=https://harmony.cs.cornell.edu/code/RWcv.hny>code/RWcv.hny</a>): 
@@ -372,33 +264,7 @@ until *todo* is empty and sorts the ranges that it finds until then. The
 `main` thread needs to wait until all workers are done.
 
 ```python title="qsort.hny"
-def Qsort(arr):
-    result = { .arr: arr, .todo: { (0, len(arr) - 1) } }
-
-def swap(p, q): # swap !p and !q
-    !p, !q = !q, !p;
-
-def partition(qs, lo, hi):
-    result = lo
-    for i in {lo..hi - 1}:
-        if qs->arr[i] <= qs->arr[hi]:
-            swap(?qs->arr[result], ?qs->arr[i])
-            result += 1
-    swap(?qs->arr[result], ?qs->arr[hi]);
-
-def sortrange(qs, range):
-    let lo, hi = range let pivot = partition(qs, lo, hi):
-        if (pivot - 1) > lo:
-            qs->todo |= { (lo, pivot - 1) }
-        if (pivot + 1) < hi:
-            qs->todo |= { (pivot + 1, hi) }
-
-def sort(qs):
-    while qs->todo != {}:
-        let range = choose(qs->todo):
-            qs->todo -= { range }
-            sortrange(qs, range)
-    result = qs->arr
+--8<-- "qsort.hny"
 ```
 
 <figcaption>Figure 18.5 (<a href=https://harmony.cs.cornell.edu/code/qsort.hny>code/qsort.hny</a>): 
@@ -406,13 +272,7 @@ Iterative qsort() implementation </figcaption>
 
 
 ```python title="qsorttest.hny"
-import qsort, bag
-const NITEMS = 4
-a = [ choose({1..NITEMS}) for i in {1..choose({1..NITEMS})} ]
-testqs = qsort.Qsort(a)
-sa = qsort.sort(?testqs)
-assert all(sa[i - 1] <= sa[i] for i in {1..len(sa)-1}) # sorted?
-assert bag.fromList(a) == bag.fromList(sa); # is it a permutation?
+--8<-- "qsorttest.hny"
 ```
 
 <figcaption>Figure 18.6 (<a href=https://harmony.cs.cornell.edu/code/qsorttest.hny>code/qsorttest.hny</a>): 

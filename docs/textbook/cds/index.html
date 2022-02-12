@@ -985,11 +985,12 @@
 <div class="highlight"><span class="filename">queuedemo.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">queue</span>
 
 <span class="k">def</span> <span class="nf">sender</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">receiver</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">{</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">}</span>
+    <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">{</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">}</span>
+
 <span class="n">demoq</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">sender</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">sender</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -1027,31 +1028,30 @@ concurrent queue.</p>
 <span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
 <span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">time</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">time</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
-        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
-            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-    
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
-    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
-            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="nb">next</span>
-            <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="nb">next</span>
+            <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 11.3 (<a href=https://harmony.cs.cornell.edu/code/queueconc.hny>code/queueconc.hny</a>): 
 An implementation of a concurrent queue data structure
@@ -1061,28 +1061,28 @@ An implementation of a concurrent queue data structure
 <span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
 <span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
-    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(),</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">hdlock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">tllock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
+    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(),</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">hdlock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">tllock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
-        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
-        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
-        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
-    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span>
-    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
-            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
-            <span class="n">free</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 11.4 (<a href=https://harmony.cs.cornell.edu/code/queueMS.hny>code/queueMS.hny</a>): 
 A queue with separate locks for enqueuing and dequeuing items

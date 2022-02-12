@@ -12,26 +12,14 @@
 <td>
 
 ```python title="prog1.hny"
-shared = True
-
-def f(): assert shared
-def g(): shared = False
-
-f()
-g()
+--8<-- "prog1.hny"
 ```
 
 </td>
 <td>
 
 ```python title="prog2.hny"
-shared = True
-
-def f(): assert shared
-def g(): shared = False
-
-spawn f()
-spawn g()
+--8<-- "prog2.hny"
 ```
 
 </td>
@@ -77,16 +65,7 @@ end of that execution?
 
 
 ```python title="Up.hny"
-count = 0
-done = [ False, False ]
-
-def incrementer(self):
-    count = count + 1
-    done[self] = True
-    await done[1 - self]
-    assert count == 2
-spawn incrementer(0)
-spawn incrementer(1)
+--8<-- "Up.hny"
 ```
 
 <figcaption>Figure 3.2 (<a href=https://harmony.cs.cornell.edu/code/Up.hny>code/Up.hny</a>): 
@@ -199,21 +178,7 @@ understanding of concurrency. (Also, you do not get to use the
 **atomically** keyword or a *lock*, yet.)
 
 ```python title="Up.py"
-import threading
-
-count = 0
-done = [ False, False ]
-
-def incrementer(self):
-    global count
-    count = count + 1
-    done[self] = True
-    while not done[1 - self]:
-        pass
-    assert count == 2
-
-threading.Thread(target=incrementer, args=(0,)).start()
-threading.Thread(target=incrementer, args=(1,)).start()
+--8<-- "Up.py"
 ```
 
 <figcaption>Figure 3.3 (<a href=https://harmony.cs.cornell.edu/python/Up.py>python/Up.py</a>): 
@@ -221,23 +186,7 @@ Python implementation of Figure 3.2 </figcaption>
 
 
 ```python title="UpMany.py"
-import threading
-
-N = 1000000
-count = 0
-done = [ False, False ]
-
-def incrementer(self):
-    global count
-    for i in range(N):
-        count = count + 1
-    done[self] = True
-    while not done[1 - self]:
-        pass
-    assert count == 2*N, count
-
-threading.Thread(target=incrementer, args=(0,)).start()
-threading.Thread(target=incrementer, args=(1,)).start()
+--8<-- "UpMany.py"
 ```
 
 <figcaption>Figure 3.4 (<a href=https://harmony.cs.cornell.edu/python/UpMany.py>python/UpMany.py</a>): 

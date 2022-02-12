@@ -974,24 +974,29 @@ except that it is accompanied by data. <code>get</code> is much like <code>P</co
 that it also returns data. Thus, synchronized queues can be considered a
 generalization of counting semaphores.</p>
 <div class="highlight"><span class="filename">counter.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">synch</span>
+
 <span class="n">const</span> <span class="n">NCLIENTS</span> <span class="o">=</span> <span class="mi">3</span>
+
 <span class="n">server_queue</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">server</span><span class="p">():</span>
-    <span class="n">var</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">let</span> <span class="n">q</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">server_queue</span><span class="p">):</span> <span class="c1"># await request</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span> <span class="c1"># send response</span>
-            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">var</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">let</span> <span class="n">q</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">server_queue</span><span class="p">):</span>   <span class="c1"># await request</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>           <span class="c1"># send response</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
 <span class="n">spawn</span> <span class="n">eternal</span> <span class="n">server</span><span class="p">()</span>
+
 <span class="n">sequential</span> <span class="n">done</span>
 <span class="n">done</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,]</span> <span class="o">*</span> <span class="n">NCLIENTS</span>
 
 <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="n">client_queue</span><span class="p">):</span>
-    <span class="n">synch</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">server_queue</span><span class="p">,</span> <span class="n">client_queue</span><span class="p">)</span> <span class="c1"># send request</span>
-    <span class="n">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_queue</span><span class="p">):</span> <span class="c1"># await response</span>
-        <span class="n">done</span><span class="p">[</span><span class="n">response</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">await</span> <span class="nb">all</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
+    <span class="n">synch</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">server_queue</span><span class="p">,</span> <span class="n">client_queue</span><span class="p">)</span>      <span class="c1"># send request</span>
+    <span class="n">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">client_queue</span><span class="p">):</span>     <span class="c1"># await response</span>
+        <span class="n">done</span><span class="p">[</span><span class="n">response</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">await</span> <span class="nb">all</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
+
 <span class="n">alice_queue</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">client</span><span class="p">(</span><span class="err">?</span><span class="n">alice_queue</span><span class="p">)</span>
 <span class="n">bob_queue</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>

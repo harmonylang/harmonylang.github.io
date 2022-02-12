@@ -7,33 +7,7 @@ through some easy scenarios, but what if you don't? The output of
 Harmony can be helpful in that case.
 
 ```python title="queuebroken.hny"
-from synch import Lock, acquire, release
-from alloc import malloc, free
-
-def Queue():
-    result = { .next: None, .value: None, .lock: Lock() }
-
-def put(q, v):
-    let node = malloc({ .next: None, .value: v, .lock: Lock() }):
-        var nq = q
-        while nq != None:
-            acquire(?nq->lock)
-            let n = nq->next:
-                if n == None:
-                    nq->next = node
-                release(?nq->lock)
-                nq = n
-
-def get(q):
-    acquire(?q->lock)
-    if q->next == None:
-        result = None
-    else:
-        let node = q->next:
-            q->next = node->next
-            result = node->value
-            free(node)
-    release(?q->lock)
+--8<-- "queuebroken.hny"
 ```
 
 <figcaption>Figure 14.1 (<a href=https://harmony.cs.cornell.edu/code/queuebroken.hny>code/queuebroken.hny</a>): 
@@ -151,37 +125,7 @@ where the problem is---T2 is about to acquire the lock in that same
 node.
 
 ```python title="queuefix.hny"
-from synch import Lock, acquire, release
-from alloc import malloc, free
-
-def Queue():
-    result = { .next: None, .value: None, .lock: Lock() }
-
-def put(q, v):
-    var nq = q
-    let node = malloc({ .next: None, .value: v, .lock: Lock() }):
-        acquire(?nq->lock)
-        var n = nq->next
-        while n != None:
-            acquire(?n->lock)
-            release(?nq->lock)
-            nq = n
-            n = n->next
-        nq->next = node
-        release(?nq->lock)
-
-def get(q):
-    acquire(?q->lock)
-    if q->next == None:
-        result = None
-    else:
-        let node = q->next:
-            acquire(?node->lock)
-            q->next = node->next
-            result = node->value
-            release(?node->lock)
-            free(node)
-    release(?q->lock)
+--8<-- "queuefix.hny"
 ```
 
 <figcaption>Figure 14.3 (<a href=https://harmony.cs.cornell.edu/code/queuefix.hny>code/queuefix.hny</a>): 

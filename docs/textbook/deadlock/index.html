@@ -947,20 +947,23 @@ procedure. Dijkstra had them repeating this for ever, but for the
 purposes of this book, philosophers can---if they wish---leave the table
 when they are not using any forks.</p>
 <div class="highlight"><span class="filename">Diners.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+
 <span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+
 <span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="n">Lock</span><span class="p">(),]</span> <span class="o">*</span> <span class="n">N</span>
 
 <span class="k">def</span> <span class="nf">diner</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
-        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
-            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-            <span class="c1"># dine</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-            <span class="c1"># think</span>
+    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="c1"># dine</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="c1"># think</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 19.1 (<a href=https://harmony.cs.cornell.edu/code/Diners.hny>code/Diners.hny</a>): 
 Dining Philosophers </figcaption>
@@ -1023,32 +1026,35 @@ avoid the remaining three conditions:</p>
 </li>
 </ul>
 <div class="highlight"><span class="filename">DinersCV.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">synch</span>
+
 <span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+
 <span class="n">mutex</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
 <span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,]</span> <span class="o">*</span> <span class="n">N</span>
 <span class="n">conds</span> <span class="o">=</span> <span class="p">[</span><span class="n">synch</span><span class="o">.</span><span class="n">Condition</span><span class="p">(),]</span> <span class="o">*</span> <span class="n">N</span>
 
 <span class="k">def</span> <span class="nf">diner</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
-        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
-            <span class="k">while</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">or</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-                <span class="k">if</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
-                    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-                    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">or</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-            <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
-            <span class="c1"># dine</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
-            <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-            <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
-            <span class="c1"># think</span>
+    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">or</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]:</span>
+                    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+                    <span class="n">synch</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">],</span> <span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="ow">or</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="c1"># dine</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="err">?</span><span class="n">conds</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">)</span>
+            <span class="c1"># think</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 19.2 (<a href=https://harmony.cs.cornell.edu/code/DinersCV.hny>code/DinersCV.hny</a>): 
 Dining Philosophers that grab both forks at the same time
@@ -1121,23 +1127,26 @@ given number of times. It is supported by the <code>synch</code> module. The <co
 decrement the semaphore, blocking while the semaphore has a value of 0.
 The <code>V</code> or "vacate" operation increments the semaphore.</p>
 <div class="highlight"><span class="filename">DinersAvoid.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
+
 <span class="n">forks</span> <span class="o">=</span> <span class="p">[</span><span class="n">Lock</span><span class="p">(),]</span> <span class="o">*</span> <span class="n">N</span>
-<span class="n">sema</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># can be procured up to N−1 times</span>
+<span class="n">sema</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>     <span class="c1"># can be procured up to N-1 times</span>
 
 <span class="k">def</span> <span class="nf">diner</span><span class="p">(</span><span class="n">which</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
-        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-            <span class="n">P</span><span class="p">(</span><span class="err">?</span><span class="n">sema</span><span class="p">)</span> <span class="c1"># procure counting semaphore</span>
-            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
-            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-            <span class="c1"># dine</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
-            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
-            <span class="n">V</span><span class="p">(</span><span class="err">?</span><span class="n">sema</span><span class="p">)</span> <span class="c1"># vacate counting semaphore</span>
-            <span class="c1"># think</span>
+    <span class="n">let</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="p">(</span><span class="n">which</span><span class="p">,</span> <span class="p">(</span><span class="n">which</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+            <span class="n">P</span><span class="p">(</span><span class="err">?</span><span class="n">sema</span><span class="p">)</span>                <span class="c1"># procure counting semaphore</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="c1"># dine</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">left</span><span class="p">])</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">forks</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+            <span class="n">V</span><span class="p">(</span><span class="err">?</span><span class="n">sema</span><span class="p">)</span>                <span class="c1"># vacate counting semaphore</span>
+            <span class="c1"># think</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">diner</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 19.3 (<a href=https://harmony.cs.cornell.edu/code/DinersAvoid.hny>code/DinersAvoid.hny</a>): Dining Philosophers that carefully avoid getting into a dead-lock scenario </figcaption>
 
@@ -1163,30 +1172,33 @@ accounts. Make sure that it cannot cause deadlock.</p>
 changes. Note that the invariant only holds if none of the locks are
 held.</p>
 <div class="highlight"><span class="filename">bank.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+
 <span class="n">const</span> <span class="n">MAX_BALANCE</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">const</span> <span class="n">N_ACCOUNTS</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">const</span> <span class="n">N_THREADS</span> <span class="o">=</span> <span class="mi">2</span>
+
 <span class="n">accounts</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">balance</span><span class="p">:</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">})}</span>
-                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="p">}</span> <span class="p">]</span>
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="p">}</span> <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span><span class="p">:</span>
-        <span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
-        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
-        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span><span class="p">:</span>
+        <span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span> 
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span> 
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a2</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">a1</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">():</span>
-    <span class="n">let</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
-    <span class="n">let</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="o">-</span> <span class="p">{</span> <span class="n">a1</span> <span class="p">}):</span>
-        <span class="n">transfer</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">choose</span><span class="p">({</span><span class="mf">1.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">}))</span>
+    <span class="n">let</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
+    <span class="n">let</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="o">-</span> <span class="p">{</span> <span class="n">a1</span> <span class="p">}):</span>
+        <span class="n">transfer</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">choose</span><span class="p">({</span><span class="mf">1.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">}))</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_THREADS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
+    <span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
 </code></pre></div>
 <figcaption>Figure 19.4 (<a href=https://harmony.cs.cornell.edu/code/bank.hny>code/bank.hny</a>): 
 Bank accounts </figcaption>

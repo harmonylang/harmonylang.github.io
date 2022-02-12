@@ -14,35 +14,7 @@ develop concurrent code in which threads do not have to wait for other
 threads (or interrupt handlers) to complete their ongoing operations.
 
 ```python title="hw.hny"
-const MAX_ITEMS = 3
-sequential back, items
-back = 0
-items = [None,] * MAX_ITEMS
-
-def inc(pcnt):
-    atomically:
-        result = !pcnt
-        !pcnt += 1
-
-def exch(pv):
-    atomically:
-        result = !pv
-        !pv = None
-
-def produce(item):
-    items[inc(?back)] = item
-
-def consume():
-    result = None
-    while result == None:
-        var i = 0
-        while (i < back) and (result == None):
-            result = exch(?items[i])
-            i += 1
-for i in {1..MAX_ITEMS}:
-    spawn produce(i)
-for i in {1..choose({0..MAX_ITEMS})}:
-    spawn consume()
+--8<-- "hw.hny"
 ```
 
 <figcaption>Figure 23.1 (<a href=https://harmony.cs.cornell.edu/code/hw.hny>code/hw.hny</a>): 

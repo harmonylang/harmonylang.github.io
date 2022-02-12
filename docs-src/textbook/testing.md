@@ -3,21 +3,7 @@
 
 
 ```python title="qtestseq.hny"
-import queue, queueconc
-const NOPS = 4
-const VALUES = { 1..NOPS }
-specq = queue.Queue()
-implq = queueconc.Queue()
-for i in {1..NOPS}:
-    let op = choose({ "get", "put" }):
-        if op == "put":
-            let v = choose(VALUES):
-                queueconc.put(?implq, v)
-                queue.put(?specq, v)
-        else:
-            let v = queueconc.get(?implq)
-            let w = queue.get(?specq):
-                assert v == w
+--8<-- "qtestseq.hny"
 ```
 
 <figcaption>Figure 13.1 (<a href=https://harmony.cs.cornell.edu/code/qtestseq.hny>code/qtestseq.hny</a>): 
@@ -132,26 +118,7 @@ behaviors obtained from the specification.
 
 
 ```python title="qtestpar.hny"
-import queue
-
-const NOPS = 4
-q = queue.Queue()
-
-def put_test(self):
-    print("call put", self)
-    queue.put(?q, self)
-    print("done put", self)
-
-def get_test(self):
-    print("call get", self)
-    let v = queue.get(?q):
-        print("done get", self, v)
-
-nputs = choose {1..NOPS-1}
-for i in {1..nputs}:
-    spawn put_test(i)
-for i in {1..NOPS-nputs}:
-    spawn get_test(i)
+--8<-- "qtestpar.hny"
 ```
 
 <figcaption>Figure 13.2 (<a href=https://harmony.cs.cornell.edu/code/qtestpar.hny>code/qtestpar.hny</a>): 
@@ -159,21 +126,7 @@ Concurrent queue test. The behavior DFA is for NOPS = 2. </figcaption>
 
 
 ```python title="queueseq.hny"
-def Queue():
-    result = { .data: [ ], .head: 0, .tail: 0 }
-
-def put(q, v):
-    let i = q->tail:
-        q->data[i] = v
-        q->tail = i + 1
-
-def get(q):
-    let i = q->head:
-        if i == q->tail:
-            result = None
-        else:
-            result = q->data[i]
-            q->head = i + 1
+--8<-- "queueseq.hny"
 ```
 
 <figcaption>Figure 13.3 (<a href=https://harmony.cs.cornell.edu/code/queueseq.hny>code/queueseq.hny</a>): 

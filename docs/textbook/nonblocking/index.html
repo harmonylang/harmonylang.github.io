@@ -943,34 +943,36 @@ might be too slow. In this chapter, we will have a look at how one can
 develop concurrent code in which threads do not have to wait for other
 threads (or interrupt handlers) to complete their ongoing operations.</p>
 <div class="highlight"><span class="filename">hw.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">MAX_ITEMS</span> <span class="o">=</span> <span class="mi">3</span>
+
 <span class="n">sequential</span> <span class="n">back</span><span class="p">,</span> <span class="n">items</span>
 <span class="n">back</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,]</span> <span class="o">*</span> <span class="n">MAX_ITEMS</span>
 
 <span class="k">def</span> <span class="nf">inc</span><span class="p">(</span><span class="n">pcnt</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pcnt</span>
-        <span class="err">!</span><span class="n">pcnt</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pcnt</span>
+        <span class="err">!</span><span class="n">pcnt</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="k">def</span> <span class="nf">exch</span><span class="p">(</span><span class="n">pv</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pv</span>
-        <span class="err">!</span><span class="n">pv</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pv</span>
+        <span class="err">!</span><span class="n">pv</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">produce</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
-    <span class="n">items</span><span class="p">[</span><span class="n">inc</span><span class="p">(</span><span class="err">?</span><span class="n">back</span><span class="p">)]</span> <span class="o">=</span> <span class="n">item</span>
+    <span class="n">items</span><span class="p">[</span><span class="n">inc</span><span class="p">(</span><span class="err">?</span><span class="n">back</span><span class="p">)]</span> <span class="o">=</span> <span class="n">item</span>
 
 <span class="k">def</span> <span class="nf">consume</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">while</span> <span class="n">result</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">back</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">exch</span><span class="p">(</span><span class="err">?</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">while</span> <span class="n">result</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">back</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">exch</span><span class="p">(</span><span class="err">?</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">MAX_ITEMS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">produce</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">produce</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_ITEMS</span><span class="p">})}:</span>
-    <span class="n">spawn</span> <span class="n">consume</span><span class="p">()</span>
+    <span class="n">spawn</span> <span class="n">consume</span><span class="p">()</span>
 </code></pre></div>
 <figcaption>Figure 23.1 (<a href=https://harmony.cs.cornell.edu/code/hw.hny>code/hw.hny</a>): 
 Non-blocking queue </figcaption>

@@ -1318,13 +1318,14 @@ work.</p>
 <span class="n">entered</span> <span class="o">=</span> <span class="n">done</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">incrementer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">entered</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">if</span> <span class="n">entered</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]:</span> <span class="c1"># if the other thread has already started</span>
-        <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span> <span class="c1"># wait until it is done</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="n">entered</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">entered</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]:</span>        <span class="c1"># if the other thread has already started</span>
+        <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span>     <span class="c1"># wait until it is done</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
+
 <span class="n">spawn</span> <span class="n">incrementer</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">incrementer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>

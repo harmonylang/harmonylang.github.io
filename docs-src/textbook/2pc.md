@@ -46,38 +46,7 @@ both. And matters get more complicated with multiple concurrent
 transfers.
 
 ```python title="2pc.hny"
-network = {}
-
-def send(m):
-    atomically network |= { m }
-
-def bank(self, _balance):
-    var balance = _balance
-    var status, received = (), {}
-    while True:
-        atomically when exists req in network - received when req.dst ==
-self:
-            received |= { req }
-            if req.request == "withdraw":
-                if (status != ()) or (req.amount > balance):
-                    send({ .dst: req.src, .src: self, .response: "no" })
-                else:
-                    status = balance
-                    balance -= req.amount
-                    send({ .dst: req.src, .src: self, .response: "yes", .funds: balance })
-            elif req.request == "deposit":
-                if status != ():
-                    send({ .dst: req.src, .src: self, .response: "no" })
-                else:
-                    status = balance
-                    balance += req.amount
-                    send({ .dst: req.src, .src: self, .response: "yes", .funds: balance })
-            elif req.request == "commit":
-                assert status != ()
-                status = ()
-            else:
-                assert (status != ()) and (req.request == "abort")
-                balance, status = status, ()
+--8<-- "2pc1.hny"
 ```
 
 <figcaption>Figure 26.1 (<a href=https://harmony.cs.cornell.edu/code/2pc.hny>code/2pc.hny</a>): 
@@ -134,42 +103,8 @@ sufficient funds. In case of a .*commit* message, the bank changes its
 status to (), indicating that there is no ongoing transaction. In case
 of a .*abort* message, the bank restores *balance* first.
 
-```python
-import list
-
-def transfer(self, b1, b2, amt):
-    send({ .dst: b1, .src: self, .request: "withdraw", .amount: amt })
-    send({ .dst: b2, .src: self, .request: "deposit", .amount: amt })
-    atomically let msgs = { m for m in network where m.dst == self }
-    when { m.src for m in msgs } == { b1, b2 }:
-        if all(m.response == "yes" for m in msgs):
-            for m in msgs where m.response == "yes":
-                send({ .dst: m.src, .src: self, .request: "commit" })
-        else:
-            for m in msgs where m.response == "yes":
-                send({ .dst: m.src, .src: self, .request: "abort" })
-
-def check(self, total):
-    let allbanks = { (.bank, i) for i in { 1 .. NBANKS } }:
-        for bank in allbanks:
-            send({ .dst: bank, .src: self, .request: "withdraw", .amount: 0 })
-        atomically let msgs = { m for m in network where m.dst == self }
-        when { m.src for m in msgs } == allbanks:
-            assert all(m.response == "yes" for m in msgs) =>
-                        (list.sum(m.funds for m in msgs) == total)
-            for m in msgs where m.response == "yes":
-                send({ .dst: m.src, .src: self, .request: "abort" })
-
-let balances = { i:choose({ 0 .. MAX_BALANCE }) for i in { 1 .. NBANKS } }:
-    for i in { 1 .. NBANKS }:
-        spawn eternal bank((.bank, i), balances[i])
-    for i in { 1 .. NCOORDS }:
-        if choose({ "transfer", "check" }) == .transfer:
-            let b1 = choose({ (.bank, j) for j in { 1 .. NBANKS }})
-            let b2 = choose({ (.bank, j) for j in { 1 .. NBANKS }} - { b1 }):
-                spawn transfer((.coord, i), b1, b2, 1)
-        else:
-            spawn check((.coord, i), list.sum(balances))
+```python title="2pc.hny"
+--8<-- "2pc2.hny"
 ```
 
 <figcaption>Figure 26.2 (<a href=https://harmony.cs.cornell.edu/code/2pc.hny>code/2pc.hny</a>): 

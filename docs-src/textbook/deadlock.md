@@ -19,21 +19,7 @@ purposes of this book, philosophers can---if they wish---leave the table
 when they are not using any forks.
 
 ```python title="Diners.hny"
-from synch import Lock, acquire, release
-const N = 5
-forks = [Lock(),] * N
-
-def diner(which):
-    let left, right = (which, (which + 1) % N):
-        while choose({ False, True }):
-            acquire(?forks[left])
-            acquire(?forks[right])
-            # dine
-            release(?forks[left])
-            release(?forks[right])
-            # think
-for i in {0..N-1}:
-    spawn diner(i)
+--8<-- "Diners.hny"
 ```
 
 <figcaption>Figure 19.1 (<a href=https://harmony.cs.cornell.edu/code/Diners.hny>code/Diners.hny</a>): 
@@ -82,33 +68,7 @@ avoid the remaining three conditions:
     resources in a particular order.
 
 ```python title="DinersCV.hny"
-import synch
-const N = 5
-mutex = synch.Lock()
-forks = [False,] * N
-conds = [synch.Condition(),] * N
-
-def diner(which):
-    let left, right = (which, (which + 1) % N):
-        while choose({ False, True }):
-            synch.acquire(?mutex)
-            while forks[left] or forks[right]:
-                if forks[left]:
-                    synch.wait(?conds[left], ?mutex)
-                if forks[right]:
-                    synch.wait(?conds[right], ?mutex)
-            assert not (forks[left] or forks[right])
-            forks[left] = forks[right] = True
-            synch.release(?mutex)
-            # dine
-            synch.acquire(?mutex)
-            forks[left] = forks[right] = False
-            synch.notify(?conds[left]);
-            synch.notify(?conds[right])
-            synch.release(?mutex)
-            # think
-for i in {0..N-1}:
-    spawn diner(i)
+--8<-- "DinersCV.hny"
 ```
 
 <figcaption>Figure 19.2 (<a href=https://harmony.cs.cornell.edu/code/DinersCV.hny>code/DinersCV.hny</a>): 
@@ -191,24 +151,7 @@ decrement the semaphore, blocking while the semaphore has a value of 0.
 The `V` or "vacate" operation increments the semaphore.
 
 ```python title="DinersAvoid.hny"
-from synch import *
-const N = 5
-forks = [Lock(),] * N
-sema = Semaphore(N - 1) # can be procured up to N−1 times
-
-def diner(which):
-    let left, right = (which, (which + 1) % N):
-        while choose({ False, True }):
-            P(?sema) # procure counting semaphore
-            acquire(?forks[left])
-            acquire(?forks[right])
-            # dine
-            release(?forks[left])
-            release(?forks[right])
-            V(?sema) # vacate counting semaphore
-            # think
-for i in {0..N-1}:
-    spawn diner(i)
+--8<-- "DinersAvoid.hny"
 ```
 
 <figcaption>Figure 19.3 (<a href=https://harmony.cs.cornell.edu/code/DinersAvoid.hny>code/DinersAvoid.hny</a>): Dining Philosophers that carefully avoid getting into a dead-lock scenario </figcaption>
@@ -244,31 +187,7 @@ held.
 
 
 ```python title="bank.hny"
-from synch import Lock, acquire, release
-const MAX_BALANCE = 2
-const N_ACCOUNTS = 2
-const N_THREADS = 2
-accounts = [ { .lock: Lock(), .balance: choose({0..MAX_BALANCE})}
-                            for i in {1..N_ACCOUNTS} ]
-
-def transfer(a1, a2, amount):
-    acquire(?accounts[a1].lock)
-    if amount <= accounts[a1].balance:
-        accounts[a1].balance -= amount
-        acquire(?accounts[a2].lock)
-        accounts[a2].balance += amount
-        release(?accounts[a2].lock)
-        result = True
-    else:
-        result = False
-    release(?accounts[a1].lock)
-
-def thread():
-    let a1 = choose({0..N_ACCOUNTS-1})
-    let a2 = choose({0..N_ACCOUNTS-1} - { a1 }):
-        transfer(a1, a2, choose({1..MAX_BALANCE}))
-for i in {1..N_THREADS}:
-    spawn thread()
+--8<-- "bank.hny"
 ```
 
 <figcaption>Figure 19.4 (<a href=https://harmony.cs.cornell.edu/code/bank.hny>code/bank.hny</a>): 

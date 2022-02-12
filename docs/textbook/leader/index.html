@@ -947,39 +947,40 @@ forwards that identifier to its successor as well. If a processor
 receives its own identifier, it discovers that it is the leader. That
 processor then starts the second phase by sending a message around the
 ring notifying the other processors of the leader's identifier.</p>
-<div class="highlight"><span class="filename">leader.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">NIDS</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of identifiers</span>
-<span class="n">network</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># the network is a set of messages</span>
-<span class="n">leader</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># used for checking correctness</span>
+<div class="highlight"><span class="filename">leader.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">NIDS</span> <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># number of identifiers</span>
+
+<span class="n">network</span> <span class="o">=</span> <span class="p">{}</span>        <span class="c1"># the network is a set of messages</span>
+<span class="n">leader</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># used for checking correctness</span>
 
 <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="n">network</span> <span class="o">|=</span> <span class="p">{</span> <span class="n">m</span> <span class="p">}</span>
+    <span class="n">atomically</span> <span class="n">network</span> <span class="o">|=</span> <span class="p">{</span> <span class="n">m</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">dst</span> <span class="o">==</span>
-<span class="bp">self</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">dst</span> <span class="o">==</span> <span class="bp">self</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">succ</span><span class="p">):</span>
-    <span class="n">send</span><span class="p">(</span><span class="n">succ</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-    <span class="n">var</span> <span class="n">working</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">while</span> <span class="n">working</span><span class="p">:</span>
-        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="bp">self</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">leader</span>
-                <span class="n">send</span><span class="p">(</span><span class="n">succ</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">id</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="bp">self</span> <span class="o">!=</span> <span class="n">leader</span>
-                <span class="n">send</span><span class="p">(</span><span class="n">succ</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
-                <span class="n">working</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">var</span> <span class="n">ids</span><span class="p">,</span> <span class="n">nprocs</span><span class="p">,</span> <span class="n">procs</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">NIDS</span> <span class="p">},</span> <span class="n">choose</span><span class="p">({</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">NIDS</span> <span class="p">}),</span> <span class="p">[</span> <span class="p">]</span>
+    <span class="n">send</span><span class="p">(</span><span class="n">succ</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">working</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">working</span><span class="p">:</span>
+        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="o">==</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">leader</span>
+                <span class="n">send</span><span class="p">(</span><span class="n">succ</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">id</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="bp">self</span> <span class="o">!=</span> <span class="n">leader</span>
+                <span class="n">send</span><span class="p">(</span><span class="n">succ</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">found</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">found</span><span class="p">:</span>
+                <span class="n">working</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">var</span> <span class="n">ids</span><span class="p">,</span> <span class="n">nprocs</span><span class="p">,</span> <span class="n">procs</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">NIDS</span> <span class="p">},</span> <span class="n">choose</span><span class="p">({</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">NIDS</span> <span class="p">}),</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">nprocs</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}:</span>
-    <span class="n">let</span> <span class="nb">next</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">ids</span><span class="p">):</span>
-        <span class="n">ids</span> <span class="o">-=</span> <span class="p">{</span> <span class="nb">next</span> <span class="p">}</span>
-        <span class="n">procs</span> <span class="o">+=</span> <span class="p">[</span> <span class="nb">next</span><span class="p">,</span> <span class="p">]</span>
-        <span class="k">if</span> <span class="nb">next</span> <span class="o">&gt;</span> <span class="n">leader</span><span class="p">:</span>
-            <span class="n">leader</span> <span class="o">=</span> <span class="nb">next</span>
+    <span class="n">let</span> <span class="nb">next</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">ids</span><span class="p">):</span>
+        <span class="n">ids</span> <span class="o">-=</span> <span class="p">{</span> <span class="nb">next</span> <span class="p">}</span>
+        <span class="n">procs</span> <span class="o">+=</span> <span class="p">[</span> <span class="nb">next</span><span class="p">,</span> <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">next</span> <span class="o">&gt;</span> <span class="n">leader</span><span class="p">:</span>
+            <span class="n">leader</span> <span class="o">=</span> <span class="nb">next</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">nprocs</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">procs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">procs</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">nprocs</span><span class="p">])</span>
+    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">procs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">procs</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">nprocs</span><span class="p">])</span>
 </code></pre></div>
 <figcaption>Figure 25.1 (
 <a href=https://harmony.cs.cornell.edu/code/leader.hny>code/leader.hny</a>): 

@@ -11,39 +11,14 @@ endowed with its own lock instead.
 
 
 ```python title="setobj.hny"
-from alloc import malloc
-
-def SetObject():
-    result = malloc({})
-
-def insert(s, v):
-    atomically !s |= {v}
-
-def remove(s, v):
-    atomically !s -= {v}
-
-def contains(s, v):
-    atomically result = v in !s
+--8<-- "setobj.hny"
 ```
 
 <figcaption>Figure 12.1 (<a href=https://harmony.cs.cornell.edu/code/code/setobj.hny>code/setobj.hny</a>): 
 Specification of a concurrent set object </figcaption>
 
 ```python title="setobjtest.hny"
-from setobj import *
-myset = SetObject()
-
-def thread1():
-    insert(myset, 1)
-    let x = contains(myset, 1):
-        assert x
-
-def thread2(v):
-    insert(myset, v)
-    remove(myset, v)
-spawn thread1()
-spawn thread2(0)
-spawn thread2(2)
+--8<-- "setobjtest.hny"
 ```
 
 <figcaption>Figure 12.2 (<a href=https://harmony.cs.cornell.edu/code/setobjtest.hny>code/intsettest.hny</a>): 
@@ -60,49 +35,7 @@ very thorough) test program to demonstrate the use of set objects.
 
 
 ```python title="linkedlist.hny"
-from synch import Lock, acquire, release
-from alloc import malloc, free
-
-def _node(v, n):     # allocate and initialize a new list node
-    result = malloc({ .lock: Lock(), .value: (0, v), .next: n })
-
-def _find(lst, v):
-    var before = lst
-    acquire(?before->lock)
-    var after = before->next
-    acquire(?after->lock)
-    while after->value < (0, v):
-        release(?before->lock)
-        before = after
-        after = before->next
-        acquire(?after->lock)
-    result = (before, after)
-
-def SetObject():
-    result = _node((-1, None), _node((1, None), None))
-
-def insert(lst, v):
-    let before, after = _find(lst, v):
-        if after->value != (0, v):
-            before->next = _node(v, after)
-        release(?after->lock)
-        release(?before->lock)
-
-def remove(lst, v):
-    let before, after = _find(lst, v):
-        if after->value == (0, v):
-            before->next = after->next
-            release(?after->lock)
-            free(after)
-        else:
-            release(?after->lock)
-        release(?before->lock)
-
-def contains(lst, v):
-    let before, after = _find(lst, v):
-        result = after->value == (0, v)
-        release(?after->lock)
-        release(?before->lock)
+--8<-- "linkedlist.hny"
 ```
 
 <figcaption>Figure 12.3 (<a href=https://harmony.cs.cornell.edu/code/linkedlist.hny>code/linkedlist.hny</a>): 

@@ -11,41 +11,14 @@
 <td>
 
 ```python title="queuespec.hny"
-import list
-
-def Queue():
-    result = []
-
-def put(q, v):
-    !q = list.append(!q, v)
-
-def get(q):
-    if !q == []:
-        result = None
-    else:
-        result = list.head(!q)
-        !q = list.tail(!q)
+--8<-- "queuespec.hny"
 ```
 
 </td>
 <td>
 
 ```python title="queue.hny"
-import list
-
-def Queue():
-    result = []
-
-def put(q, v):
-    atomically !q = list.append(!q, v)
-
-def get(q):
-    atomically:
-        if !q == []:
-            result = None
-        else:
-            result = list.head(!q)
-            !q = list.tail(!q)
+--8<-- "queue.hny"
 ```
 
 </td>
@@ -55,19 +28,7 @@ def get(q):
 </figure>
 
 ```python title="queuedemo.hny"
-import queue
-
-def sender(q, v):
-    queue.put(q, v)
-
-def receiver(q):
-    let v = queue.get(q):
-        assert v in { None, 1, 2 }
-demoq = queue.Queue()
-spawn sender(?demoq, 1)
-spawn sender(?demoq, 2)
-spawn receiver(?demoq)
-spawn receiver(?demoq)
+--8<-- "queuedemo.hny"
 ```
 
 <figcaption>Figure 11.2 (<a href=https://harmony.cs.cornell.edu/code/queuedemo.hny>code/queuedemo.hny</a>): 
@@ -95,35 +56,7 @@ specification. See Figure 11.2 for a simple demonstration program that uses a
 concurrent queue.
 
 ```python title="queueconc.hny"
-from synch import Lock, acquire, release
-from alloc import malloc, free
-
-def Queue():
-    result = { .head: None, .tail: None, .lock: Lock(), .time: 0 }
-
-def put(q, v):
-    let node = malloc({ .value: v, .next: None }):
-        acquire(?q->lock)
-        if q->tail == None:
-            q->tail = q->head = node
-        else:
-            q->tail->next = node
-            q->tail = node
-        release(?q->lock)
-    
-
-def get(q):
-    acquire(?q->lock)
-    let node = q->head:
-        if node == None:
-            result = None
-        else:
-            result = node->value
-            q->head = node->next
-            if q->head == None:
-                q->tail = None
-            free(node)
-    release(?q->lock)
+--8<-- "queueconc.hny"
 ```
 
 <figcaption>Figure 11.3 (<a href=https://harmony.cs.cornell.edu/code/queueconc.hny>code/queueconc.hny</a>): 
@@ -132,32 +65,7 @@ An implementation of a concurrent queue data structure
 
 
 ```python title="queueMS.hny"
-from synch import Lock, acquire, release
-from alloc import malloc, free
-
-def Queue():
-    let dummy = malloc({ .value: (), .next: None }):
-        result = { .head: dummy, .tail: dummy, .hdlock: Lock(), .tllock: Lock() }
-
-def put(q, v):
-    let node = malloc({ .value: v, .next: None }):
-        acquire(?q->tllock)
-        q->tail->next = node
-        q->tail = node
-        release(?q->tllock)
-
-def get(q):
-    acquire(?q->hdlock)
-    let dummy = q->head
-    let node = dummy->next:
-        if node == None:
-            result = None
-            release(?q->hdlock)
-        else:
-            result = node->value
-            q->head = node
-            release(?q->hdlock)
-            free(dummy)
+--8<-- "queueMS.hny"
 ```
 
 <figcaption>Figure 11.4 (<a href=https://harmony.cs.cornell.edu/code/queueMS.hny>code/queueMS.hny</a>): 

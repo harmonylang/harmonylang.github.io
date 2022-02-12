@@ -22,57 +22,7 @@ leaders are in charge of different ballot numbers. Leaders broadcast
 "Type B" messages.
 
 ```python title="paxos.hny"
-import bag
-const F = 1
-const NACCEPTORS = (2 * F) + 1
-const NLEADERS = F + 1
-const NBALLOTS = 2
-network = bag.empty()
-proposals = [ choose({0, 1}) for i in {0..NLEADERS-1} ]
-
-def send(m):
-    atomically network = bag.add(network, m)
-
-def receive(ballot, phase):
-    let msgs = { e:c for (b,p,t,e):c in network
-                        where (b,p,t) == (ballot, phase, "B") }:
-        result = bag.combinations(msgs, NACCEPTORS - F)
-print proposals
-for i in {0..NLEADERS - 1}:
-    spawn leader(i + 1, proposals[i])
-for i in {1..NACCEPTORS}:
-    spawn eternal acceptor()
-
-def leader(self, proposal):
-    var ballot, estimate = self, proposal
-    send(ballot, 1, "A", None)
-    while ballot <= NBALLOTS:
-        atomically when exists quorum in receive(ballot, 1):
-            let accepted = { e for e:_ in quorum where e != None }:
-                if accepted != {}:
-                    _, estimate = max(accepted)
-            send(ballot, 2, "A", estimate)
-        atomically when exists quorum in receive(ballot, 2):
-            if bag.multiplicity(quorum, (ballot, estimate)) ==
-(NACCEPTORS - F):
-                assert estimate in proposals # validity
-                print estimate
-            ballot += NLEADERS
-            if ballot <= NBALLOTS:
-                send(ballot, 1, "A", None)
-
-def acceptor():
-    var ballot, last_accepted, received = 0, None, {}
-    while True:
-        atomically when exists b,p,e in { (b,p,e) for b,p,t,e:_ in
-network
-                    where ((b,p) not in received) and (t == "A") }:
-            received |= { (b, p) }
-            if b >= ballot:
-                ballot = b
-                if p == 2:
-                    last_accepted = (ballot, e)
-            send(b, p, "B", last_accepted)
+--8<-- "paxos.hny"
 ```
 
 <figcaption>Figure 30.1 (<a href=https://harmony.cs.cornell.edu/code/paxos.hny>code/paxos.hny</a>): 

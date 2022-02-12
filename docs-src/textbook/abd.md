@@ -2,16 +2,7 @@
 # Replicated Atomic Read/Write Register 
 
 ```python title="register.hny"
-register = None
-
-def init():
-    pass
-
-def read(uid):
-    atomically result = register
-
-def write(uid, v):
-    atomically register = v
+--8<-- "register.hny"
 ```
 
 <figcaption>Figure 28.1 (<a href=https://harmony.cs.cornell.edu/code/register.hny>code/register.hny</a>): 
@@ -41,26 +32,7 @@ three desirable properties:
 ![](figures/abdtest.png)
 
 ```python title="abdtest.hny"
-import register
-const NREADERS = 2
-const NWRITERS = 1
-
-def reader(i):
-    print(i, "reads")
-    let v = register.read(i):
-        print(i, "read", v)
- 
-
-def writer(i):
-    print(i, "writes")
-    register.write(i, i)
-    print(i, "wrote")
-        
-register.init()
-for i in { 1 .. NREADERS }:
-    spawn reader(i)
-for i in { 1 .. NWRITERS }:
-    spawn writer(-i)
+--8<-- "abdtest.hny"
 ```
 
 <figcaption>Figure 28.2 (<a href=https://harmony.cs.cornell.edu/code/abdtest.hny>code/abdtest.hny</a>): 
@@ -131,49 +103,7 @@ it saw in the first phase along with its corresponding value.
 
 
 ```python title="abd.hny"
-import bag
-const F = 1
-const N = (2 * F) + 1
-network = bag.empty()
-
-def send(m): atomically network = bag.add(network, m)
-
-def server():
-    var t, v, received = (0, None), None, {}
-    while True:
-        atomically when exists m in { m for m in keys network - received
-                            where m.type in {"read", "write"} }:
-            received |= { m }
-            if (m.type == "write") and (m.value[0] > t):
-                t, v = m.value
-            send({ .type: .response, .dst: m.src, .value: (t, v) })
-
-def init():
-    for i in { 1 .. N }: spawn eternal server()
-
-def receive(uid, phase):
-    let msgs = { m:c for m:c in network
-                where (m.type == .response) and (m.dst == (uid, phase))
-}:
-        result = bag.combinations(msgs, N - F)
-
-def read(uid):
-    send({ .type: "read", .src: (uid, 1) })
-    atomically when exists msgs in receive(uid, 1):
-        let (t, v) = max(m.value for m in keys msgs):
-            send({ .type: "write", .src: (uid, 2), .value: (t, v) })
-            result = v
-    atomically when exists msgs in receive(uid, 2):
-        pass
-
-def write(uid, v):
-    send({ .type: "read", .src: (uid, 1) })
-    atomically when exists msgs in receive(uid, 1):
-        let (t, _) = max(m.value for m in keys msgs)
-        let nt = (t[0] + 1, uid):
-            send({ .type: "write", .src: (uid, 2), .value: (nt, v) })
-    atomically when exists msgs in receive(uid, 2):
-        pass
+--8<-- "abd.hny"
 ```
 
 <figcaption>Figure 28.3 (<a href=https://harmony.cs.cornell.edu/code/abd.hny>code/abd.hny</a>): 

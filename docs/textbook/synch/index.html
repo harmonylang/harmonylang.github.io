@@ -977,19 +977,19 @@ with just two threads: one thread might successfully acquire the lock
 repeatedly in a loop, while another thread is never lucky enough to
 acquire the lock in between.</p>
 <div class="highlight"><span class="filename">tasLock.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">test_and_set</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">s</span>
-        <span class="err">!</span><span class="n">s</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">s</span>
+        <span class="err">!</span><span class="n">s</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="k">def</span> <span class="nf">Lock</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">test_and_set</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-        <span class="k">pass</span>
+    <span class="k">while</span> <span class="n">test_and_set</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
+        <span class="k">pass</span>
 
 <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
 <figcaption>Figure 10.1 (<a href=https://harmony.cs.cornell.edu/code/tasLock.hny>code/tasLock.hny</a>): 
 Implementation of the lock specification in Figure 8.1 using a spinlock based on test-and-set
@@ -998,20 +998,20 @@ Implementation of the lock specification in Figure 8.1 using a spinlock based on
 <div class="highlight"><span class="filename">ticket.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">MAX_THREADS</span> <span class="o">=</span> <span class="mi">8</span>
 
 <span class="k">def</span> <span class="nf">fetch_and_increment</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">p</span>
-        <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_THREADS</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">p</span>
+        <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_THREADS</span>
 
 <span class="k">def</span> <span class="nf">Lock</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">counter</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">dispenser</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">counter</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">dispenser</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">my_ticket</span> <span class="o">=</span> <span class="n">fetch_and_increment</span><span class="p">(</span><span class="err">?</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">dispenser</span><span class="p">):</span>
-        <span class="n">atomically</span> <span class="k">await</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">==</span> <span class="n">my_ticket</span>
+    <span class="n">let</span> <span class="n">my_ticket</span> <span class="o">=</span> <span class="n">fetch_and_increment</span><span class="p">(</span><span class="err">?</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">dispenser</span><span class="p">):</span>
+        <span class="n">atomically</span> <span class="k">await</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">==</span> <span class="n">my_ticket</span>
 
 <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">let</span> <span class="nb">next</span> <span class="o">=</span> <span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_THREADS</span><span class="p">:</span>
-        <span class="n">atomically</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="nb">next</span>
+    <span class="n">let</span> <span class="nb">next</span> <span class="o">=</span> <span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_THREADS</span><span class="p">:</span>
+        <span class="n">atomically</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="nb">next</span>
 </code></pre></div>
 <figcaption>Figure 10.2 (<a href=https://harmony.cs.cornell.edu/code/ticket.hny>code/ticket.hny</a>): 
 Implementation of the lock specification in Figure 8.1 using a ticket lock
@@ -1047,25 +1047,100 @@ The only way forward is if the other thread releases the lock. A thread
 that is in an infinite loop is also considered blocked.</p>
 <div class="highlight"><span class="filename">synchS.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
+<span class="k">def</span> <span class="nf">tas</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">lk</span>
+        <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">cas</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">p</span> <span class="o">==</span> <span class="n">old</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="n">new</span>
+
+<span class="k">def</span> <span class="nf">BinSema</span><span class="p">(</span><span class="n">acquired</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">acquired</span><span class="p">:</span> <span class="n">acquired</span><span class="p">,</span> <span class="o">.</span><span class="n">suspended</span><span class="p">:</span> <span class="p">[]</span> <span class="p">}</span>
+
 <span class="k">def</span> <span class="nf">Lock</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">acquired</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="o">.</span><span class="n">suspended</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">acquired</span><span class="p">:</span>
-            <span class="n">stop</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">[</span><span class="nb">len</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">]</span>
-            <span class="k">assert</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">acquired</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">lk</span><span class="o">-&gt;</span><span class="n">acquired</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">acquired</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="err">?</span><span class="n">binsema</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">[</span><span class="nb">len</span> <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">acquired</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">acquired</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">acquired</span>
-        <span class="k">if</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span> <span class="o">==</span> <span class="p">[</span> <span class="p">]:</span>
-            <span class="n">lk</span><span class="o">-&gt;</span><span class="n">acquired</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">go</span> <span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">))</span> <span class="p">()</span>
-            <span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">acquired</span>
+        <span class="k">if</span> <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">suspended</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">acquired</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">go</span> <span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">binsema</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">))</span> <span class="p">()</span>
+            <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">suspended</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">binsema</span><span class="o">-&gt;</span><span class="n">suspended</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">held</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">binsema</span><span class="o">-&gt;</span><span class="n">acquired</span>
+
+<span class="k">def</span> <span class="nf">Condition</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">lk</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="n">lk</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="err">?</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">)[</span><span class="nb">len</span> <span class="err">!</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="n">lk</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="k">if</span> <span class="err">!</span><span class="n">c</span> <span class="o">!=</span> <span class="p">[]:</span>
+        <span class="n">go</span> <span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">))</span> <span class="p">()</span>
+        <span class="err">!</span><span class="n">c</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">notifyAll</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="k">while</span> <span class="err">!</span><span class="n">c</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="n">go</span> <span class="p">(</span><span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">))</span> <span class="p">()</span>
+            <span class="err">!</span><span class="n">c</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Semaphore</span><span class="p">(</span><span class="n">cnt</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">count</span><span class="p">:</span> <span class="n">cnt</span><span class="p">,</span> <span class="o">.</span><span class="n">waiters</span><span class="p">:</span> <span class="p">[]</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="n">sema</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sema</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sema</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="err">?</span><span class="n">sema</span><span class="o">-&gt;</span><span class="n">waiters</span><span class="p">[</span><span class="nb">len</span> <span class="n">sema</span><span class="o">-&gt;</span><span class="n">waiters</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">V</span><span class="p">(</span><span class="n">sema</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="n">let</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">waiters</span> <span class="o">=</span> <span class="n">sema</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">,</span> <span class="n">sema</span><span class="o">-&gt;</span><span class="n">waiters</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">waiters</span> <span class="o">!=</span> <span class="p">[]:</span>
+            <span class="k">assert</span> <span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">go</span> <span class="p">(</span><span class="n">waiters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">()</span>
+            <span class="n">sema</span><span class="o">-&gt;</span><span class="n">waiters</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">waiters</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sema</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">=</span> <span class="n">cnt</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">list</span><span class="p">:</span> <span class="p">[],</span> <span class="o">.</span><span class="n">waiters</span><span class="p">:</span> <span class="p">[]</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="nb">list</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">stop</span> <span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">waiters</span><span class="p">[</span><span class="nb">len</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">waiters</span><span class="p">]</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">q</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="nb">list</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">q</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="nb">list</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q</span><span class="o">-&gt;</span><span class="nb">list</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+        <span class="n">let</span> <span class="n">waiters</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">waiters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">waiters</span> <span class="o">!=</span> <span class="p">[]:</span>
+                <span class="n">go</span> <span class="p">(</span><span class="n">waiters</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">item</span>
+                <span class="n">q</span><span class="o">-&gt;</span><span class="n">waiters</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">waiters</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 10.3 (<a href=https://harmony.cs.cornell.edu/modules/synchS.hny>modules/synchS.hny</a>): 
 Lock implementation using suspension
@@ -1130,16 +1205,16 @@ many states were explored by Harmony for each module.</p>
 <div class="highlight"><span class="filename">xy.hny</span><pre><span></span><code><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span>
 
 <span class="k">def</span> <span class="nf">setX</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">a</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">a</span>
 
 <span class="k">def</span> <span class="nf">getXY</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">checker</span><span class="p">():</span>
-    <span class="n">let</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">getXY</span><span class="p">():</span>
-        <span class="k">assert</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">100</span><span class="p">,</span> <span class="n">xy</span>
-    
+    <span class="n">let</span> <span class="n">xy</span> <span class="o">=</span> <span class="n">getXY</span><span class="p">():</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">100</span><span class="p">,</span> <span class="n">xy</span>
+
 <span class="n">spawn</span> <span class="n">checker</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">setX</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div>
@@ -1157,34 +1232,36 @@ blocks. It returns <code>True</code> if the lock was available (and now acquired
 or <code>False</code> if the lock was already acquired. Hint: you do not have to
 change the existing code.</p>
 <div class="highlight"><span class="filename">atm.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+
 <span class="n">const</span> <span class="n">N_ACCOUNTS</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">const</span> <span class="n">N_CUSTOMERS</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">const</span> <span class="n">N_ATMS</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">const</span> <span class="n">MAX_BALANCE</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">accounts</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">balance</span><span class="p">:</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">})}</span>
-                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="p">}</span> <span class="p">]</span>
-<span class="n">invariant</span> <span class="nb">min</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span> <span class="o">&gt;=</span>
-<span class="mi">0</span>
 
-<span class="k">def</span> <span class="nf">atm_check_balance</span><span class="p">(</span><span class="n">acct</span><span class="p">):</span> <span class="c1"># return the balance on acct</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+<span class="n">accounts</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">balance</span><span class="p">:</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">})}</span>
+                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="p">}</span> <span class="p">]</span>
+
+<span class="n">invariant</span> <span class="nb">min</span><span class="p">(</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="k">for</span> <span class="n">acct</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">atm_check_balance</span><span class="p">(</span><span class="n">acct</span><span class="p">):</span>    <span class="c1"># return the balance on acct</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">atm_withdraw</span><span class="p">(</span><span class="n">acct</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span> <span class="c1"># withdraw amount from acct</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
-    <span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># return success</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span>              <span class="c1"># return success</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">accounts</span><span class="p">[</span><span class="n">acct</span><span class="p">]</span><span class="o">.</span><span class="n">lock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">customer</span><span class="p">(</span><span class="n">atm</span><span class="p">,</span> <span class="n">acct</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">bal</span> <span class="o">=</span> <span class="n">atm_check_balance</span><span class="p">(</span><span class="n">acct</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">bal</span><span class="p">:</span>
-            <span class="n">atm_withdraw</span><span class="p">(</span><span class="n">acct</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
-        
+    <span class="n">let</span> <span class="n">bal</span> <span class="o">=</span> <span class="n">atm_check_balance</span><span class="p">(</span><span class="n">acct</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;=</span> <span class="n">bal</span><span class="p">:</span>
+            <span class="n">atm_withdraw</span><span class="p">(</span><span class="n">acct</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N_ATMS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">customer</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">}),</span>
-                      <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">}))</span>
+    <span class="n">spawn</span> <span class="n">customer</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">N_ACCOUNTS</span><span class="o">-</span><span class="mi">1</span><span class="p">}),</span>
+                      <span class="n">choose</span><span class="p">({</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX_BALANCE</span><span class="p">}))</span>
 </code></pre></div>
 <figcaption>Figure 10.5 (<a href=https://harmony.cs.cornell.edu/code/atm.hny>code/atm.hny</a>): 
 Withdrawing money from an ATM</figcaption>

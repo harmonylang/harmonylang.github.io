@@ -960,15 +960,17 @@ and receive a message. Here we will not worry about
 <em>Termination</em>.</p>
 <p><img alt="" src="../figures/consensus.png" /></p>
 <div class="highlight"><span class="filename">consensus.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
+
 <span class="n">proposals</span> <span class="o">=</span> <span class="p">[</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="p">]</span>
 <span class="n">decision</span> <span class="o">=</span> <span class="n">choose</span> <span class="p">{</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">proposals</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="n">proposal</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">choose</span> <span class="p">{</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}:</span>
-        <span class="nb">print</span> <span class="n">decision</span>
+    <span class="k">if</span> <span class="n">choose</span> <span class="p">{</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}:</span>
+        <span class="nb">print</span> <span class="n">decision</span>
+
 <span class="nb">print</span> <span class="n">proposals</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div>
 <figcaption>Figure 29.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
 Distributed consensus code and behavior DFA </figcaption>
@@ -1005,37 +1007,39 @@ processors failing by crashing. More precisely, constant <code>F</code> contains
 the maximum number of failures, and we will assume there are <code>N</code> =
 3<code>F</code> + 1 processors.</p>
 <div class="highlight"><span class="filename">bosco.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">bag</span>
+
 <span class="n">const</span> <span class="n">F</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">F</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">const</span> <span class="n">NROUNDS</span> <span class="o">=</span> <span class="mi">3</span>
+
 <span class="n">proposals</span> <span class="o">=</span> <span class="p">[</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="p">]</span>
 <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">e</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">e</span><span class="p">):</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">round</span> <span class="p">}:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">e</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">e</span><span class="p">):</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">round</span> <span class="p">}:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="n">proposal</span><span class="p">):</span>
-    <span class="n">var</span> <span class="n">estimate</span><span class="p">,</span> <span class="n">decided</span> <span class="o">=</span> <span class="n">proposal</span><span class="p">,</span> <span class="kc">False</span>
-    <span class="n">broadcast</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">quorum</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">):</span>
-            <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span> <span class="n">bag</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">(</span><span class="n">quorum</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mf">0..1</span> <span class="p">}</span>
-<span class="p">]:</span>
-                <span class="k">assert</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">estimate</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="n">estimate</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">decided</span><span class="p">:</span>
-                        <span class="nb">print</span> <span class="n">estimate</span>
-                        <span class="n">decided</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="k">assert</span> <span class="n">estimate</span> <span class="ow">in</span> <span class="n">proposals</span> <span class="c1"># check validity</span>
-                <span class="n">broadcast</span><span class="p">(</span><span class="nb">round</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">estimate</span><span class="p">,</span> <span class="n">decided</span> <span class="o">=</span> <span class="n">proposal</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="n">broadcast</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
+        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">quorum</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">):</span>
+            <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span> <span class="n">bag</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">(</span><span class="n">quorum</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mf">0..1</span> <span class="p">}</span> <span class="p">]:</span>
+                <span class="k">assert</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">estimate</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="n">estimate</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">decided</span><span class="p">:</span>
+                        <span class="nb">print</span> <span class="n">estimate</span>
+                        <span class="n">decided</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">assert</span> <span class="n">estimate</span> <span class="ow">in</span> <span class="n">proposals</span>   <span class="c1"># check validity</span>
+                <span class="n">broadcast</span><span class="p">(</span><span class="nb">round</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
+
 <span class="nb">print</span> <span class="n">proposals</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div>
 <figcaption>Figure 29.2 (<a href=https://harmony.cs.cornell.edu/code/bosco.hny>code/bosco.hny</a>): 
 A crash-tolerant consensus protocol </figcaption>
@@ -1113,39 +1117,42 @@ consensus specification the outcome is only decided a priori if the
 processors are initially unanimous. Another difference is that if the
 outcome is decided a priori, all processors are guaranteed to decide.</p>
 <div class="highlight"><span class="filename">bosco2.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">bag</span>
+
 <span class="n">const</span> <span class="n">F</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">F</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">const</span> <span class="n">NROUNDS</span> <span class="o">=</span> <span class="mi">3</span>
+
 <span class="n">let</span> <span class="n">n_zeroes</span> <span class="o">=</span> <span class="n">choose</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span> <span class="p">}:</span>
-    <span class="n">proposals</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,]</span> <span class="o">*</span> <span class="n">n_zeroes</span><span class="p">)</span> <span class="o">+</span> <span class="p">([</span><span class="mi">1</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">n_zeroes</span><span class="p">))</span>
+    <span class="n">proposals</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,]</span> <span class="o">*</span> <span class="n">n_zeroes</span><span class="p">)</span> <span class="o">+</span> <span class="p">([</span><span class="mi">1</span><span class="p">,]</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">n_zeroes</span><span class="p">))</span>
 <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">e</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">e</span><span class="p">):</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">round</span> <span class="p">}:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">bag</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="k">else</span> <span class="p">{</span> <span class="n">msgs</span> <span class="p">}</span>
+    <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">e</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">e</span><span class="p">):</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">round</span> <span class="p">}:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">bag</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="k">else</span> <span class="p">{</span> <span class="n">msgs</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="n">proposal</span><span class="p">):</span>
-    <span class="n">var</span> <span class="n">estimate</span><span class="p">,</span> <span class="n">decided</span> <span class="o">=</span> <span class="n">proposal</span><span class="p">,</span> <span class="kc">False</span>
-    <span class="n">broadcast</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
-    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">):</span>
-            <span class="n">let</span> <span class="n">choices</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">)</span>
-            <span class="n">let</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
-            <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span> <span class="n">bag</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">(</span><span class="n">quorum</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mf">0..1</span> <span class="p">}</span> <span class="p">]:</span>
-                <span class="k">assert</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="n">estimate</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="n">estimate</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">decided</span><span class="p">:</span>
-                        <span class="nb">print</span> <span class="n">estimate</span>
-                        <span class="n">decided</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="k">assert</span> <span class="n">estimate</span> <span class="ow">in</span> <span class="n">proposals</span> <span class="c1"># validity</span>
-                <span class="n">broadcast</span><span class="p">(</span><span class="nb">round</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">estimate</span><span class="p">,</span> <span class="n">decided</span> <span class="o">=</span> <span class="n">proposal</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="n">broadcast</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
+        <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">msgs</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">):</span>
+            <span class="n">let</span> <span class="n">choices</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">count</span> <span class="o">=</span> <span class="p">[</span> <span class="n">bag</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">(</span><span class="n">quorum</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mf">0..1</span> <span class="p">}</span> <span class="p">]:</span>
+                <span class="k">assert</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">estimate</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">count</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="n">estimate</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">F</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">decided</span><span class="p">:</span>
+                        <span class="nb">print</span> <span class="n">estimate</span>
+                        <span class="n">decided</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">assert</span> <span class="n">estimate</span> <span class="ow">in</span> <span class="n">proposals</span>           <span class="c1"># validity</span>
+                <span class="n">broadcast</span><span class="p">(</span><span class="nb">round</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimate</span><span class="p">)</span>
+
 <span class="nb">print</span> <span class="n">proposals</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div>
 <figcaption>Figure 29.4 (<a href=https://harmony.cs.cornell.edu/code/bosco2.hny>code/bosco2.hny</a>): 
 Reducing the state space </figcaption>

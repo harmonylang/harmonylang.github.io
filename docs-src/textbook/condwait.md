@@ -43,22 +43,7 @@ performance.
 
 
 ```python title="RW.hny"
-def RWlock():
-    result = { .nreaders: 0, .nwriters: 0 }
-
-def read_acquire(rw):
-    atomically when rw->nwriters == 0:
-        rw->nreaders += 1
-
-def read_release(rw):
-    atomically rw->nreaders -= 1
-
-def write_acquire(rw):
-    atomically when (rw->nreaders + rw->nwriters) == 0:
-        rw->nwriters = 1
-
-def write_release(rw):
-    atomically rw->nwriters = 0
+--8<-- "RW.hny"
 ```
 
 <figcaption>Figure 15.1 (<a href=https://harmony.cs.cornell.edu/code/RW.hny>code/RW.hny</a>): 
@@ -66,24 +51,7 @@ Specification of reader/writer locks </figcaption>
 
 
 ```python title="RWtest.hny"
-import RW
-const NOPS = 3
-rw = RW.RWlock()
-
-def thread():
-    while choose({ False, True }):
-        if choose({ "read", "write" }) == "read":
-            RW.read_acquire(?rw)
-            rcs: assert (countLabel(rcs) >= 1) and (countLabel(wcs) ==
-0)
-            RW.read_release(?rw)
-        else: # write
-            RW.write_acquire(?rw)
-            wcs: assert (countLabel(rcs) == 0) and (countLabel(wcs) ==
-1)
-            RW.write_release(?rw)
-for i in {1..NOPS}:
-    spawn thread()
+--8<-- "RWtest.hny"
 ```
 
 <figcaption>Figure 15.2 (<a href=https://harmony.cs.cornell.edu/code/RWtest.hny>code/RWtest.hny</a>): 
@@ -124,22 +92,7 @@ the same for writing.
 
 
 ```python title="RWcheat.hny"
-import synch
-
-def RWlock():
-    result = synch.Lock()
-
-def read_acquire(rw):
-    synch.acquire(rw);
-
-def read_release(rw):
-    synch.release(rw);
-
-def write_acquire(rw):
-    synch.acquire(rw);
-
-def write_release(rw):
-    synch.release(rw);
+--8<-- "RWcheat.hny"
 ```
 
 <figcaption>Figure 15.3 (<a href=https://harmony.cs.cornell.edu/code/RWcheat.hny>code/RWcheat.hny</a>): 
@@ -155,30 +108,7 @@ is better to compare behaviors between the specification and the
 implementation.
 
 ```python title="RWbtest.hny"
-import RW
-const NOPS = 3
-rw = RW.RWlock()
-
-def thread(self):
-    while choose({ False, True }):
-        if choose({ "read", "write" }) == "read":
-            print(self, "enter ra")
-            RW.read_acquire(?rw)
-            print(self, "exit ra")
-            rcs: assert (countLabel(rcs) >= 1) and (countLabel(wcs) == 0)
-            print(self, "enter rr")
-            RW.read_release(?rw)
-            print(self, "exit rr")
-        else: # write
-            print(self, "enter wa")
-            RW.write_acquire(?rw)
-            print(self, "exit wa")
-            wcs: assert (countLabel(rcs) == 0) and (countLabel(wcs) == 1)
-            print(self, "enter wr")
-            RW.write_release(?rw)
-            print(self, "enter wr")
-for i in {1..NOPS}:
-    spawn thread(i)
+--8<-- "RWbtest.hny"
 ```
 
 <figcaption>Figure 15.4 (<a href=https://harmony.cs.cornell.edu/code/RWbtest.hny>code/RWbtest.hny</a>): 
@@ -200,36 +130,7 @@ by the implementation. (Harmony does not yet have a mechanism to do this
 automatically.)
 
 ```python title="RWbusy.hny"
-from synch import Lock, acquire, release
-
-def RWlock():
-    result = { .lock: Lock(), .nreaders: 0, .nwriters: 0 }
-
-def read_acquire(rw):
-    acquire(?rw->lock)
-    while rw->nwriters > 0:
-        release(?rw->lock)
-        acquire(?rw->lock)
-    rw->nreaders += 1
-    release(?rw->lock)
-
-def read_release(rw):
-    acquire(?rw->lock)
-    rw->nreaders -= 1
-    release(?rw->lock)
-
-def write_acquire(rw):
-    acquire(?rw->lock)
-    while (rw->nreaders + rw->nwriters) > 0:
-        release(?rw->lock)
-        acquire(?rw->lock)
-    rw->nwriters = 1
-    release(?rw->lock)
-
-def write_release(rw):
-    acquire(?rw->lock)
-    rw->nwriters = 0
-    release(?rw->lock)
+--8<-- "RWbusy.hny"
 ```
 
 <figcaption>Figure 15.5 (<a href=https://harmony.cs.cornell.edu/code/RWbusy.hny>code/RWbusy.hny</a>): 
@@ -242,19 +143,7 @@ CPU cycles.  Harmony complains about this solution.
 ## Bounded Buffer
 
 ```python title="boundedbuffer.hny"
-import list
-
-def BoundedBuffer(size):
-    result = { .buffer: [ ], .size: size }
-
-def put(bb, v):
-    atomically when len(bb->buffer) < bb->size:
-        bb->buffer = list.append(bb->buffer, v)
-
-def get(bb):
-    atomically when bb->buffer != [ ]:
-        result = list.head(bb->buffer)
-        bb->buffer = list.tail(bb->buffer)
+--8<-- "boundedbuffer.hny"
 ```
 
 <figcaption>Figure 15.6 (<a href=https://harmony.cs.cornell.edu/code/boundedbuffer.hny>code/boundedbuffer.hny</a>): 

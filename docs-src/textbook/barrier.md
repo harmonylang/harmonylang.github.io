@@ -22,19 +22,7 @@ A barrier is used as follows:
 -   `bwait`(?*b*): wait until all threads have reached the barrier
 
 ```python title="barriertest.hny"
-import barrier
-const NTHREADS = 3
-const NROUNDS = 4
-round = [0,] * NTHREADS
-invariant (max(round) - min(round)) <= 1
-barr = barrier.Barrier(NTHREADS)
-
-def thread(self):
-    for r in {0..NROUNDS-1}:
-        barrier.bwait(?barr)
-        round[self] += 1
-for i in {0..NTHREADS-1}:
-    spawn thread(i)
+--8<-- "barriertest.hny"
 ```
 
 <figcaption>Figure 21.1 (<a href=https://harmony.cs.cornell.edu/code/barriertest.hny>code/barriertest.hny</a>): 
@@ -54,26 +42,7 @@ decrement the counter and wait on the condition variable until the
 counter reaches 0.
 
 ```python title="barrier.hny"
-from synch import *
-
-def Barrier(required):
-    result = {
-        .mutex: Lock(), .cond: Condition(),
-        .required: required, .left: required, .cycle: 0
-    }
-
-def bwait(b):
-    acquire(?b->mutex)
-    b->left -= 1
-    if b->left == 0:
-        b->cycle = (b->cycle + 1) % 2
-        b->left = b->required
-        notifyAll(?b->cond)
-    else:
-        let cycle = b->cycle:
-            while b->cycle == cycle:
-                wait(?b->cond, ?b->mutex)
-    release(?b->mutex)
+--8<-- "barrier.hny"
 ```
 
 <figcaption>Figure 21.2 (<a href=https://harmony.cs.cornell.edu/code/barrier.hny>code/barrier.hny</a>): 
@@ -90,24 +59,7 @@ counter is allowed to wrap around---in fact, a single bit suffices for
 the counter.
 
 ```python title="barriertest2.hny"
-import barrier
-const NTHREADS = 3
-const NROUNDS = 4
-round = [0,] * NTHREADS
-invariant (max(round) - min(round)) <= 1
-phase = 0
-barr = barrier.Barrier(NTHREADS)
-
-def thread(self):
-    for r in {0..NROUNDS-1}:
-        if self == 0: # coordinator prepares
-            phase += 1
-        barrier.bwait(?barr) # enter parallel work
-        round[self] += 1
-        assert round[self] == phase
-        barrier.bwait(?barr) # exit parallel work
-for i in {0..NTHREADS-1}:
-    spawn thread(i)
+--8<-- "barriertest2.hny"
 ```
 
 <figcaption>Figure 21.3 (<a href=https://harmony.cs.cornell.edu/code/barriertest2.hny>code/barriertest2.hny</a>): 

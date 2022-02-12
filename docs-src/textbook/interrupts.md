@@ -11,19 +11,7 @@ Harmony. In other words: an interrupt is a notification, while an
 exception is an error.
 
 ```python title="trap.hny"
-sequential done
-count = 0
-done = False
-
-def handler():
-    count += 1
-    done = True
-
-def main():
-    trap handler()
-    await done
-    assert count == 1
-spawn main()
+--8<-- "trap.hny"
 ```
 
 <figcaption>Figure 22.1 (<a href=https://harmony.cs.cornell.edu/code/trap.hny>code/trap.hny</a>): 
@@ -41,20 +29,7 @@ be used. Here, the `main`() thread loops until the interrupt has
 occurred and the *done* flag has been set.
 
 ```python title="trap2.hny"
-sequential done
-count = 0
-done = False
-
-def handler():
-    count += 1
-    done = True
-
-def main():
-    trap handler()
-    count += 1
-    await done
-    assert count == 2
-spawn main()
+--8<-- "trap2.hny"
 ```
 
 <figcaption>Figure 22.2 (<a href=https://harmony.cs.cornell.edu/code/trap2.hny>code/trap2.hny</a>): 
@@ -72,26 +47,7 @@ Figure 22.2 is not *interrupt-safe* (as opposed to not being
 *thread-safe*).
 
 ```python title="trap3.hny"
-from synch import Lock, acquire, release
-sequential done
-countlock = Lock()
-count = 0
-done = False
-
-def handler():
-    acquire(?countlock)
-    count += 1
-    release(?countlock)
-    done = True
-
-def main():
-    trap handler()
-    acquire(?countlock)
-    count += 1
-    release(?countlock)
-    await done
-    assert count == 2
-spawn main()
+--8<-- "trap3.hny"
 ```
 
 <figcaption>Figure 22.3 (<a href=https://harmony.cs.cornell.edu/code/trap3.hny>code/trap3.hny</a>): 
@@ -110,22 +66,7 @@ acquire the lock, even though it is being acquired by the same thread
 that already holds the lock.
 
 ```python title="trap4.hny"
-sequential done
-count = 0
-done = False
-
-def handler():
-    count += 1
-    done = True
-
-def main():
-    trap handler()
-    setintlevel(True)
-    count += 1
-    setintlevel(False)
-    await done
-    assert count == 2
-spawn main()
+--8<-- "trap4.hny"
 ```
 
 <figcaption>Figure 22.4 (<a href=https://harmony.cs.cornell.edu/code/trap4.hny>code/trap4.hny</a>): 
@@ -142,25 +83,7 @@ that the `main`() code re-enables interrupts after incrementing *count*.
 What would happen if `main`() left interrupts disabled?
 
 ```python title="trap5.hny"
-sequential done
-count = 0
-done = False
-
-def increment():
-    let prior = setintlevel(True):
-        count += 1
-        setintlevel(prior)
-
-def handler():
-    increment()
-    done = True
-
-def main():
-    trap handler()
-    increment()
-    await done
-    assert count == 2
-spawn main()
+--8<-- "trap5.hny"
 ```
 
 <figcaption>Figure 22.5 (<a href=https://harmony.cs.cornell.edu/code/trap5.hny>code/trap5.hny</a>): 
@@ -174,30 +97,7 @@ from an interrupt handler. Figure 22.5 shows how one might write a
 interrupt-safe method to increment the counter.
 
 ```python title="trap6.hny"
-from synch import Lock, acquire, release
-sequential done
-count = 0
-countlock = Lock()
-done = [ False, False ]
-
-def increment():
-    let prior = setintlevel(True):
-        acquire(?countlock)
-        count += 1
-        release(?countlock)
-        setintlevel(prior)
-
-def handler(self):
-    increment()
-    done[self] = True
-
-def thread(self):
-    trap handler(self)
-    increment()
-    await all(done)
-    assert count == 4, count
-spawn thread(0)
-spawn thread(1)
+--8<-- "trap6.hny"
 ```
 
 <figcaption>Figure 22.6 (<a href=https://harmony.cs.cornell.edu/code/trap6.hny>code/trap6.hny</a>): 

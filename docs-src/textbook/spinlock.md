@@ -75,32 +75,7 @@ the value of the shared variable to the private variable (the "test")
 and then sets the shared variable to `True` ("set").
 
 ```python title="spinlock.hny"
-const N = 3
-shared = False
-private = [ True, ] * N
-invariant len(x for x in [shared,] + private where not x) <= 1
-
-def test_and_set(s, p):
-    atomically:
-        !p = !s
-        !s = True
-
-def clear(s):
-    assert !s
-    atomically !s = False
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        while private[self]:
-            test_and_set(?shared, ?private[self])
-        # Critical section
-        cs: assert (not private[self]) and (countLabel(cs) == 1)
-        # Leave critical section
-        private[self] = True
-        clear(?shared)
-for i in {0..N-1}:
-    spawn thread(i)
+--8<-- "spinlock.hny"
 ```
 
 <figcaption>Figure 9.1 (<a href=https://harmony.cs.cornell.edu/code/spinlock.hny>code/spinlock.hny</a>): 

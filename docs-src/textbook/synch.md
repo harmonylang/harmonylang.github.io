@@ -53,20 +53,7 @@ repeatedly in a loop, while another thread is never lucky enough to
 acquire the lock in between.
 
 ```python title="tasLock.hny"
-def test_and_set(s):
-    atomically:
-        result = !s
-        !s = True
-
-def Lock():
-    result = False
-
-def acquire(lk):
-    while test_and_set(lk):
-        pass
-
-def release(lk):
-    atomically !lk = False
+--8<-- "tasLock.hny"
 ```
 
 <figcaption>Figure 10.1 (<a href=https://harmony.cs.cornell.edu/code/tasLock.hny>code/tasLock.hny</a>): 
@@ -74,23 +61,7 @@ Implementation of the lock specification in Figure 8.1 using a spinlock based on
 </figcaption>
 
 ```python title="ticket.hny"
-const MAX_THREADS = 8
-
-def fetch_and_increment(p):
-    atomically:
-        result = !p
-        !p = (!p + 1) % MAX_THREADS
-
-def Lock():
-    result = { .counter: 0, .dispenser: 0 }
-
-def acquire(lk):
-    let my_ticket = fetch_and_increment(?lk->dispenser):
-        atomically await lk->counter == my_ticket
-
-def release(lk):
-    let next = (lk->counter + 1) % MAX_THREADS:
-        atomically lk->counter = next
+--8<-- "ticket.hny"
 ```
 
 <figcaption>Figure 10.2 (<a href=https://harmony.cs.cornell.edu/code/ticket.hny>code/ticket.hny</a>): 
@@ -130,27 +101,7 @@ that is in an infinite loop is also considered blocked.
 
 
 ```python title="synchS.hny"
-import list
-
-def Lock():
-    result = { .acquired: False, .suspended: [ ] }
-
-def acquire(lk):
-    atomically:
-        if lk->acquired:
-            stop lk->suspended[len lk->suspended]
-            assert lk->acquired
-        else:
-            lk->acquired = True
-
-def release(lk):
-    atomically:
-        assert lk->acquired
-        if lk->suspended == [ ]:
-            lk->acquired = False
-        else:
-            go (list.head(lk->suspended)) ()
-            lk->suspended = list.tail(lk->suspended)
+--8<-- "../modules/synchS.hny"
 ```
 
 <figcaption>Figure 10.3 (<a href=https://harmony.cs.cornell.edu/modules/synchS.hny>modules/synchS.hny</a>): 
@@ -218,21 +169,7 @@ other modules.
 many states were explored by Harmony for each module.
 
 ```python title="xy.hny"
-x, y = 0, 100
-
-def setX(a):
-    x = a
-    y = 100 - a
-
-def getXY():
-    result = [x, y]
-
-def checker():
-    let xy = getXY():
-        assert (xy[0] + xy[1]) == 100, xy
-    
-spawn checker()
-spawn setX(50)
+--8<-- "xy.hny"
 ```
 
 <figcaption>Figure 10.4 (<a href=https://harmony.cs.cornell.edu/code/xy.hny>code/xy.hny</a>): 
@@ -251,35 +188,7 @@ or `False` if the lock was already acquired. Hint: you do not have to
 change the existing code.
 
 ```python title="atm.hny"
-from synch import Lock, acquire, release
-const N_ACCOUNTS = 2
-const N_CUSTOMERS = 2
-const N_ATMS = 2
-const MAX_BALANCE = 1
-accounts = [ { .lock: Lock(), .balance: choose({0..MAX_BALANCE})}
-                            for i in {1..N_ACCOUNTS} ]
-invariant min(accounts[acct].balance for acct in {0..N_ACCOUNTS-1}) >=
-0
-
-def atm_check_balance(acct): # return the balance on acct
-    acquire(?accounts[acct].lock)
-    result = accounts[acct].balance
-    release(?accounts[acct].lock)
-
-def atm_withdraw(acct, amount): # withdraw amount from acct
-    acquire(?accounts[acct].lock)
-    accounts[acct].balance -= amount
-    result = True # return success
-    release(?accounts[acct].lock)
-
-def customer(atm, acct, amount):
-    let bal = atm_check_balance(acct):
-        if amount <= bal:
-            atm_withdraw(acct, amount)
-        
-for i in {1..N_ATMS}:
-    spawn customer(i, choose({0..N_ACCOUNTS-1}),
-                      choose({0..MAX_BALANCE}))
+--8<-- "atm.hny"
 ```
 
 <figcaption>Figure 10.5 (<a href=https://harmony.cs.cornell.edu/code/atm.hny>code/atm.hny</a>): 

@@ -974,7 +974,7 @@ Harmony program with two possible outputs</figcaption>
 
 <p><img alt="" src="../figures/hello4.png" /></p>
 <div class="highlight"><span class="filename">hello4.hny</span><pre><span></span><code><span class="k">while</span> <span class="n">choose</span> <span class="p">{</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}:</span>
-    <span class="nb">print</span> <span class="s2">&quot;hello world&quot;</span>
+    <span class="nb">print</span> <span class="s2">&quot;hello world&quot;</span>
 </code></pre></div>
 <figcaption>Figure 2.3 (
 <a href=https://harmony.cs.cornell.edu/code/hello4.hny>code/hello4.hny</a>): 
@@ -1039,8 +1039,9 @@ hello". Printing in Harmony is atomic, so "hweolrllod" is not a possible
 output.</p>
 <p><img alt="" src="../figures/hello7.png" /></p>
 <div class="highlight"><span class="filename">hello7.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="s2">&quot;hello&quot;</span>
-    <span class="nb">print</span> <span class="n">name</span>
+    <span class="nb">print</span> <span class="s2">&quot;hello&quot;</span>
+    <span class="nb">print</span> <span class="n">name</span>
+
 <span class="n">spawn</span> <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Lesley&quot;</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Robbert&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1050,9 +1051,10 @@ Various interleavings of threads</figcaption>
 
 <p><img alt="" src="../figures/hello8.png" /></p>
 <div class="highlight"><span class="filename">hello8.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="n">atomically</span><span class="p">:</span>
-        <span class="nb">print</span> <span class="s2">&quot;hello&quot;</span>
-        <span class="nb">print</span> <span class="n">name</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s2">&quot;hello&quot;</span>
+        <span class="nb">print</span> <span class="n">name</span>
+
 <span class="n">spawn</span> <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Lesley&quot;</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">hello</span><span class="p">(</span><span class="s2">&quot;Robbert&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1091,11 +1093,12 @@ differences:</p>
 get more familiar with programming in Harmony.</p>
 <div class="highlight"><span class="filename">triangle.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="k">def</span> <span class="nf">triangle</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># computes the n’th triangle number</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">n</span><span class="p">}:</span> <span class="c1"># for each integer from 1 to n inclusive</span>
-        <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span> <span class="c1"># add i to result</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">choose</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="p">}</span> <span class="c1"># select an x between 0 and N inclusive</span>
+<span class="k">def</span> <span class="nf">triangle</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>   <span class="c1"># computes the n&#39;th triangle number</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">n</span><span class="p">}:</span>     <span class="c1"># for each integer from 1 to n inclusive</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span>      <span class="c1"># add i to result</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">choose</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="p">}</span>        <span class="c1"># select an x between 0 and N inclusive</span>
 <span class="k">assert</span> <span class="n">triangle</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="p">((</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 2.7

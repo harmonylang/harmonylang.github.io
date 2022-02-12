@@ -25,36 +25,7 @@ Alice sends application message *m*, then eventually Bob should deliver
 *m* (liveness).
 
 ```python title="abp.hny"
-sequential s_chan, r_chan
-s_chan = r_chan = ()
-s_seq = r_seq = 0
-
-def net_send(pchan, m, reliable):
-    !pchan = m if (reliable or choose({ False, True })) else ()
-
-def net_recv(pchan):
-    result = !pchan
-
-def app_send(payload):
-    s_seq = 1 - s_seq
-    let m = { .seq: s_seq, .payload: payload }:
-        var blocked = True
-        while blocked:
-            net_send(?s_chan, m, False)
-            let response = net_recv(?r_chan):
-                blocked = (response == ()) or (response.ack != s_seq)
-            
-
-def app_recv(reliable):
-    r_seq = 1 - r_seq
-    var blocked = True
-    while blocked:
-        let m = net_recv(?s_chan):
-            if m != ():
-                net_send(?r_chan, { .ack: m.seq }, reliable)
-                if m.seq == r_seq:
-                    result = m.payload
-                    blocked = False
+--8<-- "abp.hny"
 ```
 
 <figcaption>Figure 24.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
@@ -89,20 +60,7 @@ places either *m* (to model a successful send) or () (to model loss) in
 `net_recv`(*pchan*) models checking !*pchan* for the next message.
 
 ```python title="abptest.hny"
-import abp
-const NMSGS = 5
-
-def sender():
-    for i in {1..NMSGS}:
-        abp.app_send(i)
-    
-
-def receiver():
-    for i in {1..NMSGS}:
-        let payload = abp.app_recv(i == NMSGS):
-            assert payload == i
-spawn sender()
-spawn receiver()
+--8<-- "abptest.hny"
 ```
 
 <figcaption>Figure 24.2 (<a href=https://harmony.cs.cornell.edu/code/abptest.hny>code/abptest.hny</a>): 

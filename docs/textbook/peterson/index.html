@@ -932,19 +932,23 @@
                 
                 <h1 id="petersons-algorithm">Peterson's Algorithm</h1>
 <div class="highlight"><span class="filename">Peterson.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span><span class="p">,</span> <span class="n">turn</span>
+
 <span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 <span class="n">turn</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span>
-        <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="c1"># Critical section is here</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-        <span class="c1"># Leave critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span>
+        <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Critical section is here</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="c1"># Leave critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
@@ -1098,20 +1102,23 @@ can use Harmony to verify this. Just place the following command in the
 critical section of the program:</p>
 <p><strong>assert</strong> (<strong>not</strong> <em>flags</em>[1 -- <em>self</em>]) <strong>or</strong> (<em>turn</em> == <em>self</em>)</p>
 <div class="highlight"><span class="filename">PetersonInductive.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span><span class="p">,</span> <span class="n">turn</span>
+
 <span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 <span class="n">turn</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">gate</span><span class="p">:</span> <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span>
-        <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
-        <span class="c1"># Critical section</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span> <span class="ow">or</span>
-<span class="p">(</span><span class="n">countLabel</span><span class="p">(</span><span class="n">gate</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Leave critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">gate</span><span class="p">:</span> <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span>
+        <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Critical section</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">countLabel</span><span class="p">(</span><span class="n">gate</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Leave critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
@@ -1221,20 +1228,23 @@ invariant either. Moreover, analyzing the counterexample provided by
 Harmony may well suggest how to fix the predicate.</p>
 <h2 id="exercises">Exercises</h2>
 <div class="highlight"><span class="filename">csonebit.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span>
+
 <span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">while</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]:</span>
-            <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        
-        <span class="c1"># Critical section</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-        <span class="c1"># Leave critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="c1"># Enter critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]:</span>
+            <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Critical section</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="c1"># Leave critical section</span>
+        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>

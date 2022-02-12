@@ -893,48 +893,118 @@ until the lock is <code>False</code> and then sets it to <code>True</code> in an
 operation. The <code>release()</code> operation sets the lock back to <code>False</code>. The
 code is similar to Figure 5.3, except that waiting for the lock
 to become available and taking it is executed as an atomic operation.</p>
-<div class="highlight"><span class="filename">synch.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Lock</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="highlight"><span class="filename">synch.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
+<span class="kn">import</span> <span class="nn">bag</span>
 
-<span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="n">when</span> <span class="ow">not</span> <span class="err">!</span><span class="n">lk</span><span class="p">:</span>
-        <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">tas</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">lk</span>
+        <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="err">!</span><span class="n">lk</span>
-    <span class="n">atomically</span> <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">def</span> <span class="nf">cas</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">p</span> <span class="o">==</span> <span class="n">old</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="n">new</span>
+
+<span class="k">def</span> <span class="nf">BinSema</span><span class="p">(</span><span class="n">acquired</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">acquired</span>
+
+<span class="k">def</span> <span class="nf">Lock</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">acquired</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">binsema</span>
+
+<span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="ow">not</span> <span class="err">!</span><span class="n">binsema</span><span class="p">:</span>
+        <span class="err">!</span><span class="n">binsema</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="err">!</span><span class="n">binsema</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">binsema</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">held</span><span class="p">(</span><span class="n">binsema</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">binsema</span>
+
+<span class="k">def</span> <span class="nf">Condition</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">lk</span><span class="p">):</span>
+    <span class="n">var</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">let</span> <span class="p">(),</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">save</span><span class="p">():</span>
+        <span class="n">atomically</span><span class="p">:</span>
+            <span class="n">cnt</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+            <span class="err">!</span><span class="n">c</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+            <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">atomically</span> <span class="n">when</span> <span class="p">(</span><span class="ow">not</span> <span class="err">!</span><span class="n">lk</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">bag</span><span class="o">.</span><span class="n">multiplicity</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">cnt</span><span class="p">):</span>
+            <span class="err">!</span><span class="n">lk</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">notify</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="k">if</span> <span class="err">!</span><span class="n">c</span> <span class="o">!=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+        <span class="err">!</span><span class="n">c</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">,</span> <span class="n">bag</span><span class="o">.</span><span class="n">bchoose</span><span class="p">(</span><span class="err">!</span><span class="n">c</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">notifyAll</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">c</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">Semaphore</span><span class="p">(</span><span class="n">cnt</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cnt</span>
+
+<span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="n">sema</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="err">!</span><span class="n">sema</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="err">!</span><span class="n">sema</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">V</span><span class="p">(</span><span class="n">sema</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">sema</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="n">when</span> <span class="err">!</span><span class="n">q</span> <span class="o">!=</span> <span class="p">[]:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">)</span>
+        <span class="err">!</span><span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 8.1 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
 Specification of a lock </figcaption>
 
 <div class="highlight"><span class="filename">cssynch.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">synch</span>
+
 <span class="n">const</span> <span class="n">NTHREADS</span> <span class="o">=</span> <span class="mi">2</span>
+
 <span class="n">lock</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">():</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">lock</span><span class="p">)</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-        <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">lock</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="n">synch</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">lock</span><span class="p">)</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">synch</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">lock</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NTHREADS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
+    <span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
 </code></pre></div>
 <figcaption>Figure 8.2 (<a href=https://harmony.cs.cornell.edu/code/UpLock.hny>code/cssynch.hny</a>): 
 Using a lock to implement a critical section</figcaption>
 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<div class="highlight"><span class="filename">UpLock.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+
 <span class="n">sequential</span> <span class="n">done</span>
+
 <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">countlock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
 <span class="n">done</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">countlock</span><span class="p">)</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">countlock</span><span class="p">)</span>
-    <span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span>
-    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">countlock</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">countlock</span><span class="p">)</span>
+    <span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">await</span> <span class="n">done</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">2</span>
+
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>

@@ -932,20 +932,23 @@
                 
                 <h1 id="testing-checking-behaviors">Testing: Checking Behaviors</h1>
 <div class="highlight"><span class="filename">qtestseq.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">queue</span><span class="o">,</span> <span class="nn">queueconc</span>
+
 <span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">const</span> <span class="n">VALUES</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span> <span class="p">}</span>
+
 <span class="n">specq</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
 <span class="n">implq</span> <span class="o">=</span> <span class="n">queueconc</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="p">}:</span>
-    <span class="n">let</span> <span class="n">op</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span> <span class="p">}):</span>
-        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;put&quot;</span><span class="p">:</span>
-            <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">VALUES</span><span class="p">):</span>
-                <span class="n">queueconc</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">implq</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-                <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">specq</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queueconc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">implq</span><span class="p">)</span>
-            <span class="n">let</span> <span class="n">w</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">specq</span><span class="p">):</span>
-                <span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="n">w</span>
+    <span class="n">let</span> <span class="n">op</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="s2">&quot;put&quot;</span> <span class="p">}):</span>
+        <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s2">&quot;put&quot;</span><span class="p">:</span>
+            <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">VALUES</span><span class="p">):</span>
+                <span class="n">queueconc</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">implq</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="err">?</span><span class="n">specq</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queueconc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">implq</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">w</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="err">?</span><span class="n">specq</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="n">w</span>
 </code></pre></div>
 <figcaption>Figure 13.1 (<a href=https://harmony.cs.cornell.edu/code/qtestseq.hny>code/qtestseq.hny</a>): 
 Sequential queue test </figcaption>
@@ -1075,20 +1078,20 @@ behaviors obtained from the specification.</p>
 Concurrent queue test. The behavior DFA is for NOPS = 2. </figcaption>
 
 <div class="highlight"><span class="filename">queueseq.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">data</span><span class="p">:</span> <span class="p">[</span> <span class="p">],</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">data</span><span class="p">:</span> <span class="p">[],</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">:</span>
-        <span class="n">q</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">:</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 
 <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 </code></pre></div>
 <figcaption>Figure 13.3 (<a href=https://harmony.cs.cornell.edu/code/queueseq.hny>code/queueseq.hny</a>): 
 Sequential but not a concurrent queue implementation </figcaption>

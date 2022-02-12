@@ -28,15 +28,7 @@ structure that can be safely accessed by multiple threads and is free of
 race conditions is called *thread-safe*.
 
 ```python title="csbarebones.hny"
-def thread():
-    while True:
-        # Enter critical section
-        # Critical section is here
-        cs: assert countLabel(cs) == 1
-        # Exit critical section
-    
-spawn thread()
-spawn thread()
+--8<-- "csbarebones.hny"
 ```
 
 <figcaption>Figure 5.1 (<a href=https://harmony.cs.cornell.edu/code/csbarebones.hny>code/csbarebones.hny</a>): 
@@ -45,15 +37,7 @@ A bare bones critical section with two threads
 
 
 ```python title="cs.hny"
-def thread():
-    while choose({ False, True }):
-        # Enter critical section
-        # Critical section is here
-        cs: assert countLabel(cs) == 1
-        # Exit critical section
-    
-spawn thread()
-spawn thread()
+--8<-- "cs.hny"
 ```
 
 <figcaption>Figure 5.2 (<a href=https://harmony.cs.cornell.edu/code/cs.hny>code/cs.hny</a>): 
@@ -115,20 +99,7 @@ specification.
 
 
 ```python title="naiveLock.hny"
-lockTaken = False
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        await not lockTaken
-        lockTaken = True
-        # Critical section
-        cs: assert countLabel(cs) == 1
-        # Leave critical section
-        lockTaken = False
-    
-spawn thread(0)
-spawn thread(1)
+--8<-- "naiveLock.hny"
 ```
 
 ![](figures/naiveLock.png) <figcaption>Figure 5.3 (<a href=https://harmony.cs.cornell.edu/code/naiveLock.hny>code/naiveLock.hny</a>): 
@@ -137,19 +108,7 @@ output]{.underline}](https://harmony.cs.cornell.edu/output/naiveLock.html) of ru
 
 
 ```python title="naiveFlags.hny"
-flags = [ False, False ]
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        flags[self] = True
-        await not flags[1 - self]
-        # Critical section
-        cs: assert countLabel(cs) == 1
-        # Leave critical section
-        flags[self] = False
-spawn thread(0)
-spawn thread(1)
+--8<-- "naiveFlags.hny"
 ```
 
 ![](figures/naiveFlags.png) <figcaption>Figure 5.4 (<a href=https://harmony.cs.cornell.edu/code/naiveFlags.hny>code/naiveFlags.hny</a>): 
@@ -158,19 +117,8 @@ output]{.underline}](https://harmony.cs.cornell.edu/output/naiveFlags.html)
 of running Harmony on Figure 5.4 </figcaption>
 
 
-```python
-turn = 0
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        turn = 1 - self
-        await turn == self
-        # Critical section
-        cs: assert countLabel(cs) == 1
-        # Leave critical section
-spawn thread(0)
-spawn thread(1)
+```python title="naiveTurn.hny"
+--8<-- "naiveTurn.hny"
 ```
 
 <figcaption>Figure 5.5 (

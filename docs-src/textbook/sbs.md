@@ -56,45 +56,7 @@ acquired state (signifying that the gate is closed).
 
 
 ```python title="RWsbs.hny"
-from synch import BinSema, acquire, release
-
-def RWlock():
-    result = {
-            .nreaders: 0, .nwriters: 0, .mutex: BinSema(False),
-            .r_gate: { .sema: BinSema(True), .count: 0 },
-            .w_gate: { .sema: BinSema(True), .count: 0 }
-        }
-
-def release_one(rw):
-    if (rw->nwriters == 0) and (rw->r_gate.count > 0):
-        release(?rw->r_gate.sema)
-    elif ((rw->nreaders + rw->nwriters) == 0) and (rw->w_gate.count >
-0):
-        release(?rw->w_gate.sema)
-    else:
-        release(?rw->mutex)
-
-def read_acquire(rw):
-    acquire(?rw->mutex)
-    if rw->nwriters > 0:
-        rw->r_gate.count += 1; release_one(rw)
-        acquire(?rw->r_gate.sema); rw->r_gate.count -= 1
-    rw->nreaders += 1
-    release_one(rw)
-
-def read_release(rw):
-    acquire(?rw->mutex); rw->nreaders -= 1; release_one(rw)
-
-def write_acquire(rw):
-    acquire(?rw->mutex)
-    if (rw->nreaders + rw->nwriters) > 0:
-        rw->w_gate.count += 1; release_one(rw)
-        acquire(?rw->w_gate.sema); rw->w_gate.count -= 1
-    rw->nwriters += 1
-    release_one(rw)
-
-def write_release(rw):
-    acquire(?rw->mutex); rw->nwriters -= 1; release_one(rw)
+--8<-- "RWsbs.hny"
 ```
 
 <figcaption>Figure 16.1 (<a href=https://harmony.cs.cornell.edu/code/RWsbs.hny>code/RWsbs.hny</a>): 
@@ -199,15 +161,7 @@ might exhaust some resource such as a cache.)
 can acquire the bound lock at the same time.
 
 ```python title="gpu.hny"
-const N = 10
-availGPUs = {1..N}
-
-def gpuAlloc():
-    result = choose(availGPUs)
-    availGPUs -= { result }
-
-def gpuRelease(gpu):
-    availGPUs |= { gpu }
+--8<-- "gpu.hny"
 ```
 
 <figcaption>Figure 16.2 (<a href=https://harmony.cs.cornell.edu/code/gpu.hny>code/gpu.hny</a>): 

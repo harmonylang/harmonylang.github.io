@@ -954,18 +954,22 @@ start until all threads have completed processing their fragment.</p>
 </li>
 </ul>
 <div class="highlight"><span class="filename">barriertest.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">barrier</span>
+
 <span class="n">const</span> <span class="n">NTHREADS</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">const</span> <span class="n">NROUNDS</span> <span class="o">=</span> <span class="mi">4</span>
+
 <span class="nb">round</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,]</span> <span class="o">*</span> <span class="n">NTHREADS</span>
 <span class="n">invariant</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="nb">round</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+
 <span class="n">barr</span> <span class="o">=</span> <span class="n">barrier</span><span class="o">.</span><span class="n">Barrier</span><span class="p">(</span><span class="n">NTHREADS</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>
-        <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
+        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>
+        <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NTHREADS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 21.1 (<a href=https://harmony.cs.cornell.edu/code/barriertest.hny>code/barriertest.hny</a>): 
 Test program for Figure 21.2 </figcaption>
@@ -984,23 +988,23 @@ counter reaches 0.</p>
 <div class="highlight"><span class="filename">barrier.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="k">def</span> <span class="nf">Barrier</span><span class="p">(</span><span class="n">required</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="o">.</span><span class="n">mutex</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">cond</span><span class="p">:</span> <span class="n">Condition</span><span class="p">(),</span>
-        <span class="o">.</span><span class="n">required</span><span class="p">:</span> <span class="n">required</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">:</span> <span class="n">required</span><span class="p">,</span> <span class="o">.</span><span class="n">cycle</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="o">.</span><span class="n">mutex</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">cond</span><span class="p">:</span> <span class="n">Condition</span><span class="p">(),</span>
+        <span class="o">.</span><span class="n">required</span><span class="p">:</span> <span class="n">required</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">:</span> <span class="n">required</span><span class="p">,</span> <span class="o">.</span><span class="n">cycle</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">bwait</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
-    <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
-        <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">required</span>
-        <span class="n">notifyAll</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">let</span> <span class="n">cycle</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span><span class="p">:</span>
-            <span class="k">while</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">==</span> <span class="n">cycle</span><span class="p">:</span>
-                <span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">,</span> <span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">required</span>
+        <span class="n">notifyAll</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">let</span> <span class="n">cycle</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">==</span> <span class="n">cycle</span><span class="p">:</span>
+                <span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">,</span> <span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 21.2 (<a href=https://harmony.cs.cornell.edu/code/barrier.hny>code/barrier.hny</a>): 
 Barrier implementation </figcaption>
@@ -1015,23 +1019,27 @@ threads are waiting for the cycle counter to be incremented. The cycle
 counter is allowed to wrap around---in fact, a single bit suffices for
 the counter.</p>
 <div class="highlight"><span class="filename">barriertest2.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">barrier</span>
+
 <span class="n">const</span> <span class="n">NTHREADS</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">const</span> <span class="n">NROUNDS</span> <span class="o">=</span> <span class="mi">4</span>
+
 <span class="nb">round</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,]</span> <span class="o">*</span> <span class="n">NTHREADS</span>
 <span class="n">invariant</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="nb">round</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+
 <span class="n">phase</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">barr</span> <span class="o">=</span> <span class="n">barrier</span><span class="o">.</span><span class="n">Barrier</span><span class="p">(</span><span class="n">NTHREADS</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># coordinator prepares</span>
-            <span class="n">phase</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span> <span class="c1"># enter parallel work</span>
-        <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">assert</span> <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">==</span> <span class="n">phase</span>
-        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span> <span class="c1"># exit parallel work</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
+        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                <span class="c1"># coordinator prepares</span>
+            <span class="n">phase</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>         <span class="c1"># enter parallel work</span>
+        <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">==</span> <span class="n">phase</span>
+        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>         <span class="c1"># exit parallel work</span>
+
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NTHREADS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 21.3 (<a href=https://harmony.cs.cornell.edu/code/barriertest2.hny>code/barriertest2.hny</a>): 
 Demonstrating the double-barrier pattern </figcaption>

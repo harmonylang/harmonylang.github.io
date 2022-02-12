@@ -899,30 +899,32 @@ you model your service as a deterministic state machine. The replicas
 each run a copy of the state machine, started in the same state. As long
 as the replicas handle the same inputs in the same order, determinism
 guarantees that they produce the same outputs in the same order.</p>
-<div class="highlight"><span class="filename">rsmspec.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">NREPLICAS</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># number of replicas</span>
-<span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># number of operations</span>
-<span class="n">network</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span> <span class="c1"># the network is a queue of messages</span>
+<div class="highlight"><span class="filename">rsmspec.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">NREPLICAS</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># number of replicas</span>
+<span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">3</span>          <span class="c1"># number of operations</span>
+
+<span class="n">network</span> <span class="o">=</span> <span class="p">[]</span>            <span class="c1"># the network is a queue of messages</span>
 
 <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="n">network</span> <span class="o">+=</span> <span class="p">[</span><span class="n">m</span><span class="p">,]</span>
+    <span class="n">atomically</span> <span class="n">network</span> <span class="o">+=</span> <span class="p">[</span><span class="n">m</span><span class="p">,]</span>
 
 <span class="k">def</span> <span class="nf">replica</span><span class="p">(</span><span class="n">immortal</span><span class="p">):</span>
-    <span class="n">var</span> <span class="n">hist</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="n">immortal</span><span class="p">,</span> <span class="kc">True</span> <span class="p">})</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">NOPS</span><span class="p">):</span>
-        <span class="n">atomically</span> <span class="n">when</span> <span class="nb">len</span><span class="p">(</span><span class="n">network</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">):</span>
-            <span class="n">hist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">network</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)],]</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">==</span> <span class="n">NOPS</span><span class="p">:</span> <span class="c1"># successful completion</span>
-        <span class="k">assert</span> <span class="n">hist</span> <span class="o">==</span> <span class="n">network</span>
-        <span class="k">assert</span> <span class="n">choose</span><span class="p">({</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="p">})</span> <span class="ow">in</span> <span class="n">hist</span>
-        <span class="nb">print</span> <span class="n">hist</span>
+    <span class="n">var</span> <span class="n">hist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="n">immortal</span><span class="p">,</span> <span class="kc">True</span> <span class="p">})</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">NOPS</span><span class="p">):</span>
+        <span class="n">atomically</span> <span class="n">when</span> <span class="nb">len</span><span class="p">(</span><span class="n">network</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">):</span>
+            <span class="n">hist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">network</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)],]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">==</span> <span class="n">NOPS</span><span class="p">:</span>    <span class="c1"># successful completion</span>
+        <span class="k">assert</span> <span class="n">hist</span> <span class="o">==</span> <span class="n">network</span>
+        <span class="k">assert</span> <span class="n">choose</span><span class="p">({</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="p">})</span> <span class="ow">in</span> <span class="n">hist</span>
+        <span class="nb">print</span> <span class="n">hist</span>
 
 <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
 <span class="n">let</span> <span class="n">survivor</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">NREPLICAS</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">NREPLICAS</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}:</span>
-        <span class="n">spawn</span> <span class="n">replica</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">survivor</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">NREPLICAS</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}:</span>
+        <span class="n">spawn</span> <span class="n">replica</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">survivor</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">client</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">client</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 27.1 (<a href=https://harmony.cs.cornell.edu/code/rsmspec.hny>code/rsmspec.hny</a>): 
 Replicated State Machine </figcaption>
@@ -971,44 +973,46 @@ model, which is distinct from the often more realistic <em>Crash
 Failure</em> model where processes can crash but accurate detection is not
 available. We will consider that more realistic failure model in the
 upcoming chapters.</p>
-<div class="highlight"><pre><span></span><code><span class="n">const</span> <span class="n">NREPLICAS</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># number of replicas</span>
-<span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># number of operations</span>
-<span class="n">network</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># the network is a set of messages</span>
+<div class="highlight"><span class="filename">chain.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">NREPLICAS</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># number of replicas</span>
+<span class="n">const</span> <span class="n">NOPS</span> <span class="o">=</span> <span class="mi">3</span>          <span class="c1"># number of operations</span>
+
+<span class="n">network</span> <span class="o">=</span> <span class="p">{}</span>            <span class="c1"># the network is a set of messages</span>
 
 <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">atomically</span> <span class="n">network</span> <span class="o">|=</span> <span class="p">{</span> <span class="n">m</span> <span class="p">}</span>
+    <span class="n">atomically</span> <span class="n">network</span> <span class="o">|=</span> <span class="p">{</span> <span class="n">m</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="n">predecessor</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="n">payload</span> <span class="k">for</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="p">(</span><span class="nb">id</span> <span class="o">==</span> <span class="n">predecessor</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="n">payload</span> <span class="k">for</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="p">(</span><span class="nb">id</span> <span class="o">==</span> <span class="n">predecessor</span><span class="p">)</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">replica</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">immortal</span><span class="p">):</span>
-    <span class="n">var</span> <span class="n">hist</span><span class="p">,</span> <span class="n">predecessors</span> <span class="o">=</span> <span class="p">[</span> <span class="p">],</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="bp">self</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="n">immortal</span><span class="p">,</span> <span class="kc">True</span> <span class="p">})</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">NOPS</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">predecessors</span> <span class="o">==</span> <span class="p">{}:</span> <span class="c1"># I’m the head</span>
-            <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">update</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">)</span>
-                                    <span class="n">when</span> <span class="n">update</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">:</span>
-                <span class="n">hist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">update</span><span class="p">,]</span>
-                <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span> <span class="c1"># I’m not the head (yet)</span>
-            <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">predecessors</span><span class="p">)):</span>
-                <span class="k">if</span> <span class="n">payload</span> <span class="o">==</span> <span class="s2">&quot;crash&quot;</span><span class="p">:</span>
-                    <span class="n">predecessors</span> <span class="o">-=</span> <span class="p">{</span> <span class="nb">max</span><span class="p">(</span><span class="n">predecessors</span><span class="p">)</span> <span class="p">}</span>
-                <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">))</span> <span class="ow">and</span>
-                        <span class="nb">all</span><span class="p">(</span><span class="n">hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">}):</span>
-                    <span class="n">hist</span> <span class="o">=</span> <span class="n">payload</span>
-                    <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">==</span> <span class="n">NOPS</span><span class="p">:</span> <span class="c1"># successful completion</span>
-        <span class="nb">print</span> <span class="n">hist</span>
-    <span class="k">else</span><span class="p">:</span> <span class="c1"># replica crashed</span>
-        <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;crash&quot;</span><span class="p">)</span>
+    <span class="n">var</span> <span class="n">hist</span><span class="p">,</span> <span class="n">predecessors</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="bp">self</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="n">immortal</span><span class="p">,</span> <span class="kc">True</span> <span class="p">})</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">NOPS</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">predecessors</span> <span class="o">==</span> <span class="p">{}:</span>  <span class="c1"># I&#39;m the head</span>
+            <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">update</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">)</span>
+                                    <span class="n">when</span> <span class="n">update</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hist</span><span class="p">:</span>
+                <span class="n">hist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">update</span><span class="p">,]</span>
+                <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>                   <span class="c1"># I&#39;m not the head (yet)</span>
+            <span class="n">atomically</span> <span class="n">when</span> <span class="n">exists</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">receive</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">predecessors</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">payload</span> <span class="o">==</span> <span class="s2">&quot;crash&quot;</span><span class="p">:</span>
+                    <span class="n">predecessors</span> <span class="o">-=</span> <span class="p">{</span> <span class="nb">max</span><span class="p">(</span><span class="n">predecessors</span><span class="p">)</span> <span class="p">}</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">))</span> <span class="ow">and</span>
+                        <span class="nb">all</span><span class="p">(</span><span class="n">hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">}):</span>
+                    <span class="n">hist</span> <span class="o">=</span> <span class="n">payload</span>
+                    <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hist</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">==</span> <span class="n">NOPS</span><span class="p">:</span>    <span class="c1"># successful completion</span>
+        <span class="nb">print</span> <span class="n">hist</span>
+    <span class="k">else</span><span class="p">:</span>       <span class="c1"># replica crashed</span>
+        <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;crash&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">send</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+    <span class="n">send</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
 <span class="n">let</span> <span class="n">survivor</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">NREPLICAS</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">NREPLICAS</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}:</span>
-        <span class="n">spawn</span> <span class="n">replica</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">==</span> <span class="n">survivor</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mi">0</span> <span class="o">..</span> <span class="n">NREPLICAS</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}:</span>
+        <span class="n">spawn</span> <span class="n">replica</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">==</span> <span class="n">survivor</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NOPS</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">client</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">spawn</span> <span class="n">client</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 27.2 (<a href=https://harmony.cs.cornell.edu/code/chain.hny>code/chain.hny</a>): 
 Chain Replication </figcaption>

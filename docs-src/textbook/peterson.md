@@ -2,22 +2,7 @@
 # Peterson's Algorithm 
 
 ```python title="Peterson.hny"
-sequential flags, turn
-flags = [ False, False ]
-turn = choose({0, 1})
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        flags[self] = True
-        turn = 1 - self
-        await (not flags[1 - self]) or (turn == self)
-        # Critical section is here
-        cs: assert countLabel(cs) == 1
-        # Leave critical section
-        flags[self] = False
-spawn thread(0)
-spawn thread(1)
+--8<-- "Peterson.hny"
 ```
 
 <figcaption>Figure 6.1 (<a href=https://harmony.cs.cornell.edu/code/Peterson.hny>code/Peterson.hny</a>): 
@@ -178,23 +163,7 @@ critical section of the program:
 
 
 ```python title="PetersonInductive.hny"
-sequential flags, turn
-flags = [ False, False ]
-turn = choose({0, 1})
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        flags[self] = True
-        gate: turn = 1 - self
-        await (not flags[1 - self]) or (turn == self)
-        # Critical section
-        cs: assert (not flags[1 - self]) or (turn == self) or
-(countLabel(gate) == 1)
-        # Leave critical section
-        flags[self] = False
-spawn thread(0)
-spawn thread(1)
+--8<-- "PetersonInductive.hny"
 ```
 
 <figcaption>Figure 6.3 (
@@ -303,23 +272,7 @@ Harmony may well suggest how to fix the predicate.
 ## Exercises 
 
 ```python title="csonebit.hny"
-sequential flags
-flags = [ False, False ]
-
-def thread(self):
-    while choose({ False, True }):
-        # Enter critical section
-        flags[self] = True
-        while flags[1 - self]:
-            flags[self] = False
-            flags[self] = True
-        
-        # Critical section
-        cs: assert countLabel(cs) == 1
-        # Leave critical section
-        flags[self] = False
-spawn thread(0)
-spawn thread(1)
+--8<-- "csonebit.hny"
 ```
 
 <figcaption>Figure 6.4 (<a href=https://harmony.cs.cornell.edu/code/csonebit.hny>code/csonebit.hny</a>): 

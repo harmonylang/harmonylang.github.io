@@ -12,16 +12,7 @@ code is similar to Figure 5.3, except that waiting for the lock
 to become available and taking it is executed as an atomic operation.
 
 ```python title="synch.hny"
-def Lock():
-    result = False
-
-def acquire(lk):
-    atomically when not !lk:
-        !lk = True
-
-def release(lk):
-    assert !lk
-    atomically !lk = False
+--8<-- "../modules/synch.hny"
 ```
 
 <figcaption>Figure 8.1 (<a href=https://harmony.cs.cornell.edu/modules/synch.hny>modules/synch.hny</a>): 
@@ -29,38 +20,14 @@ Specification of a lock </figcaption>
 
 
 ```python title="cssynch.hny"
-import synch
-const NTHREADS = 2
-lock = synch.Lock()
-
-def thread():
-    while choose({ False, True }):
-        synch.acquire(?lock)
-        cs: assert countLabel(cs) == 1
-        synch.release(?lock)
-for i in {1..NTHREADS}:
-    spawn thread()
+--8<-- "cssynch.hny"
 ```
 
 <figcaption>Figure 8.2 (<a href=https://harmony.cs.cornell.edu/code/UpLock.hny>code/cssynch.hny</a>): 
 Using a lock to implement a critical section</figcaption>
 
-```python
-from synch import Lock, acquire, release
-sequential done
-count = 0
-countlock = Lock()
-done = [ False, False ]
-
-def thread(self):
-    acquire(?countlock)
-    count = count + 1
-    release(?countlock)
-    done[self] = True
-    await done[1 - self]
-    assert count == 2
-spawn thread(0)
-spawn thread(1)
+```python title="UpLock.hny"
+--8<-- "UpLock.hny"
 ```
 
 <figcaption>Figure 8.3 (<a href=https://harmony.cs.cornell.edu/code/UpLock.hny>code/UpLock.hny</a>): 

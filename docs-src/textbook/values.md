@@ -523,17 +523,6 @@ those are considered *private* to the module.
 
 ### **go** 
 
-\begin{figure}
-\begin{code}
-<{:const:fork}>
-<{:inline:}>
-
-<{:end:}>
-\end{code}
-\caption{Using <{save}> and <{go}> to implement \texttt{fork()}}
-\label{fig:fork}
-\end{figure}
-
 ```python title="fork.hny"
 def fork():
     atomically:
@@ -944,17 +933,7 @@ allocated this way and so allocated memory that is no longer in use must
 be explicitly released using `free`.
 
 ```python title="stack.hny"
-from stack import Stack, push, pop
-teststack = Stack()
-push(?teststack, 1)
-push(?teststack, 2)
-v = pop(?teststack)
-assert v == 2
-push(?teststack, 3)
-v = pop(?teststack)
-assert v == 3
-v = pop(?teststack)
-assert v == 1
+--8<-- "stack.hny"
 ```
 
 <figcaption>Figure A.2 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
@@ -962,16 +941,7 @@ Testing a stack implementation. </figcaption>
 
 
 ```python title="stack1.hny"
-def Stack():
-    result = [ ]
-
-def push(st, v):
-    (!st)[len(!st)] = v
-
-def pop(st):
-    let n = len(!st) - 1:
-        result = (!st)[n]
-        del (!st)[n]
+--8<-- "stack1.hny"
 ```
 
 <figcaption>Figure A.3 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
@@ -980,18 +950,7 @@ Stack implemented using a dynamically updated list.
 
 
 ```python title="stack2.hny"
-import list
-
-def Stack():
-    result = [ ]
-
-def push(st, v):
-    !st += [v,]
-
-def pop(st):
-    let n = len(!st) - 1:
-        result = (!st)[n]
-        !st = list.subseq(!st, 0, n)
+--8<-- "stack2.hny"
 ```
 
 <figcaption>Figure A.4 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
@@ -999,16 +958,7 @@ Stack implemented using static lists. </figcaption>
 
 
 ```python title="stack3.hny"
-def Stack():
-    result = ()
-
-def push(st, v):
-    (!st) = (v, !st)
-
-def pop(st):
-    let (top, rest) = !st:
-        result = top
-        !st = rest
+--8<-- "stack3.hny"
 ```
 
 <figcaption>Figure A.5 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
@@ -1017,19 +967,7 @@ Stack implemented using a recursive tuple data structure.
 
 
 ```python title="stack4.hny"
-from alloc import malloc, free
-
-def Stack():
-    result = None
-
-def push(st, v):
-    !st = malloc({ .value: v, .rest: !st })
-
-def pop(st):
-    let node = !st:
-        result = node->value
-        !st = node->rest
-        free(node)
+--8<-- "stack4.hny"
 ```
 
 <figcaption>Figure A.6 (<a href=https://harmony.cs.cornell.edu/code/stack4.hny>code/stack4.hny</a>): 

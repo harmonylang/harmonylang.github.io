@@ -2290,15 +2290,6 @@ counter constants) using the statement <strong>from</strong> <em>m</em> <strong>
 however, excludes constants whose names start with the character <code>_</code>:
 those are considered <em>private</em> to the module.</p>
 <h3 id="go"><strong>go</strong></h3>
-<p>\begin{figure}
-\begin{code}
-&lt;{:const:fork}&gt;
-&lt;{:inline:}&gt;</p>
-<p>&lt;{:end:}&gt;
-\end{code}
-\caption{Using &lt;{save}&gt; and &lt;{go}&gt; to implement \texttt{fork()}}
-\label{fig:fork}
-\end{figure}</p>
 <div class="highlight"><span class="filename">fork.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">fork</span><span class="p">():</span>
     <span class="n">atomically</span><span class="p">:</span>
         <span class="n">let</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span> <span class="o">=</span> <span class="n">save</span> <span class="kc">True</span><span class="p">:</span>
@@ -2635,31 +2626,30 @@ options for dynamic allocation:</p>
 structures), Harmony does not support garbage collection for memory
 allocated this way and so allocated memory that is no longer in use must
 be explicitly released using <code>free</code>.</p>
-<div class="highlight"><span class="filename">stack.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">stack</span> <span class="kn">import</span> <span class="n">Stack</span><span class="p">,</span> <span class="n">push</span><span class="p">,</span> <span class="n">pop</span>
-<span class="n">teststack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
-<span class="n">push</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">push</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">2</span>
-<span class="n">push</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">3</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="err">?</span><span class="n">teststack</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">1</span>
+<div class="highlight"><span class="filename">stack.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
+
+<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">del</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div>
 <figcaption>Figure A.2 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
 Testing a stack implementation. </figcaption>
 
 <div class="highlight"><span class="filename">stack1.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
 
 <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
-        <span class="k">del</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">del</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div>
 <figcaption>Figure A.3 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
 Stack implemented using a dynamically updated list.
@@ -2668,29 +2658,29 @@ Stack implemented using a dynamically updated list.
 <div class="highlight"><span class="filename">stack2.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
 <span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="err">!</span><span class="n">st</span> <span class="o">+=</span> <span class="p">[</span><span class="n">v</span><span class="p">,]</span>
+    <span class="err">!</span><span class="n">st</span> <span class="o">+=</span> <span class="p">[</span><span class="n">v</span><span class="p">,]</span>
 
 <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
-        <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">subseq</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
+        <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">subseq</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure A.4 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
 Stack implemented using static lists. </figcaption>
 
 <div class="highlight"><span class="filename">stack3.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="err">!</span><span class="n">st</span><span class="p">)</span>
+    <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="err">!</span><span class="n">st</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
-    <span class="n">let</span> <span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span> <span class="o">=</span> <span class="err">!</span><span class="n">st</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">top</span>
-        <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">rest</span>
+    <span class="n">let</span> <span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span> <span class="o">=</span> <span class="err">!</span><span class="n">st</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">top</span>
+        <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">rest</span>
 </code></pre></div>
 <figcaption>Figure A.5 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
 Stack implemented using a recursive tuple data structure.
@@ -2699,16 +2689,16 @@ Stack implemented using a recursive tuple data structure.
 <div class="highlight"><span class="filename">stack4.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
 <span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">rest</span><span class="p">:</span> <span class="err">!</span><span class="n">st</span> <span class="p">})</span>
+    <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">rest</span><span class="p">:</span> <span class="err">!</span><span class="n">st</span> <span class="p">})</span>
 
 <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
-    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="err">!</span><span class="n">st</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
-        <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rest</span>
-        <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="err">!</span><span class="n">st</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+        <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rest</span>
+        <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure A.6 (<a href=https://harmony.cs.cornell.edu/code/stack4.hny>code/stack4.hny</a>): 
 Stack implemented using a linked list. </figcaption>

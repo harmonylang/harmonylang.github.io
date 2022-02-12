@@ -887,6 +887,7 @@
 <p>Harmony is a Python-like programming language for testing and experimenting with concurrent programs. Instead of "running" code, Harmony programs are model-checked so that all corner cases are explored. If there is a problem, Harmony provides a short but detailed example of an execution that leads to the problem.</p>
 <p>Here is <a href="https://en.wikipedia.org/wiki/Peterson%27s_algorithm">Peterson's Algorithm</a> in Harmony, along with code to verify mutual exclusion:</p>
 <div class="highlight"><span class="filename">peterson.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">flags</span><span class="p">,</span> <span class="n">turn</span>
+
 <span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 <span class="n">turn</span> <span class="o">=</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
 
@@ -896,8 +897,10 @@
         <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span>
         <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span><span class="p">)</span>
+
         <span class="c1"># Critical section is here</span>
         <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
         <span class="c1"># Leave critical section</span>
         <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 

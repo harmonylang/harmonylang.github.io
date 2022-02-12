@@ -34,7 +34,7 @@ this case, there is only one.
 ![](figures/hello1.png)
 
 ```python title="hello1.hny"
-print "hello world"
+--8<-- "hello1.hny"
 ```
 
 <figcaption>Figure 2.1 (
@@ -45,7 +45,7 @@ Hello World! </figcaption>
 
 
 ```python title="hello3.hny"
-print choose { "hello", "world" }
+--8<-- "hello3.hny"
 ```
 
 <figcaption>Figure 2.2 (
@@ -56,8 +56,7 @@ Harmony program with two possible outputs</figcaption>
 
 
 ```python title="hello4.hny"
-while choose { False, True }:
-    print "hello world"
+--8<-- "hello4.hny"
 ```
 
 <figcaption>Figure 2.3 (
@@ -90,11 +89,7 @@ captures an infinite number of possible outputs.
 <td>
 
 ```python title="hello5.hny"
-def p(s):
-    print s
-
-p("hello")
-p("world")
+--8<-- "hello5.hny"
 ```
 <img src="../figures/hello5.png" />
 
@@ -102,11 +97,7 @@ p("world")
 <td>
 
 ```python title="hello6.hny"
-def p(s):
-    print s
-
-spawn p("hello")
-spawn p("world")
+--8<-- "hello6.hny"
 ```
 <img src="../figures/hello6.png" />
 
@@ -130,11 +121,7 @@ output.
 
 
 ```python title="hello7.hny"
-def hello(name):
-    print "hello"
-    print name
-spawn hello("Lesley")
-spawn hello("Robbert")
+--8<-- "hello7.hny"
 ```
 
 <figcaption>Figure 2.5 
@@ -145,12 +132,7 @@ Various interleavings of threads</figcaption>
 
 
 ```python title="hello8.hny"
-def hello(name):
-    atomically:
-        print "hello"
-        print name
-spawn hello("Lesley")
-spawn hello("Robbert")
+--8<-- "hello8.hny"
 ```
 
 <figcaption>Figure 2.6
@@ -186,14 +168,7 @@ get more familiar with programming in Harmony.
 
 
 ```python title="triangle.hny"
-const N = 10
-
-def triangle(n): # computes the n’th triangle number
-    result = 0
-    for i in {1..n}: # for each integer from 1 to n inclusive
-        result += i # add i to result
-x = choose {0..N} # select an x between 0 and N inclusive
-assert triangle(x) == ((x * (x + 1)) / 2)
+--8<-- "triangle.hny"
 ```
 
 <figcaption>Figure 2.7

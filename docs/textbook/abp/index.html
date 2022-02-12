@@ -953,35 +953,35 @@ messages <span class="arithmatex">\(m_1, ..., m_{i-1}\)</span> (safety). Also, i
 Alice sends application message <em>m</em>, then eventually Bob should deliver
 <em>m</em> (liveness).</p>
 <div class="highlight"><span class="filename">abp.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">s_chan</span><span class="p">,</span> <span class="n">r_chan</span>
+
 <span class="n">s_chan</span> <span class="o">=</span> <span class="n">r_chan</span> <span class="o">=</span> <span class="p">()</span>
 <span class="n">s_seq</span> <span class="o">=</span> <span class="n">r_seq</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">net_send</span><span class="p">(</span><span class="n">pchan</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">reliable</span><span class="p">):</span>
-    <span class="err">!</span><span class="n">pchan</span> <span class="o">=</span> <span class="n">m</span> <span class="k">if</span> <span class="p">(</span><span class="n">reliable</span> <span class="ow">or</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}))</span> <span class="k">else</span> <span class="p">()</span>
+    <span class="err">!</span><span class="n">pchan</span> <span class="o">=</span> <span class="n">m</span> <span class="k">if</span> <span class="p">(</span><span class="n">reliable</span> <span class="ow">or</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}))</span> <span class="k">else</span> <span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">net_recv</span><span class="p">(</span><span class="n">pchan</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pchan</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pchan</span>
 
 <span class="k">def</span> <span class="nf">app_send</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
-    <span class="n">s_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">s_seq</span>
-    <span class="n">let</span> <span class="n">m</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">seq</span><span class="p">:</span> <span class="n">s_seq</span><span class="p">,</span> <span class="o">.</span><span class="n">payload</span><span class="p">:</span> <span class="n">payload</span> <span class="p">}:</span>
-        <span class="n">var</span> <span class="n">blocked</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">while</span> <span class="n">blocked</span><span class="p">:</span>
-            <span class="n">net_send</span><span class="p">(</span><span class="err">?</span><span class="n">s_chan</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="n">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">net_recv</span><span class="p">(</span><span class="err">?</span><span class="n">r_chan</span><span class="p">):</span>
-                <span class="n">blocked</span> <span class="o">=</span> <span class="p">(</span><span class="n">response</span> <span class="o">==</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">ack</span> <span class="o">!=</span> <span class="n">s_seq</span><span class="p">)</span>
-            
+    <span class="n">s_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">s_seq</span>
+    <span class="n">let</span> <span class="n">m</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">seq</span><span class="p">:</span> <span class="n">s_seq</span><span class="p">,</span> <span class="o">.</span><span class="n">payload</span><span class="p">:</span> <span class="n">payload</span> <span class="p">}:</span>
+        <span class="n">var</span> <span class="n">blocked</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">blocked</span><span class="p">:</span>
+            <span class="n">net_send</span><span class="p">(</span><span class="err">?</span><span class="n">s_chan</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">net_recv</span><span class="p">(</span><span class="err">?</span><span class="n">r_chan</span><span class="p">):</span>
+                <span class="n">blocked</span> <span class="o">=</span> <span class="p">(</span><span class="n">response</span> <span class="o">==</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">ack</span> <span class="o">!=</span> <span class="n">s_seq</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">app_recv</span><span class="p">(</span><span class="n">reliable</span><span class="p">):</span>
-    <span class="n">r_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">r_seq</span>
-    <span class="n">var</span> <span class="n">blocked</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">while</span> <span class="n">blocked</span><span class="p">:</span>
-        <span class="n">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">net_recv</span><span class="p">(</span><span class="err">?</span><span class="n">s_chan</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="p">():</span>
-                <span class="n">net_send</span><span class="p">(</span><span class="err">?</span><span class="n">r_chan</span><span class="p">,</span> <span class="p">{</span> <span class="o">.</span><span class="n">ack</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">seq</span> <span class="p">},</span> <span class="n">reliable</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">seq</span> <span class="o">==</span> <span class="n">r_seq</span><span class="p">:</span>
-                    <span class="n">result</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">payload</span>
-                    <span class="n">blocked</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">r_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">r_seq</span>
+    <span class="n">var</span> <span class="n">blocked</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">blocked</span><span class="p">:</span>
+        <span class="n">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">net_recv</span><span class="p">(</span><span class="err">?</span><span class="n">s_chan</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="p">():</span>
+                <span class="n">net_send</span><span class="p">(</span><span class="err">?</span><span class="n">r_chan</span><span class="p">,</span> <span class="p">{</span> <span class="o">.</span><span class="n">ack</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">seq</span> <span class="p">},</span> <span class="n">reliable</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">seq</span> <span class="o">==</span> <span class="n">r_seq</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">payload</span>
+                    <span class="n">blocked</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
 <figcaption>Figure 24.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
 Alternating Bit Protocol </figcaption>
@@ -1012,17 +1012,18 @@ places either <em>m</em> (to model a successful send) or () (to model loss) in
 !<em>pchan</em>. The use of the <em>reliable</em> flag will be explained later.
 <code>net_recv</code>(<em>pchan</em>) models checking !<em>pchan</em> for the next message.</p>
 <div class="highlight"><span class="filename">abptest.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">abp</span>
+
 <span class="n">const</span> <span class="n">NMSGS</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="k">def</span> <span class="nf">sender</span><span class="p">():</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NMSGS</span><span class="p">}:</span>
-        <span class="n">abp</span><span class="o">.</span><span class="n">app_send</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NMSGS</span><span class="p">}:</span>
+        <span class="n">abp</span><span class="o">.</span><span class="n">app_send</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">receiver</span><span class="p">():</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NMSGS</span><span class="p">}:</span>
-        <span class="n">let</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">abp</span><span class="o">.</span><span class="n">app_recv</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">NMSGS</span><span class="p">):</span>
-            <span class="k">assert</span> <span class="n">payload</span> <span class="o">==</span> <span class="n">i</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NMSGS</span><span class="p">}:</span>
+        <span class="n">let</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">abp</span><span class="o">.</span><span class="n">app_recv</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">NMSGS</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">payload</span> <span class="o">==</span> <span class="n">i</span>
+
 <span class="n">spawn</span> <span class="n">sender</span><span class="p">()</span>
 <span class="n">spawn</span> <span class="n">receiver</span><span class="p">()</span>
 </code></pre></div>

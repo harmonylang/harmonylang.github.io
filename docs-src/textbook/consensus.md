@@ -29,16 +29,7 @@ and receive a message. Here we will not worry about
 ![](figures/consensus.png)
 
 ```python title="consensus.hny"
-const N = 4
-proposals = [ choose({0, 1}) for i in {0..N-1} ]
-decision = choose { x for x in proposals }
-
-def processor(proposal):
-    if choose { False, True }:
-        print decision
-print proposals
-for i in {0..N-1}:
-    spawn processor(proposals[i])
+--8<-- "consensus.hny"
 ```
 
 <figcaption>Figure 29.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
@@ -73,38 +64,7 @@ the maximum number of failures, and we will assume there are `N` =
 
 
 ```python title="bosco.hny"
-import bag
-const F = 1
-const N = (3 * F) + 1
-const NROUNDS = 3
-proposals = [ choose({0, 1}) for i in {0..N-1} ]
-network = bag.empty()
-
-def broadcast(msg):
-    atomically network = bag.add(network, msg)
-
-def receive(round, k):
-    let msgs = { e:c for (r,e):c in network where r == round }:
-        result = bag.combinations(msgs, k)
-
-def processor(proposal):
-    var estimate, decided = proposal, False
-    broadcast(0, estimate)
-    for round in {0..NROUNDS-1}:
-        atomically when exists quorum in receive(round, N - F):
-            let count = [ bag.multiplicity(quorum, i) for i in { 0..1 }
-]:
-                assert count[0] != count[1]
-                estimate = 0 if count[0] > count[1] else 1
-                if count[estimate] == (N - F):
-                    if not decided:
-                        print estimate
-                        decided = True
-                    assert estimate in proposals # check validity
-                broadcast(round + 1, estimate)
-print proposals
-for i in {0..N-1}:
-    spawn processor(proposals[i])
+--8<-- "bosco.hny"
 ```
 
 <figcaption>Figure 29.2 (<a href=https://harmony.cs.cornell.edu/code/bosco.hny>code/bosco.hny</a>): 
@@ -186,40 +146,7 @@ processors are initially unanimous. Another difference is that if the
 outcome is decided a priori, all processors are guaranteed to decide.
 
 ```python title="bosco2.hny"
-import bag
-const F = 1
-const N = (3 * F) + 1
-const NROUNDS = 3
-let n_zeroes = choose { 0 .. N / 2 }:
-    proposals = ([0,] * n_zeroes) + ([1,] * (N - n_zeroes))
-network = bag.empty()
-
-def broadcast(msg):
-    atomically network = bag.add(network, msg)
-
-def receive(round):
-    let msgs = { e:c for (r,e):c in network where r == round }:
-        result = {} if bag.size(msgs) < N else { msgs }
-
-def processor(proposal):
-    var estimate, decided = proposal, False
-    broadcast(0, estimate)
-    for round in {0..NROUNDS-1}:
-        atomically when exists msgs in receive(round):
-            let choices = bag.combinations(msgs, N - F)
-            let quorum = choose(choices)
-            let count = [ bag.multiplicity(quorum, i) for i in { 0..1 } ]:
-                assert count[0] != count[1]
-                estimate = 0 if count[0] > count[1] else 1
-                if count[estimate] == (N - F):
-                    if not decided:
-                        print estimate
-                        decided = True
-                    assert estimate in proposals # validity
-                broadcast(round + 1, estimate)
-print proposals
-for i in {0..N-1}:
-    spawn processor(proposals[i])
+--8<-- "bosco2.hny"
 ```
 
 <figcaption>Figure 29.4 (<a href=https://harmony.cs.cornell.edu/code/bosco2.hny>code/bosco2.hny</a>): 
