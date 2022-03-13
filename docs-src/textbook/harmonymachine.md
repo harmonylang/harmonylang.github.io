@@ -251,13 +251,13 @@ The four turns in the execution are as follows:
     through 5 and 35 through 43, setting shared variable *count* to 0
     and shared variable *done* to \[`False`, `False`\].
 
-2.  Thread `incrementer`(0) (with identifier T2) executes instructions 6
-    through 9, loading the value of *count* but stopping just before
-    storing 1 into *count*;
-
-3.  Thread `incrementer(1)` (with identifier T1) executes instructions 6
+2.  Thread `incrementer(1)` (with identifier T1) executes instructions 6
     through 20, storing 1 into *count* and storing `True` into
     *done*\[1\];
+
+3.  Thread `incrementer(0)` (with identifier T2) executes instructions 6
+    through 9, loading the value of *count* but stopping just before 
+    storing 1 into *count*;
 
 4.  Thread `incrementer`(0) (T2) continues execution, executing
     instructions 10 through 24 storing value 1 into *count* (instruction

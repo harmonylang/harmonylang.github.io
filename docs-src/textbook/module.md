@@ -87,6 +87,8 @@ The `synch` module provides the following methods:
 
 | Method | Description |
 | ------ | ------- |
+| `atomic_load`(*p*) | atomically evaluate !*p* |
+| `atomic_store`(*p*, *v*) | atomically assign !*p* = *v* |
 | `tas`(*lk*) |                test-and-set on !*lk* |
 | `cas`(*ptr*, *old*, *new*) | compare-and-swap on !*ptr* |
 | `BinSem`(*v*) |              return a binary semaphore initialized to *v* |

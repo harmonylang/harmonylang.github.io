@@ -1209,14 +1209,14 @@ failed assertion in four "turns." The output has four columns:</p>
     and shared variable <em>done</em> to [<code>False</code>, <code>False</code>].</p>
 </li>
 <li>
-<p>Thread <code>incrementer</code>(0) (with identifier T2) executes instructions 6
-    through 9, loading the value of <em>count</em> but stopping just before
-    storing 1 into <em>count</em>;</p>
-</li>
-<li>
 <p>Thread <code>incrementer(1)</code> (with identifier T1) executes instructions 6
     through 20, storing 1 into <em>count</em> and storing <code>True</code> into
     <em>done</em>[1];</p>
+</li>
+<li>
+<p>Thread <code>incrementer(0)</code> (with identifier T2) executes instructions 6
+    through 9, loading the value of <em>count</em> but stopping just before 
+    storing 1 into <em>count</em>;</p>
 </li>
 <li>
 <p>Thread <code>incrementer</code>(0) (T2) continues execution, executing

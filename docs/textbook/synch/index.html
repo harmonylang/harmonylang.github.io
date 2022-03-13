@@ -1002,16 +1002,19 @@ Implementation of the lock specification in Figure 8.1 using a spinlock based on
         <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">p</span>
         <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_THREADS</span>
 
+<span class="k">def</span> <span class="nf">atomic_load</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">p</span>
+
 <span class="k">def</span> <span class="nf">Lock</span><span class="p">():</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">counter</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">dispenser</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
     <span class="n">let</span> <span class="n">my_ticket</span> <span class="o">=</span> <span class="n">fetch_and_increment</span><span class="p">(</span><span class="err">?</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">dispenser</span><span class="p">):</span>
-        <span class="n">atomically</span> <span class="k">await</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">==</span> <span class="n">my_ticket</span>
+        <span class="k">while</span> <span class="n">atomic_load</span><span class="p">(</span><span class="err">?</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span><span class="p">)</span> <span class="o">!=</span> <span class="n">my_ticket</span><span class="p">:</span>
+            <span class="k">pass</span>
 
 <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="n">lk</span><span class="p">):</span>
-    <span class="n">let</span> <span class="nb">next</span> <span class="o">=</span> <span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">MAX_THREADS</span><span class="p">:</span>
-        <span class="n">atomically</span> <span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="nb">next</span>
+    <span class="n">fetch_and_increment</span><span class="p">(</span><span class="err">?</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">counter</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 10.2 (<a href=https://harmony.cs.cornell.edu/code/ticket.hny>code/ticket.hny</a>): 
 Implementation of the lock specification in Figure 8.1 using a ticket lock
@@ -1035,7 +1038,8 @@ atomic operation. In practice, <code>MAX_THREADS</code> would be a number like
 possible state, limiting <code>MAX_THREADS</code> to a small number significantly
 reduces the time to model check a Harmony program. Plus it is easier to
 check that it fails when you run it with more than <code>MAX_THREADS</code>
-threads. You can test the implementation using the command
+threads. Note that loading the counter must also be done atomically in order to
+avoid a data race. You can test the implementation using the command
 <code>harmony -m synch=ticket code/cssynch.hny</code>. To see it fail, try
 <code>harmony -c NTHREADS=10 -m synch=ticket code/cssynch.hny</code>.</p>
 <p>We now turn to a radically different way of implementing locks, one that

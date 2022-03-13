@@ -42,7 +42,7 @@ them.
 The following people contributed by making comments on or finding bugs
 in early drafts of the book: Alex Chang, Anneke van Renesse, Brendon
 Nguyen, Hartek Sabharwal, Heather Zheng, Jack Rehmann, Jacob Brugh, Liam
-Arzola, Lorenzo Alvisi, Maria Martucci, Phillip O'Reggio, Saleh Hassen,
+Arzola, Lorenzo Alvisi, Maria Martucci, Nalu Concepcion, Phillip O'Reggio, Saleh Hassen,
 Sunwook Kim, Terryn Jung, Trishita Tiwari, Xiangyu Zhang,
 Yidan Wang, Zhuoyu Xu, and Zoltan Csaki.
 

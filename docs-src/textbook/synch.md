@@ -87,7 +87,8 @@ $2^{32}$ or $2^{64}$, but since the Harmony model checker checks every
 possible state, limiting `MAX_THREADS` to a small number significantly
 reduces the time to model check a Harmony program. Plus it is easier to
 check that it fails when you run it with more than `MAX_THREADS`
-threads. You can test the implementation using the command
+threads. Note that loading the counter must also be done atomically in order to
+avoid a data race. You can test the implementation using the command
 `harmony -m synch=ticket code/cssynch.hny`. To see it fail, try
 `harmony -c NTHREADS=10 -m synch=ticket code/cssynch.hny`.
 

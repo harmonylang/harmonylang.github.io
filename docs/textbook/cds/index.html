@@ -1028,7 +1028,7 @@ concurrent queue.</p>
 <span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
 <span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">time</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
@@ -1057,7 +1057,7 @@ concurrent queue.</p>
 An implementation of a concurrent queue data structure
 </figcaption>
 
-<div class="highlight"><span class="filename">queueMS.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<div class="highlight"><span class="filename">queueMS.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span><span class="p">,</span> <span class="n">atomic_load</span><span class="p">,</span> <span class="n">atomic_store</span>
 <span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
 <span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
@@ -1067,14 +1067,14 @@ An implementation of a concurrent queue data structure
 <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
         <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
-        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">atomic_store</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">,</span>  <span class="n">node</span><span class="p">)</span>
         <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
         <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
     <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
     <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span>
-    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">:</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">atomic_load</span><span class="p">(</span><span class="err">?</span><span class="n">dummy</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
@@ -1123,7 +1123,9 @@ that was dequeued. Note that neither the <code>head</code> nor <code>tail</code>
 ever <code>None</code>. The problem is when the queue is empty and there are
 concurrent <code>get</code> and <code>put</code> operations. They obtain separate locks and
 then concurrently access the <em>next</em> field in the dummy node---a data
-race with undefined semantics in most environments.</p>
+race with undefined semantics in most environments. To get around this
+problem, the implementation in Figure 11.4 uses <code>atomic_load</code>
+and <code>atomic_store</code> from the <code>synch</code> module.</p>
 <h2 id="exercises">Exercises</h2>
 <p><strong>11.1</strong> Add a method <code>contains</code>(<em>q</em>, <em>v</em>) to Figure 11.1(b) that checks to see if <em>v</em> is
 in queue <em>q</em>.</p>

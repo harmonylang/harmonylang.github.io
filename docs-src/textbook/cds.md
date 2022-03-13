@@ -111,7 +111,9 @@ that was dequeued. Note that neither the `head` nor `tail` pointer are
 ever `None`. The problem is when the queue is empty and there are
 concurrent `get` and `put` operations. They obtain separate locks and
 then concurrently access the *next* field in the dummy node---a data
-race with undefined semantics in most environments.
+race with undefined semantics in most environments. To get around this
+problem, the implementation in Figure 11.4 uses `atomic_load`
+and `atomic_store` from the `synch` module.
 
 ## Exercises 
 
