@@ -182,11 +182,10 @@ that eventually contains the result of the method (there is no
 **return** statement in Harmony). The method also has a bound variable
 called *n* containing the value of the argument. The { *x*..*y* }
 notation generates a set containing the numbers from *x* to *y*
-(inclusive). (Harmony does not have iterators and in particular does not
-have a `range` operator like Python.) The last two lines in the program
-are the most interesting. The first assigns to *x* some unspecified
-value in the range `0..N` and the second verifies that `triangle`(*x*)
-equals $x(x+1)/2$.
+(inclusive). (Harmony does not have a `range` operator like Python.) 
+The last two lines in the program are the most interesting. 
+The first assigns to *x* some unspecified value in the range `0..N`
+and the second verifies that `triangle`(*x*) equals $x(x+1)/2$.
 
 Running this Harmony program will try all possible executions, which
 includes all possible values for *x*. Try it out (here `$` represents a

@@ -58,13 +58,12 @@ and outputs in the HTML file the state with the longest path.
 | AtomicInc/Dec |     increment/decrement the atomic counter of this context |
 | Continue |          no-op (but causes a context switch) |
 | Choose |            choose an element from the set on top of the stack |
-| Cut |               cut a set into its smallest element and the remainder |
+| Cut |               retrieve an element from a iterable type |
 | Del \[*v*\] |       delete shared variable *v* |
 | DelVar \[*v*\] |    delete thread variable *v* |
 | Dup |               duplicate the top element of the stack |
 | Frame *m* *a* |     start method *m* with arguments *a*, initializing variables. |
 | Go |                pop context and value, push value on context's stack, and add to context bag |
-| IncVar *v* |        increment thread variable *v* |
 | Invariant *end* |   code for invariant follows. Skip to *end* + 1 |
 | Jump *p* |          set program counter to *p* |
 | JumpCond *e* *p* |  pop expression and, if equal to *e*, set program counter to *p* |

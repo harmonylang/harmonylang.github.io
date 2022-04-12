@@ -58,7 +58,7 @@ tuples:
 | `tail(t)` |         return all but the first element of list *t* |
 | `reversed(t)` |     reverse a list |
 | `sorted(t)` |       sorted set or list |
-| `set(t)` |          convert values of a dict or list into a set |
+| `set(t)` |          convert a list into a set |
 | `list(t)` |         convert set into a list |
 | `values(t)` |       convert values of a dict into a list sorted by key |
 | `items(t)` |        convert dict into (key, value) list sorted by key |

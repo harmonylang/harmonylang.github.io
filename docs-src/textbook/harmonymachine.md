@@ -24,12 +24,12 @@ letter or an underscore and only contain letters, digits, and
 underscores can be written without quotes by preceding it with a dot.
 So, .*example* is the same string as `"`example`"`.
 
-Harmony makes extensive use of dictionaries. A dictionary maps keys to
+A dictionary maps keys to
 values. Unlike Python, which requires that keys must be hashable, any
 Harmony value can be a key, including another dictionary. Dictionaries
-are written as $\{ k_0: v_0, ~ k_1: v_1, ~ ... \}$. If *d* is a
-dictionary, and *k* is a key, then the following expression retrieves
-the Harmony value that *k* maps to in *d*:
+are written as $\{ k_0: v_0, ~ k_1: v_1, ~ ... \}$. The empty dictionary
+is written as *{:}*. If *d* is a dictionary, and *k* is a key, then the
+following expression retrieves the Harmony value that *k* maps to in *d*:
 ```
 d k
 ```
@@ -45,21 +45,15 @@ has value 3) instead of having to write *d*\[.*count*\] or
 *d*\[`"`count`"`\] (although any of those will work). Thus a dictionary
 can be made to look much like a Python object.
 
-Tuples are special forms of dictionaries where the keys are the indexes
-into the tuple. For example, the tuple (5, `False`) is the same Harmony
-value as { 0:5, 1:`False` }. The empty tuple is written as (). As in
-Python, you can create singleton tuples by including a comma. For
+As in Python, you can create singleton tuples by including a comma. For
 example, (1,) is a tuple consisting just of the number 1. Importantly,
-$(1) = 1 \ne (1,) = \{ 0:1 \}$.
-
-Again, square brackets and parentheses work the same in Harmony, so
-\[*a*, *b*, *c*\] (which looks like a Python list) is the same Harmony
-value as (*a*, *b*, *c*) (which looks like a Python tuple), which in
-turn is the same Harmony value as { 0:*a*, 1:*b*, 2:*c* }. So, if *x* =
-\[`False`, `True`\], then *x*\[0\] = `False` and *x*\[1\] = `True`, just
-like in Python. However, when creating a singleton list, make sure you
-include the comma, as in \[`False`,\]. The expression \[`False`\] just
-means `False`.
+$(1) = 1 \ne (1,) = \{ 0:1 \}$. Again, square brackets and parentheses
+work the same in Harmony, so \[*a*, *b*, *c*\] (which looks like a 
+Python list) is the same Harmony value as (*a*, *b*, *c*) (which looks
+like a Python tuple). So, if *x* = \[`False`, `True`\], then *x*\[0\] =
+`False` and *x*\[1\] = `True`, just like in Python. However, when creating
+a singleton list, make sure you include the comma, as in \[`False`,\]. The
+expression \[`False`\] just means `False`.
 
 Harmony is not an object-oriented language, so objects don't have
 built-in methods. However, Harmony does have some powerful operators to
@@ -124,14 +118,15 @@ this is not a limitation because Harmony values are unbounded trees. The
 shared memory is a dictionary that maps strings (names of shared
 variables) to other Harmony values. We call this a *directory*. Thus, a
 directory represents the state of a collection of variables named by the
-strings. Because directories are Harmony values themselves, directories
-can be organized into a tree. Each node in a directory tree is then
-identified by a sequence of Harmony values, like a path name in the file
-system hierarchy. We call such a sequence an *address*. For example, in
-Figure 3.2 the memory is a dictionary with two entries: .*count* and
-*done*. And the value of entry *done* is a dictionary with keys 0 and 1.
-So, for example, the address of *done*\[0\] is the sequence \[*done*,
-0\]. An address is itself a Harmony value.
+strings. Because directories are Harmony values themselves and Harmony
+values include dictionaries and lists that themselves contain other Harmony
+values, directories can be organized into a tree. Each node in a directory
+tree is then identified by a sequence of Harmony values, like a path name
+in the file system hierarchy. We call such a sequence an *address*. For
+example, in Figure 3.2 the memory is a dictionary with two entries:
+*count* and *done*. And the value of entry *done* is a list with
+indexes 0 and 1. So, for example, the address of *done*\[0\] is the sequence
+\[*done*, 0\]. An address is itself a Harmony value.
 
 Compiling the code in Figure 3.2 results in the HVM bytecode listed in
 Figure 4.1. You can obtain this code by invoking `harmony` with the

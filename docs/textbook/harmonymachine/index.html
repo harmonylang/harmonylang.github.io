@@ -978,12 +978,12 @@ map Harmony values to other Harmony values. Strings that start with a
 letter or an underscore and only contain letters, digits, and
 underscores can be written without quotes by preceding it with a dot.
 So, .<em>example</em> is the same string as <code>"</code>example<code>"</code>.</p>
-<p>Harmony makes extensive use of dictionaries. A dictionary maps keys to
+<p>A dictionary maps keys to
 values. Unlike Python, which requires that keys must be hashable, any
 Harmony value can be a key, including another dictionary. Dictionaries
-are written as <span class="arithmatex">\(\{ k_0: v_0, ~ k_1: v_1, ~ ... \}\)</span>. If <em>d</em> is a
-dictionary, and <em>k</em> is a key, then the following expression retrieves
-the Harmony value that <em>k</em> maps to in <em>d</em>:
+are written as <span class="arithmatex">\(\{ k_0: v_0, ~ k_1: v_1, ~ ... \}\)</span>. The empty dictionary
+is written as <em>{:}</em>. If <em>d</em> is a dictionary, and <em>k</em> is a key, then the
+following expression retrieves the Harmony value that <em>k</em> maps to in <em>d</em>:
 <div class="highlight"><pre><span></span><code>d k
 </code></pre></div>
 The meaning of <em>d</em> <em>a</em> <em>b</em> <span class="arithmatex">\(...\)</span> is (((<em>d</em> <em>a</em>) <em>b</em>) <span class="arithmatex">\(...\)</span>). This
@@ -996,20 +996,15 @@ However, if <em>d</em> = { .<em>count</em>: 3 }, then you can write <em>d</em>.<
 has value 3) instead of having to write <em>d</em>[.<em>count</em>] or
 <em>d</em>[<code>"</code>count<code>"</code>] (although any of those will work). Thus a dictionary
 can be made to look much like a Python object.</p>
-<p>Tuples are special forms of dictionaries where the keys are the indexes
-into the tuple. For example, the tuple (5, <code>False</code>) is the same Harmony
-value as { 0:5, 1:<code>False</code> }. The empty tuple is written as (). As in
-Python, you can create singleton tuples by including a comma. For
+<p>As in Python, you can create singleton tuples by including a comma. For
 example, (1,) is a tuple consisting just of the number 1. Importantly,
-<span class="arithmatex">\((1) = 1 \ne (1,) = \{ 0:1 \}\)</span>.</p>
-<p>Again, square brackets and parentheses work the same in Harmony, so
-[<em>a</em>, <em>b</em>, <em>c</em>] (which looks like a Python list) is the same Harmony
-value as (<em>a</em>, <em>b</em>, <em>c</em>) (which looks like a Python tuple), which in
-turn is the same Harmony value as { 0:<em>a</em>, 1:<em>b</em>, 2:<em>c</em> }. So, if <em>x</em> =
-[<code>False</code>, <code>True</code>], then <em>x</em>[0] = <code>False</code> and <em>x</em>[1] = <code>True</code>, just
-like in Python. However, when creating a singleton list, make sure you
-include the comma, as in [<code>False</code>,]. The expression [<code>False</code>] just
-means <code>False</code>.</p>
+<span class="arithmatex">\((1) = 1 \ne (1,) = \{ 0:1 \}\)</span>. Again, square brackets and parentheses
+work the same in Harmony, so [<em>a</em>, <em>b</em>, <em>c</em>] (which looks like a 
+Python list) is the same Harmony value as (<em>a</em>, <em>b</em>, <em>c</em>) (which looks
+like a Python tuple). So, if <em>x</em> = [<code>False</code>, <code>True</code>], then <em>x</em>[0] =
+<code>False</code> and <em>x</em>[1] = <code>True</code>, just like in Python. However, when creating
+a singleton list, make sure you include the comma, as in [<code>False</code>,]. The
+expression [<code>False</code>] just means <code>False</code>.</p>
 <p>Harmony is not an object-oriented language, so objects don't have
 built-in methods. However, Harmony does have some powerful operators to
 make up for some of that. For example, dictionaries have two handy unary
@@ -1072,14 +1067,15 @@ this is not a limitation because Harmony values are unbounded trees. The
 shared memory is a dictionary that maps strings (names of shared
 variables) to other Harmony values. We call this a <em>directory</em>. Thus, a
 directory represents the state of a collection of variables named by the
-strings. Because directories are Harmony values themselves, directories
-can be organized into a tree. Each node in a directory tree is then
-identified by a sequence of Harmony values, like a path name in the file
-system hierarchy. We call such a sequence an <em>address</em>. For example, in
-Figure 3.2 the memory is a dictionary with two entries: .<em>count</em> and
-<em>done</em>. And the value of entry <em>done</em> is a dictionary with keys 0 and 1.
-So, for example, the address of <em>done</em>[0] is the sequence [<em>done</em>,
-0]. An address is itself a Harmony value.</p>
+strings. Because directories are Harmony values themselves and Harmony
+values include dictionaries and lists that themselves contain other Harmony
+values, directories can be organized into a tree. Each node in a directory
+tree is then identified by a sequence of Harmony values, like a path name
+in the file system hierarchy. We call such a sequence an <em>address</em>. For
+example, in Figure 3.2 the memory is a dictionary with two entries:
+<em>count</em> and <em>done</em>. And the value of entry <em>done</em> is a list with
+indexes 0 and 1. So, for example, the address of <em>done</em>[0] is the sequence
+[<em>done</em>, 0]. An address is itself a Harmony value.</p>
 <p>Compiling the code in Figure 3.2 results in the HVM bytecode listed in
 Figure 4.1. You can obtain this code by invoking <code>harmony</code> with the
 <code>-a</code> flag like so:</p>

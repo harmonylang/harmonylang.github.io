@@ -1112,11 +1112,10 @@ that eventually contains the result of the method (there is no
 <strong>return</strong> statement in Harmony). The method also has a bound variable
 called <em>n</em> containing the value of the argument. The { <em>x</em>..<em>y</em> }
 notation generates a set containing the numbers from <em>x</em> to <em>y</em>
-(inclusive). (Harmony does not have iterators and in particular does not
-have a <code>range</code> operator like Python.) The last two lines in the program
-are the most interesting. The first assigns to <em>x</em> some unspecified
-value in the range <code>0..N</code> and the second verifies that <code>triangle</code>(<em>x</em>)
-equals <span class="arithmatex">\(x(x+1)/2\)</span>.</p>
+(inclusive). (Harmony does not have a <code>range</code> operator like Python.) 
+The last two lines in the program are the most interesting. 
+The first assigns to <em>x</em> some unspecified value in the range <code>0..N</code>
+and the second verifies that <code>triangle</code>(<em>x</em>) equals <span class="arithmatex">\(x(x+1)/2\)</span>.</p>
 <p>Running this Harmony program will try all possible executions, which
 includes all possible values for <em>x</em>. Try it out (here <code>$</code> represents a
 shell prompt):</p>

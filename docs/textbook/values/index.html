@@ -826,15 +826,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dictionary" class="md-nav__link">
-    Dictionary
+  <a href="#list-or-tuple" class="md-nav__link">
+    List or Tuple
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-or-tuple" class="md-nav__link">
-    List or Tuple
+  <a href="#dictionary" class="md-nav__link">
+    Dictionary
   </a>
   
 </li>
@@ -1246,15 +1246,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dictionary" class="md-nav__link">
-    Dictionary
+  <a href="#list-or-tuple" class="md-nav__link">
+    List or Tuple
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-or-tuple" class="md-nav__link">
-    List or Tuple
+  <a href="#dictionary" class="md-nav__link">
+    Dictionary
   </a>
   
 </li>
@@ -1554,11 +1554,15 @@ is a complete list of Harmony value types with examples:</p>
 </tr>
 <tr>
 <td>Program Counter</td>
-<td>(method names are program counter constants)</td>
+<td>(method names and labels are program counter constants)</td>
+</tr>
+<tr>
+<td>List</td>
+<td>[ 1, 2, 3, ], ( (1, 2), 3 ), [1,], ()</td>
 </tr>
 <tr>
 <td>Dictionary</td>
-<td>{ .<em>account</em>: 12345, .<em>valid</em>: <code>False</code> }</td>
+<td>{ .<em>account</em>: 12345, .<em>valid</em>: <code>False</code> }, {:}</td>
 </tr>
 <tr>
 <td>Set</td>
@@ -1574,12 +1578,11 @@ is a complete list of Harmony value types with examples:</p>
 </tr>
 </tbody>
 </table>
-<p>Tuples, lists, and bags are all special cases of dictionaries. Both
-tuples and lists map indexes (starting at 0) to Harmony values. Their
-format is either (<em>e</em>, <em>e</em>, ..., <em>e</em>,) or [<em>e</em>, <em>e</em>, ..., <em>e</em>,]. If
-the tuple or list has two or more elements, then the final comma is
-optional. A bag or multiset is a dictionary that maps a value to how
-many times it occurs in the bag.</p>
+<p>In Harmony, there is no distinction between tuples (denoted with
+parentheses) and lists (denoted by square brackets).
+That is, their format is either (e, e, ..., e,) or [e, e, ..., e,].
+They map indexes (starting at 0) to Harmony values.
+If the list has two or more elements, then the final comma is optional.</p>
 <p>All Harmony values are ordered with respect to one another. First they
 are ordered by type according to the table above. So, for example,
 <code>True</code> <span class="arithmatex">\(&lt;\)</span> 0 <span class="arithmatex">\(&lt;\)</span> .<em>xyz</em> <span class="arithmatex">\(&lt;\)</span> { 0 }. Within types, the following rules
@@ -1596,6 +1599,9 @@ apply:</p>
 </li>
 <li>
 <p>program counters are ordered by their integer values;</p>
+</li>
+<li>
+<p>lists are lexicographically ordered;</p>
 </li>
 <li>
 <p>dictionaries are first converted into a list of ordered (key, value)
@@ -1615,7 +1621,7 @@ apply:</p>
     by the remaining content in an unspecified way.</p>
 </li>
 </ul>
-<p>Generic operators on Harmony values include:</p>
+<p>Harmony supports the following comparison operators:</p>
 <table>
 <thead>
 <tr>
@@ -1638,6 +1644,11 @@ apply:</p>
 </tr>
 </tbody>
 </table>
+<p>Comparison operators can be chained: <code>x &lt;= y == z</code>
+means <code>x &lt;= y and y == z</code>, although <em>y</em> is evaluated once in the
+former and twice in the latter expression.</p>
+<p>Harmony supports atomic expression evaluation using the
+following syntax: <code>atomically e</code>, where <code>e</code> is some expression.</p>
 <h3 id="boolean">Boolean</h3>
 <p>The boolean type has only two possible values: <code>False</code> and <code>True</code>.
 Unlike in Python, in Harmony booleans are distinct from integers, and in
@@ -1682,9 +1693,79 @@ types.</p>
 <h3 id="integer">Integer</h3>
 <p>The integer type supports any whole number.
 In the C-based model checker, integers are currently implemented
-by two's complement 61-bit words.  The model checker checks for
+by two's complement 60-bit words.  The model checker checks for
 overflow on various operations.</p>
 <p>Operations on integers include:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>-e</em></td>
+<td>negation</td>
+</tr>
+<tr>
+<td><strong>abs</strong>(<em>e</em>)</td>
+<td>absolute value</td>
+</tr>
+<tr>
+<td><em>e</em> + <em>e</em> + ...</td>
+<td>sum</td>
+</tr>
+<tr>
+<td><em>e</em> - <em>e</em></td>
+<td>difference</td>
+</tr>
+<tr>
+<td><em>e</em> * <em>e</em> * <em>e</em> ...</td>
+<td>product</td>
+</tr>
+<tr>
+<td><em>e</em> / e, <em>e</em> // <em>e</em></td>
+<td>integer division</td>
+</tr>
+<tr>
+<td><em>e</em> % e, <em>e</em> <strong>mod</strong> <em>e</em></td>
+<td>integer division remainder</td>
+</tr>
+<tr>
+<td><em>e</em> <em><em> </em>e</em></td>
+<td>power</td>
+</tr>
+<tr>
+<td><em>~e</em></td>
+<td>binary inversion</td>
+</tr>
+<tr>
+<td><em>e</em></td>
+<td><em>e</em></td>
+</tr>
+<tr>
+<td><em>e</em></td>
+<td><em>e</em></td>
+</tr>
+<tr>
+<td><em>e</em> ^ <em>e</em> ^ ...</td>
+<td>binary exclusive or</td>
+</tr>
+<tr>
+<td><em>e</em> &lt;&lt; <em>e</em></td>
+<td>binary shift left</td>
+</tr>
+<tr>
+<td><em>e</em> &gt;&gt; <em>e</em></td>
+<td>binary shift right</td>
+</tr>
+<tr>
+<td>{ <em>e</em>..<em>e'</em> }</td>
+<td>set of integers from <em>e</em> to <em>e'</em> inclusive</td>
+</tr>
+</tbody>
+</table>
 <h3 id="string">String</h3>
 <p>A string is a sequence of zero or more unicode characters. If it
 consists entirely of alphanumerical characters or underscore characters
@@ -1695,8 +1776,8 @@ the string <code>"</code>example<code>"</code>.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Operation</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1730,13 +1811,13 @@ the string <code>"</code>example<code>"</code>.</p>
 <p>In Harmony you can create a set of any collection of Harmony values. Its
 syntax is <code>{ v_0, v_1, ... }</code>. Python users: note that in Harmony the
 empty set is denoted as <span class="arithmatex">\(\{\}\)</span>.</p>
-<p>The <code>set</code> module () contains various convenient routines that operate on
+<p>The <code>set</code> module contains various convenient routines that operate on
 sets. Native operations on sets include:</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Operation</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1791,16 +1872,77 @@ joining multiple sets (using nested for loops) and filtering (using the
 <p>For example: <code>{ x + y for x in s for y in s where (x * y) == 4 }</code>
 returns a set that is constructed by summing pairs of elements from <em>s</em>
 that, when multiplied, have the value 4.</p>
+<h3 id="list-or-tuple">List or Tuple</h3>
+<p>In Harmony, there is no distinction between a list or a tuple.
+You can denote a list by a sequence of values, each value terminated
+by a comma.  As per usual, you can use brackets or parentheses
+at your discretion.  For Python users, the important thing to note
+is that a singleton list in Harmony must contain a comma.  For
+example <code>[1,]</code> is a list containing the value <code>1</code>, while <code>[1]</code>
+is simply the value <code>1</code>.</p>
+<p>The <code>list</code> module contains various
+convenient routines that operate on lists or tuples.
+Native operations on lists or tuples include the following:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>t</em> <em>k</em></td>
+<td>indexing</td>
+</tr>
+<tr>
+<td><em>t</em> + <em>t</em> + ...</td>
+<td>concatenation</td>
+</tr>
+<tr>
+<td><em>t</em> * <em>n</em></td>
+<td><em>n</em> copies of <em>t</em> concatenated</td>
+</tr>
+<tr>
+<td><em>v</em> [not] in <em>t</em></td>
+<td>check if <em>v</em> is [not] a value in <em>t</em></td>
+</tr>
+<tr>
+<td><strong>len</strong> <em>t</em></td>
+<td>the length of <em>t</em></td>
+</tr>
+<tr>
+<td><strong>min</strong> <em>t</em></td>
+<td>the minimum value in <em>t</em></td>
+</tr>
+<tr>
+<td><strong>max</strong> <em>t</em></td>
+<td>the maximum value in <em>t</em></td>
+</tr>
+<tr>
+<td><strong>any</strong> <em>t</em></td>
+<td><code>True</code> if any value is <code>True</code></td>
+</tr>
+<tr>
+<td><strong>all</strong> <em>t</em></td>
+<td><code>True</code> if all values are <code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p>Lists and tuples support comprehension.
+In its most basic form: <code>[f(v) for v in t]</code>.
+For example, to check if any element in a list <code>t</code> is even, you
+can write: <code>any((x % 2) == 0 for x in t)</code>.</p>
 <h3 id="dictionary">Dictionary</h3>
 <p>A dictionary maps a set of values (known as <em>keys</em>) to another set of
 values. The generic syntax of a dictionary is
 <span class="arithmatex">\(\{ k_0:v_0, k_1:v_1, ... \}\)</span>. Different from Python, the empty
-dictionary is either () or [ ] (because {} is the empty set in
+dictionary is written as <code>{:}</code> (because {} is the empty set in
 Harmony). If there are duplicate keys in the list, then only the one
 with the maximum value survives. Therefore the order of the keys in the
 dictionary does not matter.</p>
 <p>Dictionaries support comprehension. The basic form is: {
-<code>f</code>(<em>k</em>):<code>g</code>(<em>k</em>) <strong>for</strong> <em>k</em> <strong>in</strong> <em>s</em> }.</p>
+<code>f</code>(<em>v</em>):<code>g</code>(<em>v</em>) <strong>for</strong> <em>v</em> <strong>in</strong> <em>s</em> }.</p>
 <p>There are various special cases of dictionaries, including lists,
 tuples, strings, and bags (multisets) that are individually described
 below.</p>
@@ -1808,8 +1950,8 @@ below.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Operation</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -1826,12 +1968,8 @@ below.</p>
 <td>the set of keys in <em>d</em></td>
 </tr>
 <tr>
-<td><em>v</em> [<strong>not</strong>] <strong>in</strong> <strong>keys</strong> <em>d</em></td>
-<td>check if <em>v</em> is [not] a key in <em>d</em></td>
-</tr>
-<tr>
-<td><em>v</em> [<strong>not</strong>] <strong>in</strong> <em>d</em></td>
-<td>check if <em>v</em> is [not] a value in <em>d</em></td>
+<td><em>k</em> [<strong>not</strong>] <strong>in</strong> <em>d</em></td>
+<td>check if <em>k</em> is [not] a value in <em>d</em></td>
 </tr>
 <tr>
 <td><strong>min</strong> <em>d</em></td>
@@ -1862,103 +2000,27 @@ below.</p>
 <p>Because in Harmony brackets are used for parsing purposes only, you can
 write <em>d</em>[<em>k</em>] (or <em>d</em>(<em>k</em>)) instead of <em>d</em> <em>k</em>. However, if <em>k</em> is a
 string like .<em>id</em>, then you might prefer the notation <em>k</em>.<em>id</em>.</p>
-<p>Python users beware: the Harmony <em>v</em> <strong>in</strong> <em>d</em> operator checks if there
-is some key <em>k</em> such that <em>d</em>[<em>k</em>] = <em>v</em>. In Python, the same syntax
-checks if <em>v</em> is a key in <em>d</em>. The difference exists because in Harmony
-a list is a special case of a dictionary.</p>
 <p>Dictionary intersection and dictionary union are defined so that they
 work well with bags. With disjoint dictionaries, intersection and union
 work as expected. If there is a key in the intersection, then dictionary
 intersection retains the minimum value while dictionary union retains
 the maximum value. Unlike Python, Harmony dictionary intersection and
 union are commutative and associative.</p>
-<h3 id="list-or-tuple">List or Tuple</h3>
-<p>In Harmony, there is no distinction between a list or a tuple. Both are
-a special case of dictionary. In particular, a list of <span class="arithmatex">\(n\)</span> values is
-represented by a dictionary that maps the integers <span class="arithmatex">\(0, ..., n-1\)</span> to
-those values. Hence, if <em>t</em> is a list or tuple, then the notation <span class="arithmatex">\(t[0]\)</span>
-returns the first element of the list.</p>
-<p>You can denote a list by a sequence of values, each value terminated by
-a comma. As per usual, you can use brackets or parentheses at your
-discretion. For Python users, the important thing to note is that a
-singleton list in Harmony must contain a comma. For example <span class="arithmatex">\([1,]\)</span> is a
-list containing the value <span class="arithmatex">\(1\)</span>, while <span class="arithmatex">\([1]\)</span> is simply the value <span class="arithmatex">\(1\)</span>.</p>
-<p>The <code>list</code> module () contains various convenient routines that operate
-on lists or tuples. Native operations on lists or tuples include the
-following:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>t</em> <em>k</em></td>
-<td>indexing</td>
-</tr>
-<tr>
-<td><em>t</em> + <em>t</em> + ...</td>
-<td>concatenation</td>
-</tr>
-<tr>
-<td><em>t</em> * <em>n</em></td>
-<td><em>n</em> copies of <em>t</em> concatenated</td>
-</tr>
-<tr>
-<td><em>v</em> [<strong>not</strong>] <strong>in</strong> <em>t</em></td>
-<td>check if <em>v</em> is [not] a value in <em>t</em></td>
-</tr>
-<tr>
-<td><strong>len</strong> <em>t</em></td>
-<td>the length of <em>t</em></td>
-</tr>
-<tr>
-<td><strong>min</strong> <em>t</em></td>
-<td>the minimum value in <em>t</em></td>
-</tr>
-<tr>
-<td><strong>max</strong> <em>t</em></td>
-<td>the maximum value in <em>t</em></td>
-</tr>
-<tr>
-<td><strong>any</strong> <em>t</em></td>
-<td><code>True</code> if any value is <code>True</code></td>
-</tr>
-<tr>
-<td><strong>all</strong> <em>t</em></td>
-<td><code>True</code> if all values are <code>True</code></td>
-</tr>
-<tr>
-<td><em>t</em> &amp; <em>t</em> &amp; ...</td>
-<td>pairwise list minimum</td>
-</tr>
-<tr>
-<td><em>t</em> <span class="arithmatex">\(\vert\)</span> <em>t</em> <span class="arithmatex">\(\vert\)</span> ...</td>
-<td>pairwise list maximum</td>
-</tr>
-</tbody>
-</table>
-<p>Lists and tuples support comprehension as well. In their most basic
-form: (<code>f</code>(<em>v</em>) <strong>for</strong> <em>v</em> <strong>in</strong> <em>s</em>). For example, to check if any
-element in a list <em>t</em> is even, you can write: <strong>any</strong>((<em>x</em> % 2) == 0
-<strong>for</strong> <em>x</em> <strong>in</strong> <em>t</em>).</p>
 <h3 id="bag-or-multiset">Bag or Multiset</h3>
 <p>A bag is represented by a dictionary that maps each element to its
-multiplicity, for example: { 10:2, 12:1 }. The <code>bag</code> module () contains
+multiplicity, for example: { 10:2, 12:1 }. The <code>bag</code> module contains
 various convenient routines that operate on lists or tuples. Native
 operations on bags include the following:</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Operation</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><em>v</em> [<strong>not</strong>] <strong>in</strong> <strong>keys</strong> <em>b</em></td>
+<td><em>v</em> [<strong>not</strong>] <strong>in</strong> <em>b</em></td>
 <td>check if <em>v</em> is [not] in <em>b</em></td>
 </tr>
 <tr>
@@ -1979,8 +2041,8 @@ are creating a constant of the program counter type.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Operation</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2043,8 +2105,8 @@ list of statements):</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Statement</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2057,7 +2119,7 @@ list of statements):</p>
 <td><em>lv</em> is an lvalue and <em>e</em> is an expression</td>
 </tr>
 <tr>
-<td><em>lv</em>} [<em>op</em>]= <em>e</em></td>
+<td><em>lv</em> [<em>op</em>]= <em>e</em></td>
 <td><em>op</em> is one of <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, <code>&amp;</code>, <code>|</code>, <code>^</code>, <strong>and</strong>, <strong>or</strong></td>
 </tr>
 <tr>
@@ -2117,7 +2179,7 @@ list of statements):</p>
 <td>do nothing</td>
 </tr>
 <tr>
-<td><strong>print</strong> <em>e</em><span class="arithmatex">\(&gt;\)</span></td>
+<td><strong>print</strong> <em>e</em></td>
 <td><em>e</em> is an expression</td>
 </tr>
 <tr>
@@ -2251,25 +2313,26 @@ automatically removes top-level local variables that are no longer in
 use from the state in order to attempt to reduce the number of states
 that are evaluated during model checking.</p>
 <p>Because Harmony lists are dictionaries, deleting from lists is different
-from Python: <em>x</em> = [.<em>a</em>, .<em>b</em>]; <strong>del</strong> <em>x</em>[0] results in <em>x</em>
-having value {1: .<em>b</em>} rather than [.<em>b</em>] (which is {0: .<em>b</em>}).</p>
+from Python: <code>del</code> can also be used to remove elements from a list.
+<code>x = [.a, .b, .c]; del x[1]</code> results in <em>x</em> having value <code>[.a, .c]</code>.</p>
 <h3 id="for-in-where"><strong>for</strong> ... <strong>in</strong> ... [<strong>where</strong> ...]</h3>
 <p>The statement <strong>for</strong> <em>x</em> <strong>in</strong> <em>y</em>: <code>S1</code>; <code>S2</code>; ... iterates over <em>y</em>
 and executes for each element the statements <code>S1</code>, <code>S2</code>, .... <em>y</em> must
-be a set, dictionary, or string. <em>y</em> is evaluated only once at the
+be a set, list, dictionary, or string. <em>y</em> is evaluated only once at the
 beginning of the evaluation of this statement. In case of a set, the
 result is sorted (using Harmony's global order on all values). In case
-of a dictionary, the statement iterates over the values of the
-dictionary in the order of the keys. This makes iterating over lists
-intuitive and identical to Python. For each element, the statements
-<code>S1</code>, <code>S2</code>, ... are executed with local variable <em>y</em> having the value
-of the element. <em>x</em> can be a pattern such as <span class="arithmatex">\((a)\)</span> or <span class="arithmatex">\((a, (b, c))\)</span>. If
-the pattern cannot be matched, Harmony detects and error. It is allowed,
-but discouraged, to assign different values to <em>x</em> within statements
-<code>S1</code>, <code>S2</code>, ....</p>
-<p>If <em>y</em> is a dictionary, Harmony also supports the form <strong>for</strong> <em>k</em>:<em>v</em>
+of a dictionary, the statement iterates over the keys in order. This makes
+iterating over lists intuitive and identical to Python. For each element,
+the statements <code>S1</code>, <code>S2</code>, ... are executed with local variable <em>y</em>
+having the value of the element. <em>x</em> can be a pattern such as <span class="arithmatex">\((a)\)</span> or
+<span class="arithmatex">\((a, (b, c))\)</span>. If the pattern cannot be matched, Harmony detects and
+error. It is allowed, but discouraged, to assign different values to <em>x</em>
+within statements <code>S1</code>, <code>S2</code>, ....</p>
+<p>Harmony also supports the form <strong>for</strong> <em>k</em>:<em>v</em>
 <strong>in</strong> <em>y</em>: <code>S1</code>; <code>S2</code>; .... This works similar, except that <em>k</em> is
-bound to the key and <em>v</em> is bound to the value.</p>
+bound to the key and <em>v</em> is bound to the value.
+If <em>y</em> is not a dictionary, then <em>k</em> ranges from 0 to
+<em>len</em>(<em>y</em>) - 1.</p>
 <p>The statement also supports nesting and filtering. Nesting is of the
 form <strong>for</strong> <em>x1</em> <strong>in</strong> <em>y1</em> <strong>for</strong> <em>x2</em> <strong>in</strong> <em>y2</em>: <code>S1</code>; <code>S2</code>;
 ..., which is equivalent to the statement <strong>for</strong> <em>x1</em> <strong>in</strong> <em>y1</em>:
@@ -2551,16 +2614,13 @@ pair of a unary (except '<span class="arithmatex">\(-\)</span>') and a binary op
 familiar with logic gates, <strong>not</strong> <strong>and</strong> is the equivalent of <code>NAND</code>.
 Similarly, <strong>not</strong> =<span class="arithmatex">\(&gt;\)</span> is non-implication.</p>
 <h2 id="tuples-lists-and-pattern-matching">Tuples, Lists, and Pattern Matching</h2>
-<p>Harmony's tuples and, equivalently, lists, are just special cases of
-dictionaries. They can be bracketed either by '(' and ')' or by '[' and
+<p>Harmony tuples and lists are equivalent.
+They can be bracketed either by '(' and ')' or by '[' and
 ']', but the brackets are often optional. Importantly, with a singleton
 list, the one element must be followed by a comma. For example, the
 statement <code>x = 1,;</code> assigns a singleton tuple (or list) to <em>x</em>.</p>
-<p>Because tuples and lists are dictionaries, the <code>del</code> statement is
-different from Python. For example, if <em>x</em> = [.a, .b, .c], then <code>del</code>
-<em>x</em>[1] results in <em>x</em> = { 0:.a, 2:.c }, <em>not</em> <em>x</em> = [.a, .c].
-Harmony also does not support special slicing syntax like Python. To
-modify lists, use the <code>subseq</code> method in the <code>list</code> module ().</p>
+<p>Harmony does not support special slicing syntax like Python. To
+modify lists, use the <code>subseq</code> method in the <code>list</code> module.</p>
 <p>Harmony allows pattern matching against nested tuples in various
 language constructs. The following are the same in Python and Harmony:</p>
 <ul>
@@ -2598,6 +2658,26 @@ calling g(1, 2) would result in a runtime error as (1, 2) cannot be
 matched with (<em>a</em>,).</p>
 <p>Pattern matching can also be used in <strong>const</strong>, <strong>let</strong>, and <strong>when</strong>
 <strong>exists</strong> statements.</p>
+<blockquote>
+<p>### For Loops and Comprehensions
+  While Harmony does not support general iterators such as Python does,
+  Harmony allows iterating over sets, lists, and dictionaries.
+  When iterating over a set, the set is always traversed in order
+  (see <a href="./">Language Details</a> for how Harmony values are ordered).
+  When iterating over a dictionary, it is always traversed in the order
+  of the keys.</p>
+<p>Harmony supports nesting and filtering in <strong>for</strong> loops.</p>
+<p>For example:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span> <span class="mf">1..10</span> <span class="p">}</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">{</span> <span class="mf">1..10</span> <span class="p">}</span> <span class="n">where</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span> <span class="o">...</span>
+</code></pre></div>
+In case of dictionaries, you can access both keys and values (not
+supported in Python):
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="ow">in</span> <span class="o">.</span><span class="n">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="n">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">:</span> <span class="o">...</span>
+</code></pre></div>
+Harmony also supports set, list, and dictionary comprehensions.
+Comprehensions are similar to Python, except that filtering uses
+the keyword <code>where</code> instead of <code>if</code>.</p>
+</blockquote>
 <h2 id="dynamic-allocation">Dynamic Allocation</h2>
 <p>Harmony supports various options for dynamic allocation. By way of
 example, consider a stack. Figure A.2 presents a test program for

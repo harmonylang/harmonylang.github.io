@@ -1098,11 +1098,11 @@ from an interrupt handler. Figure 22.5 shows how one might write a
 interrupt-safe method to increment the counter.</p>
 <div class="highlight"><span class="filename">trap6.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
 
-<span class="n">sequential</span> <span class="n">done</span>
+<span class="n">sequential</span> <span class="n">t_done</span><span class="p">,</span> <span class="n">i_done</span>
 
 <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">countlock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
-<span class="n">done</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
+<span class="n">t_done</span> <span class="o">=</span> <span class="n">i_done</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">increment</span><span class="p">():</span>
     <span class="n">let</span> <span class="n">prior</span> <span class="o">=</span> <span class="n">setintlevel</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
@@ -1113,13 +1113,15 @@ interrupt-safe method to increment the counter.</p>
 
 <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">increment</span><span class="p">()</span>
-    <span class="n">done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">i_done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">trap</span> <span class="n">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="n">increment</span><span class="p">()</span>
-    <span class="k">await</span> <span class="nb">all</span><span class="p">(</span><span class="n">done</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="n">count</span>
+    <span class="k">await</span> <span class="n">i_done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+    <span class="n">t_done</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">await</span> <span class="nb">all</span><span class="p">(</span><span class="n">t_done</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">4</span>
 
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1134,10 +1136,9 @@ must be <code>True</code> and <em>countlock</em> must be held. Figure 22.6 gives
 example of how this might be done. One important rule to remember is
 that a thread should disable interrupts <em>before</em> attempting to acquire a
 lock.</p>
-<p>Try moving <em>lock</em>() to the beginning of the <code>increment</code> method and
-<em>unlock</em>() to the end of <code>increment</code> and see what happens. While Harmony
-will only report one faulty run, this incorrect code can lead to the
-assertion failing as well as threads getting blocked indefinitely.</p>
+<p>Try moving <code>acquire()</code> to the beginning of the <code>increment</code> method
+and <code>release()</code> to the end of <code>increment</code> and see what happens.
+This incorrect code can lead to threads getting blocked indefinitely.</p>
 <p>(Another option is to use synchronization techniques that do not use
 locks. See <a href="../nonblocking/">Chapter 23</a> for more information.)</p>
 <p>There is another important rule to keep in mind. Just like locks should

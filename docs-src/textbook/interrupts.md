@@ -111,10 +111,9 @@ example of how this might be done. One important rule to remember is
 that a thread should disable interrupts *before* attempting to acquire a
 lock.
 
-Try moving *lock*() to the beginning of the `increment` method and
-*unlock*() to the end of `increment` and see what happens. While Harmony
-will only report one faulty run, this incorrect code can lead to the
-assertion failing as well as threads getting blocked indefinitely.
+Try moving `acquire()` to the beginning of the `increment` method
+and `release()` to the end of `increment` and see what happens.
+This incorrect code can lead to threads getting blocked indefinitely.
 
 (Another option is to use synchronization techniques that do not use
 locks. See [Chapter 23](nonblocking.md) for more information.)
