@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.4
+ - Added direct run option
+ - Added detail to output and output files
+ - Improved operator explainations
+ - Improved browser visualizations
+ - Updated modules with additional built-ins
+ - Renamed `name` to `entry`
+ - Removed `atLabel` entirely
+ - Greatly improved performance
+ - Added documentation
+ - Bug fixes
+
 ## v1.3
  - Added print statements
  - Added DFA output graphs

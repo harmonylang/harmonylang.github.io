@@ -8,9 +8,8 @@
       
       
       
-      
-      <link rel="shortcut icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -18,30 +17,35 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#000000">
         
       
+      
     
     
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
     
     
   </head>
@@ -53,8 +57,8 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
-      
   
+    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,26 +75,27 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="HarmonyDocs" class="md-header-nav__button md-logo" aria-label="HarmonyDocs">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      <div class="md-header-nav__ellipsis">
-        <div class="md-header-nav__topic">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
           <span class="md-ellipsis">
             HarmonyDocs
           </span>
         </div>
-        <div class="md-header-nav__topic">
+        <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
               17 Starvation 
@@ -100,22 +105,27 @@
       </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -132,11 +142,14 @@
     
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -144,17 +157,15 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
@@ -190,21 +201,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
-        Getting Started
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -215,8 +230,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -227,6 +244,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -247,21 +265,25 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
-      <label class="md-nav__link" for="nav-3">
-        Textbook
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Textbook" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -272,8 +294,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -284,8 +308,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -296,8 +322,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -308,8 +336,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -320,8 +350,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -332,8 +364,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -344,8 +378,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -356,8 +392,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -368,8 +406,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -380,8 +420,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -392,8 +434,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -404,8 +448,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -416,8 +462,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -428,8 +476,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -440,8 +490,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -452,8 +504,10 @@
     </li>
   
 
+            
           
             
+              
   
   
     
@@ -462,6 +516,7 @@
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
       
         
       
@@ -476,7 +531,9 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -486,7 +543,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -502,8 +559,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -514,8 +573,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -526,8 +587,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -538,8 +601,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -550,8 +615,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -562,8 +629,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -574,8 +643,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -586,8 +657,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -598,8 +671,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -610,8 +685,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -622,8 +699,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -634,8 +713,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -646,8 +727,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -658,8 +741,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -670,6 +755,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -688,21 +774,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="nav-4">
-        Reference
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -713,8 +803,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -725,8 +817,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -737,8 +831,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -749,6 +845,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -794,11 +891,13 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -808,7 +907,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -825,12 +924,13 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                
-                <h1 id="starvation">Starvation</h1>
+
+
+<h1 id="starvation">Starvation</h1>
 <p>A <em>property</em> is a set of traces. If a program has a certain property,
 that means that the traces that that program allows are a subset of the
 traces in the property. So far, we have pursued two properties: <em>mutual
@@ -871,48 +971,52 @@ waiting, but it is not the same reader. Unfortunately for the writer,
 this scenario can repeat itself indefinitely. So, even if neither reader
 was in the critical section all of the time, and the second reader
 arrived well after the writer, the writer never had a chance.</p>
-<p>```python title="RWfair.hny"
-from synch import BinSema, acquire, release</p>
-<p>def RWlock():
-    result = {
-            .nreaders: 0, .nwriters: 0, .mutex: BinSema(False),
-            .r_gate: { .sema: BinSema(True), .count: 0 },
-            .w_gate: { .sema: BinSema(True), .count: 0 }
-        }</p>
-<p>def read_acquire(rw):
-    acquire(?rw-&gt;mutex)
-    if (rw-&gt;nwriters &gt; 0) or (rw-&gt;w_gate.count &gt; 0):
-        rw-&gt;r_gate.count += 1; release(?rw-&gt;mutex)
-        acquire(?rw-&gt;r_gate.sema); rw-&gt;r_gate.count -= 1
-    rw-&gt;nreaders += 1
-    if rw-&gt;r_gate.count &gt; 0:
-        release(?rw-&gt;r_gate.sema)
-    else:
-        release(?rw-&gt;mutex)</p>
-<p>def read_release(rw):
-    acquire(?rw-&gt;mutex)
-    rw-&gt;nreaders -= 1
-    if (rw-&gt;w_gate.count &gt; 0) and (rw-&gt;nreaders == 0):
-        release(?rw-&gt;w_gate.sema)
-    else:
-        release(?rw-&gt;mutex)</p>
-<p>def write_acquire(rw):
-    acquire(?rw-&gt;mutex)
-    if (rw-&gt;nreaders + rw-&gt;nwriters) &gt; 0:
-        rw-&gt;w_gate.count += 1; release(?rw-&gt;mutex)
-        acquire(?rw-&gt;w_gate.sema); rw-&gt;w_gate.count -= 1
-    rw-&gt;nwriters += 1
-    release(?rw-&gt;mutex)</p>
-<p>def write_release(rw):
-    acquire(?rw-&gt;mutex)
-    rw-&gt;nwriters -= 1
-    if rw-&gt;r_gate.count &gt; 0:
-        release(?rw-&gt;r_gate.sema)
-    elif rw-&gt;w_gate.count &gt; 0:
-        release(?rw-&gt;w_gate.sema)
-    else:
-        release(?rw-&gt;mutex)
-```</p>
+<div class="highlight"><span class="filename">RWfair.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">BinSema</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+
+<span class="k">def</span> <span class="nf">RWlock</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="o">.</span><span class="n">nreaders</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">nwriters</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">mutex</span><span class="p">:</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+            <span class="o">.</span><span class="n">r_gate</span><span class="p">:</span> <span class="p">{</span> <span class="o">.</span><span class="n">sema</span><span class="p">:</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="o">.</span><span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+            <span class="o">.</span><span class="n">w_gate</span><span class="p">:</span> <span class="p">{</span> <span class="o">.</span><span class="n">sema</span><span class="p">:</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="o">.</span><span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+        <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">read_acquire</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_release</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">write_acquire</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">write_release</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+    <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
+</code></pre></div>
 <figcaption>Figure 17.1 (<a href=https://harmony.cs.cornell.edu/code/RWfair.hny>code/RWfair.hny</a>): 
 Reader/Writer Lock SBS implementation addressing fairness
 </figcaption>
@@ -942,88 +1046,80 @@ writers nor vice versa. Other fairness is based on the fairness of
 semaphores themselves.</p>
 <h2 id="exercises">Exercises</h2>
 <p><strong>17.1</strong> Write a fair solution to the one-lane bridge problem of Exercise 16.9.</p>
-                
-              
-              
-                
+
+
 
 
               
             </article>
+            
           </div>
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
         
-          <a href="../sbs/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <a href="../sbs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 16 Split Binary Semaphores " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              16 Split Binary Semaphores 
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                16 Split Binary Semaphores 
-              </div>
-            </div>
-          </a>
+          </div>
+        </a>
+      
+      
         
-        
-          <a href="../monitors/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                18 Monitors 
-              </div>
+        <a href="../monitors/" class="md-footer__link md-footer__link--next" aria-label="Next: 18 Monitors " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              18 Monitors 
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2022 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
     
-      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../..",
-          features: [],
-          search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

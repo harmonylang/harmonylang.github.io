@@ -8,9 +8,8 @@
       
       
       
-      
-      <link rel="shortcut icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -18,30 +17,35 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#000000">
         
       
+      
     
     
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
     
     
   </head>
@@ -53,8 +57,8 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
-      
   
+    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,26 +75,27 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="HarmonyDocs" class="md-header-nav__button md-logo" aria-label="HarmonyDocs">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      <div class="md-header-nav__ellipsis">
-        <div class="md-header-nav__topic">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
           <span class="md-ellipsis">
             HarmonyDocs
           </span>
         </div>
-        <div class="md-header-nav__topic">
+        <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
               24 Alternating Bit Protocol 
@@ -100,22 +105,27 @@
       </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -132,11 +142,14 @@
     
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -144,17 +157,15 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
@@ -190,21 +201,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
-        Getting Started
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -215,8 +230,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -227,6 +244,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -247,21 +265,25 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
-      <label class="md-nav__link" for="nav-3">
-        Textbook
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Textbook" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -272,8 +294,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -284,8 +308,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -296,8 +322,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -308,8 +336,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -320,8 +350,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -332,8 +364,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -344,8 +378,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -356,8 +392,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -368,8 +406,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -380,8 +420,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -392,8 +434,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -404,8 +448,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -416,8 +462,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -428,8 +476,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -440,8 +490,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -452,8 +504,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -464,8 +518,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -476,8 +532,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -488,8 +546,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -500,8 +560,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -512,8 +574,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -524,8 +588,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -536,8 +602,10 @@
     </li>
   
 
+            
           
             
+              
   
   
     
@@ -546,6 +614,7 @@
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
       
         
       
@@ -560,7 +629,9 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -570,7 +641,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -586,8 +657,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -598,8 +671,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -610,8 +685,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -622,8 +699,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -634,8 +713,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -646,8 +727,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -658,8 +741,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -670,6 +755,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -688,21 +774,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="nav-4">
-        Reference
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -713,8 +803,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -725,8 +817,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -737,8 +831,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -749,6 +845,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -794,11 +891,13 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -808,7 +907,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -825,12 +924,13 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                
-                <h1 id="alternating-bit-protocol">Alternating Bit Protocol</h1>
+
+
+<h1 id="alternating-bit-protocol">Alternating Bit Protocol</h1>
 <p>A <em>distributed system</em> is a concurrent system in which a collection of
 threads communicate by message passing, much the same as in the actor
 model. The most important difference between distributed and concurrent
@@ -852,80 +952,81 @@ the very first message, Bob will already have received application
 messages <span class="arithmatex">\(m_1, ..., m_{i-1}\)</span> (safety). Also, if the network is fair and
 Alice sends application message <em>m</em>, then eventually Bob should deliver
 <em>m</em> (liveness).</p>
-<p>```python title="abp.hny"
-sequential s_chan, r_chan</p>
-<p>s_chan = r_chan = ()
-s_seq = r_seq = 0</p>
-<p>def net_send(pchan, m, reliable):
-    !pchan = m if (reliable or choose({ False, True })) else ()</p>
-<p>def net_recv(pchan):
-    result = !pchan</p>
-<p>def app_send(payload):
-    s_seq = 1 - s_seq
-    let m = { .seq: s_seq, .payload: payload }:
-        var blocked = True
-        while blocked:
-            net_send(?s_chan, m, False)
-            let response = net_recv(?r_chan):
-                blocked = (response == ()) or (response.ack != s_seq)</p>
-<p>def app_recv(reliable):
-    r_seq = 1 - r_seq
-    var blocked = True
-    while blocked:
-        let m = net_recv(?s_chan):
-            if m != ():
-                net_send(?r_chan, { .ack: m.seq }, reliable)
-                if m.seq == r_seq:
-                    result = m.payload
-                    blocked = False
-<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 24.1 (&lt;a href=https://harmony.cs.cornell.edu/code/abp.hny&gt;code/abp.hny&lt;/a&gt;): 
-Alternating Bit Protocol &lt;/figcaption&gt;
+<div class="highlight"><span class="filename">abp.hny</span><pre><span></span><code><span class="n">sequential</span> <span class="n">s_chan</span><span class="p">,</span> <span class="n">r_chan</span>
 
-The *Alternating Bit Protocol* is suitable for our purposes. We assume
+<span class="n">s_chan</span> <span class="o">=</span> <span class="n">r_chan</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">s_seq</span> <span class="o">=</span> <span class="n">r_seq</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">net_send</span><span class="p">(</span><span class="n">pchan</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">reliable</span><span class="p">):</span>
+    <span class="err">!</span><span class="n">pchan</span> <span class="o">=</span> <span class="n">m</span> <span class="k">if</span> <span class="p">(</span><span class="n">reliable</span> <span class="ow">or</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}))</span> <span class="k">else</span> <span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">net_recv</span><span class="p">(</span><span class="n">pchan</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="err">!</span><span class="n">pchan</span>
+
+<span class="k">def</span> <span class="nf">app_send</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+    <span class="n">s_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">s_seq</span>
+    <span class="n">let</span> <span class="n">m</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">seq</span><span class="p">:</span> <span class="n">s_seq</span><span class="p">,</span> <span class="o">.</span><span class="n">payload</span><span class="p">:</span> <span class="n">payload</span> <span class="p">}:</span>
+        <span class="n">var</span> <span class="n">blocked</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">blocked</span><span class="p">:</span>
+            <span class="n">net_send</span><span class="p">(</span><span class="err">?</span><span class="n">s_chan</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">let</span> <span class="n">response</span> <span class="o">=</span> <span class="n">net_recv</span><span class="p">(</span><span class="err">?</span><span class="n">r_chan</span><span class="p">):</span>
+                <span class="n">blocked</span> <span class="o">=</span> <span class="p">(</span><span class="n">response</span> <span class="o">==</span> <span class="p">())</span> <span class="ow">or</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">ack</span> <span class="o">!=</span> <span class="n">s_seq</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">app_recv</span><span class="p">(</span><span class="n">reliable</span><span class="p">):</span>
+    <span class="n">r_seq</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">r_seq</span>
+    <span class="n">var</span> <span class="n">blocked</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">blocked</span><span class="p">:</span>
+        <span class="n">let</span> <span class="n">m</span> <span class="o">=</span> <span class="n">net_recv</span><span class="p">(</span><span class="err">?</span><span class="n">s_chan</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="p">():</span>
+                <span class="n">net_send</span><span class="p">(</span><span class="err">?</span><span class="n">r_chan</span><span class="p">,</span> <span class="p">{</span> <span class="o">.</span><span class="n">ack</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">seq</span> <span class="p">},</span> <span class="n">reliable</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">seq</span> <span class="o">==</span> <span class="n">r_seq</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">payload</span>
+                    <span class="n">blocked</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<figcaption>Figure 24.1 (<a href=https://harmony.cs.cornell.edu/code/abp.hny>code/abp.hny</a>): 
+Alternating Bit Protocol </figcaption>
+
+<p>The <em>Alternating Bit Protocol</em> is suitable for our purposes. We assume
 that there are two unreliable network channels: one from Alice to Bob
 and one from Bob to Alice. Alice and Bob each maintain a
-zero-initialized *sequence number*, *s_seq* and *r_seq* resp. Alice
+zero-initialized <em>sequence number</em>, <em>s_seq</em> and <em>r_seq</em> resp. Alice
 sends a network message to Bob containing an application message as
-*payload* and Alice&#39;s sequence number as *header*. When Bob receives
-such a network message, Bob returns an *acknowledgment* to Alice, which
+<em>payload</em> and Alice's sequence number as <em>header</em>. When Bob receives
+such a network message, Bob returns an <em>acknowledgment</em> to Alice, which
 is a network message containing the same sequence number as in the
-message that Bob received.
-
-In the protocol, Alice keeps sending the same network message until she
+message that Bob received.</p>
+<p>In the protocol, Alice keeps sending the same network message until she
 receives an acknowledgment with the same sequence number. This is called
-*retransmission*. When she receives the desired sequence number, Alice
+<em>retransmission</em>. When she receives the desired sequence number, Alice
 increments her sequence number. She is now ready to send the next
 message she wants to send to Bob. Bob, on the other hand, waits until he
-receives a message matching Bob&#39;s sequence number. If so, Bob *delivers*
+receives a message matching Bob's sequence number. If so, Bob <em>delivers</em>
 the payload in the message and increments his sequence number. Because
-of the network properties, a one-bit sequence number suffices.
+of the network properties, a one-bit sequence number suffices.</p>
+<p>We can model each channel as a variable that either contains a network
+message or nothing (we use () in the model). Let <em>s_chan</em> be the channel
+from Alice to Bob and <em>r_chan</em> the channel from Bob to Alice.
+<code>net_send</code>(<em>pchan</em>, <em>m</em>, <em>reliable</em>) models sending a message <em>m</em> to
+!<em>pchan</em>, where <em>pchan</em> is either ?<em>s_chan</em> or ?<em>r_chan</em>. The method
+places either <em>m</em> (to model a successful send) or () (to model loss) in
+!<em>pchan</em>. The use of the <em>reliable</em> flag will be explained later.
+<code>net_recv</code>(<em>pchan</em>) models checking !<em>pchan</em> for the next message.</p>
+<div class="highlight"><span class="filename">abptest.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">abp</span>
 
-We can model each channel as a variable that either contains a network
-message or nothing (we use () in the model). Let *s_chan* be the channel
-from Alice to Bob and *r_chan* the channel from Bob to Alice.
-`net_send`(*pchan*, *m*, *reliable*) models sending a message *m* to
-!*pchan*, where *pchan* is either ?*s_chan* or ?*r_chan*. The method
-places either *m* (to model a successful send) or () (to model loss) in
-!*pchan*. The use of the *reliable* flag will be explained later.
-`net_recv`(*pchan*) models checking !*pchan* for the next message.
+<span class="n">const</span> <span class="n">NMSGS</span> <span class="o">=</span> <span class="mi">5</span>
 
-```python title=&quot;abptest.hny&quot;
-import abp
+<span class="k">def</span> <span class="nf">sender</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NMSGS</span><span class="p">}:</span>
+        <span class="n">abp</span><span class="o">.</span><span class="n">app_send</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-const NMSGS = 5
+<span class="k">def</span> <span class="nf">receiver</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">NMSGS</span><span class="p">}:</span>
+        <span class="n">let</span> <span class="n">payload</span> <span class="o">=</span> <span class="n">abp</span><span class="o">.</span><span class="n">app_recv</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">NMSGS</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">payload</span> <span class="o">==</span> <span class="n">i</span>
 
-def sender():
-    for i in {1..NMSGS}:
-        abp.app_send(i)
-
-def receiver():
-    for i in {1..NMSGS}:
-        let payload = abp.app_recv(i == NMSGS):
-            assert payload == i
-
-spawn sender()
-spawn receiver()
-</code></pre></div></p>
+<span class="n">spawn</span> <span class="n">sender</span><span class="p">()</span>
+<span class="n">spawn</span> <span class="n">receiver</span><span class="p">()</span>
+</code></pre></div>
 <figcaption>Figure 24.2 (<a href=https://harmony.cs.cornell.edu/code/abptest.hny>code/abptest.hny</a>): 
 Test code for alternating bit protocol </figcaption>
 
@@ -950,88 +1051,80 @@ request.</p>
 Each client is uniquely identified. You may either use separate channel
 pairs for each client, or solve the problem using a single pair of
 channels.</p>
-                
-              
-              
-                
+
+
 
 
               
             </article>
+            
           </div>
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
         
-          <a href="../nonblocking/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <a href="../nonblocking/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 23 Non-Blocking Synchronization " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              23 Non-Blocking Synchronization 
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                23 Non-Blocking Synchronization 
-              </div>
-            </div>
-          </a>
+          </div>
+        </a>
+      
+      
         
-        
-          <a href="../leader/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                25 Leader Election 
-              </div>
+        <a href="../leader/" class="md-footer__link md-footer__link--next" aria-label="Next: 25 Leader Election " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              25 Leader Election 
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2022 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
     
-      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../..",
-          features: [],
-          search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

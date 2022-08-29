@@ -60,6 +60,9 @@ copyright: Copyright &copy; 2020 - 2022 Robbert van Renesse
 extra:
   generator: false
 
+extra_css:
+  - stylesheets/styles.css
+
 markdown_extensions:
     - pymdownx.arithmatex:
         generic: true

@@ -8,9 +8,8 @@
       
       
       
-      
-      <link rel="shortcut icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -18,30 +17,35 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#000000">
         
       
+      
     
     
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
     
     
   </head>
@@ -53,8 +57,8 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
-      
   
+    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,26 +75,27 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="HarmonyDocs" class="md-header-nav__button md-logo" aria-label="HarmonyDocs">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      <div class="md-header-nav__ellipsis">
-        <div class="md-header-nav__topic">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
           <span class="md-ellipsis">
             HarmonyDocs
           </span>
         </div>
-        <div class="md-header-nav__topic">
+        <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
               11 Concurrent Data Structures 
@@ -100,22 +105,27 @@
       </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -132,11 +142,14 @@
     
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -144,17 +157,15 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
@@ -190,21 +201,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
-        Getting Started
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -215,8 +230,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -227,6 +244,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -247,21 +265,25 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
-      <label class="md-nav__link" for="nav-3">
-        Textbook
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Textbook" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -272,8 +294,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -284,8 +308,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -296,8 +322,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -308,8 +336,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -320,8 +350,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -332,8 +364,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -344,8 +378,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -356,8 +392,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -368,8 +406,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -380,8 +420,10 @@
     </li>
   
 
+            
           
             
+              
   
   
     
@@ -391,18 +433,52 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          11 Concurrent Data Structures 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         11 Concurrent Data Structures 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -413,8 +489,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -425,8 +503,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -437,8 +517,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -449,8 +531,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -461,8 +545,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -473,8 +559,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -485,8 +573,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -497,8 +587,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -509,8 +601,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -521,8 +615,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -533,8 +629,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -545,8 +643,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -557,8 +657,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -569,8 +671,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -581,8 +685,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -593,8 +699,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -605,8 +713,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -617,8 +727,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -629,8 +741,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -641,6 +755,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -659,21 +774,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="nav-4">
-        Reference
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -684,8 +803,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -696,8 +817,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -708,8 +831,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -720,6 +845,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -765,15 +891,32 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -781,12 +924,13 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                
-                <h1 id="concurrent-data-structures">Concurrent Data Structures</h1>
+
+
+<h1 id="concurrent-data-structures">Concurrent Data Structures</h1>
 <figure>
 <table style="width: 100%;">
     <tr>
@@ -796,41 +940,40 @@
 <tr>
 <td>
 
-```python title="queuespec.hny"
-import list
+<div class="highlight"><span class="filename">queuespec.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
-def Queue():
-    result = []
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
 
-def put(q, v):
-    !q = list.append(!q, v)
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="err">!</span><span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
-def get(q):
-    if !q == []:
-        result = None
-    else:
-        result = list.head(!q)
-        !q = list.tail(!q)
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="k">if</span> <span class="err">!</span><span class="n">q</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">)</span>
+        <span class="err">!</span><span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">)</span>
+</code></pre></div>
 
-<div class="highlight"><pre><span></span><code>&lt;/td&gt;
-&lt;td&gt;
+</td>
+<td>
 
-```python title=&quot;queue.hny&quot;
-import list
+<div class="highlight"><span class="filename">queue.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
-def Queue():
-    result = []
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
 
-def put(q, v):
-    atomically !q = list.append(!q, v)
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">atomically</span> <span class="err">!</span><span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
-def get(q):
-    atomically:
-        if !q == []:
-            result = None
-        else:
-            result = list.head(!q)
-            !q = list.tail(!q)
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">atomically</span><span class="p">:</span>
+        <span class="k">if</span> <span class="err">!</span><span class="n">q</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">)</span>
+            <span class="err">!</span><span class="n">q</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="err">!</span><span class="n">q</span><span class="p">)</span>
 </code></pre></div>
 
 </td>
@@ -839,175 +982,177 @@ def get(q):
 <figcaption>Figure 11.1: A sequential and a concurrent specification of a queue</figcaption>
 </figure>
 
-<p>```python title="queuedemo.hny"
-import queue</p>
-<p>def sender(q, v):
-    queue.put(q, v)</p>
-<p>def receiver(q):
-    let v = queue.get(q):
-        assert v in { None, 1, 2 }</p>
-<p>demoq = queue.Queue()
-spawn sender(?demoq, 1)
-spawn sender(?demoq, 2)
-spawn receiver(?demoq)
-spawn receiver(?demoq)
-<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 11.2 (&lt;a href=https://harmony.cs.cornell.edu/code/queuedemo.hny&gt;code/queuedemo.hny&lt;/a&gt;): 
-Using a concurrent queue &lt;/figcaption&gt;
+<div class="highlight"><span class="filename">queuedemo.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">queue</span>
 
-The most common use for locks is in building concurrent data structures.
+<span class="k">def</span> <span class="nf">sender</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">receiver</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">{</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">}</span>
+
+<span class="n">demoq</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+<span class="n">spawn</span> <span class="n">sender</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">sender</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">receiver</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">receiver</span><span class="p">(</span><span class="err">?</span><span class="n">demoq</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 11.2 (<a href=https://harmony.cs.cornell.edu/code/queuedemo.hny>code/queuedemo.hny</a>): 
+Using a concurrent queue </figcaption>
+
+<p>The most common use for locks is in building concurrent data structures.
 By way of example, we will first demonstrate how to build a concurrent
-queue. The `queue` module can be used as follows:
-
--   *x* = `Queue`(): initialize a new queue *x*;
-
--   `put`(?*x*, *v*): add *v* to the tail of *x*;
-
--   *r* = `get`(?*x*): returns *r* = `None` if *x* is empty or *r* = *v*
-    if *v* was at the head of *x*.
-
-Figure 11.1(a) shows a sequential specification for such a queue in
-Harmony (exploiting some methods from the `list` module described in ).
+queue. The <code>queue</code> module can be used as follows:</p>
+<ul>
+<li>
+<p><em>x</em> = <code>Queue</code>(): initialize a new queue <em>x</em>;</p>
+</li>
+<li>
+<p><code>put</code>(?<em>x</em>, <em>v</em>): add <em>v</em> to the tail of <em>x</em>;</p>
+</li>
+<li>
+<p><em>r</em> = <code>get</code>(?<em>x</em>): returns <em>r</em> = <code>None</code> if <em>x</em> is empty or <em>r</em> = <em>v</em>
+    if <em>v</em> was at the head of <em>x</em>.</p>
+</li>
+</ul>
+<p>Figure 11.1(a) shows a sequential specification for such a queue in
+Harmony (exploiting some methods from the <code>list</code> module described in ).
 It is a credible queue implementation,
 but it cannot be used with threads concurrently accessing this queue.
 Figure 11.1(b) shows the corresponding concurrent specification. 
 It cannot be used as an implementation for a queue, as processors generally
 do not have atomic operations on lists, but it will work well as a
 specification. See Figure 11.2 for a simple demonstration program that uses a
-concurrent queue.
+concurrent queue.</p>
+<div class="highlight"><span class="filename">queueconc.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
+<span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
-```python title=&quot;queueconc.hny&quot;
-from synch import Lock, acquire, release
-from alloc import malloc, free
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="o">.</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
 
-def Queue():
-    result = { .head: None, .tail: None, .lock: Lock() }
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
 
-def put(q, v):
-    let node = malloc({ .value: v, .next: None }):
-        acquire(?q-&gt;lock)
-        if q-&gt;tail == None:
-            q-&gt;tail = q-&gt;head = node
-        else:
-            q-&gt;tail-&gt;next = node
-            q-&gt;tail = node
-        release(?q-&gt;lock)
-
-def get(q):
-    acquire(?q-&gt;lock)
-    let node = q-&gt;head:
-        if node == None:
-            result = None
-        else:
-            result = node-&gt;value
-            q-&gt;head = node-&gt;next
-            if q-&gt;head == None:
-                q-&gt;tail = None
-            free(node)
-    release(?q-&gt;lock)
-</code></pre></div></p>
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="nb">next</span>
+            <span class="k">if</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">lock</span><span class="p">)</span>
+</code></pre></div>
 <figcaption>Figure 11.3 (<a href=https://harmony.cs.cornell.edu/code/queueconc.hny>code/queueconc.hny</a>): 
 An implementation of a concurrent queue data structure
 </figcaption>
 
-<p>```python title="queueMS.hny"
-from synch import Lock, acquire, release, atomic_load, atomic_store
-from alloc import malloc, free</p>
-<p>def Queue():
-    let dummy = malloc({ .value: (), .next: None }):
-        result = { .head: dummy, .tail: dummy, .hdlock: Lock(), .tllock: Lock() }</p>
-<p>def put(q, v):
-    let node = malloc({ .value: v, .next: None }):
-        acquire(?q-&gt;tllock)
-        atomic_store(?q-&gt;tail-&gt;next,  node)
-        q-&gt;tail = node
-        release(?q-&gt;tllock)</p>
-<p>def get(q):
-    acquire(?q-&gt;hdlock)
-    let dummy = q-&gt;head
-    let node = atomic_load(?dummy-&gt;next):
-        if node == None:
-            result = None
-            release(?q-&gt;hdlock)
-        else:
-            result = node-&gt;value
-            q-&gt;head = node
-            release(?q-&gt;hdlock)
-            free(dummy)
-<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 11.4 (&lt;a href=https://harmony.cs.cornell.edu/code/queueMS.hny&gt;code/queueMS.hny&lt;/a&gt;): 
+<div class="highlight"><span class="filename">queueMS.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span><span class="p">,</span> <span class="n">atomic_load</span><span class="p">,</span> <span class="n">atomic_store</span>
+<span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
+
+<span class="k">def</span> <span class="nf">Queue</span><span class="p">():</span>
+    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="p">(),</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">head</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">tail</span><span class="p">:</span> <span class="n">dummy</span><span class="p">,</span> <span class="o">.</span><span class="n">hdlock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">tllock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">()</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">next</span><span class="p">:</span> <span class="kc">None</span> <span class="p">}):</span>
+        <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
+        <span class="n">atomic_store</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">,</span>  <span class="n">node</span><span class="p">)</span>
+        <span class="n">q</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">tllock</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">dummy</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span>
+    <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="n">atomic_load</span><span class="p">(</span><span class="err">?</span><span class="n">dummy</span><span class="o">-&gt;</span><span class="nb">next</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">hdlock</span><span class="p">)</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">dummy</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 11.4 (<a href=https://harmony.cs.cornell.edu/code/queueMS.hny>code/queueMS.hny</a>): 
 A queue with separate locks for enqueuing and dequeuing items
-&lt;/figcaption&gt;
+</figcaption>
 
-We will first implement the queue as a linked list. The implementation
-in Figure 11.3 uses the `alloc` module for dynamic allocation of
-nodes in the list using `malloc`() and `free`(). `malloc`(*v*) returns a
-new memory location initialized to *v*, which should be released with
-`free`() when it is no longer in use. The queue maintains a `head`
-pointer to the first element in the list and a `tail` pointer to the
-last element in the list. The `head` pointer is `None` if and only if
-the queue is empty. (`None` is a special address value that is not the
-address of any memory location.)
-
-`Queue`() returns the initial value for a queue object consisting of a
-`None` head and tail pointer and a lock. The `put`(*q*, *v*) and
-`get`(*q*) methods both take a pointer *q* to the queue object because
+<p>We will first implement the queue as a linked list. The implementation
+in Figure 11.3 uses the <code>alloc</code> module for dynamic allocation of
+nodes in the list using <code>malloc</code>() and <code>free</code>(). <code>malloc</code>(<em>v</em>) returns a
+new memory location initialized to <em>v</em>, which should be released with
+<code>free</code>() when it is no longer in use. The queue maintains a <code>head</code>
+pointer to the first element in the list and a <code>tail</code> pointer to the
+last element in the list. The <code>head</code> pointer is <code>None</code> if and only if
+the queue is empty. (<code>None</code> is a special address value that is not the
+address of any memory location.)</p>
+<p><code>Queue</code>() returns the initial value for a queue object consisting of a
+<code>None</code> head and tail pointer and a lock. The <code>put</code>(<em>q</em>, <em>v</em>) and
+<code>get</code>(<em>q</em>) methods both take a pointer <em>q</em> to the queue object because
 both may modify the queue. Before they access the value of the head or
 tail of the queue they first obtain the lock. When they are done, they
-release the lock.
-
-An important thing to note in Figure 11.2 is Lines 7 and 8. It
+release the lock.</p>
+<p>An important thing to note in Figure 11.2 is Lines 7 and 8. It
 would be incorrect to replace these by:
+<div class="highlight"><pre><span></span><code>assert queue.get(q) in { None, 1, 2 }
 </code></pre></div>
-assert queue.get(q) in { None, 1, 2 }
-<div class="highlight"><pre><span></span><code>The reason is that `queue.get()` changes the state by acquiring a lock,
-but the expressions in **assert** statements (or **invariant**
-statements) are not allowed to change the state.
-
-Figure 11.4 shows another concurrent queue implementation.
+The reason is that <code>queue.get()</code> changes the state by acquiring a lock,
+but the expressions in <strong>assert</strong> statements (or <strong>invariant</strong>
+statements) are not allowed to change the state.</p>
+<p>Figure 11.4 shows another concurrent queue implementation.
 It is well-known, but what is not often realized is that it requires
 sequentially consistent memory, which is not said explicitly in the
 paper. As a result, the algorithm must be coded very carefully to work
 correctly with modern programming languages and computer hardware. The
 implementation uses separate locks for the head and the tail, allowing a
-`put` and a `get` operation to proceed concurrently. To avoid contention
+<code>put</code> and a <code>get</code> operation to proceed concurrently. To avoid contention
 between the head and the tail, the queue uses a dummy node at the head
 of the linked list. Except initially, the dummy node is the last node
-that was dequeued. Note that neither the `head` nor `tail` pointer are
-ever `None`. The problem is when the queue is empty and there are
-concurrent `get` and `put` operations. They obtain separate locks and
-then concurrently access the *next* field in the dummy node---a data
+that was dequeued. Note that neither the <code>head</code> nor <code>tail</code> pointer are
+ever <code>None</code>. The problem is when the queue is empty and there are
+concurrent <code>get</code> and <code>put</code> operations. They obtain separate locks and
+then concurrently access the <em>next</em> field in the dummy node---a data
 race with undefined semantics in most environments. To get around this
-problem, the implementation in Figure 11.4 uses `atomic_load`
-and `atomic_store` from the `synch` module.
-
-## Exercises 
-
-
-**11.1** Add a method `contains`(*q*, *v*) to Figure 11.1(b) that checks to see if *v* is
-in queue *q*.
-
-**11.2** Add a method `length`(*q*) to Figure 11.3 that returns the length
-of the given queue. The complexity of the method should be $O(1)$, which
+problem, the implementation in Figure 11.4 uses <code>atomic_load</code>
+and <code>atomic_store</code> from the <code>synch</code> module.</p>
+<h2 id="exercises">Exercises</h2>
+<p><strong>11.1</strong> Add a method <code>contains</code>(<em>q</em>, <em>v</em>) to Figure 11.1(b) that checks to see if <em>v</em> is
+in queue <em>q</em>.</p>
+<p><strong>11.2</strong> Add a method <code>length</code>(<em>q</em>) to Figure 11.3 that returns the length
+of the given queue. The complexity of the method should be <span class="arithmatex">\(O(1)\)</span>, which
 is to say that you should maintain the length of the queue as a field
-member and update it in `put` and `get`.
-
-**11.3** Write a method `check`(*q*) that checks the integrity of the queue in
+member and update it in <code>put</code> and <code>get</code>.</p>
+<p><strong>11.3</strong> Write a method <code>check</code>(<em>q</em>) that checks the integrity of the queue in
 Figure 11.3. In particular, it should check the following
-integrity properties:
-
--   If the list is empty, *q*-&gt;`tail` should be `None`.
+integrity properties:</p>
+<ul>
+<li>
+<p>If the list is empty, <em>q</em>-&gt;<code>tail</code> should be <code>None</code>.
     Otherwise, the last element in the linked list starting from
-    *q*-&gt;`head` should equal *q*-&gt;`head`.
-    Moreover, *q*-&gt;`tail`-&gt;*next* should be
-    `None`;
-
--   The length field that you added in Exercise 11.3 should equal the length of the
-    list.
-
-**11.4** Method `check`(*q*) should not obtain a lock; instead add the following
-line just before releasing the lock in `put` and `get`:
+    <em>q</em>-&gt;<code>head</code> should equal <em>q</em>-&gt;<code>head</code>.
+    Moreover, <em>q</em>-&gt;<code>tail</code>-&gt;<em>next</em> should be
+    <code>None</code>;</p>
+</li>
+<li>
+<p>The length field that you added in Exercise 11.3 should equal the length of the
+    list.</p>
+</li>
+</ul>
+<p><strong>11.4</strong> Method <code>check</code>(<em>q</em>) should not obtain a lock; instead add the following
+line just before releasing the lock in <code>put</code> and <code>get</code>:
+<div class="highlight"><pre><span></span><code>assert check()
 </code></pre></div>
-assert check()
-```
 <span class="arithmatex">\(\mathtt{remove}(q, v)\)</span> to Figure 11.3 that removes all
 occurrences of <em>v</em>, if any, from queue <em>q</em>.</p>
 <p><strong>11.5</strong> The test program in Figure 11.2 is not a thorough test program.
@@ -1015,88 +1160,80 @@ Design and implement a test program for Figure 11.2. Make sure you
 <em>test</em> the test program by trying it out against some buggy queue
 implementations. (You will learn more about testing concurrent programs
 in <a href="../testing/">Chapter 13</a>.)</p>
-                
-              
-              
-                
+
+
 
 
               
             </article>
+            
           </div>
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
         
-          <a href="../synch/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <a href="../synch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 10 Lock Implementations " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              10 Lock Implementations 
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                10 Lock Implementations 
-              </div>
-            </div>
-          </a>
+          </div>
+        </a>
+      
+      
         
-        
-          <a href="../finegrained/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                12 Fine-Grained Locking 
-              </div>
+        <a href="../finegrained/" class="md-footer__link md-footer__link--next" aria-label="Next: 12 Fine-Grained Locking " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              12 Fine-Grained Locking 
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2022 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
     
-      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../..",
-          features: [],
-          search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

@@ -49,8 +49,7 @@ may seem intimidating, we have to learn to navigate through it
 step-by-step. Let's start with looking at the red text. Harmony found a
 safety violation (something bad happened during one of the possible
 executions), and in particular `thread`(2) (thread T2) was trying to
-dereference the address ?`alloc`\[`"`pool`"`\]\[0\]\[`"`lock`"`\] (aka
-?`alloc`.*pool*\[0\].*lock*).
+dereference the address ?`alloc`\$`pool`\[0\]\[`"`lock`"`\].
 
 The `alloc` module maintains a shared array *pool* that it uses for
 dynamic allocation. Apparently T2 tried to access *pool*\[0\], but it

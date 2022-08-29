@@ -8,9 +8,8 @@
       
       
       
-      
-      <link rel="shortcut icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
     
     
       
@@ -18,30 +17,35 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.69437709.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#000000">
         
       
+      
     
     
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
     
     
   </head>
@@ -53,8 +57,8 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
-      
   
+    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,26 +75,27 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="HarmonyDocs" class="md-header-nav__button md-logo" aria-label="HarmonyDocs">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      <div class="md-header-nav__ellipsis">
-        <div class="md-header-nav__topic">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
           <span class="md-ellipsis">
             HarmonyDocs
           </span>
         </div>
-        <div class="md-header-nav__topic">
+        <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
               7 Harmony Methods and Pointers 
@@ -100,22 +105,27 @@
       </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -132,11 +142,14 @@
     
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -144,17 +157,15 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
       
   <img src="../../img/favicon.ico" alt="logo">
 
@@ -190,21 +201,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
-      <label class="md-nav__link" for="nav-2">
-        Getting Started
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="nav-2">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -215,8 +230,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -227,6 +244,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -247,21 +265,25 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
-      <label class="md-nav__link" for="nav-3">
-        Textbook
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Textbook
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Textbook" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -272,8 +294,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -284,8 +308,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -296,8 +322,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -308,8 +336,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -320,8 +350,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -332,8 +364,10 @@
     </li>
   
 
+            
           
             
+              
   
   
     
@@ -342,6 +376,7 @@
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
       
         
       
@@ -356,7 +391,9 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -366,14 +403,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-code-above-can-go-into-its-own-harmony-module" class="md-nav__link">
-    The code above can go into its own Harmony module
-  </a>
-  
-</li>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -389,8 +419,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -401,8 +433,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -413,8 +447,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -425,8 +461,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -437,8 +475,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -449,8 +489,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -461,8 +503,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -473,8 +517,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -485,8 +531,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -497,8 +545,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -509,8 +559,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -521,8 +573,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -533,8 +587,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -545,8 +601,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -557,8 +615,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -569,8 +629,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -581,8 +643,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -593,8 +657,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -605,8 +671,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -617,8 +685,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -629,8 +699,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -641,8 +713,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -653,8 +727,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -665,8 +741,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -677,6 +755,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -695,21 +774,25 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="nav-4">
-        Reference
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
+              
   
   
   
@@ -720,8 +803,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -732,8 +817,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -744,8 +831,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -756,6 +845,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -801,11 +891,13 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -815,14 +907,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-code-above-can-go-into-its-own-harmony-module" class="md-nav__link">
-    The code above can go into its own Harmony module
-  </a>
-  
-</li>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -839,12 +924,13 @@
               </div>
             
           
-          <div class="md-content">
+          <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                
-                <h1 id="harmony-methods-and-pointers">Harmony Methods and Pointers</h1>
+
+
+<h1 id="harmony-methods-and-pointers">Harmony Methods and Pointers</h1>
 <p>A method <em>m</em> with argument <em>a</em> is invoked in its most basic form as
 follows (assigning the result to <em>r</em>).
 <div class="highlight"><pre><span></span><code>r = m a
@@ -860,98 +946,96 @@ dictionaries and methods map Harmony values to Harmony values, and their
 syntax is indistinguishable. If <code>f</code> is either a method or a dictionary,
 and <em>x</em> is an arbitrary Harmony value, then <code>f</code> <em>x</em>, <code>f</code>(<em>x</em>), and
 <code>f</code>[<em>x</em>] are all the same expression in Harmony.</p>
-<p>```python title="PetersonMethod.hny"
-def P_enter(pm, pid):
-    pm-&gt;flags[pid] = True
-    pm-&gt;turn = 1 - pid
-    await (not pm-&gt;flags[1 - pid]) or (pm-&gt;turn == pid)</p>
-<p>def P_exit(pm, pid):
-    pm-&gt;flags[pid] = False</p>
-<p>def P_mutex():
-    result = { .turn: choose({0, 1}), .flags: [ False, False ] }</p>
-<h4 id="the-code-above-can-go-into-its-own-harmony-module">The code above can go into its own Harmony module</h4>
-<p>sequential mutex
-mutex = P_mutex()</p>
-<p>def thread(self):
-    while choose({ False, True }):
-        P_enter(?mutex, self)
-        cs: assert countLabel(cs) == 1
-        P_exit(?mutex, self)</p>
-<p>spawn thread(0)
-spawn thread(1)
-<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 7.1 (&lt;a href=https://harmony.cs.cornell.edu/code/PetersonMethod.hny&gt;code/PetersonMethod.hny&lt;/a&gt;): 
-Peterson&#39;s Algorithm accessed through methods
-&lt;/figcaption&gt;
+<div class="highlight"><span class="filename">PetersonMethod.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">P_enter</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">pid</span><span class="p">):</span>
+    <span class="n">pm</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">pm</span><span class="o">-&gt;</span><span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pid</span>
+    <span class="k">await</span> <span class="p">(</span><span class="ow">not</span> <span class="n">pm</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pid</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">pm</span><span class="o">-&gt;</span><span class="n">turn</span> <span class="o">==</span> <span class="n">pid</span><span class="p">)</span>
 
-Harmony does not have a **return** statement. (You can assign a return
-value to a method by setting the *result* variable.) Neither does it
-support **break** or **continue** statements in loops. One reason for
+<span class="k">def</span> <span class="nf">P_exit</span><span class="p">(</span><span class="n">pm</span><span class="p">,</span> <span class="n">pid</span><span class="p">):</span>
+    <span class="n">pm</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">P_mutex</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">turn</span><span class="p">:</span> <span class="n">choose</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">}),</span> <span class="o">.</span><span class="n">flags</span><span class="p">:</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span> <span class="p">}</span>
+
+<span class="c1">#### The code above can go into its own Harmony module ####</span>
+
+<span class="n">sequential</span> <span class="n">mutex</span>
+<span class="n">mutex</span> <span class="o">=</span> <span class="n">P_mutex</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
+        <span class="n">P_enter</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">P_exit</span><span class="p">(</span><span class="err">?</span><span class="n">mutex</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<figcaption>Figure 7.1 (<a href=https://harmony.cs.cornell.edu/code/PetersonMethod.hny>code/PetersonMethod.hny</a>): 
+Peterson's Algorithm accessed through methods
+</figcaption>
+
+<p>Harmony does not have a <strong>return</strong> statement. (You can assign a return
+value to a method by setting the <em>result</em> variable.) Neither does it
+support <strong>break</strong> or <strong>continue</strong> statements in loops. One reason for
 their absence is that, particularly in concurrent programming, such
-control flow directions are highly error-prone. It&#39;s too easy to forget
+control flow directions are highly error-prone. It's too easy to forget
 to, say, release a lock when returning a value in the middle of a
-method---a major source of bugs in practice.
-
-Harmony is not an object-oriented language like Python is. In Python,
+method---a major source of bugs in practice.</p>
+<p>Harmony is not an object-oriented language like Python is. In Python,
 you can pass a reference to an object to a method, and that method can
 then update the object. In Harmony, it is also sometimes convenient to
 have a method update a shared variable specified as an argument. For
-this, as mentioned in [Chapter 4](harmonymachine.md), each shared variable has an
-*address*, itself a Harmony value. If *x* is a shared variable, then the
-expression ?*x* is the address of *x*. If a variable contains an
-address, we call that variable a *pointer*. If *p* is a pointer to a
-shared variable, then the expression !*p* is the value of the shared
-variable. In particular, !?*x* = *x*. This is similar to how C pointers
-work (`*&amp;`*x* = *x*).
-
-Often, pointers point to dictionaries, and so if *p* is such a pointer,
-then (!*p*).*field* would evaluate to the specified field in the
+this, as mentioned in <a href="../harmonymachine/">Chapter 4</a>, each shared variable has an
+<em>address</em>, itself a Harmony value. If <em>x</em> is a shared variable, then the
+expression ?<em>x</em> is the address of <em>x</em>. If a variable contains an
+address, we call that variable a <em>pointer</em>. If <em>p</em> is a pointer to a
+shared variable, then the expression !<em>p</em> is the value of the shared
+variable. In particular, !?<em>x</em> = <em>x</em>. This is similar to how C pointers
+work (<code>*&amp;</code><em>x</em> = <em>x</em>).</p>
+<p>Often, pointers point to dictionaries, and so if <em>p</em> is such a pointer,
+then (!<em>p</em>).<em>field</em> would evaluate to the specified field in the
 dictionary. Note that the parentheses in this expression are needed, as
-!*p*.*field* would wrongly evaluate !(*p*.*field*). (!*p*).*field* is
+!<em>p</em>.<em>field</em> would wrongly evaluate !(<em>p</em>.<em>field</em>). (!<em>p</em>).<em>field</em> is
 such a common expression that, like C, Harmony supports the shorthand
-*p*-&gt;*field*, which greatly improves readability.
-
-Figure 7.1 again shows Peterson&#39;s algorithm, but this time
+<em>p</em>-&gt;<em>field</em>, which greatly improves readability.</p>
+<p>Figure 7.1 again shows Peterson's algorithm, but this time
 with methods defined to enter and exit the critical section. The name
-*mutex* is often used to denote a variable or value that is used for
-mutual exclusion. `P_mutex` is a method that returns a &quot;mutex,&quot; which,
-in this case, is a dictionary that contains Peterson&#39;s Algorithm&#39;s
+<em>mutex</em> is often used to denote a variable or value that is used for
+mutual exclusion. <code>P_mutex</code> is a method that returns a "mutex," which,
+in this case, is a dictionary that contains Peterson's Algorithm's
 shared memory state: a turn variable and two flags. Both methods
-`P_enter` and `P_exit` take two arguments: a pointer to a mutex and the
-thread identifier (0 or 1). *pm*-&gt;*turn* is the value of the
-.*turn* key in the dictionary that *pm* points to.
-
-You can put the first three methods in its own Harmony source file and
-include it using the Harmony **import** statement. This would make the
-code usable by multiple applications.
-
-Finally, methods can have local variables. Different from Python,
+<code>P_enter</code> and <code>P_exit</code> take two arguments: a pointer to a mutex and the
+thread identifier (0 or 1). <em>pm</em>-&gt;<em>turn</em> is the value of the
+.<em>turn</em> key in the dictionary that <em>pm</em> points to.</p>
+<p>You can put the first three methods in its own Harmony source file and
+include it using the Harmony <strong>import</strong> statement. This would make the
+code usable by multiple applications.</p>
+<p>Finally, methods can have local variables. Different from Python,
 Harmony local variables must be explicitly bound within a scope. Method
 variables are either mutable (writable) or immutable (read-only). The
 arguments to a method and the bound variable (or variables) within a
-**for** statement are immutable; the variable *result* is mutable. Using
-the **var** statement, new mutable local variables can be declared. For
-example, **var** $x = 3$ declares a new mutable local variable *x*. The
-**let** statement allows declaring new immutable local variables. For
-example: **let** $x = 3$: *y* $+$$=$ *x* adds 3 to the global variable
-*y*. See for more information.
+<strong>for</strong> statement are immutable; the variable <em>result</em> is mutable. Using
+the <strong>var</strong> statement, new mutable local variables can be declared. For
+example, <strong>var</strong> <span class="arithmatex">\(x = 3\)</span> declares a new mutable local variable <em>x</em>. The
+<strong>let</strong> statement allows declaring new immutable local variables. For
+example: <strong>let</strong> <span class="arithmatex">\(x = 3\)</span>: <em>y</em> <span class="arithmatex">\(+\)</span><span class="arithmatex">\(=\)</span> <em>x</em> adds 3 to the global variable
+<em>y</em>. See for more information.</p>
+<div class="highlight"><span class="filename">hanoi.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
+<span class="n">current</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[]</span> <span class="p">]</span>
 
-```python title=&quot;hanoi.hny&quot;
-import list
+<span class="k">while</span> <span class="n">current</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+    <span class="n">let</span> <span class="n">moves</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0..2</span><span class="p">}</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0..2</span><span class="p">}</span>
+        <span class="n">where</span> <span class="n">current</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[]</span>
+        <span class="n">where</span> <span class="p">(</span><span class="n">current</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">==</span> <span class="p">[])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">current</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">current</span><span class="p">[</span><span class="n">d</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="p">}</span>
+    <span class="n">let</span> <span class="p">(</span><span class="n">src</span><span class="p">,</span><span class="n">dst</span><span class="p">)</span> <span class="o">=</span> <span class="n">choose</span> <span class="n">moves</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span>
+        <span class="n">current</span><span class="p">[</span><span class="n">dst</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">current</span><span class="p">[</span><span class="n">src</span><span class="p">]),]</span> <span class="o">+</span> <span class="n">current</span><span class="p">[</span><span class="n">dst</span><span class="p">]</span>
+        <span class="n">current</span><span class="p">[</span><span class="n">src</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">current</span><span class="p">[</span><span class="n">src</span><span class="p">])</span>
 
-current = [ [1, 2, 3], [], [] ]
-
-while current[2] != [1, 2, 3]:
-    let moves = { (s, d) for s in {0..2} for d in {0..2}
-        where current[s] != []
-        where (current[d] == []) or (current[s][0] &lt; current[d][0]) }
-    let (src,dst) = choose moves:
-        print str(src) + &quot; -&gt; &quot; + str(dst)
-        current[dst] = [list.head(current[src]),] + current[dst]
-        current[src] = list.tail(current[src])
-
-assert False
-</code></pre></div></p>
+<span class="k">assert</span> <span class="kc">False</span>
+</code></pre></div>
 <figcaption>Figure 7.2 (<a href=https://harmony.cs.cornell.edu/code/hanoi.hny>code/hanoi.hny</a>): 
 Towers of Hanoi </figcaption>
 
@@ -978,30 +1062,34 @@ possible solutions to the problem like so:</p>
 <p>The resulting <code>hanoi.png</code> file contains a DFA describing the possible
 solutions. It is a little too big to include here, but well worth
 looking at.</p>
-<p>```python title="clock.hny"
-const FIFO = False</p>
-<p>def CLOCK(n):
-    result = { .entries: [None,] * n, .recent: {}, .hand: 0, .misses: 0 }</p>
-<p>def ref(clock, x):
-    if x not in clock-&gt;entries:
-        while clock-&gt;entries[clock-&gt;hand] in clock-&gt;recent:
-            clock-&gt;recent -= {clock-&gt;entries[clock-&gt;hand]}
-            clock-&gt;hand = (clock-&gt;hand + 1) % len(clock-&gt;entries)
-        clock-&gt;entries[clock-&gt;hand] = x
-        clock-&gt;hand = (clock-&gt;hand + 1) % len(clock-&gt;entries)
-        clock-&gt;misses += 1
-    if not FIFO:
-        clock-&gt;recent |= {x}</p>
-<p>clock3, clock4, refs = CLOCK(3), CLOCK(4), []</p>
-<p>const VALUES = { 1..5 }</p>
-<p>var last = {}
-for i in {1..100}:
-    let x = i if i &lt; 5 else choose(VALUES - last):
-        refs = refs + [x,]
-        ref(?clock3, x); ref(?clock4, x)
-        assert(clock4.misses &lt;= clock3.misses)
-        last = {x}
-```</p>
+<div class="highlight"><span class="filename">clock.hny</span><pre><span></span><code><span class="n">const</span> <span class="n">FIFO</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">CLOCK</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span> <span class="o">.</span><span class="n">entries</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,]</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="o">.</span><span class="n">recent</span><span class="p">:</span> <span class="p">{},</span> <span class="o">.</span><span class="n">hand</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">misses</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">ref</span><span class="p">(</span><span class="n">clock</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clock</span><span class="o">-&gt;</span><span class="n">entries</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">clock</span><span class="o">-&gt;</span><span class="n">entries</span><span class="p">[</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span><span class="p">]</span> <span class="ow">in</span> <span class="n">clock</span><span class="o">-&gt;</span><span class="n">recent</span><span class="p">:</span>
+            <span class="n">clock</span><span class="o">-&gt;</span><span class="n">recent</span> <span class="o">-=</span> <span class="p">{</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">entries</span><span class="p">[</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span><span class="p">]}</span>
+            <span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span> <span class="o">=</span> <span class="p">(</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">entries</span><span class="p">)</span>
+        <span class="n">clock</span><span class="o">-&gt;</span><span class="n">entries</span><span class="p">[</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span> <span class="o">=</span> <span class="p">(</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">hand</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">clock</span><span class="o">-&gt;</span><span class="n">entries</span><span class="p">)</span>
+        <span class="n">clock</span><span class="o">-&gt;</span><span class="n">misses</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">FIFO</span><span class="p">:</span>
+        <span class="n">clock</span><span class="o">-&gt;</span><span class="n">recent</span> <span class="o">|=</span> <span class="p">{</span><span class="n">x</span><span class="p">}</span>
+
+<span class="n">clock3</span><span class="p">,</span> <span class="n">clock4</span><span class="p">,</span> <span class="n">refs</span> <span class="o">=</span> <span class="n">CLOCK</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">CLOCK</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="p">[]</span>
+
+<span class="n">const</span> <span class="n">VALUES</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">1..5</span> <span class="p">}</span>
+
+<span class="n">var</span> <span class="n">last</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1..100</span><span class="p">}:</span>
+    <span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="k">else</span> <span class="n">choose</span><span class="p">(</span><span class="n">VALUES</span> <span class="o">-</span> <span class="n">last</span><span class="p">):</span>
+        <span class="n">refs</span> <span class="o">=</span> <span class="n">refs</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span><span class="p">,]</span>
+        <span class="n">ref</span><span class="p">(</span><span class="err">?</span><span class="n">clock3</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span> <span class="n">ref</span><span class="p">(</span><span class="err">?</span><span class="n">clock4</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">assert</span><span class="p">(</span><span class="n">clock4</span><span class="o">.</span><span class="n">misses</span> <span class="o">&lt;=</span> <span class="n">clock3</span><span class="o">.</span><span class="n">misses</span><span class="p">)</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">}</span>
+</code></pre></div>
 <figcaption>Figure 7.3 (<a href=https://harmony.cs.cornell.edu/code/clock.hny>code/clock.hny</a>): 
 Harmony program that finds page replacement anomalies
 </figcaption>
@@ -1052,88 +1140,80 @@ and forth several times, leaving two items on one or the other shore by
 themselves. Unfortunately, if left to themselves, the goat would eat the
 cabbage and the wolf would eat the goat. What crossings does the person
 need to make in order not to lose any items?</p>
-                
-              
-              
-                
+
+
 
 
               
             </article>
+            
           </div>
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
         
-          <a href="../peterson/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <a href="../peterson/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 6 Peterson&#39;s Algorithm " rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              6 Peterson's Algorithm 
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                6 Peterson's Algorithm 
-              </div>
-            </div>
-          </a>
+          </div>
+        </a>
+      
+      
         
-        
-          <a href="../specification/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                8 Specification 
-              </div>
+        <a href="../specification/" class="md-footer__link md-footer__link--next" aria-label="Next: 8 Specification " rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              8 Specification 
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2022 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
     
-      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../..",
-          features: [],
-          search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.9c69f0bc.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
