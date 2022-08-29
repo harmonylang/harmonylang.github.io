@@ -1,13 +1,14 @@
 
 # The Harmony Virtual Machine 
 
-Harmony programs are compiled to Harmony *bytecode* (a list of machine
-instructions for a virtual machine), which in turn is executed by the
-Harmony virtual machine (HVM). The Harmony compiler places the bytecode
-for file *x*.`htm` in file *x*.`hvm`. The model checker, called *Charm*,
-executes the code in *x*.`htm` and places its output in a file called
-*x*.`hco` and a stylized version of the same output in an HTML file
-called *x*.`htm`.
+The Harmony compiler, `harmony`, places the bytecode for file
+`x.hny` in file `x.hvm`.
+The model checker (called *Charm*) executes the code in `x.hvm` and places its output in a file called `x.hco`.
+From the `x.hco` file, `harmony` creates a
+detailed human-readable output file in `x.hvb` and
+an interactive HTML file called `x.htm`.
+The `x.htm` file is automatically opened in your default web
+browser unless you specify the `--noweb` flag to `harmony`.
 
 To understand the problem of concurrent computing, it is important to
 have a basic understanding of machine instructions, and in our case
@@ -18,7 +19,7 @@ those of the HVM.
 Harmony programs, and indeed the HVM, manipulate Harmony values. Harmony
 values are recursively defined: they include booleans (`False` and
 `True`), integers (but not floating point numbers), strings (enclosed by
-single or double quotes), sets of Harmony values, and dictionaries that
+single or double quotes), sets and lists of Harmony values, and dictionaries that
 map Harmony values to other Harmony values. Strings that start with a
 letter or an underscore and only contain letters, digits, and
 underscores can be written without quotes by preceding it with a dot.
@@ -45,10 +46,11 @@ has value 3) instead of having to write *d*\[.*count*\] or
 *d*\[`"`count`"`\] (although any of those will work). Thus a dictionary
 can be made to look much like a Python object.
 
-As in Python, you can create singleton tuples by including a comma. For
-example, (1,) is a tuple consisting just of the number 1. Importantly,
-$(1) = 1 \ne (1,) = \{ 0:1 \}$. Again, square brackets and parentheses
-work the same in Harmony, so \[*a*, *b*, *c*\] (which looks like a 
+In Harmony (unlike Python), lists and tuples are the same type.
+As in Python, you can create a singleton tuple (or list) by including a comma. 
+For example, (1,) is a tuple consisting just of the number 1. Importantly,
+$(1) = 1 \ne (1,) = \{ 0:1 \}$. Because square brackets and parentheses
+work the same in Harmony, \[*a*, *b*, *c*\] (which looks like a 
 Python list) is the same Harmony value as (*a*, *b*, *c*) (which looks
 like a Python tuple). So, if *x* = \[`False`, `True`\], then *x*\[0\] =
 `False` and *x*\[1\] = `True`, just like in Python. However, when creating
@@ -150,14 +152,20 @@ remaining instructions and finishes. Once initialization completes, any
 threads that were spawned (in this case `incrementer`(0) and
 `incrementer(1)`) can run.
 
-    #states 44 (time 0.001+0.001)
+    Phase 1: compile Harmony program to bytecode
+    Phase 2: run the model checker
+    nworkers = 8
+    #states 44
+    Phase 3: analysis
+    Phase 4: write results to code/Up.hco
     Safety Violation
+    Phase 5: loading code/Up.hco
     T0: __init__()     [0-5,35-43]   { count: 0, done: [ False, False ] }
     T2: incrementer(1) [6-9]         { count: 0, done: [ False, False ] }
     T1: incrementer(0) [6-20]        { count: 1, done: [ True,  False ] }
     T2: incrementer(1) [10-24,26-31] { count: 1, done: [ True,  True  ] }
     Harmony assertion failed
-    open code/Up.htm for more information
+    open file:code/Up.htm for more information
 
 <figcaption>Figure 4.2: The text output of running Harmony on Figure 3.2</figcaption>
 
@@ -236,10 +244,6 @@ failed assertion in four "turns." The output has four columns:
 
 4.  The contents of the shared memory.
 
-![](figures/Up1.png)
-
-
-
 The four turns in the execution are as follows:
 
 1.  Thread `__init__` (with identifier T0) executes instructions 0
@@ -259,8 +263,11 @@ The four turns in the execution are as follows:
     10), storing `True` into *done*\[0\], finding that *done*\[1\] is
     `True`, and finally detecting that the assertion is violated.
 
-Harmony also generates an HTML file that allows exploring more details
-of the execution interactively. Open the suggested HTML file and you
+![](figures/Up1.png)
+
+Harmony also generates a detailed and self-explanatory text output file
+(see `code/Up.hvb`) and an interactive HTML file that allows exploring
+more details of the execution. Open the suggested HTML file and you
 should see something like Figure 4.3.
 
 In the top right, the HTML file contains the reported issue in red.
@@ -269,11 +276,13 @@ listing explicitly the program counters of the executed instructions,
 the HTML file contains a list of blocks for each executed instruction.
 We call this the *timeline*. You can click on such a block to see the
 state of the Harmony virtual machine just after executing the
-corresponding instruction. The turn that is being executed is
-highlighted in green. The table also lists the program counter of the
+corresponding instruction. The table also lists the program counter of the
 thread at each turn, the values of the shared variables, and any values
 the thread may have printed (none in this case). Underneath the table it
-shows the line of Harmony code that is being executed in blue.
+shows the line of Harmony source code that is being executed in blue
+(with the specific part of the line that is being evaluated in green),
+and the HVM instruction that is about to be executed in green (along with
+an explanation in parentheses).
 
 The bottom left shows the bytecode of the program being executed. It has
 alternating grey and white sections. Each section corresponds to a line
@@ -283,9 +292,8 @@ and no instruction will be executed next.) If you hover the mouse over a
 machine instruction, it provides a brief explanation of what the
 instruction does.
 
-The bottom right contains a table with the state of each thread. The
-thread that is executing is highlighted in green. Status information for
-a thread can include:
+The bottom right contains a table with the state of each thread. Status
+information for a thread can include:
 
 -   `runnable`: the thread is runnable but not currently running. In
     Harmony, threads are interleaved and so at most one thread is
@@ -320,7 +328,8 @@ beyond the stack trace.
 
 When you load the HTML file, it shows the state after executing the last
 instruction. As mentioned above, you can go to any point in the
-execution by clicking on one of the blocks in the timeline. There are
+execution by clicking on one of the blocks in the timeline. When you do
+so, the current turn and thread will be highlighted in green. There are
 also various handy keyboard shortcuts:
 
            *Right arrow*: go to the next instruction;

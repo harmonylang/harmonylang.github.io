@@ -9,8 +9,8 @@
       
       
       
-      <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -18,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
           
           
@@ -35,15 +35,13 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
     
     
       
-
-
     
     
   </head>
@@ -55,9 +53,8 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
   
-    
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -77,23 +74,23 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header-nav__button md-logo" aria-label="HarmonyDocs">
       
   <img src="../../img/favicon.ico" alt="logo">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header-nav__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             HarmonyDocs
           </span>
         </div>
-        <div class="md-header__topic" data-md-component="header-topic">
+        <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
               21 Barrier Synchronization 
@@ -103,28 +100,22 @@
       </div>
     </div>
     
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-        </button>
-      </nav>
-      
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -141,14 +132,11 @@
     
     
   </nav>
-  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -156,15 +144,17 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
+
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs">
       
   <img src="../../img/favicon.ico" alt="logo">
 
@@ -200,25 +190,21 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Getting Started
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
+      <label class="md-nav__link" for="nav-2">
+        Getting Started
+        <span class="md-nav__icon md-icon"></span>
+      </label>
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+        <label class="md-nav__title" for="nav-2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
             
-              
   
   
   
@@ -229,10 +215,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -243,7 +227,6 @@
     </li>
   
 
-            
           
         </ul>
       </nav>
@@ -264,25 +247,21 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          Textbook
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
+      <label class="md-nav__link" for="nav-3">
+        Textbook
+        <span class="md-nav__icon md-icon"></span>
+      </label>
       <nav class="md-nav" aria-label="Textbook" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="nav-3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
             
-              
   
   
   
@@ -293,10 +272,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -307,10 +284,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -321,10 +296,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -335,10 +308,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -349,10 +320,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -363,10 +332,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -377,10 +344,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -391,10 +356,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -405,10 +368,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -419,10 +380,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -433,10 +392,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -447,10 +404,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -461,10 +416,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -475,10 +428,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -489,10 +440,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -503,10 +452,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -517,10 +464,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -531,10 +476,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -545,10 +488,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -559,10 +500,8 @@
     </li>
   
 
-            
           
             
-              
   
   
     
@@ -571,7 +510,6 @@
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
       
         
       
@@ -586,10 +524,7 @@
       </a>
       
         
-
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
   
   
     
@@ -599,7 +534,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -615,10 +550,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -629,10 +562,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -643,10 +574,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -657,10 +586,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -671,10 +598,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -685,10 +610,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -699,10 +622,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -713,10 +634,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -727,10 +646,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -741,10 +658,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -755,7 +670,6 @@
     </li>
   
 
-            
           
         </ul>
       </nav>
@@ -774,25 +688,21 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          Reference
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
+      <label class="md-nav__link" for="nav-4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="nav-4">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
             
-              
   
   
   
@@ -803,10 +713,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -817,10 +725,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -831,10 +737,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -845,7 +749,6 @@
     </li>
   
 
-            
           
         </ul>
       </nav>
@@ -891,14 +794,11 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
   
   
     
@@ -908,7 +808,7 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#exercises" class="md-nav__link">
@@ -925,7 +825,7 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
+          <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
@@ -953,59 +853,57 @@ start until all threads have completed processing their fragment.</p>
 <p><code>bwait</code>(?<em>b</em>): wait until all threads have reached the barrier</p>
 </li>
 </ul>
-<div class="highlight"><span class="filename">barriertest.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">barrier</span>
+<p>```python title="barriertest.hny"
+import barrier</p>
+<p>const NTHREADS = 3
+const NROUNDS = 4</p>
+<p>round = [0,] * NTHREADS
+invariant (max(round) - min(round)) &lt;= 1</p>
+<p>barr = barrier.Barrier(NTHREADS)</p>
+<p>def thread(self):
+    for r in {0..NROUNDS-1}:
+        barrier.bwait(?barr)
+        round[self] += 1</p>
+<p>for i in {0..NTHREADS-1}:
+    spawn thread(i)
+<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 21.1 (&lt;a href=https://harmony.cs.cornell.edu/code/barriertest.hny&gt;code/barriertest.hny&lt;/a&gt;): 
+Test program for Figure 21.2 &lt;/figcaption&gt;
 
-<span class="n">const</span> <span class="n">NTHREADS</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">const</span> <span class="n">NROUNDS</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="nb">round</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,]</span> <span class="o">*</span> <span class="n">NTHREADS</span>
-<span class="n">invariant</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="nb">round</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>
-
-<span class="n">barr</span> <span class="o">=</span> <span class="n">barrier</span><span class="o">.</span><span class="n">Barrier</span><span class="p">(</span><span class="n">NTHREADS</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>
-        <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NTHREADS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
-<figcaption>Figure 21.1 (<a href=https://harmony.cs.cornell.edu/code/barriertest.hny>code/barriertest.hny</a>): 
-Test program for Figure 21.2 </figcaption>
-
-<p>Figure 21.1 is a test program for barriers. It uses an integer
-array <em>round</em> with one entry per thread. Each thread, in a loop, waits
+Figure 21.1 is a test program for barriers. It uses an integer
+array *round* with one entry per thread. Each thread, in a loop, waits
 for all threads to get to the barrier before incrementing its round
 number. If the barrier works as advertised, two threads should never be
-more than one round apart.</p>
-<p>When implementing a barrier, a complication to worry about is that a
+more than one round apart.
+
+When implementing a barrier, a complication to worry about is that a
 barrier can be used over and over again. If this were not the case, then
 a solution based on a lock, a condition variable, and a counter
 initialized to the number of threads could be used. The threads would
 decrement the counter and wait on the condition variable until the
-counter reaches 0.</p>
-<div class="highlight"><span class="filename">barrier.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="o">*</span>
+counter reaches 0.
 
-<span class="k">def</span> <span class="nf">Barrier</span><span class="p">(</span><span class="n">required</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="o">.</span><span class="n">mutex</span><span class="p">:</span> <span class="n">Lock</span><span class="p">(),</span> <span class="o">.</span><span class="n">cond</span><span class="p">:</span> <span class="n">Condition</span><span class="p">(),</span>
-        <span class="o">.</span><span class="n">required</span><span class="p">:</span> <span class="n">required</span><span class="p">,</span> <span class="o">.</span><span class="n">left</span><span class="p">:</span> <span class="n">required</span><span class="p">,</span> <span class="o">.</span><span class="n">cycle</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">}</span>
+```python title=&quot;barrier.hny&quot;
+from synch import *
 
-<span class="k">def</span> <span class="nf">bwait</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
-    <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
-        <span class="n">b</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">required</span>
-        <span class="n">notifyAll</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">let</span> <span class="n">cycle</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span><span class="p">:</span>
-            <span class="k">while</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">cycle</span> <span class="o">==</span> <span class="n">cycle</span><span class="p">:</span>
-                <span class="n">wait</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">,</span> <span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
-    <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
-</code></pre></div>
+def Barrier(required):
+    result = {
+        .mutex: Lock(), .cond: Condition(),
+        .required: required, .left: required, .cycle: 0
+    }
+
+def bwait(b):
+    acquire(?b-&gt;mutex)
+    b-&gt;left -= 1
+    if b-&gt;left == 0:
+        b-&gt;cycle = (b-&gt;cycle + 1) % 2
+        b-&gt;left = b-&gt;required
+        notifyAll(?b-&gt;cond)
+    else:
+        let cycle = b-&gt;cycle:
+            while b-&gt;cycle == cycle:
+                wait(?b-&gt;cond, ?b-&gt;mutex)
+    release(?b-&gt;mutex)
+</code></pre></div></p>
 <figcaption>Figure 21.2 (<a href=https://harmony.cs.cornell.edu/code/barrier.hny>code/barrier.hny</a>): 
 Barrier implementation </figcaption>
 
@@ -1018,29 +916,25 @@ threads (.<em>required</em>) and increments the cycle counter. The other
 threads are waiting for the cycle counter to be incremented. The cycle
 counter is allowed to wrap around---in fact, a single bit suffices for
 the counter.</p>
-<div class="highlight"><span class="filename">barriertest2.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">barrier</span>
-
-<span class="n">const</span> <span class="n">NTHREADS</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">const</span> <span class="n">NROUNDS</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="nb">round</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,]</span> <span class="o">*</span> <span class="n">NTHREADS</span>
-<span class="n">invariant</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="nb">round</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>
-
-<span class="n">phase</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">barr</span> <span class="o">=</span> <span class="n">barrier</span><span class="o">.</span><span class="n">Barrier</span><span class="p">(</span><span class="n">NTHREADS</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NROUNDS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                <span class="c1"># coordinator prepares</span>
-            <span class="n">phase</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>         <span class="c1"># enter parallel work</span>
-        <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">assert</span> <span class="nb">round</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">==</span> <span class="n">phase</span>
-        <span class="n">barrier</span><span class="o">.</span><span class="n">bwait</span><span class="p">(</span><span class="err">?</span><span class="n">barr</span><span class="p">)</span>         <span class="c1"># exit parallel work</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">NTHREADS</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
-    <span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
+<p>```python title="barriertest2.hny"
+import barrier</p>
+<p>const NTHREADS = 3
+const NROUNDS = 4</p>
+<p>round = [0,] * NTHREADS
+invariant (max(round) - min(round)) &lt;= 1</p>
+<p>phase = 0
+barr = barrier.Barrier(NTHREADS)</p>
+<p>def thread(self):
+    for r in {0..NROUNDS-1}:
+        if self == 0:                # coordinator prepares
+            phase += 1
+        barrier.bwait(?barr)         # enter parallel work
+        round[self] += 1
+        assert round[self] == phase
+        barrier.bwait(?barr)         # exit parallel work</p>
+<p>for i in {0..NTHREADS-1}:
+    spawn thread(i)
+```</p>
 <figcaption>Figure 21.3 (<a href=https://harmony.cs.cornell.edu/code/barriertest2.hny>code/barriertest2.hny</a>): 
 Demonstrating the double-barrier pattern </figcaption>
 
@@ -1073,46 +967,45 @@ hall.</p>
             </article>
           </div>
         </div>
-        
       </main>
       
         
 <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-        <a href="../actor/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 20 Actors and Message Passing " rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              20 Actors and Message Passing 
+          <a href="../actor/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-          </div>
-        </a>
-      
-      
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                20 Actors and Message Passing 
+              </div>
+            </div>
+          </a>
         
-        <a href="../interrupts/" class="md-footer__link md-footer__link--next" aria-label="Next: 22 Interrupts " rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              22 Interrupts 
+        
+          <a href="../interrupts/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                22 Interrupts 
+              </div>
             </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1122,8 +1015,10 @@ hall.</p>
             Copyright &copy; 2020 - 2022 Robbert van Renesse
           </div>
         
-        
-        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -1131,13 +1026,19 @@ hall.</p>
 </footer>
       
     </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
-    
-      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

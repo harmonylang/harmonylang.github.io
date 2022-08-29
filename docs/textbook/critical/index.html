@@ -9,8 +9,8 @@
       
       
       
-      <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <link rel="shortcut icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -18,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
           
           
@@ -35,15 +35,13 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
     
     
       
-
-
     
     
   </head>
@@ -55,9 +53,8 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+      
   
-    
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -77,23 +74,23 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="HarmonyDocs" class="md-header__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="HarmonyDocs" class="md-header-nav__button md-logo" aria-label="HarmonyDocs">
       
   <img src="../../img/favicon.ico" alt="logo">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header-nav__button md-icon" for="__drawer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             HarmonyDocs
           </span>
         </div>
-        <div class="md-header__topic" data-md-component="header-topic">
+        <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
               5 Critical Sections 
@@ -103,28 +100,22 @@
       </div>
     </div>
     
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-        </button>
-      </nav>
-      
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -141,14 +132,11 @@
     
     
   </nav>
-  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -156,15 +144,17 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
+
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs" data-md-component="logo">
+    <a href="../.." title="HarmonyDocs" class="md-nav__button md-logo" aria-label="HarmonyDocs">
       
   <img src="../../img/favicon.ico" alt="logo">
 
@@ -200,25 +190,21 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
-          Getting Started
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
+      <label class="md-nav__link" for="nav-2">
+        Getting Started
+        <span class="md-nav__icon md-icon"></span>
+      </label>
       <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+        <label class="md-nav__title" for="nav-2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
             
-              
   
   
   
@@ -229,10 +215,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -243,7 +227,6 @@
     </li>
   
 
-            
           
         </ul>
       </nav>
@@ -264,25 +247,21 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          Textbook
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
+      <label class="md-nav__link" for="nav-3">
+        Textbook
+        <span class="md-nav__icon md-icon"></span>
+      </label>
       <nav class="md-nav" aria-label="Textbook" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="nav-3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
             
-              
   
   
   
@@ -293,10 +272,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -307,10 +284,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -321,10 +296,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -335,10 +308,8 @@
     </li>
   
 
-            
           
             
-              
   
   
     
@@ -348,53 +319,18 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
-      
         
       
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          5 Critical Sections 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         5 Critical Sections 
       </a>
       
-        
-
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exercises" class="md-nav__link">
-    Exercises
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -405,10 +341,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -419,10 +353,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -433,10 +365,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -447,10 +377,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -461,10 +389,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -475,10 +401,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -489,10 +413,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -503,10 +425,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -517,10 +437,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -531,10 +449,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -545,10 +461,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -559,10 +473,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -573,10 +485,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -587,10 +497,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -601,10 +509,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -615,10 +521,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -629,10 +533,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -643,10 +545,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -657,10 +557,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -671,10 +569,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -685,10 +581,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -699,10 +593,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -713,10 +605,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -727,10 +617,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -741,10 +629,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -755,7 +641,6 @@
     </li>
   
 
-            
           
         </ul>
       </nav>
@@ -774,25 +659,21 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          Reference
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
+      <label class="md-nav__link" for="nav-4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="nav-4">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
             
-              
   
   
   
@@ -803,10 +684,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -817,10 +696,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -831,10 +708,8 @@
     </li>
   
 
-            
           
             
-              
   
   
   
@@ -845,7 +720,6 @@
     </li>
   
 
-            
           
         </ul>
       </nav>
@@ -891,33 +765,15 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
   
   
     
   
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exercises" class="md-nav__link">
-    Exercises
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -925,7 +781,7 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
+          <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
@@ -954,34 +810,35 @@ broken---this is not a problem as critical sections guarantee that no
 other thread will be able to see it. An implementation of a data
 structure that can be safely accessed by multiple threads and is free of
 race conditions is called <em>thread-safe</em>.</p>
-<div class="highlight"><span class="filename">csbarebones.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">thread</span><span class="p">():</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="c1"># Enter critical section</span>
+<p>```python title="csbarebones.hny"
+def thread():
+    while True:
+        # Enter critical section</p>
+<div class="highlight"><pre><span></span><code>    # Critical section is here
+    cs: assert countLabel(cs) == 1
 
-        <span class="c1"># Critical section is here</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-
-        <span class="c1"># Exit critical section</span>
-
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
+    # Exit critical section
 </code></pre></div>
-<figcaption>Figure 5.1 (<a href=https://harmony.cs.cornell.edu/code/csbarebones.hny>code/csbarebones.hny</a>): 
+<p>spawn thread()
+spawn thread()
+<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 5.1 (&lt;a href=https://harmony.cs.cornell.edu/code/csbarebones.hny&gt;code/csbarebones.hny&lt;/a&gt;): 
 A bare bones critical section with two threads
-</figcaption>
+&lt;/figcaption&gt;
 
-<div class="highlight"><span class="filename">cs.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">thread</span><span class="p">():</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
 
-        <span class="c1"># Critical section is here</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+```python title=&quot;cs.hny&quot;
+def thread():
+    while choose({ False, True }):
+        # Enter critical section
 
-        <span class="c1"># Exit critical section</span>
+        # Critical section is here
+        cs: assert countLabel(cs) == 1
 
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">()</span>
-</code></pre></div>
+        # Exit critical section
+
+spawn thread()
+spawn thread()
+</code></pre></div></p>
 <figcaption>Figure 5.2 (<a href=https://harmony.cs.cornell.edu/code/cs.hny>code/cs.hny</a>): 
 Harmony model of a critical section</figcaption>
 
@@ -1032,142 +889,152 @@ trying to enter the critical section. As we will see below, this is not
 always obvious.</p>
 <p>We will now consider various approaches toward implementing this
 specification.</p>
-<div class="highlight"><span class="filename">naiveLock.hny</span><pre><span></span><code><span class="n">lockTaken</span> <span class="o">=</span> <span class="kc">False</span>
+<p>```python title="naiveLock.hny"
+lockTaken = False</p>
+<p>def thread(self):
+    while choose({ False, True }):
+        # Enter critical section
+        await not lockTaken
+        lockTaken = True</p>
+<div class="highlight"><pre><span></span><code>    # Critical section
+    cs: assert countLabel(cs) == 1
 
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="k">await</span> <span class="ow">not</span> <span class="n">lockTaken</span>
-        <span class="n">lockTaken</span> <span class="o">=</span> <span class="kc">True</span>
-
-        <span class="c1"># Critical section</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-
-        <span class="c1"># Leave critical section</span>
-        <span class="n">lockTaken</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    # Leave critical section
+    lockTaken = False
 </code></pre></div>
-<p><img alt="" src="../figures/naiveLock.png" /> <figcaption>Figure 5.3 (<a href=https://harmony.cs.cornell.edu/code/naiveLock.hny>code/naiveLock.hny</a>): 
-Naı̈ve implementation of a shared lock and the <a href="https://harmony.cs.cornell.edu/output/naiveLock.html">[HTML
-output]{.underline}</a> of running Harmony on Figure 5.3 </figcaption></p>
-<div class="highlight"><span class="filename">naiveFlags.hny</span><pre><span></span><code><span class="n">flags</span> <span class="o">=</span> <span class="p">[</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span> <span class="p">]</span>
+<p>spawn thread(0)
+spawn thread(1)
+<div class="highlight"><pre><span></span><code>![](figures/naiveLock.png) &lt;figcaption&gt;Figure 5.3 (&lt;a href=https://harmony.cs.cornell.edu/code/naiveLock.hny&gt;code/naiveLock.hny&lt;/a&gt;): 
+Naı̈ve implementation of a shared lock and the [[HTML
+output]{.underline}](https://harmony.cs.cornell.edu/output/naiveLock.html) of running Harmony on Figure 5.3 &lt;/figcaption&gt;
 
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">await</span> <span class="ow">not</span> <span class="n">flags</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">]</span>
 
-        <span class="c1"># Critical section</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+```python title=&quot;naiveFlags.hny&quot;
+flags = [ False, False ]
 
-        <span class="c1"># Leave critical section</span>
-        <span class="n">flags</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+def thread(self):
+    while choose({ False, True }):
+        # Enter critical section
+        flags[self] = True
+        await not flags[1 - self]
 
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
+        # Critical section
+        cs: assert countLabel(cs) == 1
+
+        # Leave critical section
+        flags[self] = False
+
+spawn thread(0)
+spawn thread(1)
+</code></pre></div></p>
 <p><img alt="" src="../figures/naiveFlags.png" /> <figcaption>Figure 5.4 (<a href=https://harmony.cs.cornell.edu/code/naiveFlags.hny>code/naiveFlags.hny</a>): 
 Naı̈ve use of flags to solve mutual exclusion and the <a href="https://harmony.cs.cornell.edu/output/naiveFlags.html">[HTML
 output]{.underline}</a>
 of running Harmony on Figure 5.4 </figcaption></p>
-<div class="highlight"><span class="filename">naiveTurn.hny</span><pre><span></span><code><span class="n">turn</span> <span class="o">=</span> <span class="mi">0</span>
+<p>```python title="naiveTurn.hny"
+turn = 0</p>
+<p>def thread(self):
+    while choose({ False, True }):
+        # Enter critical section
+        turn = 1 - self
+        await turn == self</p>
+<div class="highlight"><pre><span></span><code>    # Critical section
+    cs: assert countLabel(cs) == 1
 
-<span class="k">def</span> <span class="nf">thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">choose</span><span class="p">({</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span> <span class="p">}):</span>
-        <span class="c1"># Enter critical section</span>
-        <span class="n">turn</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span>
-        <span class="k">await</span> <span class="n">turn</span> <span class="o">==</span> <span class="bp">self</span>
-
-        <span class="c1"># Critical section</span>
-        <span class="n">cs</span><span class="p">:</span> <span class="k">assert</span> <span class="n">countLabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-
-        <span class="c1"># Leave critical section</span>
-
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">spawn</span> <span class="n">thread</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    # Leave critical section
 </code></pre></div>
-<figcaption>Figure 5.5 (
-<a href=https://harmony.cs.cornell.edu/code/naiveTurn.hny>code/naiveTurn.hny</a>): 
+<p>spawn thread(0)
+spawn thread(1)
+<div class="highlight"><pre><span></span><code>&lt;figcaption&gt;Figure 5.5 (
+&lt;a href=https://harmony.cs.cornell.edu/code/naiveTurn.hny&gt;code/naiveTurn.hny&lt;/a&gt;): 
 Naı̈ve use of turn variable to solve mutual exclusion
-</figcaption>
+&lt;/figcaption&gt;
 
-<p>You may already have heard of the concept of a <em>lock</em> and have realized
+You may already have heard of the concept of a *lock* and have realized
 that it could be used to implement a critical section. The idea is that
 the lock is like a baton that at most one thread can own (or hold) at a
 time. A thread that wants to enter the critical section at a time must
-obtain the lock first and release it upon exiting the critical section.</p>
-<p>Using a lock is a good thought, but how does one implement one?
+obtain the lock first and release it upon exiting the critical section.
+
+Using a lock is a good thought, but how does one implement one?
 Figure 5.3 presents an attempt at mutual exclusion based on a
 naı̈ve (and, as it turns out, incorrect) implementation of a lock.
-Initially the lock is not owned, indicated by <em>lockTaken</em> being <code>False</code>.
-To enter the critical section, a thread waits until <em>lockTaken</em> is
-<code>False</code> and then sets it to <code>True</code> to indicate that the lock has been
+Initially the lock is not owned, indicated by *lockTaken* being `False`.
+To enter the critical section, a thread waits until *lockTaken* is
+`False` and then sets it to `True` to indicate that the lock has been
 taken. The thread then executes the critical section. Finally, the
-thread releases the lock by setting <em>lockTaken</em> back to <code>False</code>.</p>
-<p>Unfortunately, if we run the program through Harmony, we find that the
+thread releases the lock by setting *lockTaken* back to `False`.
+
+Unfortunately, if we run the program through Harmony, we find that the
 assertion fails. Figure 5.3 also shows the Harmony output.
-<code>thread</code>(1) finds that the lock is available, but just before it stores
-<code>True</code> in <em>lockTaken</em>, <code>thread</code>(0) gets to run. (Recall that you can
+`thread`(1) finds that the lock is available, but just before it stores
+`True` in *lockTaken*, `thread`(0) gets to run. (Recall that you can
 hover your mouse over a machine instruction in order to see what it
-does.) Because <em>lockTaken</em> is still <code>False</code>, it too believes it can
-acquire the lock, and stores <code>True</code> in <em>lockTaken</em> and moves on to the
-critical section. Finally, <code>thread</code>(1) moves on, also stores <code>True</code> into
-<em>lockTaken</em> and also moves into the critical section. <code>thread</code>(1) is the
-one that detects the problem. The <em>lockTaken</em> variable suffers from the
-same sort of race condition as the <em>count</em> variable in Figure 3.2:
+does.) Because *lockTaken* is still `False`, it too believes it can
+acquire the lock, and stores `True` in *lockTaken* and moves on to the
+critical section. Finally, `thread`(1) moves on, also stores `True` into
+*lockTaken* and also moves into the critical section. `thread`(1) is the
+one that detects the problem. The *lockTaken* variable suffers from the
+same sort of race condition as the *count* variable in Figure 3.2:
 testing and setting the lock consists of several instructions. It is
 thus possible for both threads to believe the lock is available and to
-obtain the lock at the same time.</p>
-<p>Preventing multiple threads from updating the same variable,
+obtain the lock at the same time.
+
+Preventing multiple threads from updating the same variable,
 Figure 5.4 presents a solution based on each thread having a
 flag indicating that it is trying to enter the critical section. A
 thread can write its own flag and read the flag of its peer. After
 setting its flag, the thread waits until the other thread
-(<span class="arithmatex">\(1 - \mathit{self}\)</span>) is not trying to enter the critical section. If we
+($1 - \mathit{self}$) is not trying to enter the critical section. If we
 run this program, the assertion does not fail. In fact, this solution
 does prevent both threads being in the critical section at the same
-time.</p>
-<p>To see why, first note the following invariant: if thread <em>i</em> is in the
-critical section, then <em>flags</em>[<em>i</em>] = <code>True</code>. Without loss of
-generality, suppose that thread 0 sets <em>flags</em>[0] at time <span class="arithmatex">\(t_0\)</span>.
-Thread 0 can only reach the critical section if at some time <span class="arithmatex">\(t_1\)</span>,
-<span class="arithmatex">\(t_1 &gt; t_0\)</span>, it finds that <em>flags</em>[1] = <code>False</code>. Because of the
-invariant, <em>flags</em>[1] = <code>False</code> implies that thread 1 is not in the
-critical section at time <span class="arithmatex">\(t_1\)</span>. Let <span class="arithmatex">\(t_2\)</span> be the time at which thread 0
-sets <em>flags</em>[0] to <code>False</code>. Thread 0 is in the critical section
-sometime between <span class="arithmatex">\(t_1\)</span> and <span class="arithmatex">\(t_2\)</span>. It is easy to see that thread 1 cannot
-enter the critical section between <span class="arithmatex">\(t_1\)</span> and <span class="arithmatex">\(t_2\)</span>, because <em>flags</em>[1]
-= <code>False</code> at time <span class="arithmatex">\(t_1\)</span>. To reach the critical section between <span class="arithmatex">\(t_1\)</span> and
-<span class="arithmatex">\(t_2\)</span>, it would first have to set <em>flags</em>[1] to <code>True</code> and then wait
-until <em>flags</em>[0] = <code>False</code>. But that does not happen until time <span class="arithmatex">\(t_2\)</span>.</p>
-<p>However, if you run the program through Harmony, it turns out the
+time.
+
+To see why, first note the following invariant: if thread *i* is in the
+critical section, then *flags*\[*i*\] = `True`. Without loss of
+generality, suppose that thread 0 sets *flags*\[0\] at time $t_0$.
+Thread 0 can only reach the critical section if at some time $t_1$,
+$t_1 &gt; t_0$, it finds that *flags*\[1\] = `False`. Because of the
+invariant, *flags*\[1\] = `False` implies that thread 1 is not in the
+critical section at time $t_1$. Let $t_2$ be the time at which thread 0
+sets *flags*\[0\] to `False`. Thread 0 is in the critical section
+sometime between $t_1$ and $t_2$. It is easy to see that thread 1 cannot
+enter the critical section between $t_1$ and $t_2$, because *flags*\[1\]
+= `False` at time $t_1$. To reach the critical section between $t_1$ and
+$t_2$, it would first have to set *flags*\[1\] to `True` and then wait
+until *flags*\[0\] = `False`. But that does not happen until time $t_2$.
+
+However, if you run the program through Harmony, it turns out the
 solution does have a problem: if both try to enter the critical section
 at the same time, they may end up waiting for one another indefinitely.
-(This is a form of <em>deadlock</em>, which will be discussed in
-<a href="../deadlock/">Chapter 19</a>.) Thus the solution violates <em>progress</em>.</p>
-<p>The final naı̈ve solution that we propose is based on a variable called
-<em>turn</em>. Each thread politely lets the other thread have a turn first.
-When <em>turn</em> = <em>i</em>, thread <em>i</em> can enter the critical section, while
-thread <span class="arithmatex">\(1-i\)</span> has to wait. An invariant of this solution is that while
-thread <em>i</em> is in the critical section, <em>turn</em> = <em>i</em>. Since <em>turn</em> cannot
+(This is a form of *deadlock*, which will be discussed in
+[Chapter 19](deadlock.md).) Thus the solution violates *progress*.
+
+The final naı̈ve solution that we propose is based on a variable called
+*turn*. Each thread politely lets the other thread have a turn first.
+When *turn* = *i*, thread *i* can enter the critical section, while
+thread $1-i$ has to wait. An invariant of this solution is that while
+thread *i* is in the critical section, *turn* = *i*. Since *turn* cannot
 be 0 and 1 at the same time, mutual exclusion is satisfied. The solution
 also has the nice property that the thread that has been waiting the
-longest to enter the critical section can go next.</p>
-<p>Run the program through Harmony. It turns out that this solution also
-violates <em>progress</em>, albeit for a different reason: if thread <em>i</em>
-terminates instead of entering the critical section, thread <span class="arithmatex">\(1-i\)</span>,
+longest to enter the critical section can go next.
+
+Run the program through Harmony. It turns out that this solution also
+violates *progress*, albeit for a different reason: if thread *i*
+terminates instead of entering the critical section, thread $1-i$,
 politely, ends up waiting indefinitely for its turn. Too bad, because it
 would have been a great solution if both threads try to enter the
-critical section ad infinitum.</p>
-<h2 id="exercises">Exercises</h2>
-<p><strong>5.1</strong> Run Figure 5.2 using Harmony. As there is no protection of the critical
+critical section ad infinitum.
+
+## Exercises 
+
+
+**5.1** Run Figure 5.2 using Harmony. As there is no protection of the critical
 section, mutual exclusion is violated, the assertion should fail, and a
 trace should be reported. Now insert
-<div class="highlight"><pre><span></span><code>await False
 </code></pre></div>
+await False
+```
 just before entering the critical section in Figure 5.2 and run Harmony
 again. Mutual exclusion is guaranteed but progress is violated. Harmony
 should print a trace to a state from which a terminating state cannot be
@@ -1191,46 +1058,45 @@ not obvious.</p>
             </article>
           </div>
         </div>
-        
       </main>
       
         
 <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-        <a href="../harmonymachine/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4 The Harmony Virtual Machine " rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              4 The Harmony Virtual Machine 
+          <a href="../harmonymachine/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-          </div>
-        </a>
-      
-      
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                4 The Harmony Virtual Machine 
+              </div>
+            </div>
+          </a>
         
-        <a href="../peterson/" class="md-footer__link md-footer__link--next" aria-label="Next: 6 Peterson&#39;s Algorithm " rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              6 Peterson's Algorithm 
+        
+          <a href="../peterson/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                6 Peterson's Algorithm 
+              </div>
             </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1240,8 +1106,10 @@ not obvious.</p>
             Copyright &copy; 2020 - 2022 Robbert van Renesse
           </div>
         
-        
-        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -1249,13 +1117,19 @@ not obvious.</p>
 </footer>
       
     </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
-    
-      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
