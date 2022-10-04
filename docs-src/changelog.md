@@ -1,6 +1,6 @@
 # Changelog
 
-## 2022-08-29
+## v1.2.2769
  - Added direct run option
  - Added detail to output and output files
  - Improved operator explainations
@@ -12,13 +12,13 @@
  - Added documentation
  - Bug fixes
 
-## 2022-01-10
+## v1.2.2376
  - Added print statements
  - Added DFA output graphs
  - Removed the `@` tag from labeled statements
  - Bug fixes
 
-## v1.2
+## v1.2.0
  - Added `let-when` statements
   - Renamed `once` to `when`
  - Added `possibly` statement

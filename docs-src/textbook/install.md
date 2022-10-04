@@ -51,7 +51,7 @@ For **Windows** users, when running the installer, make sure to select the optio
 After installing `python`, you should also be able to use the command `pip`. Run the following command to get the latest version of Harmony:
 
 ```sh
-pip install harmony-model-checker
+pip install harmony
 ```
 
 ### For Windows Users
@@ -71,7 +71,7 @@ Select `Desktop development with C++` in the `Desktop & Mobile` section and then
 
 ![Select the workload and install](figures/press-install-c++-build-tools.png "Select the workload and install")
 
-Note that this will likely take a while. When it finishes installing, run `pip install harmony-model-checker` again.
+Note that this will likely take a while. When it finishes installing, run `pip install harmony` again.
 
 
 ### For CS Deparment Linux Machine Users
@@ -119,7 +119,7 @@ Please see [here](https://marketplace.visualstudio.com/items?itemName=kevinsun-d
 Harmony can be updated by running the following `pip` command on the command line:
 
 ```sh
-pip install --upgrade harmony-model-checker
+pip install --upgrade harmony
 ```
 
 In Harmony versions `1.2.0` and higher, the compiler will output a warning if the currently installed version of Harmony is outdated and an updated one can be installed.
