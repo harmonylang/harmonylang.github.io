@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.4
+## 2022-08-29
  - Added direct run option
  - Added detail to output and output files
  - Improved operator explainations
@@ -12,7 +12,7 @@
  - Added documentation
  - Bug fixes
 
-## v1.3
+## 2022-01-10
  - Added print statements
  - Added DFA output graphs
  - Removed the `@` tag from labeled statements

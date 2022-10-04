@@ -951,8 +951,8 @@ structures), Harmony does not support garbage collection for memory
 allocated this way and so allocated memory that is no longer in use must
 be explicitly released using `free`.
 
-```python title="stack.hny"
---8<-- "stack.hny"
+```python title="stacktest.hny"
+--8<-- "stacktest.hny"
 ```
 
 <figcaption>Figure A.2 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 

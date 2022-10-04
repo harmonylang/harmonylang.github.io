@@ -37,6 +37,7 @@ nav:
         - "30 Paxos ": 'textbook/paxos.md'
         - "31 Needham-Schroeder Authentication Protocol ": 'textbook/ns.md'
     - 'Reference':
+        - 'Using the Command Line': 'textbook/commandline.md'
         - "Harmony Language Details": 'textbook/values.md'
         - "The Harmony Virtual Machine ": 'textbook/hvm.md'
         - "How Harmony Works": 'textbook/howitworks.md'
