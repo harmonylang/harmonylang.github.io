@@ -52,69 +52,59 @@ and outputs in the HTML file the state with the longest path.
 
 |       |       |
 | ------ | ------- |
-| Address |           compute address from two components |
-| Apply |             pop *m* and *i* and apply *i* to *m*, pushing a value |
-| Assert, Assert2 |   pop *b* and check that it is `True`. Assert2 also pops value to print |
-| AtomicInc/Dec |     increment/decrement the atomic counter of this context |
-| Continue |          no-op (but causes a context switch) |
-| Choose |            choose an element from the set on top of the stack |
-| Cut |               retrieve an element from a iterable type |
-| Del \[*v*\] |       delete shared variable *v* |
-| DelVar \[*v*\] |    delete thread variable *v* |
-| Dup |               duplicate the top element of the stack |
-| Frame *m* *a* |     start method *m* with arguments *a*, initializing variables. |
-| Go |                pop context and value, push value on context's stack, and add to context bag |
-| Invariant *end* |   code for invariant follows. Skip to *end* + 1 |
-| Jump *p* |          set program counter to *p* |
-| JumpCond *e* *p* |  pop expression and, if equal to *e*, set program counter to *p* |
-| Load \[*v*\] |      push the value of a shared variable onto the stack |
-| LoadVar \[*v*\] |   push the value of a thread variable onto the stack |
-| Move *i* |          move stack element at offset *i* to top of the stack |
-| $n$-ary *op* |      apply $n$-ary operator *op* to the top $n$ elements on the stack |
-| Pop |               pop a value of the stack and discard it |
-| Print |             pop a value and add to the print history |
-| Push *c* |          push constant *c* onto the stack |
-| ReadonlyInc/Dec |   increment/decrement the read-only counter of this context |
-| Return |            pop return address, push `result`, and restore program counter |
-| Sequential |        pop an address of a variable that has sequential consistency |
-| SetIntLevel |       pop *e*, set interrupt level to *e*, and push old interrupt level |
-| Spawn \[eternal\] | pop initial thread-local state, argument, and method and spawn a new context |
-| Split |             pop tuple and push its elements |
-| Stop \[*v*\] |      save context into shared variable *v* and remove from context bag |
-| Store \[*v*\] |     pop a value from the stack and store it in a shared variable |
-| StoreVar \[*v*\] |  pop a value from the stack and store it in a thread variable |
-| Trap |              pop interrupt argument and method |
+| Apply *m* |                call method *m* |
+| Assert, Assert2 |          pop *b* and check that it is `True`. Assert2 also pops value to print |
+| AtomicInc/Dec |            increment/decrement the atomic counter of this context |
+| Continue |                 no-op (but causes a context switch) |
+| Choose |                   choose an element from the set on top of the stack |
+| Cut |                      retrieve an element from a iterable type |
+| Del \[*v*\] |              delete shared variable *v* |
+| DelVar \[*v*\] |           delete thread variable *v* |
+| Dup |                      duplicate the top element of the stack |
+| Finally *pc* |             *pc* is the pc of a lambda that returns a boolean |
+| Frame *m* *a* |            start method *m* with arguments *a*, initializing variables. |
+| Go |                       pop context and value, push value on context's stack, and add to context bag |
+| Invariant *pc* |           *pc* is the pc of a lambda that takes arguments `pre, post` and returns a boolean |
+| Jump *p* |                 set program counter to *p* |
+| JumpCond *e* *p* |         pop expression and, if equal to *e*, set program counter to *p* |
+| Load \[*v*\] |             evaluate the address on the stack (or load shared variable *v*) |
+| LoadVar *v* |              push the value of a thread variable onto the stack |
+| Move *i* |                 move stack element at offset *i* to top of the stack |
+| $n$-ary *op* |             apply $n$-ary operator *op* to the top $n$ elements on the stack |
+| Pop |                      pop a value of the stack and discard it |
+| Print |                    pop a value and add to the print history |
+| Push *c* |                 push constant *c* onto the stack |
+| ReadonlyInc/Dec |          increment/decrement the read-only counter of this context |
+| Return \[*v* \[, *d*\]\] | pop return address, push *v* (or default value *d*), and restore pc |
+| Sequential |               pop an address of a variable that has sequential consistency |
+| SetIntLevel |              pop *e*, set interrupt level to *e*, and push old interrupt level |
+| Spawn \[eternal\] |        pop initial thread-local state, argument, and method and spawn a new context |
+| Split |                    pop tuple and push its elements |
+| Stop \[*v*\] |             save context into shared variable *v* and remove from context bag |
+| Store \[*v*\] |            pop a value from the stack and store it in a shared variable |
+| StoreVar \[*v*\] |         pop a value from the stack and store it in a thread variable |
+| Trap |                     pop interrupt argument and method |
 
 Clarifications:
-
--   The `Address` instruction expects two values on the stack. The top
-    value must be an address value, representing a dictionary The other
-    value must be a key into the dictionary. The instruction then
-    computes the address of the given key.
 
 -   Even though Harmony code does not allow taking addresses of thread
     variables, both shared and thread variables can have addresses.
 
--   The `Load`, `LoadVar`, `Del`, `DelVar`, and `Stop` instructions have
+-   The `Load`, `Del`, `DelVar`, and `Stop` instructions have
     an optional variable name: if omitted the top of the stack must
     contain the address of the variable.
 
--   `Store` and `StoreVar` instructions have an optional variable name.
+-   The `Store` instruction has an optional variable name. The `StoreVar`
+    instruction can even have a nested tuple of variable names such as `(a, (b, c))`.
     In both cases the value to be assigned is on the top of the stack.
     If the name is omitted, the address is underneath that value on the
     stack.
-
--   The effect of the `Apply` instructions depends much on *m*. If *m*
-    is a dictionary, then `Apply` finds *i* in the dictionary and pushes
-    the value. If *m* is a program counter, then `Apply` invokes method
-    *m* by pushing the current program counter and setting the program
-    counter to *m*. *m* is supposed to leave the result on the stack.
 
 -   The `Frame` instruction pushes the value of the thread register
     (*i.e.*, the values of the thread variables) onto the stack. It
     initializes the `result` variable to `None`. The `Return`
     instruction restores the thread register by popping its value of the
-    stack.
+    It initializes the `result` variable to `None`. stack.
 
 -   All method calls have exactly one argument, although it sometimes
     appears otherwise:
@@ -130,15 +120,93 @@ Clarifications:
     The `Frame` instruction unpacks the argument to the method and
     places them into thread variables by the given names.
 
+-   The `Apply` instruction is unnecessary as it can be implemented using
+    *2-ary Closure* and `Load`. However, method calls are frequent enough to
+    warrant a faster mechanism, reducing model checking time.
+
+-   The `Return` instruction has an optional result variable and default
+    value.  If neither is specified, the result value is on top of the stack.
+    Otherwise it tries to read the local variable.  If the variable does not
+    exist, the default value is used or an error is thrown.
+
 -   Every `Stop` instruction must immediately be followed by a
     `Continue` instruction.
 
 -   There are two versions of `AtomicInc`: *lazy* or *eager*. When
     eager, an atomic section immediately causes a *switch point* (switch
     between threads). When lazy, the state change does not happen until
-    the first `Load` `Store`, or `Print` instruction. If there are no
+    the first `Load`, `Store`, or `Print` instruction. If there are no
     such instructions, the atomic section may not even cause a switch
     point.
+
+The $n$-Ary instruction can have many different operators as
+argument.
+[Values](values.md) describes many of these operators, but some are used
+internally only. The current set of such operators are as follows:
+
+| Operator | Description |
+| ------ | ------- |
+| AddArg |    pop an argument and an address and push an address with the argument added |
+| Closure |   pop an argument and a function and push an address with the single argument |
+| DictAdd |   pop a value, a key, and a dictionary, and push an updated dictionary |
+| ListAdd |   pop a value and a list, and push a new list with the given value added to the end|
+| SetAdd |    pop a value and a set, and push a new set with the given value added |
+
+
+## Addresses and Method Calls
+
+Syntactically, Harmony does not make a distinction between methods calls
+and indexing in Harmony dictionaries, lists, and strings.  This is because
+Harmony makes all four look like functions that map a value to another value.
+Beuses dynamic types, an expression like `a b` could mean that variable
+`a` contains a program counter value and a method call must be made with
+`b` as argument, or index `b` must be looked up in the `a` value.
+Things can get more complicated for an expression like `a b c`, which
+means `((a b) c)`: `a b` could return a program counter value or an
+indexable Harmony value.
+
+To deal with this, Harmony has a fairly unique address type.  An address
+consists of a function and a list of arguments, which we will denote here
+as $\langle f, [ a_0, a_1, ... ] \langle$.  If `a` is a shared variable,
+then the address of `a b c` is $\langle \$, [$ "\`a\`", $b, c~]\rangle$, where
+\$ is the function that maps the names of shared variables to their values.
+In particular, \$("\`a\`") is the value of variable `a`.  A function can
+also be a program counter value or an indexable Harmony value.  So, if `a` is
+instead a method (i.e., a program counter constant), then the address would
+by $\langle a, [b, c]\rangle$.  In the Harmony Virtual Machine, the \$ function
+is represented as the program counter value $-1$.
+
+To evaluate the Harmony expression `a b c`, Harmony first generates its address
+(evaluating the expression left to right).  If `a` is a variable name, then
+the function in the address depends on whether it is a shared variable or a thread
+variable.  After the address is computed and pushed onto the stack, the
+`Load` instruction evaluates the address, possibly in multiple steps
+in an iterative manner.
+
+A basic step of evaluating $\langle \mathit{function}, \mathit{arguments} \rangle$
+proceeds as follows:
+
+-   If *arguments* is empty, replace the address by *function*
+      and proceed to the next instruction.
+
+-   If *function* is an indexable Harmony value (list, string, or dictionary),
+*arg* is the first argument, and *remainder* are the remaining arguments,
+then replace the address by $\langle \mathit{function}[\mathit{arg}], \mathit{remainder} \rangle$ and repeat.
+
+-   If *function* is \$, then replace the address by
+$\langle \$[\mathit{arg}], \mathit{remainder} \rangle$ and repeat.
+
+-   If *function* is a program counter value, then push *remainder*,
+the current program counter (still pointing to the `Load` instruction), and
+*arg* onto the stack and set the program counter to *function*.
+The `Return` instruction pushes
+$\langle r, \mathit{remainder} \rangle$, where $r$ is the result of the function,
+and restores the program counter so it executes the `Load` instruction again.
+
+The Harmony Virtual Machine can sometimes to multiple of these basic steps in one
+big step.  For example, if `a b c` is a memory address, the `Load`
+instruction will finish in a single atomic step.  Both `Load` and `Return`
+are optimized in such ways.
 
 ## Contexts and Threads 
 
@@ -149,10 +217,7 @@ to their own locations), and so no instruction leaves the context the
 same. There may be multiple threads with the same state at the same
 time. A context consists of the following:
 
-  name                     the name of the main method that the thread is executing
-  argument                 the argument given to the main method
   program counter          an integer value pointing into the code
-  frame pointer            an integer value pointing into the stack
   atomic                   if non-zero, the thread is in atomic mode
   readonly                 if non-zero, the thread is in read-only mode
   stack                    a list of Harmony values
@@ -162,11 +227,6 @@ time. A context consists of the following:
   failure                  if not None, string that describes how the thread failed
 
 Details:
-
--   The frame pointer points to the current *stack frame*, which
-    consists of the caller's frame pointer and variables, the argument
-    to the method, an "invocation type" (`normal`, `interrupt`, or
-    `thread`), and the return address (in case of `normal`).
 
 -   A thread terminates when it reaches the `Return` instruction of the
     top-level method (when the stack frame is of type `thread`) or when
@@ -186,9 +246,7 @@ Details:
 
 ## Formal Specification 
 
-A formal specification of the Harmony Virtual Machine is well underway
-but not yet completed. In particular, `trap` is not yet specified. Also, strings are limited to the printable
-characters minus double quotes, back quotes, or backslashes. However, everything else is specified. Given a
+Most of the Harmony Virtual Machine is specified in TLA+. Given a
 Harmony program, you can output the TLA+ specification for the program
 using the following command:
 

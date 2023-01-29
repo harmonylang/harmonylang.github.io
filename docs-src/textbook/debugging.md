@@ -118,7 +118,7 @@ T3 chooses `"`get`"` and then goes on to invoke `get`(?*q*). This first
 successfully acquires *q*}->*lock*. T3 then finds out that
 *q*->*next* points to `alloc`.*pool*\[0\]. T3 sets *node* to
 `alloc`.*pool*\[0\] as well and sets *q*->*next* to
-*node*->*next*. T3 sets *result* to
+*node*->*next*. T3 the method result *next* to
 *node*->*value* (which is 1) and then frees *node*. This is
 where the problem is---T2 is about to acquire the lock in that same
 node.

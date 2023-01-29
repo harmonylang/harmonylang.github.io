@@ -20,8 +20,8 @@ Harmony called HarmonyLang and proceeded to build an animator for
 Harmony executions and two cloud-based Harmony offerings, which you can
 learn about at <http://harmony.cs.cornell.edu>. They also developed much
 of that web site and made valuable suggestions for improvements to the
-Harmony language.  Later they were joined by Shi Chong Zhao, who also
-made significant contributions.  Kevin and Anthony continue to make
+Harmony language.  Later they were joined by Shi Chong Zhao and Robin Li,
+who also made significant contributions.  Kevin and Anthony continue to make
 great contributions to the Harmony distribution.
 
 Most of what I know about concurrent programming I learned from my

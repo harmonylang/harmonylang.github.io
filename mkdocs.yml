@@ -32,15 +32,17 @@ nav:
         - "25 Leader Election ": 'textbook/leader.md'
         - "26 Transactions and Two Phase Commit ": 'textbook/2pc.md'
         - "27 Chain Replication ": 'textbook/chain.md'
-        - "28 Replicated Atomic Read/Write Register ": 'textbook/abd.md'
-        - "29 Distributed Consensus ": 'textbook/consensus.md'
-        - "30 Paxos ": 'textbook/paxos.md'
-        - "31 Needham-Schroeder Authentication Protocol ": 'textbook/ns.md'
+        - "28 Working with Actions ": 'textbook/actions.md'
+        - "29 Replicated Atomic Read/Write Register ": 'textbook/abd.md'
+        - "30 Distributed Consensus ": 'textbook/consensus.md'
+        - "31 Paxos ": 'textbook/paxos.md'
+        - "32 Needham-Schroeder Authentication Protocol ": 'textbook/ns.md'
     - 'Reference':
         - 'Using the Command Line': 'textbook/commandline.md'
         - "Harmony Language Details": 'textbook/values.md'
         - "The Harmony Virtual Machine ": 'textbook/hvm.md'
         - "How Harmony Works": 'textbook/howitworks.md'
+        - "Simplified Grammar": 'textbook/grammar.md'
         - "Harmony Modules": 'textbook/module.md'
     - Changelog: changelog.md
     - "Acknowledgments": 'textbook/acknowledgments.md'
@@ -56,7 +58,7 @@ theme:
     palette:
         primary: black
 
-copyright: Copyright &copy; 2020 - 2022 Robbert van Renesse
+copyright: Copyright &copy; 2020 - 2023 Robbert van Renesse
 
 extra:
   generator: false

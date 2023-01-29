@@ -55,11 +55,11 @@ those messages to one another.
 --8<-- "needhamschroeder.hny"
 ```
 
-<figcaption>Figure 31.1 (
+<figcaption>Figure 32.1 (
 <a href=https://harmony.cs.cornell.edu/code/needhamschroeder.hny>code/needhamschroeder.hny</a>): 
 Needham-Schroeder protocol and an attack </figcaption>
 
-Figure 31.1 shows the protocol implemented in Harmony. A message
+Figure 32.1 shows the protocol implemented in Harmony. A message
 $\langle m \rangle_p$ is encoded in Harmony as a dictionary
 $\{ \mathtt{.dst}: p, \mathtt{.contents}: m \}$. The code for Alice and
 Bob simply follows the steps listed above.
@@ -73,7 +73,7 @@ Bob. However, it is possible that Alice tries to set up an authenticated
 connection to Corey using the Needham-Schroeder protocol. That in itself
 should not be a problem if the protocol were correct.
 
-The code in Figure 31.1 has Alice either not do anything, or has Alice
+The code in Figure 32.1 has Alice either not do anything, or has Alice
 try to set up a connection to either Bob or Corey. Bob only accepts
 connections with Alice. Corey, when receiving a message that it can
 decrypt, will try to find an attack by sending every possible message to
@@ -83,7 +83,7 @@ Alice and Bob. If Bob finishes the protocol, it checks to see if Alice
 actually tried to connect to Bob. If not, the assertion fails and an
 attack is found.
 
-Running the code in Figure 31.1 quickly finds a viable attack. The attack
+Running the code in Figure 32.1 quickly finds a viable attack. The attack
 goes like this:
 
 1.  Alice creates a new nonce $N_A$ and sends
@@ -117,9 +117,9 @@ not try to authenticate Bob).
 ## Exercises 
 
 
-**31.1** Figure out how to fix the protocol.
+**32.1** Figure out how to fix the protocol.
 
-**31.2** There were two versions of the Needham-Schroeder protocol: the Symmetric
+**32.2** There were two versions of the Needham-Schroeder protocol: the Symmetric
 Key protocol and the Public Key protocol. In this chapter we only
 discussed the latter, but the former also had a problem. See if you can
 find it using Harmony.

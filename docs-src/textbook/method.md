@@ -12,13 +12,12 @@ That's right, no parentheses are required. In fact, if you invoke
 *m*(*a*, *b*), the argument is (*a*, *b*), the tuple consisting of
 values *a* and *b*.
 
-You may note that all this looks familiar. Indeed, the syntax is the
-same as that for dictionaries (see [Chapter 4](harmonymachine.md)). Both
-dictionaries and methods map Harmony values to Harmony values, and their
-syntax is indistinguishable. If `f` is either a method or a dictionary,
-and *x* is an arbitrary Harmony value, then `f` *x*, `f`(*x*), and
-`f`\[*x*\] are all the same expression in Harmony.
-
+You may note that all this looks familiar. Indeed, the syntax is the 
+same as that for dictionaries and lists (see [Chapter 4](harmonymachine.md)).
+Dictionaries, lists, and methods all map Harmony values to Harmony
+values, and their syntax is indistinguishable. If `f` is a method, 
+list, or dictionary, and `x` is some Harmony value, then
+`f x`, `f(x)`, and `f[x]` are all the same expression in Harmony.
 
 ```python title="PetersonMethod.hny"
 --8<-- "PetersonMethod.hny"
@@ -28,9 +27,15 @@ and *x* is an arbitrary Harmony value, then `f` *x*, `f`(*x*), and
 Peterson's Algorithm accessed through methods
 </figcaption>
 
-Harmony does not have a **return** statement. (You can assign a return
-value to a method by setting the *result* variable.) Neither does it
-support **break** or **continue** statements in loops. One reason for
+Harmony does not have a **return** statement. Using the `returns`
+clause of `def`, a result variable can be declared, for example:
+`def f() returns something`.  The result of the method should be
+assigned to variable `something`. If there is no `returns` clause,
+then (for backwards compatibility reasons) the method has a default
+result variable called `result`.  The default value of `result` is
+`None` for compatibility with Python.
+
+Harmony also does not support **break** or **continue** statements in loops. One reason for
 their absence is that, particularly in concurrent programming, such
 control flow directions are highly error-prone. It's too easy to forget
 to, say, release a lock when returning a value in the middle of a
@@ -69,11 +74,10 @@ You can put the first three methods in its own Harmony source file and
 include it using the Harmony **import** statement. This would make the
 code usable by multiple applications.
 
-Finally, methods can have local variables. Different from Python,
-Harmony local variables must be explicitly bound within a scope. Method
+Finally, methods can have local variables. Method
 variables are either mutable (writable) or immutable (read-only). The
 arguments to a method and the bound variable (or variables) within a
-**for** statement are immutable; the variable *result* is mutable. Using
+**for** statement are immutable; the result variable is mutable. Using
 the **var** statement, new mutable local variables can be declared. For
 example, **var** $x = 3$ declares a new mutable local variable *x*. The
 **let** statement allows declaring new immutable local variables. For

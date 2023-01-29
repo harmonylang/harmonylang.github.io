@@ -9,43 +9,46 @@
       
       
       
+        <link rel="prev" href="../abd/">
+      
+      
+        <link rel="next" href="../paxos/">
+      
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.7">
     
     
       
-        <title>29 Distributed Consensus - HarmonyDocs</title>
+        <title>30 Distributed Consensus - HarmonyDocs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#000000">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -56,10 +59,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,6 +78,7 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
@@ -86,7 +89,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -98,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              29 Distributed Consensus 
+              30 Distributed Consensus 
             
           </span>
         </div>
@@ -108,22 +111,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -134,7 +136,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -202,17 +204,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
@@ -266,17 +269,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Textbook
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
@@ -667,8 +671,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../actions/" class="md-nav__link">
+        28 Working with Actions 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../abd/" class="md-nav__link">
-        28 Replicated Atomic Read/Write Register 
+        29 Replicated Atomic Read/Write Register 
       </a>
     </li>
   
@@ -684,23 +702,22 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          29 Distributed Consensus 
+          30 Distributed Consensus 
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        29 Distributed Consensus 
+        30 Distributed Consensus 
       </a>
       
         
-
 
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
@@ -738,7 +755,7 @@
   
     <li class="md-nav__item">
       <a href="../paxos/" class="md-nav__link">
-        30 Paxos 
+        31 Paxos 
       </a>
     </li>
   
@@ -752,7 +769,7 @@
   
     <li class="md-nav__item">
       <a href="../ns/" class="md-nav__link">
-        31 Needham-Schroeder Authentication Protocol 
+        32 Needham-Schroeder Authentication Protocol 
       </a>
     </li>
   
@@ -776,17 +793,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
@@ -843,6 +861,20 @@
     <li class="md-nav__item">
       <a href="../howitworks/" class="md-nav__link">
         How Harmony Works
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grammar/" class="md-nav__link">
+        Simplified Grammar
       </a>
     </li>
   
@@ -912,7 +944,6 @@
                   <div class="md-sidebar__inner">
                     
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -941,12 +972,15 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="distributed-consensus">Distributed Consensus</h1>
+                  
+
+
+
+<h1 id="distributed-consensus">Distributed Consensus</h1>
 <p>Distributed consensus is the problem of having a collection of
 processors agree on a single value over a network. For example, in state
 machine replication, the state machines have to agree on which operation
@@ -988,10 +1022,10 @@ and receive a message. Here we will not worry about
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
     <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div>
-<figcaption>Figure 29.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
+<figcaption>Figure 30.1 (<a href=https://harmony.cs.cornell.edu/code/consensus.hny>code/consensus.hny</a>): 
 Distributed consensus code and behavior DFA </figcaption>
 
-<p>Figure 29.1 presents a specification for binary consensus---the
+<p>Figure 30.1 presents a specification for binary consensus---the
 proposals are from the set {0, 2} In this case there are four
 processors. The proposal of processor <em>i</em> is in <em>proposals</em>[<em>i</em>]. The
 <em>decision</em> is chosen from the set of proposals. Each processor may or
@@ -1034,9 +1068,9 @@ the maximum number of failures, and we will assume there are <code>N</code> =
 <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
     <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="n">returns</span> <span class="n">quorum</span><span class="p">:</span>
     <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">e</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">e</span><span class="p">):</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">round</span> <span class="p">}:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">quorum</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">msgs</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="n">proposal</span><span class="p">):</span>
     <span class="n">var</span> <span class="n">estimate</span><span class="p">,</span> <span class="n">decided</span> <span class="o">=</span> <span class="n">proposal</span><span class="p">,</span> <span class="kc">False</span>
@@ -1057,14 +1091,14 @@ the maximum number of failures, and we will assume there are <code>N</code> =
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
     <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div>
-<figcaption>Figure 29.2 (<a href=https://harmony.cs.cornell.edu/code/bosco.hny>code/bosco.hny</a>): 
+<figcaption>Figure 30.2 (<a href=https://harmony.cs.cornell.edu/code/bosco.hny>code/bosco.hny</a>): 
 A crash-tolerant consensus protocol </figcaption>
 
 <p><img alt="" src="../figures/bosco.png" /></p>
-<figcaption>Figure 29.3: The behavior DFA for Figure 29.2
+<figcaption>Figure 30.3: The behavior DFA for Figure 30.2
 </figcaption>
 
-<p>Figure 29.2 presents our algorithm. Besides the <em>network</em> variable, it
+<p>Figure 30.2 presents our algorithm. Besides the <em>network</em> variable, it
 uses a shared list of proposals and a shared set of decisions. In this
 particular algorithm, all messages are broadcast to all processors, so
 they do not require a destination address. The <code>N</code> processors go through
@@ -1125,8 +1159,8 @@ $ harmony -B consensus.hfa code/bosco.hny
 <p>Note that the second command prints a warning:
 "<code>behavior warning: strict subset of specified behavior</code>." Thus, the set
 of behaviors that our algorithm generates is a subset of the behavior
-that the specification allows. Figure 29.3 shows the behavior, and
-indeed it is not the same as the behavior of Figure 29.1. This is
+that the specification allows. Figure 30.3 shows the behavior, and
+indeed it is not the same as the behavior of Figure 30.1. This is
 because in our algorithm the outcome is decided a priori if more than
 twothirds of the processors have the same proposal, whereas in the
 consensus specification the outcome is only decided a priori if the
@@ -1145,9 +1179,9 @@ outcome is decided a priori, all processors are guaranteed to decide.</p>
 <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
     <span class="n">atomically</span> <span class="n">network</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">receive</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span> <span class="n">returns</span> <span class="n">quorum</span><span class="p">:</span>
     <span class="n">let</span> <span class="n">msgs</span> <span class="o">=</span> <span class="p">{</span> <span class="n">e</span><span class="p">:</span><span class="n">c</span> <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">e</span><span class="p">):</span><span class="n">c</span> <span class="ow">in</span> <span class="n">network</span> <span class="n">where</span> <span class="n">r</span> <span class="o">==</span> <span class="nb">round</span> <span class="p">}:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">bag</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="k">else</span> <span class="p">{</span> <span class="n">msgs</span> <span class="p">}</span>
+        <span class="n">quorum</span> <span class="o">=</span> <span class="p">{}</span> <span class="k">if</span> <span class="n">bag</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="k">else</span> <span class="p">{</span> <span class="n">msgs</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">processor</span><span class="p">(</span><span class="n">proposal</span><span class="p">):</span>
     <span class="n">var</span> <span class="n">estimate</span><span class="p">,</span> <span class="n">decided</span> <span class="o">=</span> <span class="n">proposal</span><span class="p">,</span> <span class="kc">False</span>
@@ -1170,7 +1204,7 @@ outcome is decided a priori, all processors are guaranteed to decide.</p>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">0.</span><span class="o">.</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">}:</span>
     <span class="n">spawn</span> <span class="n">processor</span><span class="p">(</span><span class="n">proposals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div>
-<figcaption>Figure 29.4 (<a href=https://harmony.cs.cornell.edu/code/bosco2.hny>code/bosco2.hny</a>): 
+<figcaption>Figure 30.4 (<a href=https://harmony.cs.cornell.edu/code/bosco2.hny>code/bosco2.hny</a>): 
 Reducing the state space </figcaption>
 
 <p>While one can run this code within little time for <code>F</code> = 1, for <code>F</code> = 2
@@ -1192,82 +1226,46 @@ value. Also, the values 0 and 1 are not important to how the protocol
 operates. So, with 5 processors (<code>F</code> = 2), say, we only need to explore
 the cases where no processors propose 1, where exactly one processors
 proposes 1, and where 2 processors proposes 1.</p>
-<p>Figure 29.4 shows the code for this optimized model. Running this
+<p>Figure 30.4 shows the code for this optimized model. Running this
 with <code>F</code> = 2 does not take very long and this approach is a good
 blueprint for testing other round-based protocols (of which there are
 many).</p>
 <h2 id="exercises">Exercises</h2>
-<p><strong>29.1</strong> The algorithm as given works in the face of crash failures. A more
+<p><strong>30.1</strong> The algorithm as given works in the face of crash failures. A more
 challenging class to tolerate are <em>arbitrary failures</em> in which up to
 <code>F</code> processors may send arbitrary messages, including conflicting
 messages to different peers (equivocation). The algorithm can tolerate
 those failures if you use <span class="arithmatex">\(\texttt{N} = 5\texttt{F} - 1\)</span> processors
 instead of <span class="arithmatex">\(\texttt{N} = 3\texttt{F} - 1\)</span>. Check that.</p>
-<p><strong>29.2</strong> In 1983, Michael Ben-Or presented a randomized algorithm that can
+<p><strong>30.2</strong> In 1983, Michael Ben-Or presented a randomized algorithm that can
 tolerate crash failures with just <span class="arithmatex">\(\texttt{N} = 2\texttt{F} - 1\)</span>
 processors. Implement this algorithm.</p>
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../abd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 28 Replicated Atomic Read/Write Register " rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              28 Replicated Atomic Read/Write Register 
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../paxos/" class="md-footer__link md-footer__link--next" aria-label="Next: 30 Paxos " rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              30 Paxos 
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2023 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
@@ -1277,10 +1275,11 @@ processors. Implement this algorithm.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

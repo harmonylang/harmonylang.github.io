@@ -63,7 +63,6 @@ because Harmony tries every possible execution, it will consider that
 particular execution as well. What would the value of *count* be at the
 end of that execution?
 
-
 ```python title="Up.hny"
 --8<-- "Up.hny"
 ```
@@ -73,6 +72,13 @@ Incrementing the same variable twice in parallel</figcaption>
 
  - Before you run the program, what do you think will happen? Is the program correct in that *count* will always end up being 2? (You may assume that `load` and `store` instructions of the underlying virtual machine architecture are atomic (indivisible)---in fact they are.)
 
+```python title="Upr.hny"
+--8<-- "Upr.hny"
+```
+
+<figcaption>Figure 3.3 (<a href=https://harmony.cs.cornell.edu/code/Upr.hny>code/Upr.hny</a>): 
+What actually happens in Figure 3.2</figcaption>
+
 What is going on is that the Harmony program is compiled to machine
 instructions, and it is the machine instructions that are executed by
 the underlying Harmony machine. The details of this appear in
@@ -80,14 +86,15 @@ the underlying Harmony machine. The details of this appear in
 instructions that load values from memory and store values into memory.
 Importantly, it does not have instructions to atomically increment or
 decrement values in shared memory locations. So, to increment a value in
-memory, the machine must do at least three machine instructions.
-Conceptually:
+memory, the machine must do at least three machine instructions. Figure 3.3
+illustrates this. (The `var` statement declares a new local variable
+`register`.) Conceptually, the machine
 
-1.  load the value from the memory location;
+1.  loads the value of `count` from its memory location into a register;
 
-2.  add 1 to the value;
+2.  adds 1 to the register;
 
-3.  store the value to the memory location.
+3.  stores the new value into the memory location of `count`.
 
 When running multiple threads, each essentially runs an instantiation of
 the machine, and they do so in parallel. As they execute, their machine
@@ -132,6 +139,19 @@ assert (*count* == 1) or (*count* == 2)
 This would fix the issue, but more likely it is the program that
 must be fixed, not the specification.
 
+```python title="Upf.hny"
+--8<-- "Upf.hny"
+```
+
+<figcaption>Figure 3.4 (<a href=https://harmony.cs.cornell.edu/code/Upf.hny>code/Upf.hny</a>): 
+Demonstrating the `finally` clause.</figcaption>
+
+Figure 3.4 demonstrates another way of accomplishing the same
+using the Harmony `finally` clause.  The `finally` clause is like
+the `assert` clause, but the condition is only checked when all
+threads have finished.  This eliminates the need for a shared variable
+like `done`, simplifies the code, and makes the intention clearer.
+
 The exercises below have you try the same thing (having threads
 concurrently increment an integer variable) in Python. As you will see,
 the bug is not easily triggered when you run a Python version of the
@@ -144,11 +164,11 @@ than with a conventional programming language.
 
 
 **3.1** Harmony programs can usually be easily translated into Python by hand.
-For example, Figure 3.3 is a Python version of Figure 3.2.
+For example, Figure 3.5 is a Python version of Figure 3.2.
 
-1.  Run Figure 3.3 using Python. Does the assertion fail?
+1.  Run Figure 3.5 using Python. Does the assertion fail?
 
-2.  Using a script, run Figure 3.3 1000 times. For example, if you
+2.  Using a script, run Figure 3.5 1000 times. For example, if you
     are using the bash shell (in Linux or Mac OS X, say), you can do the
     following:
 
@@ -164,8 +184,8 @@ For example, Figure 3.3 is a Python version of Figure 3.2.
 
     How many times does the assertion fail (if any)?
 
-**3.2** Figure 3.4 is a version of Figure 3.3 that has each incrementer
-thread increment *count* `N` times. Run Figure 3.4 10 times (using
+**3.2** Figure 3.6 is a version of Figure 3.5 that has each incrementer
+thread increment *count* `N` times. Run Figure 3.6 10 times (using
 Python). Report how many times the assertion fails and what the value of
 *count* was for each of the failed runs. Also experiment with lower
 values of `N`. How large does `N` need to be for assertions to fail?
@@ -181,7 +201,7 @@ understanding of concurrency. (Also, you do not get to use the
 --8<-- "Up.py"
 ```
 
-<figcaption>Figure 3.3 (<a href=https://harmony.cs.cornell.edu/python/Up.py>python/Up.py</a>): 
+<figcaption>Figure 3.5 (<a href=https://harmony.cs.cornell.edu/python/Up.py>python/Up.py</a>): 
 Python implementation of Figure 3.2 </figcaption>
 
 
@@ -189,5 +209,5 @@ Python implementation of Figure 3.2 </figcaption>
 --8<-- "UpMany.py"
 ```
 
-<figcaption>Figure 3.4 (<a href=https://harmony.cs.cornell.edu/python/UpMany.py>python/UpMany.py</a>): 
+<figcaption>Figure 3.6 (<a href=https://harmony.cs.cornell.edu/python/UpMany.py>python/UpMany.py</a>): 
 Using Python to increment <i>N</i> times </figcaption>

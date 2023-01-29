@@ -9,8 +9,13 @@
       
       
       
+        <link rel="prev" href="../grammar/">
+      
+      
+        <link rel="next" href="../../changelog/">
+      
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.7">
     
     
       
@@ -18,34 +23,32 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#000000">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -56,10 +59,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,6 +78,7 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
@@ -86,7 +89,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -108,22 +111,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -134,7 +136,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -202,17 +204,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
@@ -264,17 +267,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Textbook
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
@@ -665,8 +669,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../actions/" class="md-nav__link">
+        28 Working with Actions 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../abd/" class="md-nav__link">
-        28 Replicated Atomic Read/Write Register 
+        29 Replicated Atomic Read/Write Register 
       </a>
     </li>
   
@@ -680,7 +698,7 @@
   
     <li class="md-nav__item">
       <a href="../consensus/" class="md-nav__link">
-        29 Distributed Consensus 
+        30 Distributed Consensus 
       </a>
     </li>
   
@@ -694,7 +712,7 @@
   
     <li class="md-nav__item">
       <a href="../paxos/" class="md-nav__link">
-        30 Paxos 
+        31 Paxos 
       </a>
     </li>
   
@@ -708,7 +726,7 @@
   
     <li class="md-nav__item">
       <a href="../ns/" class="md-nav__link">
-        31 Needham-Schroeder Authentication Protocol 
+        32 Needham-Schroeder Authentication Protocol 
       </a>
     </li>
   
@@ -734,17 +752,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
@@ -811,12 +830,26 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../grammar/" class="md-nav__link">
+        Simplified Grammar
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -833,7 +866,6 @@
       
         
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -848,6 +880,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-action-module" class="md-nav__link">
+    The action module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-alloc-module" class="md-nav__link">
     The alloc module
   </a>
@@ -857,6 +896,13 @@
         <li class="md-nav__item">
   <a href="#the-bag-module" class="md-nav__link">
     The bag module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-fork-module" class="md-nav__link">
+    The fork module
   </a>
   
 </li>
@@ -947,7 +993,6 @@
                   <div class="md-sidebar__inner">
                     
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -962,6 +1007,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-action-module" class="md-nav__link">
+    The action module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-alloc-module" class="md-nav__link">
     The alloc module
   </a>
@@ -971,6 +1023,13 @@
         <li class="md-nav__item">
   <a href="#the-bag-module" class="md-nav__link">
     The bag module
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-fork-module" class="md-nav__link">
+    The fork module
   </a>
   
 </li>
@@ -1011,12 +1070,87 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="modules">Modules</h1>
+                  
+
+
+
+<h1 id="modules">Modules</h1>
+<p>Harmony modules provide convenient access to various data structures,
+algorithms, and synchronization paradigms.
+They are all implemented in the Harmony language itself (so
+you can look at their code) although some methods have also been implemented
+directly into the underlying model checker for more efficient model checking.</p>
+<p>Currently there are the following modules:</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td>support for action-based specifications</td>
+</tr>
+<tr>
+<td><code>alloc</code></td>
+<td>dynamic memory allocation</td>
+</tr>
+<tr>
+<td><code>bag</code></td>
+<td>multi-sets</td>
+</tr>
+<tr>
+<td><code>fork</code></td>
+<td>fork/join interface to threads</td>
+</tr>
+<tr>
+<td><code>hoare</code></td>
+<td>Hoare module interface</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>common operations on lists</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>common operations on sets</td>
+</tr>
+<tr>
+<td><code>synch</code></td>
+<td>synchronization</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-action-module">The <code>action</code> module</h2>
+<p>The <code>action</code> module supports <em>action-based</em> specification.
+Such a specification consists of a explicit global state and rules
+for how to make state transitions. Chapter 28 provides an example.
+The module has only one method:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>explore(x)</code></td>
+<td>explore the state space</td>
+</tr>
+</tbody>
+</table>
+<p>Here <code>x</code> is a set of lambdas, each of which can return a set of
+<em>closures</em>, each representing a possible action (state change).
+The union of the results of the lambdas should generate all possible
+actions.  A closure represents a method and its arguments that
+updates the state accordingly.</p>
 <h2 id="the-alloc-module">The <code>alloc</code> module</h2>
 <p>The <code>alloc</code> module supports thread-safe (but not interrupt-safe) dynamic
 allocation of shared memory locations. There are just two methods:</p>
@@ -1086,6 +1220,40 @@ multisets:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="the-fork-module">The <code>fork</code> module</h2>
+<p>The <code>fork</code> module implements the fork/join interface to threads.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fork(closure)</code></td>
+<td>spawn <code>closure</code> and return a thread handle</td>
+</tr>
+<tr>
+<td><code>join(handle)</code></td>
+<td>wait for the thread to finish and return its result</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the following code doubles each element of <code>data</code> in parallel
+and then sums the result when done.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fork</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">list</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">let</span> <span class="n">double</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="n">end</span>
+    <span class="n">let</span> <span class="nb">map</span> <span class="o">=</span> <span class="p">{</span> <span class="n">fork</span><span class="p">(</span><span class="err">?</span><span class="n">double</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span> <span class="p">}:</span>
+        <span class="nb">print</span> <span class="nb">sum</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">)</span>
+
+<span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="the-hoare-module">The <code>hoare</code> module</h2>
 <p>The <code>hoare</code> module implements support for Hoare-style monitors and
 condition variables.</p>
@@ -1151,6 +1319,14 @@ tuples:</p>
 <td>return all but the first element of list <em>t</em></td>
 </tr>
 <tr>
+<td><code>index(t, e)</code></td>
+<td>return the index of element <em>e</em> in list <em>t</em></td>
+</tr>
+<tr>
+<td><code>startswith(t, s)</code></td>
+<td>returns whether <em>s</em> is a prefix of <em>t</em></td>
+</tr>
+<tr>
 <td><code>reversed(t)</code></td>
 <td>reverse a list</td>
 </tr>
@@ -1180,21 +1356,90 @@ tuples:</p>
 </tr>
 <tr>
 <td><code>sum(t)</code></td>
-<td>return the sum of all elements in <em>t</em></td>
+<td>returns the sum of all elements in <em>t</em></td>
 </tr>
 <tr>
 <td><code>qsort(t)</code></td>
 <td>sort list <em>t</em> using quicksort</td>
 </tr>
+<tr>
+<td><code>foldl(t, f, z)</code></td>
+<td>left fold with <em>f</em> a binary method and <em>z</em> the initial value</td>
+</tr>
+<tr>
+<td><code>foldr(t, f, z)</code></td>
+<td>right fold with <em>f</em> a binary method and <em>z</em> the initial value</td>
+</tr>
+<tr>
+<td><code>reduce(f, t, z)</code></td>
+<td>same as <code>foldl(t, f, z)</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="the-set-module">The <code>set</code> module</h2>
 <p>The <code>set</code> module implements the following methods:</p>
-<p><em>issubset</em>(<em>s</em>, <em>t</em>)       returns whether <em>s</em> is a subset of <em>t</em>
-  <em>issuperset</em>(<em>s</em>, <em>t</em>)     returns whether <em>s</em> is a superset of <em>t</em>
-| <code>add</code>(<em>s</em>, <em>e</em>) |          returns <span class="arithmatex">\(s \cup \{ e \}\)</span> |
-| <code>remove</code>(<em>s</em>, <em>e</em>) |       returns <span class="arithmatex">\(s \backslash \{ e \}\)</span> |
-| <code>combinations</code>(<em>b</em>, <em>k</em>) | returns set of all subsets of size <em>k</em> |</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issubseteq</code>(<em>s</em>, <em>t</em>)</td>
+<td>returns whether <em>s</em> is a subset of <em>t</em></td>
+</tr>
+<tr>
+<td><code>issubsetstrict</code>(<em>s</em>, <em>t</em>)</td>
+<td>returns whether <em>s</em> is a strict subset of <em>t</em></td>
+</tr>
+<tr>
+<td><code>issubset</code>(<em>s</em>, <em>t</em>)</td>
+<td>same as <code>issubseteq(s, t)</code></td>
+</tr>
+<tr>
+<td><code>issuperseteq</code>(<em>s</em>, <em>t</em>)</td>
+<td>returns whether <em>s</em> is a superset of <em>t</em></td>
+</tr>
+<tr>
+<td><code>issupersetstrict</code>(<em>s</em>, <em>t</em>)</td>
+<td>returns whether <em>s</em> is a strict superset of <em>t</em></td>
+</tr>
+<tr>
+<td><code>issuperset</code>(<em>s</em>, <em>t</em>)</td>
+<td>same as <code>issuperseteq(s, t)</code></td>
+</tr>
+<tr>
+<td><code>add</code>(<em>s</em>, <em>e</em>)</td>
+<td>returns <span class="arithmatex">\(s \cup \{ e \}\)</span></td>
+</tr>
+<tr>
+<td><code>remove</code>(<em>s</em>, <em>e</em>)</td>
+<td>returns <span class="arithmatex">\(s \backslash \{ e \}\)</span></td>
+</tr>
+<tr>
+<td><code>subsets(s)</code></td>
+<td>returns the set of subsets of <em>s</em></td>
+</tr>
+<tr>
+<td><code>union(s)</code></td>
+<td>returns the union of the elements of <em>s</em></td>
+</tr>
+<tr>
+<td><code>cartesian(d)</code></td>
+<td><em>d</em> is a list of sets.  Returns the Cartesian product.</td>
+</tr>
+<tr>
+<td><code>combinations(s, k)</code></td>
+<td>returns set of all subsets of size <em>k</em></td>
+</tr>
+<tr>
+<td><code>reduce(f, t, z}&gt;)</code></td>
+<td>same as Python's <code>functools reduce()</code></td>
+</tr>
+</tbody>
+</table>
 <p>For Python programmers: note that <em>s</em> <span class="arithmatex">\(&lt;=\)</span> <em>t</em> does not check if <em>s</em> is
 a subset of <em>t</em> when <em>s</em> and <em>t</em> are sets, as "<span class="arithmatex">\(&lt;=\)</span>" implements a total
 order on all Harmony values including sets (and the subset relation is
@@ -1226,7 +1471,7 @@ not a total order).</p>
 <td>compare-and-swap on !<em>ptr</em></td>
 </tr>
 <tr>
-<td><code>BinSem</code>(<em>v</em>)</td>
+<td><code>BinSema</code>(<em>v</em>)</td>
 <td>return a binary semaphore initialized to <em>v</em></td>
 </tr>
 <tr>
@@ -1283,68 +1528,32 @@ not a total order).</p>
 </tr>
 </tbody>
 </table>
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../howitworks/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How Harmony Works" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              How Harmony Works
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../changelog/" class="md-footer__link md-footer__link--next" aria-label="Next: Changelog" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Changelog
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2023 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
@@ -1354,10 +1563,11 @@ not a total order).</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

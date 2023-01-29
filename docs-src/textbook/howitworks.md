@@ -71,9 +71,10 @@ explore.
 -   A thread can have local state (program counter, stack, method
     variables, and thread-local state variables). That state is called
     the *context* of the thread. The context of a thread cannot be
-    accessed by other threads, nor by **invariant** statements. So, the
-    model checker only interleaves threads at **Load**, **Store**, and
-    **Del** instructions where a thread interacts with global variables.
+    accessed by other threads, nor by **invariant** or **finally** 
+    statements. So, the model checker only interleaves threads at
+    **Load**, **Store**, and **Del** instructions where a thread
+    interacts with global variables.
 
 -   Threads are anonymous, and therefore two or more threads can have
     the same context. The state of the model checker therefore maintains

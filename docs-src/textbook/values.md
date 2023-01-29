@@ -11,7 +11,7 @@ Below is a complete list of Harmony value types with examples:
 | Boolean | "bool" | `False`, `True` |
 | Integer | "int"  |  ..., --2, --1, 0, 1, 2, \... |
 | String  | "str"  | `"`example`"`, .*example* |
-| Program Counter | "pc" | (method names and labels are program counter constants) |
+| Program Counter | "pc" | ((method names, lambdas, and labels) |
 | List    | "list" | [ 1, 2, 3, ], ( (1, 2), 3 ), [1,], () |
 | Dictionary | "dict" | { .*account*: 12345, .*valid*: `False` }, {:} |
 | Set     | "set"  | {}, { 1, 2, 3 }, { `False`, .*id*, 3 } |
@@ -48,11 +48,11 @@ apply:
 -   a set is first converted into an ordered list, then
     lexicographically ordered;
 
--   an address is a list of Harmony values. `None` is the empty list.
-    Addresses are lexicographically ordered accordingly;
+-   Except for `None`, an address is a pair of a function a list of arguments.
+    Addresses are lexicographically ordered accordingly. `None` is the smallest
+    address.
 
--   contexts () are ordered first by name, then by program counter, then
-    by the remaining content in an unspecified way.
+-   contexts are ordered deterministically in an unspecified way.
 
 Harmony supports the following comparison operators:
 
@@ -72,7 +72,7 @@ following syntax: `atomically e`, where `e` is some expression.
 ### Boolean 
 
 The boolean type has only two possible values: `False` and `True`.
-Unlike in Python, in Harmony booleans are distinct from integers, and in
+Unlike Python, in Harmony booleans are distinct from integers, and in
 particular $\mathbf{False} < 0$. In statements and expressions where
 booleans are expected, it is not possible to substitute values of other
 types.
@@ -93,9 +93,13 @@ Operations on booleans include:
 
 ### Integer 
 
-The integer type supports any whole number.
+The integer type supports any whole number. Harmony supports
+decimal integers, hexadecimal integers (start with `0x`),
+binary integers (start with `0b`), and octal integers (start
+with `0o`).
+
 In the C-based model checker, integers are currently implemented
-by two's complement 60-bit words.  The model checker checks for
+by two's complement 60-bit words. The model checker checks for
 overflow on various operations.
 
 Operations on integers include:
@@ -103,10 +107,10 @@ Operations on integers include:
 | Operation | Description |
 | ------ | ------- |
 | *-e* | negation |
-| **abs**(*e*) | absolute value |
+| **abs** *e* | absolute value |
 | *e* + *e* + ... | sum |
 | *e* - *e* | difference |
-| *e* * *e* * *e* ... | product |
+| *e* * *e* * ... | product |
 | *e* / e, *e* // *e* | integer division |
 | *e* % e, *e* **mod** *e* | integer division remainder |
 | *e* ** *e* | power |
@@ -142,7 +146,8 @@ Native operations on strings include the following:
 
 In Harmony you can create a set of any collection of Harmony values. Its
 syntax is `{ v_0, v_1, ... }`. Python users: note that in Harmony the
-empty set is denoted as $\{\}$.
+empty set is denoted as `{}`. (In Python, `{}` means the empty dictionary,
+which is represented as `{:}` in Harmony.)
 
 The `set` module contains various convenient routines that operate on
 sets. Native operations on sets include:
@@ -160,6 +165,10 @@ sets. Native operations on sets include:
 | **any** *s* |                  `True` if any value is `True` |
 | **all** *s* |                  `True` if all values are `True` |
 
+In Python, the $<$ operator on sets represents the subset relation. 
+However, in Harmony $<$ is a total order. If you want to check if `x`
+is a subset of `y`, either use the `subset` method in the `set` module 
+or write something like `(x | y) == y` (the union of `x` and `y` is `y`).
 
 Harmony also supports *set comprehension*. In its simplest form,
 `{ f(v) for v in s }` returns a set that is constructed by applying `f`
@@ -202,6 +211,12 @@ Lists and tuples support comprehension.
 In its most basic form: `[f(v) for v in t]`.
 For example, to check if any element in a list `t` is even, you
 can write: `any((x % 2) == 0 for x in t)`.
+
+The domain of a list $L$ of length $n$, interpreted as a function, are the
+integers $0..n-1$.  It is illegal to read $L[n]$.  However, unlike
+Python, it is possible to write into $L[n]$.  For example, if
+variable `x` contains `[1, 2]`, then the statement `x[2] = 3`
+results in `x` having the value `[1, 2, 3]`.
 
 ### Dictionary 
 
@@ -250,8 +265,9 @@ union are commutative and associative.
 ### Bag or Multiset 
 
 A bag is represented by a dictionary that maps each element to its
-multiplicity, for example: { 10:2, 12:1 }. The `bag` module contains
-various convenient routines that operate on lists or tuples. Native
+multiplicity. For example: `{ 10:2, 12:1 }` is the bag containing
+two copies of 10 and one copy of 12. The `bag` module contains
+various convenient routines that operate on bags. Native
 operations on bags include the following:
 
 | Operation | Description |
@@ -281,14 +297,92 @@ expression has to end on the keyword **end**. For example:
 
 ### Address 
 
-In Harmony, each shared variable has an address, which is essentially a
-list of Harmony values. For example, the address of variable
-*d*.*v*\[3\] consists of the list .*d*, .*v*, and 3. The only way to
-construct an address in Harmony is using the ? operator. ?*d*.*v*\[3\]
-returns the address of variable *d*.*v*\[3\]. An address can be
-dereferenced to return the value of the variable. If *a* is an address,
-then !*a* returns the value. Like C, Harmony supports the shorthand
-*a*->*v* for the expression (!*a*).*v*.
+A Harmony address is a *closure* consisting of a function
+and a list of arguments.  A function can be a constant or a variable
+and the arguments are all Harmony values. Given an address 
+`p = ?a[b][c]...`, you can use the notation `!p` to find its value.
+Harmony will first evaluate `a`, then apply the result to `b`, then
+apply the result to `c`, and so on.
+
+As a simple example, `?5` is the address of the constant 5, and
+therefore `!?5` evaluates to 5.
+
+Now consider the following program:
+
+```python
+let p = ?5:
+    assert !p == 5
+    !p = 5
+    !p = 4
+```
+
+The only line in this program that fails is the last one, as you are
+not allowed to store 4 at the address of 5.
+
+`a` can be a constant that maps Harmony values to Harmony values: 
+dictionaries, lists, and strings.  In that case, `?a[b]` refers to
+the value of entry `b` in `a`.
+
+The most common use of addresses is when `a` is a shared variable.
+In that case `!?a` evaluates to the current value of `a`.
+
+Finally, `a` can be a program counter value (method or lambda).
+`?a(b)` is then the closure of method `a` and argument `b`.
+In this case, `!?a(b)` evaluates `a(b)`.  For example, the
+following Harmony program, perhaps surprisingly, does not run into
+failing assertions:
+
+```python
+counter = 0
+
+def f():
+    counter += 1
+    result = counter
+
+let p = ?f():
+    if !p != 1: assert False
+    if !p != 2: assert False
+    if !p != 3: assert False
+```
+
+Internally, Harmony uses the address of a method variable
+and sometimes you see them on the stack during a computation.
+If `k` is a method variable, then its address is output as `?@k`.
+However, at the Harmony language level there is no such thing
+as the address of a local variable.
+Consider the following two programs:
+
+<table style="width: 100%;">
+<tr>
+<td>
+
+```python
+x = 1
+let p = ?x:
+    x = 2
+    assert !p == 2
+```
+
+</td>
+<td>
+
+```python
+var x = 1
+let p = ?x:
+    x = 2
+    assert !p == 1
+```
+
+</td>
+</tr>
+</table>
+
+In the program on the left, `x` is a shared variable, and `?x` is
+the location of variable `x`.  In the program on the right, `x`
+is a local variable.  `?x` evaluates `x` and then takes its address,
+so in this case `?x` equals `?1`.
+
+Like C, Harmony supports the shorthand `p->v` for the expression `(!p).v`.
 
 ### Context 
 
@@ -325,28 +419,30 @@ A thread can be for ever suspended using `stop None` or just `stop()`.
 ## Statements
 
 Harmony currently supports the following statements (below, `S` is a
-list of statements):
+list of statements and an *lvalue* is an expression you can use on
+the left-hand side of an assignment statement):
 
 | Statement | Description |
 | ------ | ------- |
 | *e* |                                                   *e* is an expression |
 | *lv* = \[*lv* =\]\... *e* |                             *lv* is an lvalue and *e* is an expression |
-| *lv* \[*op*\]= *e* |                                   *op* is one of `+`, `-`, `*`, `/`, `//`, `%`, `&`, `|`, `^`, **and**, **or** |
+| *lv* \[*op*\]= *e* |                                    *op* is one of `+`, `-`, `*`, `/`, `//`, `%`, `&`, `|`, `^`, **and**, **or** |
 | *l*: `S` |                                              *l* is a label |
 | **assert** *b* \[, *e*\] |                              *b* is a boolean. Optionally report value of expression *e* |
 | **await** *b* |                                         *b* is a boolean |
 | **const** *a* = *e* |                                   *a* is a bound variable, *e* is a constant expression |
-| **def** *m* *a*: `S` |                                  *m* is an identifier, *a* a bound variable |
+| **def** *m* *a* \[**returns** *v*\]: `S` |                    *m* is an identifier, *a* a bound variable, and *v* a variable |
 | **del** *lv* |                                          delete *lv* |
+| **finally** *e* |                                       *e* is a boolean expression that must hold in each final state |
 | **for** *a*\[:*b*\] **in** *e* \[**where** *c*\]: `S` | *a* and *b* are bound variables, *e* is a set, dictionary, or string |
 | **from** *m* **import** \... |                          *m* identifies a module |
 | **go** *c* *e* |                                        *c* is a context, *e* is an expression |
 | **if** *b*: `S` **else**: `S` |                         *b* is a boolean, `S` is a list of statements |
 | **import** *m*, \... |                                  *m* identifies a module |
-| **invariant** *e* |                                     *e* is an invariant |
+| **invariant** *e* |                                     *e* is an invariant (must always hold) |
 | **let** *a* = *e*: `S` |                                *a* is a bound variable, *e* is an expression |
 | **pass** |                                              do nothing |
-| **print** *e* |                                      *e* is an expression |
+| **print** *e* |                                         *e* is an expression |
 | **sequential** *v*, \... |                              *v* has sequential consistency |
 | **spawn** \[**eternal**\] *m* *e* \[, *t*\] |           *m* is a method, *e* is an expression, *t* is the thread-local state |
 | **trap** *m* *e* |                                      *m* is a method and *e* is an expression |
@@ -387,8 +483,11 @@ tuple with two values. It first evaluates the addresses of *a* and *b*
 and first assigns to the latter and then the former. If *c* is not a
 tuple with two values, then Harmony will report an error.
 
-Assigning to `_` evaluates the righthand side expression but is
-otherwise a no-op.
+Assigning to `_` (underscore) evaluates the righthand side expression
+but is otherwise a no-op.
+The left-hand side can also contain constants.
+For example `(3, x) = (3, True)` assigns `True` to `x`.
+However, `(3, x) = (4, True)` fails.
 
 The statement $x~+$$= 3$ loads *x*, adds 3, and then stores the results
 in *x*. In this case, it is equivalent to $x = x + 3$. However, in
@@ -450,16 +549,16 @@ also supports **const** `N`, `M` = 3, 4, which assigns 3 to `N` and 4 to
 
 ### **def** 
 
-The statement **def** *m* *a*: `S1`; `S2`: \... defines a new program
+The statement **def** *m* *a* \[**returns** *v*\]: `S1`; `S2`: \... defines a new program
 counter constant *m* referring to a method that takes an argument *a*
 and executes the statements `S1`, `S2`, \.... The argument *a* can be a
 tuple pattern similar to those used in **let** and **for** statements.
 Examples include (), (*x*,), (*x*, *y*), and (*x*, (*y*, *z*)). The
 given local variable names are assigned upon application and are
-read-only. Each method has a predefined local variable *result*,
-initialized to `None`, that is returned by the method. Harmony does not
-support a `return` statement that *breaks out* of the code before
-executing the last statement.
+read-only. Optionally, a result variable `r` can be declared.  If not declared,
+there is (for backwards compatibility), a default result variable
+called `result`, initialized to `None`. Harmony does not support a `return`
+statement that *breaks out* of the code before executing the last statement.
 
 ### **del** 
 
@@ -473,6 +572,16 @@ that are evaluated during model checking.
 Because Harmony lists are dictionaries, deleting from lists is different
 from Python: `del` can also be used to remove elements from a list.
 `x = [.a, .b, .c]; del x[1]` results in *x* having value `[.a, .c]`.
+
+### **finally**
+
+The statement `finally c` declares that boolean expression `c`
+must hold in each final state. `c` is only allowed to read 
+shared variables and is evaluated in each final state. If it
+evaluates to `False`, Harmony reports an error.  Harmony also
+reports an error if the expression evaluates to a value other
+than `False` or `True`.
+
 
 ### **for** \... **in** \... \[**where** \...\] 
 
@@ -575,6 +684,28 @@ an invariant. *c* is only allowed to read shared variables and is
 evaluated atomically after every state change. If it ever evaluates to
 `False` Harmony reports and error. Harmony also reports an error if the
 expression evaluates to a value other than `False` or `True`.
+
+The predicate has access to two immutable variables called
+`pre` and `post`.  `post` is a name for the current shared state,
+and thus `post.x == x` for any shared variable `x`.  `pre` is
+a name for the prior shared state in a state change.  For example,
+`invariant pre.p => post.p` (or equivalently `invariant pre.p = p`)
+states that `p` is a *stable predicate*: once true, it is always true.
+`invariant pre.x <= x` states that variable `x` grows monotonically.
+
+Harmony (like TLA+) requires that such invariants are "invariant under
+stuttering", which means that for any predicate $P$ and any reachable
+state $S$ the following must hold: (`pre` = $S$ = `post`) 
+$\Rightarrow P$.  Less formally, $P$ must hold in a state change that
+does not affect the variables that $P$ accesses.  For example, the
+following invariant would be problematic: `invariant pre.x < x`,
+which states that $x$ grows *strictly* monotonically no matter what
+state changes.  This is problematic because it would not hold in a
+state change that, say, changes $y$ but leaves $x$ untouched.
+
+Invariants can be useful to specify the type of a global variable.
+For example, you can write `invariant (type(x) == "int") and ((x % 2) == 0)`
+to state that `x` is an even integer variable.
 
 ### **let** 
 
@@ -689,7 +820,7 @@ expressions before the colon are re-evaluated repeated until all
 
 ### **when** **exists** \... **in** \... 
 
-The statement **when** **exists**} *x* **in** *y*: `S1`; `S2`; \...
+The statement **when** **exists** *x* **in** *y*: `S1`; `S2`; \...
 requires that *y* evaluates to a set value. The statement does the
 following three things:
 
@@ -788,6 +919,13 @@ lock = Lock()
 x = y = ?lock
 ```
 
+or, using the `alloc` module,
+
+```python
+from alloc import malloc
+x = y = malloc(Lock())
+```
+
 The second reason for Harmony not being object-oriented is that many
 concurrency solutions in the literature are expressed in C or some other
 low-level language that does not support object-orientation, but instead
@@ -798,18 +936,19 @@ use `malloc` and `free`.
 Each (non-reserved) identifier in a Harmony program refers to either a
 global constant, a global shared variable, a local bound variable, a
 local mutable variable, or a module. Constants are declared using
-**const** statements. Those constants are computed at compile-time.
+**const** statements. Those constants are evaluated at compile-time.
 
-Local variables all declared. Bound variables can be declared in **def**
-statements (i.e., arguments), **let** statements, **for** loops, and
-`when exists` statements. Mutable variables can be declared with the
-**var** statement. Also, each method has an implicitly declared *result*
-variable, which is initialized to `None`. Each thread has a mutable
-variable called **this** that contains the thread-local state. Local
-variables are tightly scoped and cannot be shared between threads. While
-in theory one method can be declared within another, they cannot share
+Mutable method variables can be declared using the `returns` clause of
+a `def` statement or using `var`. Bound variables, which are immutable,
+can be declared in **def** statements (i.e., arguments), **let** statements,
+**for** loops, and `when exists` statements. Mutable variables can be
+declared with the **var** statement. Also, each method has an implicitly
+declared *result* variable, which is initialized to `None`. Each thread
+has a mutable variable called **this** that contains the thread-local state.
+Method variables are tightly scoped and cannot be shared between threads.
+While in theory one method can be declared within another, they cannot share
 local variables either. All other variables are global and must be
-initialized before any threads are spawned.
+initialized before spawned threads are start executing.
 
 ## Operator Precedence
 
@@ -830,10 +969,11 @@ precedence. For example, $-2 + 3$ evaluates to 1, not $-5$.
 
 Associative operators ($+$, $*$, $|$, $\string&$, $\string^$, **and**,
 **or**) are interpreted as general $n$-ary operators, and you are
-allowed to write $a + b + c$. However, $a - b - c$ is illegal, as is any
-combination of operators with an arity larger than one, such as
-$a + b < c$. In such cases you have to add parentheses or brackets to
-indicate what the intended evaluation order is, such as $(a + b) < c$.
+allowed to write $a + b + c$. However, ambiguous expressions such as 
+$a - b - c$ are illegal, as is any combination of operators with an
+arity larger than one, such as $a + b < c$. In such cases you have to
+add parentheses or brackets to indicate what the intended evaluation
+order is, such as $(a + b) < c$.
 
 In almost all expressions, subexpressions are evaluated left to right.
 So, *a*\[*b*\] + *c* first evaluates *a*, then *b* (and then applies *b*
@@ -994,5 +1134,33 @@ Stack implemented using a linked list. </figcaption>
 
 ## Comments
 
-Harmony supports the same commenting conventions as Python. In addition,
+Harmony supports the same commenting conventions as Python. In particular,
+anything after a `#` character on a line is ignored. You can also enclose
+comments on separate lines within triple quotes. In addition,
 Harmony supports nested multi-line comments of the form `(* comment *)`.
+
+## Type Checking
+
+Harmony is dynamically typed. You can add type annotations to your
+program in the form of assertions and invariants. For example:
+
+```python
+invariant (type(x) == "int") and ((x % 2) == 0)
+x = choose { 0, 2, 4, 6 }
+
+def double(n) returns result:
+    assert type(n) == "int"
+    result = n * 2
+    assert type(result) == "int"
+
+def main():
+    x = double(x)
+
+spawn main()
+```
+
+The invariant in Line~1 states that `x` is an even integer.
+The assertion in Line~5 states that the argument to function
+`double` is an integer. The assertion in Line~7 states that
+the return value of the function is also an integer. Harmony
+checks these types as it evaluates the program.

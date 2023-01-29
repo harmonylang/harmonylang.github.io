@@ -34,8 +34,8 @@ The Harmony file name extensions are as follows:
     outputs (in JSON format).
 
 In addition, `harmony` can also generate `.tla` (TLA+), `.htm` (HTML),
-`.gv`: (Graphviz DOT version of `.hfa` output), and `.png`: (PNG version
-of `.hfa` output).
+`.gv`: (Graphviz DOT version of `.hfa` output), `.png`: (PNG version
+of `.hfa` output), and `.tex`: (LaTeX formatted source code),
 
 By default, running “`harmony x.hny`’ will generate `x.hvm`, `x.hco`,
 `x.hvb`, and `x.hvm` files. Harmony will also, by default, automatically
@@ -82,6 +82,9 @@ the corresponding `.hny` file in the following order:
 -   `-o` *filename.tla*: generate a TLA+ file specifying the behaviors
     of the Harmony virtual machine code;
 
+-    `-o` *filename.tex*: generate a LaTeX+ file containing the 
+    formatted source code.
+
 #### Other options:
 
 -   `-a`: compile only and list machine code (with labels);
@@ -101,3 +104,5 @@ the corresponding `.hny` file in the following order:
 -   `–noweb`: do not start a web browser upon completion;
 
 -   `-v`, `–version`: print the `harmony` version number.
+
+-   `-w` `#workers`: specify the number of concurrent threads the model checker uses.

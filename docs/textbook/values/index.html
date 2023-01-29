@@ -9,8 +9,13 @@
       
       
       
+        <link rel="prev" href="../commandline/">
+      
+      
+        <link rel="next" href="../hvm/">
+      
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.7">
     
     
       
@@ -18,34 +23,32 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#000000">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -56,10 +59,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,6 +78,7 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
@@ -86,7 +89,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -108,22 +111,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -134,7 +136,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -202,17 +204,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
@@ -264,17 +267,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Textbook
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
@@ -665,8 +669,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../actions/" class="md-nav__link">
+        28 Working with Actions 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../abd/" class="md-nav__link">
-        28 Replicated Atomic Read/Write Register 
+        29 Replicated Atomic Read/Write Register 
       </a>
     </li>
   
@@ -680,7 +698,7 @@
   
     <li class="md-nav__item">
       <a href="../consensus/" class="md-nav__link">
-        29 Distributed Consensus 
+        30 Distributed Consensus 
       </a>
     </li>
   
@@ -694,7 +712,7 @@
   
     <li class="md-nav__item">
       <a href="../paxos/" class="md-nav__link">
-        30 Paxos 
+        31 Paxos 
       </a>
     </li>
   
@@ -708,7 +726,7 @@
   
     <li class="md-nav__item">
       <a href="../ns/" class="md-nav__link">
-        31 Needham-Schroeder Authentication Protocol 
+        32 Needham-Schroeder Authentication Protocol 
       </a>
     </li>
   
@@ -734,17 +752,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
@@ -774,7 +793,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -790,7 +809,6 @@
       </a>
       
         
-
 
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
@@ -948,6 +966,13 @@
           <li class="md-nav__item">
   <a href="#del" class="md-nav__link">
     del
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finally" class="md-nav__link">
+    finally
   </a>
   
 </li>
@@ -1111,6 +1136,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#type-checking" class="md-nav__link">
+    Type Checking
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1142,6 +1174,20 @@
     <li class="md-nav__item">
       <a href="../howitworks/" class="md-nav__link">
         How Harmony Works
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grammar/" class="md-nav__link">
+        Simplified Grammar
       </a>
     </li>
   
@@ -1211,7 +1257,6 @@
                   <div class="md-sidebar__inner">
                     
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -1368,6 +1413,13 @@
           <li class="md-nav__item">
   <a href="#del" class="md-nav__link">
     del
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finally" class="md-nav__link">
+    finally
   </a>
   
 </li>
@@ -1531,6 +1583,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#type-checking" class="md-nav__link">
+    Type Checking
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1539,12 +1598,15 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="harmony-language-details">Harmony Language Details</h1>
+                  
+
+
+
+<h1 id="harmony-language-details">Harmony Language Details</h1>
 <h2 id="value-types-and-operators">Value Types and Operators</h2>
 <p><a href="../harmonymachine/">Chapter 4</a> provides an introduction to Harmony values
 Below is a complete list of Harmony value types with examples:</p>
@@ -1575,7 +1637,7 @@ Below is a complete list of Harmony value types with examples:</p>
 <tr>
 <td>Program Counter</td>
 <td>"pc"</td>
-<td>(method names and labels are program counter constants)</td>
+<td>((method names, lambdas, and labels)</td>
 </tr>
 <tr>
 <td>List</td>
@@ -1640,12 +1702,12 @@ apply:</p>
     lexicographically ordered;</p>
 </li>
 <li>
-<p>an address is a list of Harmony values. <code>None</code> is the empty list.
-    Addresses are lexicographically ordered accordingly;</p>
+<p>Except for <code>None</code>, an address is a pair of a function a list of arguments.
+    Addresses are lexicographically ordered accordingly. <code>None</code> is the smallest
+    address.</p>
 </li>
 <li>
-<p>contexts () are ordered first by name, then by program counter, then
-    by the remaining content in an unspecified way.</p>
+<p>contexts are ordered deterministically in an unspecified way.</p>
 </li>
 </ul>
 <p>Harmony supports the following comparison operators:</p>
@@ -1678,7 +1740,7 @@ former and twice in the latter expression.</p>
 following syntax: <code>atomically e</code>, where <code>e</code> is some expression.</p>
 <h3 id="boolean">Boolean</h3>
 <p>The boolean type has only two possible values: <code>False</code> and <code>True</code>.
-Unlike in Python, in Harmony booleans are distinct from integers, and in
+Unlike Python, in Harmony booleans are distinct from integers, and in
 particular <span class="arithmatex">\(\mathbf{False} &lt; 0\)</span>. In statements and expressions where
 booleans are expected, it is not possible to substitute values of other
 types.</p>
@@ -1718,9 +1780,12 @@ types.</p>
 </tbody>
 </table>
 <h3 id="integer">Integer</h3>
-<p>The integer type supports any whole number.
-In the C-based model checker, integers are currently implemented
-by two's complement 60-bit words.  The model checker checks for
+<p>The integer type supports any whole number. Harmony supports
+decimal integers, hexadecimal integers (start with <code>0x</code>),
+binary integers (start with <code>0b</code>), and octal integers (start
+with <code>0o</code>).</p>
+<p>In the C-based model checker, integers are currently implemented
+by two's complement 60-bit words. The model checker checks for
 overflow on various operations.</p>
 <p>Operations on integers include:</p>
 <table>
@@ -1736,7 +1801,7 @@ overflow on various operations.</p>
 <td>negation</td>
 </tr>
 <tr>
-<td><strong>abs</strong>(<em>e</em>)</td>
+<td><strong>abs</strong> <em>e</em></td>
 <td>absolute value</td>
 </tr>
 <tr>
@@ -1748,7 +1813,7 @@ overflow on various operations.</p>
 <td>difference</td>
 </tr>
 <tr>
-<td><em>e</em> * <em>e</em> * <em>e</em> ...</td>
+<td><em>e</em> * <em>e</em> * ...</td>
 <td>product</td>
 </tr>
 <tr>
@@ -1837,7 +1902,8 @@ the string <code>"</code>example<code>"</code>.</p>
 <h3 id="set">Set</h3>
 <p>In Harmony you can create a set of any collection of Harmony values. Its
 syntax is <code>{ v_0, v_1, ... }</code>. Python users: note that in Harmony the
-empty set is denoted as <span class="arithmatex">\(\{\}\)</span>.</p>
+empty set is denoted as <code>{}</code>. (In Python, <code>{}</code> means the empty dictionary,
+which is represented as <code>{:}</code> in Harmony.)</p>
 <p>The <code>set</code> module contains various convenient routines that operate on
 sets. Native operations on sets include:</p>
 <table>
@@ -1890,6 +1956,10 @@ sets. Native operations on sets include:</p>
 </tr>
 </tbody>
 </table>
+<p>In Python, the <span class="arithmatex">\(&lt;\)</span> operator on sets represents the subset relation. 
+However, in Harmony <span class="arithmatex">\(&lt;\)</span> is a total order. If you want to check if <code>x</code>
+is a subset of <code>y</code>, either use the <code>subset</code> method in the <code>set</code> module 
+or write something like <code>(x | y) == y</code> (the union of <code>x</code> and <code>y</code> is <code>y</code>).</p>
 <p>Harmony also supports <em>set comprehension</em>. In its simplest form,
 <code>{ f(v) for v in s }</code> returns a set that is constructed by applying <code>f</code>
 to all elements in <em>s</em> (where <em>s</em> is a set or a list). This is known as
@@ -1960,6 +2030,11 @@ Native operations on lists or tuples include the following:</p>
 In its most basic form: <code>[f(v) for v in t]</code>.
 For example, to check if any element in a list <code>t</code> is even, you
 can write: <code>any((x % 2) == 0 for x in t)</code>.</p>
+<p>The domain of a list <span class="arithmatex">\(L\)</span> of length <span class="arithmatex">\(n\)</span>, interpreted as a function, are the
+integers <span class="arithmatex">\(0..n-1\)</span>.  It is illegal to read <span class="arithmatex">\(L[n]\)</span>.  However, unlike
+Python, it is possible to write into <span class="arithmatex">\(L[n]\)</span>.  For example, if
+variable <code>x</code> contains <code>[1, 2]</code>, then the statement <code>x[2] = 3</code>
+results in <code>x</code> having the value <code>[1, 2, 3]</code>.</p>
 <h3 id="dictionary">Dictionary</h3>
 <p>A dictionary maps a set of values (known as <em>keys</em>) to another set of
 values. The generic syntax of a dictionary is
@@ -2035,8 +2110,9 @@ the maximum value. Unlike Python, Harmony dictionary intersection and
 union are commutative and associative.</p>
 <h3 id="bag-or-multiset">Bag or Multiset</h3>
 <p>A bag is represented by a dictionary that maps each element to its
-multiplicity, for example: { 10:2, 12:1 }. The <code>bag</code> module contains
-various convenient routines that operate on lists or tuples. Native
+multiplicity. For example: <code>{ 10:2, 12:1 }</code> is the bag containing
+two copies of 10 and one copy of 12. The <code>bag</code> module contains
+various convenient routines that operate on bags. Native
 operations on bags include the following:</p>
 <table>
 <thead>
@@ -2087,14 +2163,77 @@ are creating a constant of the program counter type.</p>
 expression has to end on the keyword <strong>end</strong>. For example:
 <strong>lambda</strong>(<em>x</em>,<em>y</em>): <em>x</em>+<em>y</em> <strong>end</strong>.</p>
 <h3 id="address">Address</h3>
-<p>In Harmony, each shared variable has an address, which is essentially a
-list of Harmony values. For example, the address of variable
-<em>d</em>.<em>v</em>[3] consists of the list .<em>d</em>, .<em>v</em>, and 3. The only way to
-construct an address in Harmony is using the ? operator. ?<em>d</em>.<em>v</em>[3]
-returns the address of variable <em>d</em>.<em>v</em>[3]. An address can be
-dereferenced to return the value of the variable. If <em>a</em> is an address,
-then !<em>a</em> returns the value. Like C, Harmony supports the shorthand
-<em>a</em>-&gt;<em>v</em> for the expression (!<em>a</em>).<em>v</em>.</p>
+<p>A Harmony address is a <em>closure</em> consisting of a function
+and a list of arguments.  A function can be a constant or a variable
+and the arguments are all Harmony values. Given an address 
+<code>p = ?a[b][c]...</code>, you can use the notation <code>!p</code> to find its value.
+Harmony will first evaluate <code>a</code>, then apply the result to <code>b</code>, then
+apply the result to <code>c</code>, and so on.</p>
+<p>As a simple example, <code>?5</code> is the address of the constant 5, and
+therefore <code>!?5</code> evaluates to 5.</p>
+<p>Now consider the following program:</p>
+<div class="highlight"><pre><span></span><code><span class="n">let</span> <span class="n">p</span> <span class="o">=</span> <span class="err">?</span><span class="mi">5</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="err">!</span><span class="n">p</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="err">!</span><span class="n">p</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre></div>
+<p>The only line in this program that fails is the last one, as you are
+not allowed to store 4 at the address of 5.</p>
+<p><code>a</code> can be a constant that maps Harmony values to Harmony values: 
+dictionaries, lists, and strings.  In that case, <code>?a[b]</code> refers to
+the value of entry <code>b</code> in <code>a</code>.</p>
+<p>The most common use of addresses is when <code>a</code> is a shared variable.
+In that case <code>!?a</code> evaluates to the current value of <code>a</code>.</p>
+<p>Finally, <code>a</code> can be a program counter value (method or lambda).
+<code>?a(b)</code> is then the closure of method <code>a</code> and argument <code>b</code>.
+In this case, <code>!?a(b)</code> evaluates <code>a(b)</code>.  For example, the
+following Harmony program, perhaps surprisingly, does not run into
+failing assertions:</p>
+<div class="highlight"><pre><span></span><code><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">counter</span>
+
+<span class="n">let</span> <span class="n">p</span> <span class="o">=</span> <span class="err">?</span><span class="n">f</span><span class="p">():</span>
+    <span class="k">if</span> <span class="err">!</span><span class="n">p</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span> <span class="k">assert</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="err">!</span><span class="n">p</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span> <span class="k">assert</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="err">!</span><span class="n">p</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span> <span class="k">assert</span> <span class="kc">False</span>
+</code></pre></div>
+<p>Internally, Harmony uses the address of a method variable
+and sometimes you see them on the stack during a computation.
+If <code>k</code> is a method variable, then its address is output as <code>?@k</code>.
+However, at the Harmony language level there is no such thing
+as the address of a local variable.
+Consider the following two programs:</p>
+<table style="width: 100%;">
+<tr>
+<td>
+
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">let</span> <span class="n">p</span> <span class="o">=</span> <span class="err">?</span><span class="n">x</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="err">!</span><span class="n">p</span> <span class="o">==</span> <span class="mi">2</span>
+</code></pre></div>
+
+</td>
+<td>
+
+<div class="highlight"><pre><span></span><code><span class="n">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">let</span> <span class="n">p</span> <span class="o">=</span> <span class="err">?</span><span class="n">x</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="err">!</span><span class="n">p</span> <span class="o">==</span> <span class="mi">1</span>
+</code></pre></div>
+
+</td>
+</tr>
+</table>
+
+<p>In the program on the left, <code>x</code> is a shared variable, and <code>?x</code> is
+the location of variable <code>x</code>.  In the program on the right, <code>x</code>
+is a local variable.  <code>?x</code> evaluates <code>x</code> and then takes its address,
+so in this case <code>?x</code> equals <code>?1</code>.</p>
+<p>Like C, Harmony supports the shorthand <code>p-&gt;v</code> for the expression <code>(!p).v</code>.</p>
 <h3 id="context">Context</h3>
 <p>A context value (aka continuation) captures the state of a thread.
 A context is itself composed over various Harmony values.</p>
@@ -2124,7 +2263,8 @@ terminates the thread.  The thread can later be reinstantiated with
 A thread can be for ever suspended using <code>stop None</code> or just <code>stop()</code>.</p>
 <h2 id="statements">Statements</h2>
 <p>Harmony currently supports the following statements (below, <code>S</code> is a
-list of statements):</p>
+list of statements and an <em>lvalue</em> is an expression you can use on
+the left-hand side of an assignment statement):</p>
 <table>
 <thead>
 <tr>
@@ -2162,12 +2302,16 @@ list of statements):</p>
 <td><em>a</em> is a bound variable, <em>e</em> is a constant expression</td>
 </tr>
 <tr>
-<td><strong>def</strong> <em>m</em> <em>a</em>: <code>S</code></td>
-<td><em>m</em> is an identifier, <em>a</em> a bound variable</td>
+<td><strong>def</strong> <em>m</em> <em>a</em> [<strong>returns</strong> <em>v</em>]: <code>S</code></td>
+<td><em>m</em> is an identifier, <em>a</em> a bound variable, and <em>v</em> a variable</td>
 </tr>
 <tr>
 <td><strong>del</strong> <em>lv</em></td>
 <td>delete <em>lv</em></td>
+</tr>
+<tr>
+<td><strong>finally</strong> <em>e</em></td>
+<td><em>e</em> is a boolean expression that must hold in each final state</td>
 </tr>
 <tr>
 <td><strong>for</strong> <em>a</em>[:<em>b</em>] <strong>in</strong> <em>e</em> [<strong>where</strong> <em>c</em>]: <code>S</code></td>
@@ -2191,7 +2335,7 @@ list of statements):</p>
 </tr>
 <tr>
 <td><strong>invariant</strong> <em>e</em></td>
-<td><em>e</em> is an invariant</td>
+<td><em>e</em> is an invariant (must always hold)</td>
 </tr>
 <tr>
 <td><strong>let</strong> <em>a</em> = <em>e</em>: <code>S</code></td>
@@ -2269,8 +2413,11 @@ computed address). The statement <em>a</em>,<em>b</em> = <em>c</em> assumes that
 tuple with two values. It first evaluates the addresses of <em>a</em> and <em>b</em>
 and first assigns to the latter and then the former. If <em>c</em> is not a
 tuple with two values, then Harmony will report an error.</p>
-<p>Assigning to <code>_</code> evaluates the righthand side expression but is
-otherwise a no-op.</p>
+<p>Assigning to <code>_</code> (underscore) evaluates the righthand side expression
+but is otherwise a no-op.
+The left-hand side can also contain constants.
+For example <code>(3, x) = (3, True)</code> assigns <code>True</code> to <code>x</code>.
+However, <code>(3, x) = (4, True)</code> fails.</p>
 <p>The statement <span class="arithmatex">\(x~+\)</span><span class="arithmatex">\(= 3\)</span> loads <em>x</em>, adds 3, and then stores the results
 in <em>x</em>. In this case, it is equivalent to <span class="arithmatex">\(x = x + 3\)</span>. However, in
 general this is not so. For example, <em>x</em>[<code>f</code>()] += 3 only evaluates
@@ -2318,16 +2465,16 @@ also supports <strong>const</strong> <code>N</code>, <code>M</code> = 3, 4, whic
 <code>M</code>. Harmony has limited support for <em>constant folding</em>. For example,
 <strong>const</strong> <code>N</code> = 3 + 4 assigns value 7 to constant <code>N</code>.</p>
 <h3 id="def"><strong>def</strong></h3>
-<p>The statement <strong>def</strong> <em>m</em> <em>a</em>: <code>S1</code>; <code>S2</code>: ... defines a new program
+<p>The statement <strong>def</strong> <em>m</em> <em>a</em> [<strong>returns</strong> <em>v</em>]: <code>S1</code>; <code>S2</code>: ... defines a new program
 counter constant <em>m</em> referring to a method that takes an argument <em>a</em>
 and executes the statements <code>S1</code>, <code>S2</code>, .... The argument <em>a</em> can be a
 tuple pattern similar to those used in <strong>let</strong> and <strong>for</strong> statements.
 Examples include (), (<em>x</em>,), (<em>x</em>, <em>y</em>), and (<em>x</em>, (<em>y</em>, <em>z</em>)). The
 given local variable names are assigned upon application and are
-read-only. Each method has a predefined local variable <em>result</em>,
-initialized to <code>None</code>, that is returned by the method. Harmony does not
-support a <code>return</code> statement that <em>breaks out</em> of the code before
-executing the last statement.</p>
+read-only. Optionally, a result variable <code>r</code> can be declared.  If not declared,
+there is (for backwards compatibility), a default result variable
+called <code>result</code>, initialized to <code>None</code>. Harmony does not support a <code>return</code>
+statement that <em>breaks out</em> of the code before executing the last statement.</p>
 <h3 id="del"><strong>del</strong></h3>
 <p>The statement <strong>del</strong> <em>x</em> removes variable <em>x</em> from the state. <em>x</em> can
 be either a local or a shared variable. For example, the statement
@@ -2338,6 +2485,13 @@ that are evaluated during model checking.</p>
 <p>Because Harmony lists are dictionaries, deleting from lists is different
 from Python: <code>del</code> can also be used to remove elements from a list.
 <code>x = [.a, .b, .c]; del x[1]</code> results in <em>x</em> having value <code>[.a, .c]</code>.</p>
+<h3 id="finally"><strong>finally</strong></h3>
+<p>The statement <code>finally c</code> declares that boolean expression <code>c</code>
+must hold in each final state. <code>c</code> is only allowed to read 
+shared variables and is evaluated in each final state. If it
+evaluates to <code>False</code>, Harmony reports an error.  Harmony also
+reports an error if the expression evaluates to a value other
+than <code>False</code> or <code>True</code>.</p>
 <h3 id="for-in-where"><strong>for</strong> ... <strong>in</strong> ... [<strong>where</strong> ...]</h3>
 <p>The statement <strong>for</strong> <em>x</em> <strong>in</strong> <em>y</em>: <code>S1</code>; <code>S2</code>; ... iterates over <em>y</em>
 and executes for each element the statements <code>S1</code>, <code>S2</code>, .... <em>y</em> must
@@ -2422,6 +2576,25 @@ an invariant. <em>c</em> is only allowed to read shared variables and is
 evaluated atomically after every state change. If it ever evaluates to
 <code>False</code> Harmony reports and error. Harmony also reports an error if the
 expression evaluates to a value other than <code>False</code> or <code>True</code>.</p>
+<p>The predicate has access to two immutable variables called
+<code>pre</code> and <code>post</code>.  <code>post</code> is a name for the current shared state,
+and thus <code>post.x == x</code> for any shared variable <code>x</code>.  <code>pre</code> is
+a name for the prior shared state in a state change.  For example,
+<code>invariant pre.p =&gt; post.p</code> (or equivalently <code>invariant pre.p = p</code>)
+states that <code>p</code> is a <em>stable predicate</em>: once true, it is always true.
+<code>invariant pre.x &lt;= x</code> states that variable <code>x</code> grows monotonically.</p>
+<p>Harmony (like TLA+) requires that such invariants are "invariant under
+stuttering", which means that for any predicate <span class="arithmatex">\(P\)</span> and any reachable
+state <span class="arithmatex">\(S\)</span> the following must hold: (<code>pre</code> = <span class="arithmatex">\(S\)</span> = <code>post</code>) 
+<span class="arithmatex">\(\Rightarrow P\)</span>.  Less formally, <span class="arithmatex">\(P\)</span> must hold in a state change that
+does not affect the variables that <span class="arithmatex">\(P\)</span> accesses.  For example, the
+following invariant would be problematic: <code>invariant pre.x &lt; x</code>,
+which states that <span class="arithmatex">\(x\)</span> grows <em>strictly</em> monotonically no matter what
+state changes.  This is problematic because it would not hold in a
+state change that, say, changes <span class="arithmatex">\(y\)</span> but leaves <span class="arithmatex">\(x\)</span> untouched.</p>
+<p>Invariants can be useful to specify the type of a global variable.
+For example, you can write <code>invariant (type(x) == "int") and ((x % 2) == 0)</code>
+to state that <code>x</code> is an even integer variable.</p>
 <h3 id="let"><strong>let</strong></h3>
 <p>You can introduce new bound variables in a method using the <strong>let</strong>
 statement. The statement <strong>let</strong> <em>a</em> = <em>b</em>: <code>S1</code>; <code>S2</code>, ... evaluates
@@ -2504,7 +2677,7 @@ keyword. If <em>waiting</em> is an unused local variable, then <strong>atomicall
 expressions before the colon are re-evaluated repeated until all
 <strong>when</strong> conditions are satisfied.</p>
 <h3 id="when-exists-in"><strong>when</strong> <strong>exists</strong> ... <strong>in</strong> ...</h3>
-<p>The statement <strong>when</strong> <strong>exists</strong>} <em>x</em> <strong>in</strong> <em>y</em>: <code>S1</code>; <code>S2</code>; ...
+<p>The statement <strong>when</strong> <strong>exists</strong> <em>x</em> <strong>in</strong> <em>y</em>: <code>S1</code>; <code>S2</code>; ...
 requires that <em>y</em> evaluates to a set value. The statement does the
 following three things:</p>
 <ul>
@@ -2580,6 +2753,10 @@ write:</p>
 <div class="highlight"><pre><span></span><code><span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="err">?</span><span class="n">lock</span>
 </code></pre></div>
+<p>or, using the <code>alloc</code> module,</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">Lock</span><span class="p">())</span>
+</code></pre></div>
 <p>The second reason for Harmony not being object-oriented is that many
 concurrency solutions in the literature are expressed in C or some other
 low-level language that does not support object-orientation, but instead
@@ -2588,17 +2765,18 @@ use <code>malloc</code> and <code>free</code>.</p>
 <p>Each (non-reserved) identifier in a Harmony program refers to either a
 global constant, a global shared variable, a local bound variable, a
 local mutable variable, or a module. Constants are declared using
-<strong>const</strong> statements. Those constants are computed at compile-time.</p>
-<p>Local variables all declared. Bound variables can be declared in <strong>def</strong>
-statements (i.e., arguments), <strong>let</strong> statements, <strong>for</strong> loops, and
-<code>when exists</code> statements. Mutable variables can be declared with the
-<strong>var</strong> statement. Also, each method has an implicitly declared <em>result</em>
-variable, which is initialized to <code>None</code>. Each thread has a mutable
-variable called <strong>this</strong> that contains the thread-local state. Local
-variables are tightly scoped and cannot be shared between threads. While
-in theory one method can be declared within another, they cannot share
+<strong>const</strong> statements. Those constants are evaluated at compile-time.</p>
+<p>Mutable method variables can be declared using the <code>returns</code> clause of
+a <code>def</code> statement or using <code>var</code>. Bound variables, which are immutable,
+can be declared in <strong>def</strong> statements (i.e., arguments), <strong>let</strong> statements,
+<strong>for</strong> loops, and <code>when exists</code> statements. Mutable variables can be
+declared with the <strong>var</strong> statement. Also, each method has an implicitly
+declared <em>result</em> variable, which is initialized to <code>None</code>. Each thread
+has a mutable variable called <strong>this</strong> that contains the thread-local state.
+Method variables are tightly scoped and cannot be shared between threads.
+While in theory one method can be declared within another, they cannot share
 local variables either. All other variables are global and must be
-initialized before any threads are spawned.</p>
+initialized before spawned threads are start executing.</p>
 <h2 id="operator-precedence">Operator Precedence</h2>
 <p>In Harmony, there is no syntactic difference between applying an
 argument to a function or an index to a dictionary. Both use the syntax
@@ -2615,10 +2793,11 @@ next highest precedence, and the remaining operators have the lowest
 precedence. For example, <span class="arithmatex">\(-2 + 3\)</span> evaluates to 1, not <span class="arithmatex">\(-5\)</span>.</p>
 <p>Associative operators (<span class="arithmatex">\(+\)</span>, <span class="arithmatex">\(*\)</span>, <span class="arithmatex">\(|\)</span>, <span class="arithmatex">\(\string&amp;\)</span>, <span class="arithmatex">\(\string^\)</span>, <strong>and</strong>,
 <strong>or</strong>) are interpreted as general <span class="arithmatex">\(n\)</span>-ary operators, and you are
-allowed to write <span class="arithmatex">\(a + b + c\)</span>. However, <span class="arithmatex">\(a - b - c\)</span> is illegal, as is any
-combination of operators with an arity larger than one, such as
-<span class="arithmatex">\(a + b &lt; c\)</span>. In such cases you have to add parentheses or brackets to
-indicate what the intended evaluation order is, such as <span class="arithmatex">\((a + b) &lt; c\)</span>.</p>
+allowed to write <span class="arithmatex">\(a + b + c\)</span>. However, ambiguous expressions such as 
+<span class="arithmatex">\(a - b - c\)</span> are illegal, as is any combination of operators with an
+arity larger than one, such as <span class="arithmatex">\(a + b &lt; c\)</span>. In such cases you have to
+add parentheses or brackets to indicate what the intended evaluation
+order is, such as <span class="arithmatex">\((a + b) &lt; c\)</span>.</p>
 <p>In almost all expressions, subexpressions are evaluated left to right.
 So, <em>a</em>[<em>b</em>] + <em>c</em> first evaluates <em>a</em>, then <em>b</em> (and then applies <em>b</em>
 to <em>a</em>), and then <em>c</em>. The one exception is the expression <em>a</em> <strong>if</strong>
@@ -2745,15 +2924,15 @@ be explicitly released using <code>free</code>.</p>
 <figcaption>Figure A.2 (<a href=https://harmony.cs.cornell.edu/code/stacktest.hny>code/stacktest.hny</a>): 
 Testing a stack implementation. </figcaption>
 
-<div class="highlight"><span class="filename">stack1.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight"><span class="filename">stack1.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">()</span> <span class="n">returns</span> <span class="n">stack</span><span class="p">:</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
 
-<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="n">returns</span> <span class="nb">next</span><span class="p">:</span>
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
         <span class="k">del</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div>
 <figcaption>Figure A.3 (<a href=https://harmony.cs.cornell.edu/code/stack1.hny>code/stack1.hny</a>): 
@@ -2762,29 +2941,29 @@ Stack implemented using a dynamically updated list.
 
 <div class="highlight"><span class="filename">stack2.hny</span><pre><span></span><code><span class="kn">import</span> <span class="nn">list</span>
 
-<span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">def</span> <span class="nf">Stack</span><span class="p">()</span> <span class="n">returns</span> <span class="n">stack</span><span class="p">:</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="err">!</span><span class="n">st</span> <span class="o">+=</span> <span class="p">[</span><span class="n">v</span><span class="p">,]</span>
 
-<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="n">returns</span> <span class="nb">next</span><span class="p">:</span>
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span>
         <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">subseq</span><span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure A.4 (<a href=https://harmony.cs.cornell.edu/code/stack2.hny>code/stack2.hny</a>): 
 Stack implemented using static lists. </figcaption>
 
-<div class="highlight"><span class="filename">stack3.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">()</span>
+<div class="highlight"><span class="filename">stack3.hny</span><pre><span></span><code><span class="k">def</span> <span class="nf">Stack</span><span class="p">()</span> <span class="n">returns</span> <span class="n">stack</span><span class="p">:</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="p">(</span><span class="err">!</span><span class="n">st</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="err">!</span><span class="n">st</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="n">returns</span> <span class="nb">next</span><span class="p">:</span>
     <span class="n">let</span> <span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span> <span class="o">=</span> <span class="err">!</span><span class="n">st</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">top</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="n">top</span>
         <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">rest</span>
 </code></pre></div>
 <figcaption>Figure A.5 (<a href=https://harmony.cs.cornell.edu/code/stack3.hny>code/stack3.hny</a>): 
@@ -2793,15 +2972,15 @@ Stack implemented using a recursive tuple data structure.
 
 <div class="highlight"><span class="filename">stack4.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">alloc</span> <span class="kn">import</span> <span class="n">malloc</span><span class="p">,</span> <span class="n">free</span>
 
-<span class="k">def</span> <span class="nf">Stack</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">def</span> <span class="nf">Stack</span><span class="p">()</span> <span class="n">returns</span> <span class="n">stack</span><span class="p">:</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">({</span> <span class="o">.</span><span class="n">value</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="o">.</span><span class="n">rest</span><span class="p">:</span> <span class="err">!</span><span class="n">st</span> <span class="p">})</span>
 
-<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="n">returns</span> <span class="nb">next</span><span class="p">:</span>
     <span class="n">let</span> <span class="n">node</span> <span class="o">=</span> <span class="err">!</span><span class="n">st</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
+        <span class="nb">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span>
         <span class="err">!</span><span class="n">st</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rest</span>
         <span class="n">free</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
 </code></pre></div>
@@ -2809,70 +2988,57 @@ Stack implemented using a recursive tuple data structure.
 Stack implemented using a linked list. </figcaption>
 
 <h2 id="comments">Comments</h2>
-<p>Harmony supports the same commenting conventions as Python. In addition,
+<p>Harmony supports the same commenting conventions as Python. In particular,
+anything after a <code>#</code> character on a line is ignored. You can also enclose
+comments on separate lines within triple quotes. In addition,
 Harmony supports nested multi-line comments of the form <code>(* comment *)</code>.</p>
-                
-              
-              
-                
+<h2 id="type-checking">Type Checking</h2>
+<p>Harmony is dynamically typed. You can add type annotations to your
+program in the form of assertions and invariants. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">invariant</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">choose</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span> <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">returns</span> <span class="n">result</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;int&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;int&quot;</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">spawn</span> <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+<p>The invariant in Line~1 states that <code>x</code> is an even integer.
+The assertion in Line~5 states that the argument to function
+<code>double</code> is an integer. The assertion in Line~7 states that
+the return value of the function is also an integer. Harmony
+checks these types as it evaluates the program.</p>
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../commandline/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Using the Command Line" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Using the Command Line
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../hvm/" class="md-footer__link md-footer__link--next" aria-label="Next: The Harmony Virtual Machine " rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              The Harmony Virtual Machine 
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2023 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
@@ -2882,10 +3048,11 @@ Harmony supports nested multi-line comments of the form <code>(* comment *)</cod
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

@@ -204,16 +204,19 @@ The book proceeds as follows:
 -   [Chapter 27](chain.md) describes *state machine replication* and the *chain
     replication* protocol to support replication.
 
--   [Chapter 28](abd.md) presents a protocol for a fault-tolerant replicated
+-   [Chapter 28](actions.md) describes an alternative way to write concurrent and distributed 
+    specifications in Harmony, using chain replication as an example.
+
+-   [Chapter 29](abd.md) presents a protocol for a fault-tolerant replicated
     object that supports only read and write operations.
 
--   [Chapter 29](consensus.md) demonstrates a fault-tolerant distributed consensus
+-   [Chapter 30](consensus.md) demonstrates a fault-tolerant distributed consensus
     algorithm (aka protocol) expressed in Harmony.
 
--   [Chapter 30](paxos.md) shows how one can specify and check the well-known
+-   [Chapter 31](paxos.md) shows how one can specify and check the well-known
     Paxos consensus protocol.
 
--   [Chapter 31](ns.md) demonstrates using Harmony to find a (known) bug in the
+-   [Chapter 32](ns.md) demonstrates using Harmony to find a (known) bug in the
     original Needham-Schroeder authentication protocol.
 
 If you already know about concurrent and distributed programming and are

@@ -89,22 +89,22 @@ Each of the `read_acquire`, `read_release`, `write_acquire`, and
 acquire the *mutex* (i.e., enter the main gate). After acquiring the
 *mutex*, `read_acquire` and `write_acquire` each must check to see if
 the thread has to wait. If so, it increments the count associated with
-its respective gate, opens a gate (using method `release_one`), and then
+its respective gate, opens a gate (using method `_release_one`), and then
 blocks until its waiting gate opens up.
 
-`release_one`() is the function that a thread uses when leaving the
+`_release_one`() is the function that a thread uses when leaving the
 critical section. It must check to see if there is a waiting gate that
 has threads waiting behind it and whose condition is met. If so, it
-selects one and opens that gate. In the given code, `release_one`()
+selects one and opens that gate. In the given code, `_release_one`()
 first checks the readers' gate and then the writers' gate, but the other
 way around works as well. If neither waiting gate qualifies, then
-`release_one`() has to open the main gate (i.e., release *mutex*).
+`_release_one`() has to open the main gate (i.e., release *mutex*).
 
 Let us examine `read_acquire` more carefully. First, the method acquires
 *mutex*. Then, in the case that the thread finds that there is a writer
 in the critical section ($\mathit{nwriters > 0}$), it increments the
 counter associated with the readers' gate, leaves the critical section
-(`release_one`), and then tries to acquire the binary semaphore
+(`_release_one`), and then tries to acquire the binary semaphore
 associated with the waiting gate. This causes the thread to block until
 some other thread opens that gate.
 
@@ -115,7 +115,7 @@ writer calls `write_release`:
 1.  After acquiring *mutex*, the writer decrements *nwriters*, which
     must be 1 at this time, and thus becomes 0.
 
-2.  It then calls `release_one`(). `release_one`() finds that there are
+2.  It then calls `_release_one`(). `_release_one`() finds that there are
     no writers in the critical section and there are two readers
     waiting. It therefore releases not *mutex* but the readers' gate's
     binary semaphore.
@@ -123,24 +123,24 @@ writer calls `write_release`:
 3.  One of the waiting readers can now re-enter the critical section.
     When it does, the reader decrements the gate's counter (from 2 to 1)
     and increments *nreaders* (from 0 to 1). The reader finally calls
-    `release_one`().
+    `_release_one`().
 
-4.  Again, `release_one`() finds that there are no writers and that
+4.  Again, `_release_one`() finds that there are no writers and that
     there are readers waiting, so again it releases the readers'
     semaphore.
 
 5.  The second reader can now enter the critical section. It decrements
     the gate's count from 1 to 0 and increments *nreaders* from 1 to 2.
 
-6.  Finally, the second reader calls `release_one`(). This time
-    `release_one`() does not find any threads waiting, and so it
+6.  Finally, the second reader calls `_release_one`(). This time
+    `_release_one`() does not find any threads waiting, and so it
     releases *mutex*. There are now two reader threads that are holding
     the reader/writer lock.
 
 ## Exercises 
 
 
-**16.1** Several of the calls to `release_one`() in Figure 16.1 can be
+**16.1** Several of the calls to `_release_one`() in Figure 16.1 can be
 replaced by simply releasing *mutex*. Which ones?
 
 **16.2** Optimize your solutions to Exercise 11.1 to use reader/writer locks.

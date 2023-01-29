@@ -95,7 +95,7 @@ would be incorrect to replace these by:
 assert queue.get(q) in { None, 1, 2 }
 ```
 The reason is that `queue.get()` changes the state by acquiring a lock,
-but the expressions in **assert** statements (or **invariant**
+but the expressions in **assert** statements (or **invariant** and **finally**
 statements) are not allowed to change the state.
 
 Figure 11.4 shows another concurrent queue implementation.

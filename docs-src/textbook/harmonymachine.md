@@ -276,13 +276,17 @@ listing explicitly the program counters of the executed instructions,
 the HTML file contains a list of blocks for each executed instruction.
 We call this the *timeline*. You can click on such a block to see the
 state of the Harmony virtual machine just after executing the
-corresponding instruction. The table also lists the program counter of the
-thread at each turn, the values of the shared variables, and any values
-the thread may have printed (none in this case). Underneath the table it
-shows the line of Harmony source code that is being executed in blue
-(with the specific part of the line that is being evaluated in green),
-and the HVM instruction that is about to be executed in green (along with
-an explanation in parentheses).
+corresponding instruction. If a thread has finished its turn, there
+is also information on the status of that thread. For example, at the
+end of turn~2, `incrementer[0]` is about to store the value 1 in
+variable `count`, but at that point is preempted by `incrementer[1]`.
+The table also lists the program counter of the thread at each turn, 
+the values of the shared variables, and any values the thread may have
+printed (none in this case). Underneath the table it shows the line of
+Harmony source code that is being executed in blue (with the specific
+part of the line that is being evaluated in green), and the HVM
+instruction that is about to be executed in green (along with an
+explanation in parentheses).
 
 The bottom left shows the bytecode of the program being executed. It has
 alternating grey and white sections. Each section corresponds to a line

@@ -9,8 +9,13 @@
       
       
       
+        <link rel="prev" href="../condwait/">
+      
+      
+        <link rel="next" href="../starvation/">
+      
       <link rel="icon" href="../../img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.7">
     
     
       
@@ -18,34 +23,32 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#000000">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
+      
+
     
     
     
       
+        
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../../stylesheets/styles.css">
     
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
-
+    
     
     
   </head>
@@ -56,10 +59,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,6 +78,7 @@
       
     </div>
     
+    
       
 
 <header class="md-header" data-md-component="header">
@@ -86,7 +89,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -108,22 +111,21 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -134,7 +136,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -202,17 +204,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
@@ -266,17 +269,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
-      
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Textbook
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Textbook" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Textbook
@@ -502,7 +506,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -518,7 +522,6 @@
       </a>
       
         
-
 
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
@@ -709,8 +712,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../actions/" class="md-nav__link">
+        28 Working with Actions 
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../abd/" class="md-nav__link">
-        28 Replicated Atomic Read/Write Register 
+        29 Replicated Atomic Read/Write Register 
       </a>
     </li>
   
@@ -724,7 +741,7 @@
   
     <li class="md-nav__item">
       <a href="../consensus/" class="md-nav__link">
-        29 Distributed Consensus 
+        30 Distributed Consensus 
       </a>
     </li>
   
@@ -738,7 +755,7 @@
   
     <li class="md-nav__item">
       <a href="../paxos/" class="md-nav__link">
-        30 Paxos 
+        31 Paxos 
       </a>
     </li>
   
@@ -752,7 +769,7 @@
   
     <li class="md-nav__item">
       <a href="../ns/" class="md-nav__link">
-        31 Needham-Schroeder Authentication Protocol 
+        32 Needham-Schroeder Authentication Protocol 
       </a>
     </li>
   
@@ -776,17 +793,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
-      
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Reference
@@ -843,6 +861,20 @@
     <li class="md-nav__item">
       <a href="../howitworks/" class="md-nav__link">
         How Harmony Works
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grammar/" class="md-nav__link">
+        Simplified Grammar
       </a>
     </li>
   
@@ -912,7 +944,6 @@
                   <div class="md-sidebar__inner">
                     
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -941,12 +972,15 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="split-binary-semaphores">Split Binary Semaphores</h1>
+                  
+
+
+
+<h1 id="split-binary-semaphores">Split Binary Semaphores</h1>
 <p>The Split Binary Semaphore (SBS) approach is a general technique for
 implementing conditional waiting. It was originally proposed by Tony
 Hoare and popularized by Edsger Dijkstra. A <em>binary semaphore</em>
@@ -1004,14 +1038,14 @@ waiting behind the gate and a binary semaphore initialized in the
 acquired state (signifying that the gate is closed).</p>
 <div class="highlight"><span class="filename">RWsbs.hny</span><pre><span></span><code><span class="kn">from</span> <span class="nn">synch</span> <span class="kn">import</span> <span class="n">BinSema</span><span class="p">,</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">release</span>
 
-<span class="k">def</span> <span class="nf">RWlock</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+<span class="k">def</span> <span class="nf">RWlock</span><span class="p">()</span> <span class="n">returns</span> <span class="n">lock</span><span class="p">:</span>
+    <span class="n">lock</span> <span class="o">=</span> <span class="p">{</span>
             <span class="o">.</span><span class="n">nreaders</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">nwriters</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="n">mutex</span><span class="p">:</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
             <span class="o">.</span><span class="n">r_gate</span><span class="p">:</span> <span class="p">{</span> <span class="o">.</span><span class="n">sema</span><span class="p">:</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="o">.</span><span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
             <span class="o">.</span><span class="n">w_gate</span><span class="p">:</span> <span class="p">{</span> <span class="o">.</span><span class="n">sema</span><span class="p">:</span> <span class="n">BinSema</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="o">.</span><span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
         <span class="p">}</span>
 
-<span class="k">def</span> <span class="nf">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
         <span class="n">release</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">)</span>
     <span class="k">elif</span> <span class="p">((</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
@@ -1022,24 +1056,24 @@ acquired state (signifying that the gate is closed).</p>
 <span class="k">def</span> <span class="nf">read_acquire</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
     <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+        <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
         <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">r_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+    <span class="n">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">read_release</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">write_acquire</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
     <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">nreaders</span> <span class="o">+</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+        <span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
         <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">sema</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">w_gate</span><span class="o">.</span><span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="n">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+    <span class="n">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">write_release</span><span class="p">(</span><span class="n">rw</span><span class="p">):</span>
-    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+    <span class="n">acquire</span><span class="p">(</span><span class="err">?</span><span class="n">rw</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">);</span> <span class="n">rw</span><span class="o">-&gt;</span><span class="n">nwriters</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">_release_one</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
 </code></pre></div>
 <figcaption>Figure 16.1 (<a href=https://harmony.cs.cornell.edu/code/RWsbs.hny>code/RWsbs.hny</a>): 
 Reader/Writer Lock using Split Binary Semaphores
@@ -1077,20 +1111,20 @@ following:</p>
 acquire the <em>mutex</em> (i.e., enter the main gate). After acquiring the
 <em>mutex</em>, <code>read_acquire</code> and <code>write_acquire</code> each must check to see if
 the thread has to wait. If so, it increments the count associated with
-its respective gate, opens a gate (using method <code>release_one</code>), and then
+its respective gate, opens a gate (using method <code>_release_one</code>), and then
 blocks until its waiting gate opens up.</p>
-<p><code>release_one</code>() is the function that a thread uses when leaving the
+<p><code>_release_one</code>() is the function that a thread uses when leaving the
 critical section. It must check to see if there is a waiting gate that
 has threads waiting behind it and whose condition is met. If so, it
-selects one and opens that gate. In the given code, <code>release_one</code>()
+selects one and opens that gate. In the given code, <code>_release_one</code>()
 first checks the readers' gate and then the writers' gate, but the other
 way around works as well. If neither waiting gate qualifies, then
-<code>release_one</code>() has to open the main gate (i.e., release <em>mutex</em>).</p>
+<code>_release_one</code>() has to open the main gate (i.e., release <em>mutex</em>).</p>
 <p>Let us examine <code>read_acquire</code> more carefully. First, the method acquires
 <em>mutex</em>. Then, in the case that the thread finds that there is a writer
 in the critical section (<span class="arithmatex">\(\mathit{nwriters &gt; 0}\)</span>), it increments the
 counter associated with the readers' gate, leaves the critical section
-(<code>release_one</code>), and then tries to acquire the binary semaphore
+(<code>_release_one</code>), and then tries to acquire the binary semaphore
 associated with the waiting gate. This causes the thread to block until
 some other thread opens that gate.</p>
 <p>Now consider the case where there is a writer in the critical section
@@ -1102,7 +1136,7 @@ writer calls <code>write_release</code>:</p>
     must be 1 at this time, and thus becomes 0.</p>
 </li>
 <li>
-<p>It then calls <code>release_one</code>(). <code>release_one</code>() finds that there are
+<p>It then calls <code>_release_one</code>(). <code>_release_one</code>() finds that there are
     no writers in the critical section and there are two readers
     waiting. It therefore releases not <em>mutex</em> but the readers' gate's
     binary semaphore.</p>
@@ -1111,10 +1145,10 @@ writer calls <code>write_release</code>:</p>
 <p>One of the waiting readers can now re-enter the critical section.
     When it does, the reader decrements the gate's counter (from 2 to 1)
     and increments <em>nreaders</em> (from 0 to 1). The reader finally calls
-    <code>release_one</code>().</p>
+    <code>_release_one</code>().</p>
 </li>
 <li>
-<p>Again, <code>release_one</code>() finds that there are no writers and that
+<p>Again, <code>_release_one</code>() finds that there are no writers and that
     there are readers waiting, so again it releases the readers'
     semaphore.</p>
 </li>
@@ -1123,14 +1157,14 @@ writer calls <code>write_release</code>:</p>
     the gate's count from 1 to 0 and increments <em>nreaders</em> from 1 to 2.</p>
 </li>
 <li>
-<p>Finally, the second reader calls <code>release_one</code>(). This time
-    <code>release_one</code>() does not find any threads waiting, and so it
+<p>Finally, the second reader calls <code>_release_one</code>(). This time
+    <code>_release_one</code>() does not find any threads waiting, and so it
     releases <em>mutex</em>. There are now two reader threads that are holding
     the reader/writer lock.</p>
 </li>
 </ol>
 <h2 id="exercises">Exercises</h2>
-<p><strong>16.1</strong> Several of the calls to <code>release_one</code>() in Figure 16.1 can be
+<p><strong>16.1</strong> Several of the calls to <code>_release_one</code>() in Figure 16.1 can be
 replaced by simply releasing <em>mutex</em>. Which ones?</p>
 <p><strong>16.2</strong> Optimize your solutions to Exercise 11.1 to use reader/writer locks.</p>
 <p><strong>16.3</strong> Implement a solution to the producer/consumer problem using split binary semaphores.</p>
@@ -1148,8 +1182,8 @@ can acquire the bound lock at the same time.</p>
 
 <span class="n">availGPUs</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.</span><span class="o">.</span><span class="n">N</span><span class="p">}</span>
 
-<span class="k">def</span> <span class="nf">gpuAlloc</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">availGPUs</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">gpuAlloc</span><span class="p">()</span> <span class="n">returns</span> <span class="n">gpu</span><span class="p">:</span>
+    <span class="n">gpu</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">availGPUs</span><span class="p">)</span>
     <span class="n">availGPUs</span> <span class="o">-=</span> <span class="p">{</span> <span class="n">result</span> <span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">gpuRelease</span><span class="p">(</span><span class="n">gpu</span><span class="p">):</span>
@@ -1180,68 +1214,32 @@ invoke after leaving the bridge. Similarly write <code>sb_enter</code>() and
 <p><strong>16.10</strong> Extend the solution to Exercise 16.9 by implementing the requirement
 that at most <span class="arithmatex">\(n\)</span> cars are allowed on the bridge. Add <span class="arithmatex">\(n\)</span> as an argument
 to <code>OLBlock</code>.</p>
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../condwait/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 15 Conditional Waiting " rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              15 Conditional Waiting 
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../starvation/" class="md-footer__link md-footer__link--next" aria-label="Next: 17 Starvation " rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              17 Starvation 
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2020 - 2022 Robbert van Renesse
-          </div>
-        
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 - 2023 Robbert van Renesse
+    </div>
+  
+  
+</div>
       
     </div>
   </div>
@@ -1251,10 +1249,11 @@ to <code>OLBlock</code>.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
