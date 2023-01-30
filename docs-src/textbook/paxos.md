@@ -12,9 +12,9 @@ $2\texttt{F} + 1$ independently failing processors are needed. Here we
 provide only a rudimentary introduction to Paxos; for more detailed
 information refer to.
 
-As in the consensus protocol of [Chapter 29](consensus.md), Paxos uses rounds of
+As in the consensus protocol of [Chapter 30](consensus.md), Paxos uses rounds of
 messaging. The communication pattern, however, is different. Similar to
-the atomic read/write register protocol in [Chapter 28](abd.md), Paxos uses two
+the atomic read/write register protocol in [Chapter 29](abd.md), Paxos uses two
 kinds of rounds: "Phase 1" and "Phase 2" rounds. Rounds are identified
 by a so-called *ballot number* combined with the phase number. Different
 leaders are in charge of different ballot numbers. Leaders broadcast

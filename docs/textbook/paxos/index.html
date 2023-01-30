@@ -991,9 +991,9 @@ acceptors, but leaders and acceptors can be colocated, so in total only
 <span class="arithmatex">\(2\texttt{F} + 1\)</span> independently failing processors are needed. Here we
 provide only a rudimentary introduction to Paxos; for more detailed
 information refer to.</p>
-<p>As in the consensus protocol of <a href="../consensus/">Chapter 29</a>, Paxos uses rounds of
+<p>As in the consensus protocol of <a href="../consensus/">Chapter 30</a>, Paxos uses rounds of
 messaging. The communication pattern, however, is different. Similar to
-the atomic read/write register protocol in <a href="../abd/">Chapter 28</a>, Paxos uses two
+the atomic read/write register protocol in <a href="../abd/">Chapter 29</a>, Paxos uses two
 kinds of rounds: "Phase 1" and "Phase 2" rounds. Rounds are identified
 by a so-called <em>ballot number</em> combined with the phase number. Different
 leaders are in charge of different ballot numbers. Leaders broadcast

@@ -177,7 +177,7 @@ Computing triangle numbers </figcaption>
 
 Figure 2.7 shows another example of a Harmony program. The example
 is a sequential program and has a method `triangle` that takes an
-integer number as argument. Each method has a variable called *result*
+integer number as argument. The method declares a variable called *result*
 that eventually contains the result of the method (there is no
 **return** statement in Harmony). The method also has a bound variable
 called *n* containing the value of the argument. The { *x*..*y* }
