@@ -1813,7 +1813,7 @@ overflow on various operations.</p>
 <td>difference</td>
 </tr>
 <tr>
-<td><em>e</em> * <em>e</em> * ...</td>
+<td><em>e</em> ** <em>e</em> ...</td>
 <td>product</td>
 </tr>
 <tr>
@@ -2791,8 +2791,8 @@ precedence. So, !<em>a</em> <em>b</em> is interpreted as !(<em>a</em> <em>b</em>
 <em>d</em> is interpreted as (<em>a</em> <em>b</em>) + (<em>c</em> <em>d</em>). Unary operators have the
 next highest precedence, and the remaining operators have the lowest
 precedence. For example, <span class="arithmatex">\(-2 + 3\)</span> evaluates to 1, not <span class="arithmatex">\(-5\)</span>.</p>
-<p>Associative operators (<span class="arithmatex">\(+\)</span>, <span class="arithmatex">\(*\)</span>, <span class="arithmatex">\(|\)</span>, <span class="arithmatex">\(\string&amp;\)</span>, <span class="arithmatex">\(\string^\)</span>, <strong>and</strong>,
-<strong>or</strong>) are interpreted as general <span class="arithmatex">\(n\)</span>-ary operators, and you are
+<p>Associative operators (<code>+</code>, <code>*</code>, <code>|</code>, <code>&amp;</code>, <code>^</code>, <code>and</code>,
+<code>or</code>) are interpreted as general <span class="arithmatex">\(n\)</span>-ary operators, and you are
 allowed to write <span class="arithmatex">\(a + b + c\)</span>. However, ambiguous expressions such as 
 <span class="arithmatex">\(a - b - c\)</span> are illegal, as is any combination of operators with an
 arity larger than one, such as <span class="arithmatex">\(a + b &lt; c\)</span>. In such cases you have to

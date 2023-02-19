@@ -1167,10 +1167,10 @@
 <h3 id="for-cs-deparment-linux-machine-users">For CS Deparment Linux Machine Users</h3>
 <p>It may be possible that <code>pip</code> is not available on your Linux machine. In that case, you will need to download and build the source code directly. This can be done via the following commands:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Installs version 1.2.2376</span>
-wget<span class="w"> </span>https://files.pythonhosted.org/packages/2c/cb/0a1d4dedf7f4dc552da831b28bde842c74bed251d75dd58d9f56fc688b04/harmony_model_checker-1.2.2376.tar.gz
-gzip<span class="w"> </span>-d<span class="w"> </span>harmony_model_checker-1.2.2376.tar.gz
-tar<span class="w"> </span>-xf<span class="w"> </span>harmony_model_checker-1.2.2376.tar
-<span class="nb">cd</span><span class="w"> </span>harmony_model_checker-1.2.2376
+wget<span class="w"> </span>https://files.pythonhosted.org/packages/4f/da/25219ab62a53f222b71f4c249d317b7952e95e36b4523b84809fb2a30412/harmony-1.2.3126.tar.gz
+gzip<span class="w"> </span>-d<span class="w"> </span>harmony-1.2.3126.tar.gz
+tar<span class="w"> </span>-xf<span class="w"> </span>harmony-1.2.3126.tar.gz
+<span class="nb">cd</span><span class="w"> </span>harmony-1.2.3126
 python3<span class="w"> </span>setup.py<span class="w"> </span>install<span class="w"> </span>--user
 </code></pre></div>
 <p>Afterward, you will likely need to add the directory with the <code>harmony</code> command to your environment <code>PATH</code>. You can get the directory with the script by running <code>python3 -m site --user-base</code>, which will output something like <code>/home/&lt;net-id&gt;/.local</code>. Add this directory to your <code>PATH</code> (See <a href="#modifying-your-path-variable">here</a> for more information on how to do so).</p>

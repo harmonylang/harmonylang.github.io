@@ -56,7 +56,7 @@ pip install harmony
 
 ### For Windows Users
 
-For **Windows** users: you may encounter the error message along the lines of the following when installing `harmony-model-checker`:
+For **Windows** users: you may encounter the error message along the lines of the following when installing `harmony`:
 
 ```sh
 error: Microsoft Visual C++ 14.0 or greater is required. Get it with
@@ -80,10 +80,10 @@ It may be possible that `pip` is not available on your Linux machine. In that ca
 
 ```sh
 # Installs version 1.2.2376
-wget https://files.pythonhosted.org/packages/2c/cb/0a1d4dedf7f4dc552da831b28bde842c74bed251d75dd58d9f56fc688b04/harmony_model_checker-1.2.2376.tar.gz
-gzip -d harmony_model_checker-1.2.2376.tar.gz
-tar -xf harmony_model_checker-1.2.2376.tar
-cd harmony_model_checker-1.2.2376
+wget https://files.pythonhosted.org/packages/4f/da/25219ab62a53f222b71f4c249d317b7952e95e36b4523b84809fb2a30412/harmony-1.2.3126.tar.gz
+gzip -d harmony-1.2.3126.tar.gz
+tar -xf harmony-1.2.3126.tar.gz
+cd harmony-1.2.3126
 python3 setup.py install --user
 ```
 
@@ -104,7 +104,7 @@ Otherwise, add that path displayed in the message to your `PATH` variable. See [
 
 ## Command-Line Harmony
 
-Once you have installed `harmony-model-checker`, you should be able to use the `harmony` command on your command line.
+Once you have installed `harmony`, you should be able to use the `harmony` command on your command line.
 
 You check which version you have by running `harmony --version`.
 

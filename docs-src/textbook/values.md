@@ -110,7 +110,7 @@ Operations on integers include:
 | **abs** *e* | absolute value |
 | *e* + *e* + ... | sum |
 | *e* - *e* | difference |
-| *e* * *e* * ... | product |
+| *e* \*\* *e* ... | product |
 | *e* / e, *e* // *e* | integer division |
 | *e* % e, *e* **mod** *e* | integer division remainder |
 | *e* ** *e* | power |
@@ -967,8 +967,8 @@ precedence. So, !*a* *b* is interpreted as !(*a* *b*) and *a* *b* + *c*
 next highest precedence, and the remaining operators have the lowest
 precedence. For example, $-2 + 3$ evaluates to 1, not $-5$.
 
-Associative operators ($+$, $*$, $|$, $\string&$, $\string^$, **and**,
-**or**) are interpreted as general $n$-ary operators, and you are
+Associative operators (`+`, `*`, `|`, `&`, `^`, `and`,
+`or`) are interpreted as general $n$-ary operators, and you are
 allowed to write $a + b + c$. However, ambiguous expressions such as 
 $a - b - c$ are illegal, as is any combination of operators with an
 arity larger than one, such as $a + b < c$. In such cases you have to
