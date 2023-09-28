@@ -1,6 +1,0 @@
-def handler():
-    print "interrupt"
-def thread():
-    trap handler()
-    print "hello world"
-spawn thread()
