@@ -200,6 +200,7 @@
         <div class="row justify-content-center">
 
           <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+			Use this installation for command line usage.
             <div class="box featured" data-aos="zoom-in">
               <h3>Harmony Compiler</h3>
               <ul>
@@ -215,7 +216,8 @@
           </div>
 
           <div class="col-lg-3 col-md-6">
-            <div class="box" data-aos="zoom-in" data-aos-delay="100">
+			Use this installation if you want to use Harmony using VSCode.
+            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
               <h3>HarmonyLang for VSCode</h3>
               <ul>
                 <li>Syntax Highlighting</li>
@@ -272,23 +274,21 @@
           <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 ">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
               <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/hoare.hny">Hoare
-                  Monitor</a></h4>
+              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/boundedbuffer_hoare.hny">Bounded Buffer</a></h4>
               <p class="description">
-                A synchronization construct that allows threads to have both mutual exclusion and the ability to wait
-                (block) for a certain condition to become false.
+                A solution to the producer/consumer problem using
+				a Hoare monitor.
               </p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-5">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="300">
               <div class="icon"><i class="las la-tachometer-alt" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/RW.hny">Reader/Writer
+              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/rwlock_cv.hny">Reader/Writer
                   Problem</a></h4>
               <p class="description">
-                One of the most common problems in concurrency, we want to prevent more than one thread modifying
-                the shared resource simultaneously and allow for two or more readers to access the shared resource
-                at the same time.
+                We want to prevent more than one thread modifying the shared resource simultaneously and allow for two or more readers to access the shared resource
+                for reading at the same time.
               </p>
             </div>
           </div>
@@ -296,22 +296,20 @@
           <div class="col-lg-4 col-md-6 mt-5">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="400">
               <div class="icon"><i class="las la-globe-americas" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/bank.hny">Banking</a>
+              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/queue_MS.hny">2-Lock Concurrent Queue</a>
               </h4>
               <p class="description">
-                It would make for quite a poor banking experience to allow dollars to simply go missing or be created
-                from thin air, however that's exactly what might happen with poorly designed concurrent programs.
+			  	This queue implementation uses separate locks for the head and the tail.
               </p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-5">
             <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="500">
               <div class="icon"><i class="las la-clock" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/BBsema.hny">Split
-                  Binary Semaphores</a></h4>
+              <h4 class="title"><a href="https://github.dev/harmonylang/harmony/blob/master/code/paxos.hny">Paxos</a></h4>
               <p class="description">
-                A technique originally discovered, but not recommended by, Tony Hoare.
-                It uses a set of binary semaphores the sum of which never exceeds 1
+			  	A way for multiple distributed processes to come to agreement, even
+				in the face of failures.
               </p>
             </div>
           </div>
